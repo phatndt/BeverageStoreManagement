@@ -90,7 +90,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\UserControl\UserControl.xaml">
+    <Page Include="Resources\UserControl\UserControlTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,8 +108,8 @@
     </Compile>
     <Compile Include="DAL\Connection.cs" />
     <Compile Include="Models\Model.cs" />
-    <Compile Include="Resources\UserControl\UserControl.xaml.cs">
-      <DependentUpon>UserControl.xaml</DependentUpon>
+    <Compile Include="Resources\UserControl\UserControlTest.xaml.cs">
+      <DependentUpon>UserControlTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validations\Validations.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

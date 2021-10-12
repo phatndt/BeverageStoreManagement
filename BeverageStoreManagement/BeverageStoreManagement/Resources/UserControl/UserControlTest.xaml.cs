@@ -18,9 +18,9 @@ namespace BeverageStoreManagement.Resources.UserControl
     /// <summary>
     /// Interaction logic for UserControl.xaml
     /// </summary>
-    public partial class UserControl : UserControl
+    public partial class UserControlTest : UserControl
     {
-        public UserControl()
+        public UserControlTest()
         {
             InitializeComponent();
         }
