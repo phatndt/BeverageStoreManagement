@@ -85,6 +85,9 @@
     <Compile Include="Views\Pages\GoodsPage.xaml.cs">
       <DependentUpon>GoodsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\InvoiceInfoControl.xaml.cs">
+      <DependentUpon>InvoiceInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\SalePage.xaml.cs">
       <DependentUpon>SalePage.xaml</DependentUpon>
     </Compile>
@@ -96,7 +99,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\UserControl\UserControlTest.xaml">
+    <Page Include="Resources\UserControls\InvoiceInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,9 +117,6 @@
     </Compile>
     <Compile Include="DAL\Connection.cs" />
     <Compile Include="Models\Model.cs" />
-    <Compile Include="Resources\UserControl\UserControlTest.xaml.cs">
-      <DependentUpon>UserControlTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Validations\Validations.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
