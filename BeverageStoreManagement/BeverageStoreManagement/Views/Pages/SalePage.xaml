@@ -174,7 +174,6 @@
                                         ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                         Width="535.2"
                                         HorizontalAlignment="Left">
-
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
