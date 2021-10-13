@@ -11,6 +11,10 @@
     <SolidColorBrush x:Key="Blue9" Color="#FFbbdefb"></SolidColorBrush>
     <SolidColorBrush x:Key="Blue10" Color="#FFe3f2fd"></SolidColorBrush>
 
+    <SolidColorBrush x:Key="Pallet2" Color="#FF4ecdc4"></SolidColorBrush>
+    <SolidColorBrush x:Key="Pallet3" Color="#FFf7fff7"></SolidColorBrush>
+    <SolidColorBrush x:Key="Pallet4" Color="#FFff6b6b"></SolidColorBrush>
+    <SolidColorBrush x:Key="Pallet5" Color="#FFffe66d"></SolidColorBrush>
     <!-- Background Colors -->
     <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#f3f3f3"/>
     <SolidColorBrush x:Key="SecundaryBackgroundColor" Color="#f9f9f9"/>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Resources.UserControl
+namespace BeverageStoreManagement.Resources.UserControls
 {
     /// <summary>
-    /// Interaction logic for UserControl.xaml
+    /// Interaction logic for InvoiceInfoControl.xaml
     /// </summary>
-    public partial class UserControlTest : UserControl
+    public partial class InvoiceInfoControl : UserControl
     {
-        public UserControlTest()
+        public InvoiceInfoControl()
         {
             InitializeComponent();
         }
