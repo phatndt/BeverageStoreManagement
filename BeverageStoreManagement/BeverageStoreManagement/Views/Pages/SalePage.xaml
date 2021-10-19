@@ -138,18 +138,45 @@
                         CornerRadius="8"
                         Background="White"
                         Margin="0 5 5 0">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Disabled">
-                        <WrapPanel x:Name="wrpBills"
-                                   Margin="4">
-                            <!--<i:Interaction.Triggers>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="8 8 0 0"
+                                Grid.Row="0"
+                                Background="{DynamicResource Blue1}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="0.75*" />
+                                    <ColumnDefinition Width="0.75*" />
+                                    <ColumnDefinition Width="0.75*" />
+                                    <ColumnDefinition Width="0.5*" />
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                        </Border>
+                        <ScrollViewer Grid.Row="1"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled">
+                            <StackPanel x:Name="wrpBills"
+                                        Margin="0 0 0 6">
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Loaded">
                                     <i:InvokeCommandAction Command="{Binding LoadGoodsCommand}"
                                                            CommandParameter="{Binding ElementName=wdImportStock}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>-->
-                        </WrapPanel>
-                    </ScrollViewer>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
                 </Border>
             </Grid>
             <Border Grid.Column="1"
@@ -314,8 +341,8 @@
                                 <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
                                 <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
                                 <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
-
-                                
+                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
                                 <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
                                 <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
                             </StackPanel>
