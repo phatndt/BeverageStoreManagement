@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Resources.UserControl
+namespace BeverageStoreManagement.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for UserControl.xaml
+    /// Interaction logic for GoodsPage.xaml
     /// </summary>
-    public partial class UserControlTest : UserControl
+    public partial class GoodsPage : Page
     {
-        public UserControlTest()
+        public GoodsPage()
         {
             InitializeComponent();
         }

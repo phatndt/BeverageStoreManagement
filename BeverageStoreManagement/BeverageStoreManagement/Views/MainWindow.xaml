@@ -41,7 +41,8 @@
                             x:Name="rdHome" 
                             IsChecked="True" 
                             Style="{DynamicResource MenuRadioButtonStyle}" 
-                            Tag="HomeMinusOutline">
+                            Tag="HomeMinusOutline"
+                            Click="rdHome_Click">
                             <RadioButton.ToolTip>
                                 <ToolTip Content="Home" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
@@ -50,7 +51,8 @@
                             x:Name="rdSounds" 
                             Style="{DynamicResource MenuRadioButtonStyle}" 
                             Tag="HomeModern" 
-                            Margin="0 5 0 5">
+                            Margin="0 5 0 5"
+                            Click="rdSounds_Click">
                             <RadioButton.ToolTip>
                                 <ToolTip Content="HI" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
@@ -58,7 +60,8 @@
                         <RadioButton 
                             x:Name="rdNotes" 
                             Style="{DynamicResource MenuRadioButtonStyle}" 
-                            Tag="HomePlus">
+                            Tag="HomePlus"
+                            Click="rdNotes_Click">
                             <RadioButton.ToolTip>
                                 <ToolTip Content="Hello" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
@@ -88,7 +91,7 @@
             </Border>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!-- Start: Button Close | Restore | Minimize -->
@@ -127,10 +130,14 @@
                         Style="{DynamicResource IconButtonsStyle}" 
                         Content="WindowMinimize" 
                         Click="btnMinimize_Click"/>
+                    
                 </StackPanel>
 
                 <Border Grid.Row="1" Margin="10" CornerRadius="10" Background="White">
-                    <Grid></Grid>
+                    <Frame x:Name="PagesNavigation"
+                           NavigationUIVisibility="Hidden">
+                        <!-- Page Content -->
+                    </Frame>
                 </Border>
             </Grid>
         </Grid> 
