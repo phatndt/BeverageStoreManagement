@@ -91,6 +91,9 @@
     <Compile Include="Resources\UserControls\InvoiceInfoControl.xaml.cs">
       <DependentUpon>InvoiceInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Pages\IncidentPage.xaml.cs">
+      <DependentUpon>IncidentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\SalePage.xaml.cs">
       <DependentUpon>SalePage.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\GoodsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\IncidentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
