@@ -51,7 +51,8 @@
                             x:Name="rdSounds" 
                             Style="{DynamicResource MenuRadioButtonStyle}" 
                             Tag="HomeModern" 
-                            Margin="0 5 0 5">
+                            Margin="0 5 0 5"
+                            Click="rdSounds_Click">
                             <RadioButton.ToolTip>
                                 <ToolTip Content="HI" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
