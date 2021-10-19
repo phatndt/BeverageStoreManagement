@@ -60,7 +60,8 @@
                         <RadioButton 
                             x:Name="rdNotes" 
                             Style="{DynamicResource MenuRadioButtonStyle}" 
-                            Tag="HomePlus">
+                            Tag="HomePlus"
+                            Click="rdNotes_Click">
                             <RadioButton.ToolTip>
                                 <ToolTip Content="Hello" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
