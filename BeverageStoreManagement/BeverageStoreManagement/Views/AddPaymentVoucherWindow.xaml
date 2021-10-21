@@ -1,0 +1,303 @@
+﻿<Window x:Class="BeverageStoreManagement.Views.AddPaymentVoucherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeverageStoreManagement.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        mc:Ignorable="d"
+        Height="530"
+        Width="600"
+        Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        DataContext="{StaticResource PaymentVoucherVM}"
+        WindowState="Normal">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="65" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label Content="Payment Voucher Window"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="24"
+                   FontFamily="Poppins"
+                   FontWeight="SemiBold" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="ID Payment Voucher"
+                   HorizontalAlignment="Left"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"
+                   Height="32"
+                   Margin="40 0 0 0"
+                   VerticalAlignment="Center" />
+            <Rectangle Width="300"
+                       Height="40"
+                       RadiusY="6"
+                       RadiusX="6"
+                       Margin="0,0,30,0"
+                       StrokeThickness="1.5"
+                       Stroke="{StaticResource Blue3}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+            <TextBox x:Name="txtIdEmployee"
+                     materialDesign:HintAssist.Hint="id"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center"
+                     Width="280"
+                     FontSize="14"
+                     BorderThickness="0"
+                     MaxLines="1"
+                     Padding="0"
+                     Foreground="{StaticResource Blue1}"
+                     Margin="0,20,40,21"
+                     IsReadOnly="True"
+                     Height="40"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     SelectionBrush="{x:Null}"
+                     FontWeight="SemiBold"
+                     materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
+                     Grid.ColumnSpan="2">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="Employee"
+                   HorizontalAlignment="Left"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"
+                   Height="32"
+                   Margin="40 0 0 0"
+                   VerticalAlignment="Center" />
+            <Rectangle Width="300"
+                       Height="40"
+                       RadiusY="6"
+                       RadiusX="6"
+                       Margin="0,0,30,0"
+                       StrokeThickness="1.5"
+                       Stroke="{StaticResource Blue1}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+            <ComboBox x:Name="txtNameEmployee"
+                      materialDesign:HintAssist.Hint="Employee"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Width="280"
+                      FontSize="14"
+                      BorderThickness="0"
+                      Padding="0"
+                      Foreground="{StaticResource Blue1}"
+                      BorderBrush="{DynamicResource Blue1}"
+                      Margin="0,20,40,21"
+                      Height="40"
+                      HorizontalContentAlignment="Left"
+                      VerticalContentAlignment="Center"
+                      FontWeight="SemiBold"
+                      materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
+                      Grid.ColumnSpan="2">
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Label Content="Date"
+                   HorizontalAlignment="Left"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"
+                   Height="32"
+                   Margin="40 0 0 0"
+                   VerticalAlignment="Center" />
+            <Rectangle Width="300"
+                       Height="40"
+                       RadiusY="6"
+                       RadiusX="6"
+                       Margin="0,0,30,0"
+                       StrokeThickness="1.5"
+                       Stroke="{StaticResource Blue1}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+            <DatePicker x:Name="txtDate"
+                        materialDesign:HintAssist.Hint="Date"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Width="280"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Padding="0"
+                        Foreground="{StaticResource Blue1}"
+                        Margin="0,20,40,21"
+                        Height="40"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        FontWeight="SemiBold"
+                        materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
+                        Grid.ColumnSpan="2"
+                        BorderBrush="{DynamicResource Blue1}"
+                        materialDesign:CalendarAssist.SelectionColor="Aqua">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Label Content="ID Import BIll"
+                   HorizontalAlignment="Left"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"
+                   Height="32"
+                   Margin="40 0 0 0"
+                   VerticalAlignment="Center" />
+            <Rectangle Width="300"
+                       Height="40"
+                       RadiusY="6"
+                       RadiusX="6"
+                       Margin="0,0,30,0"
+                       StrokeThickness="1.5"
+                       Stroke="{StaticResource Blue1}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+            <ComboBox x:Name="txtImportBill"
+                      materialDesign:HintAssist.Hint="ID"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Width="280"
+                      FontSize="14"
+                      BorderThickness="0"
+                      Padding="0"
+                      Foreground="{StaticResource Blue1}"
+                      Margin="0,20,40,21"
+                      Height="40"
+                      HorizontalContentAlignment="Left"
+                      VerticalContentAlignment="Center"
+                      FontWeight="SemiBold"
+                      materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
+                      Grid.ColumnSpan="2"
+                      BorderBrush="{DynamicResource Blue1}"
+                      materialDesign:CalendarAssist.SelectionColor="Aqua">
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Label Content="Note"
+                   HorizontalAlignment="Left"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"
+                   Height="32"
+                   Margin="40 0 0 0"
+                   VerticalAlignment="Center" />
+            <Rectangle Width="300"
+                       Height="40"
+                       RadiusY="6"
+                       RadiusX="6"
+                       Margin="0,0,30,0"
+                       StrokeThickness="1.5"
+                       Stroke="{StaticResource Blue1}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+            <TextBox x:Name="txt"
+                     materialDesign:HintAssist.Hint="Note"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center"
+                     Width="280"
+                     FontSize="14"
+                     MaxLines="1"
+                     BorderThickness="0"
+                     Padding="0"
+                     Foreground="{StaticResource Blue1}"
+                     Margin="0,20,40,21"
+                     Height="40"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     SelectionBrush="{x:Null}"
+                     FontWeight="SemiBold"
+                     materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
+                     Grid.ColumnSpan="2"
+                     BorderBrush="{DynamicResource Blue1}"
+                     materialDesign:CalendarAssist.SelectionColor="Aqua">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Label Content="Total money"
+                   HorizontalAlignment="Left"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"
+                   Height="32"
+                   Margin="40 0 0 0"
+                   VerticalAlignment="Center" />
+            <Rectangle Width="300"
+                       Height="40"
+                       RadiusY="6"
+                       RadiusX="6"
+                       Margin="0,0,30,0"
+                       StrokeThickness="1.5"
+                       Stroke="{StaticResource Blue1}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+            <TextBox x:Name="txtTotalMoney"
+                     materialDesign:HintAssist.Hint="Total money"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center"
+                     Width="280"
+                     FontSize="14"
+                     MaxLines="1"
+                     BorderThickness="0"
+                     Padding="0"
+                     Foreground="{StaticResource Blue1}"
+                     Margin="0,20,40,21"
+                     Height="40"
+                     HorizontalContentAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     SelectionBrush="{x:Null}"
+                     FontWeight="SemiBold"
+                     materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
+                     Grid.ColumnSpan="2"
+                     BorderBrush="{DynamicResource Blue1}"
+                     materialDesign:CalendarAssist.SelectionColor="Aqua">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
+                                               CommandParameter="{Binding ElementName=txtTotalMoney}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="7">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Button Height="50"
+                        Width="220"
+                        Content="Save"
+                        HorizontalAlignment="Right"
+                        FontSize="18"
+                        FontFamily="poppins"
+                        Background="{DynamicResource Blue2}"
+                        materialDesign:ButtonAssist.CornerRadius="7"
+                        BorderThickness="0"
+                        FlowDirection="LeftToRight"
+                        Command="{Binding OpenAddPaymentVoucherWindowCommand}"
+                        CommandParameter="{Binding ElementName=pagePaymentVoucher}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

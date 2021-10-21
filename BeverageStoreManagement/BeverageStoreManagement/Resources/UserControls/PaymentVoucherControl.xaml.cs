@@ -10,27 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Views
+namespace BeverageStoreManagement.Resources.UserControls
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for PaymentVoucherControl.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class PaymentVoucherControl : UserControl
     {
-        public LoginWindow()
+        public PaymentVoucherControl()
         {
             InitializeComponent();
-        }
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
         }
     }
 }

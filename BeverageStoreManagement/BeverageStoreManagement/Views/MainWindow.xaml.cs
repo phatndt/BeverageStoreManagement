@@ -52,5 +52,20 @@ namespace BeverageStoreManagement
         {
             PagesNavigation.Navigate(new System.Uri("Views/Pages/IncidentPage.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void rdPayment_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Views/Pages/InvoicePage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void rdManage_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Views/Pages/PaymentVoucherPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void rdReceipt_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Views/Pages/ReceiptVoucherPage.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
