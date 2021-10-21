@@ -6,84 +6,106 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BeverageStoreManagement"
         mc:Ignorable="d"
-        Height="800" Width="1400"
+        Height="800"
+        Width="1400"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="NoResize" 
+        ResizeMode="NoResize"
         WindowState="Normal">
-    <Border CornerRadius="8" Background="{DynamicResource PrimaryBackgroundColor}">
+    <Border CornerRadius="8"
+            Background="{DynamicResource PrimaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Border 
-                CornerRadius="8 0 0 8" 
-                Background="{DynamicResource SecundaryBackgroundColor}">
-                <Grid 
-                    x:Name="gridMenu" 
-                    Width="80">
+            <Border CornerRadius="8 0 0 8"
+                    Background="{DynamicResource SecundaryBackgroundColor}">
+                <Grid x:Name="gridMenu"
+                      Width="80">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Grid 
-                        Width="40" 
-                        Height="40">
-                        <Image Source="/BeverageStoreManagement;component/Resources/Images/logo.png"/>
+                    <Grid Width="40"
+                          Height="40">
+                        <Image Source="/BeverageStoreManagement;component/Resources/Images/logo.png" />
                     </Grid>
                     <StackPanel Grid.Row="1">
-                        <RadioButton 
-                            x:Name="rdHome" 
-                            IsChecked="True" 
-                            Style="{DynamicResource MenuRadioButtonStyle}" 
-                            Tag="HomeMinusOutline"
-                            Click="rdHome_Click">
+                        <RadioButton x:Name="rdHome"
+                                     IsChecked="True"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="HomeMinusOutline"
+                                     Click="rdHome_Click">
                             <RadioButton.ToolTip>
-                                <ToolTip Content="Home" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                <ToolTip Content="Home"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton 
-                            x:Name="rdSounds" 
-                            Style="{DynamicResource MenuRadioButtonStyle}" 
-                            Tag="HomeModern" 
-                            Margin="0 5 0 5"
-                            Click="rdSounds_Click">
+                        <RadioButton x:Name="rdSounds"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="HomeModern"
+                                     Margin="0 5 0 5"
+                                     Click="rdSounds_Click">
                             <RadioButton.ToolTip>
-                                <ToolTip Content="HI" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                <ToolTip Content="HI"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton 
-                            x:Name="rdNotes" 
-                            Style="{DynamicResource MenuRadioButtonStyle}" 
-                            Tag="HomePlus"
-                            Click="rdNotes_Click">
+                        <RadioButton x:Name="rdNotes"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="HomePlus"
+                                     Click="rdNotes_Click">
                             <RadioButton.ToolTip>
-                                <ToolTip Content="Hello" Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                <ToolTip Content="Hello"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton 
-                            x:Name="rdPayment" 
-                            Style="{DynamicResource MenuRadioButtonStyle}" 
-                            Tag="HomeVariantOutline" 
-                            Margin="0 5 0 5"/>
+                        <RadioButton x:Name="rdPayment"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="GoogleMyBusiness"
+                                     Margin="0 5 0 5"
+                                     Click="rdPayment_Click">
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Hello"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+                        <RadioButton x:Name="rdManage"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="Receipt"
+                                     Margin="0 5 0 5"
+                                     Click="rdManage_Click">
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Manage"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+                        <RadioButton x:Name="rdReceipt"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="PaperRollOutline"
+                                     Margin="0 5 0 5"
+                                     Click="rdReceipt_Click">
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Manage"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
                     </StackPanel>
-                    <Grid  
-                        Grid.Row="3" 
-                        VerticalAlignment="Bottom" 
-                        Width="80" 
-                        Margin="0 0 0 20">
-                        <Ellipse 
-                            Width="40" 
-                            Height="40" 
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Center">
+                    <Grid Grid.Row="3"
+                          VerticalAlignment="Bottom"
+                          Width="80"
+                          Margin="0 0 0 20">
+                        <Ellipse Width="40"
+                                 Height="40"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="/BeverageStoreManagement;component/Resources/Images/logo.png"/>
+                                <ImageBrush ImageSource="/BeverageStoreManagement;component/Resources/Images/logo.png" />
                             </Ellipse.Fill>
                         </Ellipse>
                     </Grid>
@@ -91,55 +113,58 @@
             </Border>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="50" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <!-- Start: Button Close | Restore | Minimize -->
-                <StackPanel 
-                    Grid.Row="0" 
-                    Grid.Column="4" 
-                    HorizontalAlignment="Right" 
-                    VerticalAlignment="Top" 
-                    Margin="0,5,10,0" 
-                    Height="40" 
-                    Orientation="Horizontal" 
-                    FlowDirection="RightToLeft">
-                    <Button 
-                        x:Name="btnClose" 
-                        Style="{StaticResource IconButtonsStyle}" 
-                        Tag="IsCloseButton" 
-                        Content="WindowClose"
-                        Click="btnClose_Click"/>
-                    <Button 
-                        x:Name="btnRestore" 
-                        Margin="5,0" 
-                        IsEnabled="False">
+                <StackPanel Grid.Row="0"
+                            Grid.Column="4"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,5,10,0"
+                            Height="40"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft">
+                    <Button x:Name="btnClose"
+                            Style="{StaticResource IconButtonsStyle}"
+                            Tag="IsCloseButton"
+                            Content="WindowClose"
+                            Click="btnClose_Click" />
+                    <Button x:Name="btnRestore"
+                            Margin="5,0"
+                            IsEnabled="False">
                         <Button.Style>
-                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource IconButtonsStyle}">
-                                <Setter Property="Content" Value="WindowMaximize"/>
+                            <Style TargetType="{x:Type Button}"
+                                   BasedOn="{StaticResource IconButtonsStyle}">
+                                <Setter Property="Content"
+                                        Value="WindowMaximize" />
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=home, Path=WindowState}" Value="Maximized">
-                                        <Setter Property="Content" Value="WindowMaximize"/>
+                                    <DataTrigger Binding="{Binding ElementName=home, Path=WindowState}"
+                                                 Value="Maximized">
+                                        <Setter Property="Content"
+                                                Value="WindowMaximize" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button 
-                        x:Name="btnMinimize" 
-                        Style="{DynamicResource IconButtonsStyle}" 
-                        Content="WindowMinimize" 
-                        Click="btnMinimize_Click"/>
-                    
+                    <Button x:Name="btnMinimize"
+                            Style="{DynamicResource IconButtonsStyle}"
+                            Content="WindowMinimize"
+                            Click="btnMinimize_Click" />
+
                 </StackPanel>
 
-                <Border Grid.Row="1" Margin="10" CornerRadius="10" Background="White">
+                <Border Grid.Row="1"
+                        Margin="10"
+                        CornerRadius="10"
+                        Background="White">
                     <Frame x:Name="PagesNavigation"
                            NavigationUIVisibility="Hidden">
                         <!-- Page Content -->
                     </Frame>
                 </Border>
             </Grid>
-        </Grid> 
+        </Grid>
     </Border>
 </Window>

@@ -94,6 +94,26 @@
     <Compile Include="Resources\UserControls\GoodsViewControl.xaml.cs">
       <DependentUpon>GoodsViewControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\InvoiceVoucherControl.xaml.cs">
+      <DependentUpon>InvoiceVoucherControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\PaymentVoucherControl.xaml.cs">
+      <DependentUpon>PaymentVoucherControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\ReceiptVoucherControl.xaml.cs">
+      <DependentUpon>ReceiptVoucherControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\PaymentVoucherViewModel.cs" />
+    <Compile Include="ViewModels\ReceiptVoucherViewModel.cs" />
+    <Compile Include="Views\AddInvoiceWindow.xaml.cs">
+      <DependentUpon>AddInvoiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPaymentVoucherWindow.xaml.cs">
+      <DependentUpon>AddPaymentVoucherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddReceiptVoucherWindow.xaml.cs">
+      <DependentUpon>AddReceiptVoucherWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\GoodsPage.xaml.cs">
       <DependentUpon>GoodsPage.xaml</DependentUpon>
     </Compile>
@@ -106,6 +126,18 @@
     <Compile Include="ViewModels\SaleViewModel.cs" />
     <Compile Include="Views\Pages\IncidentPage.xaml.cs">
       <DependentUpon>IncidentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\InvoicePage.xaml.cs">
+      <DependentUpon>InvoicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ManagePage.xaml.cs">
+      <DependentUpon>ManagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\PaymentVoucherPage.xaml.cs">
+      <DependentUpon>PaymentVoucherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ReceiptVoucherPage.xaml.cs">
+      <DependentUpon>ReceiptVoucherPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\SalePage.xaml.cs">
       <DependentUpon>SalePage.xaml</DependentUpon>
@@ -123,7 +155,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\InvoiceControl.xaml">
-            <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\GoodsViewControl.xaml">
@@ -134,7 +166,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\UserControls\InvoiceVoucherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\UserControls\NumericSpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\PaymentVoucherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\ReceiptVoucherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddInvoiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddPaymentVoucherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddReceiptVoucherWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,6 +227,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\IncidentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\InvoicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ManagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\PaymentVoucherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ReceiptVoucherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

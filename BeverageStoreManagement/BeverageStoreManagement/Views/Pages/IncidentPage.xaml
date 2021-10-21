@@ -12,7 +12,7 @@
       Background="Transparent">
 
     <Border CornerRadius="8"
-            Background="{DynamicResource PrimaryBackgroundColor}">
+            Background="{DynamicResource Blue1}">
         
     </Border>
 </Page>
