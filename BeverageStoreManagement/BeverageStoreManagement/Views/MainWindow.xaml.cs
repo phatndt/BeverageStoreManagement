@@ -80,6 +80,15 @@ namespace BeverageStoreManagement
         {
             PagesNavigation.Content = new EmployeePage();
         }
+        
+        private void PagesNavigation_Navigated(object sender, NavigationEventArgs e)
+        {
 
+        }
+
+        private void rdProduct_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Views/Pages/ProductPage.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
