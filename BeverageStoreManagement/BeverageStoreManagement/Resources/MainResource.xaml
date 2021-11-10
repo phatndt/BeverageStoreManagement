@@ -19,5 +19,5 @@
     </ControlTemplate>
     <viewmodels:GoodsPageViewModel x:Key="GoodsPageVM"></viewmodels:GoodsPageViewModel>
     <viewmodels:ProductPageViewModel x:Key="ProductPageVM"></viewmodels:ProductPageViewModel>
-
+    <viewmodels:IncidentViewModel x:Key="IncidentVM"></viewmodels:IncidentViewModel>
 </ResourceDictionary>

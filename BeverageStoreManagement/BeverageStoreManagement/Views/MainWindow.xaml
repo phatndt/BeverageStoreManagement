@@ -117,6 +117,13 @@
                                      Click="rdProduct_Click">
                             <RadioButton.ToolTip>
                                 <ToolTip Content="Product Management"
+                        <RadioButton x:Name="rdAcount"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="Account"
+                                     Margin="0 5 0 5"
+                                     Click="rdAcount_Click">
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Account Management"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>

@@ -85,7 +85,8 @@
                               Background="White"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Right"
-                              Margin="0 5 387 0.5" />
+                              Margin="0 5 387 0.5"
+                              SelectionChanged="ComboBox_SelectionChanged" />
                     <Rectangle Height="40"
                                Width="160"
                                StrokeThickness="1"
