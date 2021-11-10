@@ -88,6 +88,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\UserControls\AccountControl.xaml.cs">
+      <DependentUpon>AccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\IncidentControls.xaml.cs">
+      <DependentUpon>IncidentControls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\InvoiceControl.xaml.cs">
       <DependentUpon>InvoiceControl.xaml</DependentUpon>
     </Compile>
@@ -107,6 +113,14 @@
     </Compile>
     <Compile Include="Views\AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AddNewIncident.cs" />
+    <Compile Include="ViewModels\IncidentViewModel.cs" />
+    <Compile Include="Views\Incident\AddIncidentWindow.xaml.cs">
+      <DependentUpon>AddIncidentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AccountManagement.xaml.cs">
+      <DependentUpon>AccountManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\GoodsPage.xaml.cs">
       <DependentUpon>GoodsPage.xaml</DependentUpon>
@@ -145,8 +159,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\UserControls\AccountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\IncidentControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\UserControls\InvoiceControl.xaml">
-            <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\GoodsViewControl.xaml">
@@ -177,6 +199,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Incident\AddIncidentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +228,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AccountManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,7 +285,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Views\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\logo.png" />

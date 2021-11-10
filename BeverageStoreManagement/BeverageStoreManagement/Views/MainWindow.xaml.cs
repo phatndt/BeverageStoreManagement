@@ -62,5 +62,10 @@ namespace BeverageStoreManagement
         {
             PagesNavigation.Navigate(new System.Uri("Views/Pages/ProductPage.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void rdAcount_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Views/Pages/AccountManagement.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
