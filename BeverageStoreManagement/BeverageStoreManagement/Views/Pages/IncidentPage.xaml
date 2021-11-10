@@ -24,7 +24,6 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="8*" />
             </Grid.RowDefinitions>
-
             <Grid Grid.Row="0">
                 <Button x:Name="btnAddIncident"
                         Height="50"

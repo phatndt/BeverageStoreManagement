@@ -12,25 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Views
+namespace BeverageStoreManagement.Views.Employee
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for AddEmployeeWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class AddEmployeeWindow : Window
     {
-        public LoginWindow()
+        public AddEmployeeWindow()
         {
             InitializeComponent();
-        }
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
         }
     }
 }

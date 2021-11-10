@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="Resources/MainResource.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/Color.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/ScrollBarStyle.xaml" />
+                <ResourceDictionary Source="Resources/TextBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
