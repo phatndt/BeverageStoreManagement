@@ -12,7 +12,7 @@
       Title="SalePage"
       Height="730"
       Width="1300"
-      DataContext="{StaticResource SaleVM}"
+      
       Background="Transparent">
 
     <Border CornerRadius="8"
@@ -385,7 +385,7 @@
                                  FontWeight="SemiBold"
                                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Pallet4}"
                                  Grid.ColumnSpan="2">
-                            <i:Interaction.Triggers>
+                            <!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding }"
                                                          MethodName="NumberValidationTextBox" />
@@ -394,7 +394,7 @@
                                     <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
                                                            CommandParameter="{Binding ElementName=txtTotalMoney}" />
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                            </i:Interaction.Triggers>-->
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -434,7 +434,7 @@
                                  FontWeight="SemiBold"
                                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
                                  Grid.ColumnSpan="2">
-                            <i:Interaction.Triggers>
+                            <!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding }"
                                                          MethodName="NumberValidationTextBox" />
@@ -443,7 +443,7 @@
                                     <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
                                                            CommandParameter="{Binding ElementName=txtMoneyCustomer}" />
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                            </i:Interaction.Triggers>-->
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="4">
@@ -484,7 +484,7 @@
                                  FontWeight="SemiBold"
                                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Pallet4}"
                                  Grid.ColumnSpan="2">
-                            <i:Interaction.Triggers>
+                            <!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding }"
                                                          MethodName="NumberValidationTextBox" />
@@ -493,7 +493,7 @@
                                     <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
                                                            CommandParameter="{Binding ElementName=txtMoneyChange}" />
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                            </i:Interaction.Triggers>-->
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="5">
@@ -583,8 +583,6 @@
                                     BorderThickness="0"
                                     Height="45"
                                     Width="130"
-                                    Command="{Binding SelectImageCommand}"
-                                    CommandParameter="{Binding ElementName=grdSelectImage}"
                                     ToolTip="Checkout"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
@@ -599,8 +597,6 @@
                                     BorderThickness="0"
                                     Height="45"
                                     Width="130"
-                                    Command="{Binding SelectImageCommand}"
-                                    CommandParameter="{Binding ElementName=grdSelectImage}"
                                     ToolTip="Checkout"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
@@ -615,8 +611,6 @@
                                     BorderThickness="0"
                                     Height="45"
                                     Width="130"
-                                    Command="{Binding SelectImageCommand}"
-                                    CommandParameter="{Binding ElementName=grdSelectImage}"
                                     ToolTip="Checkout"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"

@@ -37,4 +37,10 @@
 
     <!-- Icons Colors -->
     <SolidColorBrush x:Key="ActionIconColor" Color="#434344"/>
+
+    <SolidColorBrush x:Key="Primary"
+                     Color="#FF0d47a1" />
+
+    <SolidColorBrush x:Key="White"
+                     Color="#FFFFFFFF" />
 </ResourceDictionary>

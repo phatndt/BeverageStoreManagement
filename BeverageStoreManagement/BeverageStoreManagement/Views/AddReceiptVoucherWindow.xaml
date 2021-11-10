@@ -7,8 +7,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
         mc:Ignorable="d"
-        Height="470"
+        Height="520"
         Width="600"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
@@ -18,133 +19,50 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="65" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Content="Receipt Voucher Window"
+            <Label Content="Payment Voucher Window"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="24"
                    FontFamily="Poppins"
-                   FontWeight="SemiBold" />
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Label Content="ID Receipt Voucher"
-                   HorizontalAlignment="Left"
-                   FontSize="18"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue1}"
-                   Height="32"
-                   Margin="40 0 0 0"
-                   VerticalAlignment="Center" />
-            <Rectangle Width="300"
-                       Height="40"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Margin="0,0,30,0"
-                       StrokeThickness="1.5"
-                       Stroke="{StaticResource Blue3}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center" />
-            <TextBox x:Name="txtIdEmployee"
-                     materialDesign:HintAssist.Hint="ID"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Center"
-                     Width="280"
-                     FontSize="14"
-                     BorderThickness="0"
-                     MaxLines="1"
-                     Padding="0"
-                     Foreground="{StaticResource Blue1}"
-                     Margin="0,20,40,21"
+            <Label Content="ID Payment Voucher"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Stroke="{DynamicResource Blue1}" />
+            <TextBox x:Name="txtId"
                      IsReadOnly="True"
-                     Height="40"
-                     HorizontalContentAlignment="Left"
-                     VerticalContentAlignment="Center"
-                     SelectionBrush="{x:Null}"
-                     FontWeight="SemiBold"
-                     materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
-                     Grid.ColumnSpan="2">
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="ID Payment Voucher"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent">
             </TextBox>
         </Grid>
         <Grid Grid.Row="2">
             <Label Content="Employee"
-                   HorizontalAlignment="Left"
-                   FontSize="18"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue1}"
-                   Height="32"
-                   Margin="40 0 0 0"
-                   VerticalAlignment="Center" />
-            <Rectangle Width="300"
-                       Height="40"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Margin="0,0,30,0"
-                       StrokeThickness="1.5"
-                       Stroke="{StaticResource Blue1}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center" />
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
             <ComboBox x:Name="txtNameEmployee"
                       materialDesign:HintAssist.Hint="Employee"
-                      HorizontalAlignment="Right"
-                      VerticalAlignment="Center"
-                      Width="280"
-                      FontSize="14"
-                      BorderThickness="0"
-                      Padding="0"
-                      Foreground="{StaticResource Blue1}"
-                      BorderBrush="{DynamicResource Blue1}"
-                      Margin="0,20,40,21"
-                      Height="40"
-                      HorizontalContentAlignment="Left"
-                      VerticalContentAlignment="Center"
-                      FontWeight="SemiBold"
-                      materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
-                      Grid.ColumnSpan="2">
+                      Style="{StaticResource ComboBoxStyle1}">
             </ComboBox>
         </Grid>
         <Grid Grid.Row="3">
             <Label Content="Date"
-                   HorizontalAlignment="Left"
-                   FontSize="18"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue1}"
-                   Height="32"
-                   Margin="40 0 0 0"
-                   VerticalAlignment="Center" />
-            <Rectangle Width="300"
-                       Height="40"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Margin="0,0,30,0"
-                       StrokeThickness="1.5"
-                       Stroke="{StaticResource Blue1}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center" />
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
             <DatePicker x:Name="txtDate"
                         materialDesign:HintAssist.Hint="Date"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Width="280"
-                        FontSize="14"
-                        BorderThickness="0"
-                        Padding="0"
-                        Foreground="{StaticResource Blue1}"
-                        Margin="0,20,40,21"
-                        Height="40"
-                        HorizontalContentAlignment="Left"
-                        VerticalContentAlignment="Center"
-                        FontWeight="SemiBold"
-                        materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
-                        Grid.ColumnSpan="2"
-                        BorderBrush="{DynamicResource Blue1}"
-                        materialDesign:CalendarAssist.SelectionColor="Aqua">
+                        Style="{StaticResource DatePickerStyle1}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewTextInput">
                         <ei:CallMethodAction TargetObject="{Binding }"
@@ -155,82 +73,30 @@
         </Grid>
         <Grid Grid.Row="4">
             <Label Content="Note"
-                   HorizontalAlignment="Left"
-                   FontSize="18"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue1}"
-                   Height="32"
-                   Margin="40 0 0 0"
-                   VerticalAlignment="Center" />
-            <Rectangle Width="300"
-                       Height="40"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Margin="0,0,30,0"
-                       StrokeThickness="1.5"
-                       Stroke="{StaticResource Blue1}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center" />
-            <TextBox x:Name="txt"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtNote"
                      materialDesign:HintAssist.Hint="Note"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Center"
-                     Width="280"
-                     FontSize="14"
-                     MaxLines="1"
-                     BorderThickness="0"
-                     Padding="0"
-                     Foreground="{StaticResource Blue1}"
-                     Margin="0,20,40,21"
-                     Height="40"
-                     HorizontalContentAlignment="Left"
-                     VerticalContentAlignment="Center"
-                     SelectionBrush="{x:Null}"
-                     FontWeight="SemiBold"
-                     materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
-                     Grid.ColumnSpan="2"
-                     BorderBrush="{DynamicResource Blue1}"
-                     materialDesign:CalendarAssist.SelectionColor="Aqua">
+                     Style="{StaticResource TextBoxInputText}"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Note"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter name!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
         </Grid>
         <Grid Grid.Row="5">
             <Label Content="Total money"
-                   HorizontalAlignment="Left"
-                   FontSize="18"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue1}"
-                   Height="32"
-                   Margin="40 0 0 0"
-                   VerticalAlignment="Center" />
-            <Rectangle Width="300"
-                       Height="40"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Margin="0,0,30,0"
-                       StrokeThickness="1.5"
-                       Stroke="{StaticResource Blue1}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center" />
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
             <TextBox x:Name="txtTotalMoney"
                      materialDesign:HintAssist.Hint="Total money"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Center"
-                     Width="280"
-                     FontSize="14"
-                     MaxLines="1"
-                     BorderThickness="0"
-                     Padding="0"
-                     Foreground="{StaticResource Blue1}"
-                     Margin="0,20,40,21"
-                     Height="40"
-                     HorizontalContentAlignment="Left"
-                     VerticalContentAlignment="Center"
-                     SelectionBrush="{x:Null}"
-                     FontWeight="SemiBold"
-                     materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource Blue1}"
-                     Grid.ColumnSpan="2"
-                     BorderBrush="{DynamicResource Blue1}"
-                     materialDesign:CalendarAssist.SelectionColor="Aqua">
+                     Style="{StaticResource TextBoxInputText}"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewTextInput">
                         <ei:CallMethodAction TargetObject="{Binding }"
@@ -241,6 +107,14 @@
                                                CommandParameter="{Binding ElementName=txtTotalMoney}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
+                <TextBox.Text>
+                    <Binding Path="TotalMoney"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter name!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
         </Grid>
         <Grid Grid.Row="6">
@@ -256,8 +130,8 @@
                         materialDesign:ButtonAssist.CornerRadius="7"
                         BorderThickness="0"
                         FlowDirection="LeftToRight"
-                        Command="{Binding OpenAddPaymentVoucherWindowCommand}"
-                        CommandParameter="{Binding ElementName=pagePaymentVoucher}" />
+                        Command="{Binding SavePaymentVoucherWindowCommand}"
+                        CommandParameter="{Binding ElementName=wdAddPaymentVoucher}" />
             </StackPanel>
         </Grid>
     </Grid>
