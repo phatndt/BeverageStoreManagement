@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Views.Pages
+namespace BeverageStoreManagement.Views.Incident
 {
     /// <summary>
-    /// Interaction logic for GoodsPage.xaml
+    /// Interaction logic for AddIncidentWindow.xaml
     /// </summary>
-    public partial class GoodsPage : Page
+    public partial class AddIncidentWindow : Window
     {
-        public GoodsPage()
+        public AddIncidentWindow()
         {
             InitializeComponent();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

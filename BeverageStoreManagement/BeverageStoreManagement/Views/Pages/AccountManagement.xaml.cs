@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace BeverageStoreManagement.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for GoodsPage.xaml
+    /// Interaction logic for AccountManagement.xaml
     /// </summary>
-    public partial class GoodsPage : Page
+    public partial class AccountManagement : Page
     {
-        public GoodsPage()
+        public AccountManagement()
         {
             InitializeComponent();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

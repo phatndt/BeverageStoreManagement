@@ -52,5 +52,10 @@ namespace BeverageStoreManagement
         {
             PagesNavigation.Navigate(new System.Uri("Views/Pages/IncidentPage.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void rdAcount_Click(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Views/Pages/AccountManagement.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

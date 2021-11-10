@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Views.Pages
+namespace BeverageStoreManagement.Resources.UserControls
 {
     /// <summary>
-    /// Interaction logic for GoodsPage.xaml
+    /// Interaction logic for IncidentControls.xaml
     /// </summary>
-    public partial class GoodsPage : Page
+    public partial class IncidentControls : UserControl
     {
-        public GoodsPage()
+        public IncidentControls()
         {
             InitializeComponent();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
