@@ -105,6 +105,32 @@
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
+                        <RadioButton 
+                            x:Name="rdPayment" 
+                            Style="{DynamicResource MenuRadioButtonStyle}" 
+                            Tag="HomeVariantOutline" 
+                            Margin="0 5 0 5"/>
+
+                        <RadioButton x:Name="rdProduct"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="GlassTulip"
+                                     Margin="0 5 0 5"
+                                     Click="rdProduct_Click">
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Product Management"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+                        <RadioButton x:Name="rdAcount"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="Account"
+                                     Margin="0 5 0 5"
+                                     Click="rdAcount_Click">
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Account Management"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
                     </StackPanel>
                     <Grid Grid.Row="3"
                           VerticalAlignment="Bottom"
@@ -170,7 +196,8 @@
                         CornerRadius="10"
                         Background="White">
                     <Frame x:Name="PagesNavigation"
-                           NavigationUIVisibility="Hidden">
+                           NavigationUIVisibility="Hidden"
+                           Navigated="PagesNavigation_Navigated">
                         <!-- Page Content -->
                     </Frame>
                 </Border>

@@ -10,22 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Views.Pages
+namespace BeverageStoreManagement.Views
 {
     /// <summary>
-    /// Interaction logic for GoodsPage.xaml
+    /// Interaction logic for UpdateGoodsWindow.xaml
     /// </summary>
-    public partial class GoodsPage : Page
+    public partial class UpdateGoodsWindow : Window
     {
-        public GoodsPage()
+        public UpdateGoodsWindow()
         {
             InitializeComponent();
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UpdateMaterialControl_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

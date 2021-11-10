@@ -112,6 +112,12 @@
     <Compile Include="Resources\UserControls\EmployeeControl.xaml.cs">
       <DependentUpon>EmployeeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\AccountControl.xaml.cs">
+      <DependentUpon>AccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\IncidentControls.xaml.cs">
+      <DependentUpon>IncidentControls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\InvoiceControl.xaml.cs">
       <DependentUpon>InvoiceControl.xaml</DependentUpon>
     </Compile>
@@ -153,11 +159,39 @@
     <Compile Include="Views\Pages\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\ProductViewControl.xaml.cs">
+      <DependentUpon>ProductViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\UpdateMaterialControl.xaml.cs">
+      <DependentUpon>UpdateMaterialControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\GoodsPageViewModel.cs" />
+    <Compile Include="ViewModels\ProductPageViewModel.cs" />
+    <Compile Include="Views\AddMaterialWindow.xaml.cs">
+      <DependentUpon>AddMaterialWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AddNewIncident.cs" />
+    <Compile Include="ViewModels\IncidentViewModel.cs" />
+    <Compile Include="Views\Incident\AddIncidentWindow.xaml.cs">
+      <DependentUpon>AddIncidentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AccountManagement.xaml.cs">
+      <DependentUpon>AccountManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pages\GoodsPage.xaml.cs">
       <DependentUpon>GoodsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\UserControls\InvoiceInfoControl.xaml.cs">
       <DependentUpon>InvoiceInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ImportMaterialPage.xaml.cs">
+      <DependentUpon>ImportMaterialPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ProductPage.xaml.cs">
+      <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\UserControls\NumericSpinner.xaml.cs">
       <DependentUpon>NumericSpinner.xaml</DependentUpon>
@@ -181,6 +215,9 @@
     <Compile Include="Views\Pages\SalePage.xaml.cs">
       <DependentUpon>SalePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateGoodsWindow.xaml.cs">
+      <DependentUpon>UpdateGoodsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +235,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\EmployeeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\AccountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\IncidentControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +298,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\UserControls\ProductViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\UpdateMaterialControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddMaterialWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Incident\AddIncidentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -285,7 +350,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Pages\AccountManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Pages\GoodsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ImportMaterialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +387,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateGoodsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -339,7 +420,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Views\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\logo.png" />
