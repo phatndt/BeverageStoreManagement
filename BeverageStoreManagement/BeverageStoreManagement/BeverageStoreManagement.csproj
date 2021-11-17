@@ -135,6 +135,7 @@
     <Compile Include="Util.cs" />
     <Compile Include="Validations\NotNullValidation.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\PaymentVoucherViewModel.cs" />
     <Compile Include="ViewModels\ReceiptVoucherViewModel.cs" />
     <Compile Include="Views\AddInvoiceWindow.xaml.cs">

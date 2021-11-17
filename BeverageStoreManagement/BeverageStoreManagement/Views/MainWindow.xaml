@@ -5,27 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BeverageStoreManagement"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:uc="clr-namespace:BeverageStoreManagement.Resources.UserControls"
         mc:Ignorable="d"
+        x:Name="wdMain"
         Height="800"
-        Width="1400"
+        Width="1500"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="NoResize"
-        WindowState="Normal">
+        WindowState="Normal"
+        DataContext="{StaticResource HomeVM}">
     <Border CornerRadius="8"
             Background="{DynamicResource PrimaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition  />
+                <ColumnDefinition Width="1320"/>
             </Grid.ColumnDefinitions>
             <Border CornerRadius="8 0 0 8"
                     Background="{DynamicResource SecundaryBackgroundColor}">
-                <Grid x:Name="gridMenu"
-                      Width="80">
+                <Grid x:Name="gridMenu">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80" />
                         <RowDefinition Height="Auto" />
@@ -35,73 +39,184 @@
                           Height="40">
                         <Image Source="/BeverageStoreManagement;component/Resources/Images/logo.png" />
                     </Grid>
-                    <StackPanel Grid.Row="1">
+                    <StackPanel Grid.Row="1" >
+                         <!--0 Home-->
                         <RadioButton x:Name="rdHome"
                                      IsChecked="True"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="HomeMinusOutline"
-                                     Click="rdHome_Click">
+                                     Content="Home"
+                                     Uid="0"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdHome}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
                                 <ToolTip Content="Home"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton x:Name="rdSounds"
+
+                        <!--1 -->
+                        <RadioButton x:Name="rdSale"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="HomeModern"
-                                     Margin="0 5 0 5"
-                                     Click="rdSounds_Click">
+                                     Content="Sale"
+                                     Uid="1"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdSale}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
-                                <ToolTip Content="HI"
+                                <ToolTip Content="Sale"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton x:Name="rdNotes"
+
+                        <!--2 -->
+                        <RadioButton x:Name="rdInvoice"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="HomePlus"
-                                     Click="rdNotes_Click">
+                                     Tag="Account"
+                                     Content="Invoice"
+                                     Uid="2"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdAcount}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
-                                <ToolTip Content="Hello"
+                                <ToolTip Content="Invoice"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton x:Name="rdPayment"
+                        
+                        <!--3-->
+                        <RadioButton x:Name="rdProduct"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="GoogleMyBusiness"
-                                     Margin="0 5 0 5"
-                                     Click="rdPayment_Click">
+                                     Content="Product"
+                                     Uid="3"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdProduct}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
-                                <ToolTip Content="Hello"
+                                <ToolTip Content="Product"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton x:Name="rdManage"
+
+                        <!--4-->
+                        <RadioButton x:Name="rdMaterial"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="HomePlus"
+                                     Content="Material"
+                                     Uid="4"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdMaterial}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Material"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <!--5-->
+                        <RadioButton x:Name="rdImportBill"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="GlassTulip"
+                                     Content="Import Bill"
+                                     Uid="5"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdImportBill}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Import Bill"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+                        
+                        <!--6-->
+                        <RadioButton x:Name="rdPaymentVoucher"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="Receipt"
-                                     Margin="0 5 0 5"
-                                     Click="rdManage_Click">
+                                     Content="Payment VC"
+                                     Uid="5"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdPaymentVoucher}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
-                                <ToolTip Content="Manage"
+                                <ToolTip Content="Payment Voucher"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
-                        <RadioButton x:Name="rdReceipt"
+
+                        <!--7-->
+                        <RadioButton x:Name="rdReceiptVoucher"
+                                     Style="{DynamicResource MenuRadioButtonStyle}"
+                                     Tag="Receipt"
+                                     Content="Receipt VC"
+                                     Uid="6"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdReceiptVoucher}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Receipt Voucher"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <!--8-->
+                        <RadioButton x:Name="rdIncident"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="PaperRollOutline"
-                                     Margin="0 5 0 5"
-                                     Click="rdReceipt_Click">
+                                     Content="Incident"
+                                     Uid="7"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdIncident}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
-                                <ToolTip Content="Manage"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
-                        <RadioButton x:Name="rdEmployee"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="BadgeAccountHorizontalOutline"
-                                     Margin="0 5 0 5"
-                                     Click="rdEmployee_Click">
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Manage"
+                                <ToolTip Content="Incident"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
@@ -111,22 +226,48 @@
                             Tag="HomeVariantOutline" 
                             Margin="0 5 0 5"/>
                         <RadioButton x:Name="rdProduct"
+
+                        <!--9-->
+                        <RadioButton x:Name="rdEmployee"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="GlassTulip"
-                                     Margin="0 5 0 5"
-                                     Click="rdProduct_Click">
+                                     Tag="BadgeAccountHorizontalOutline"
+                                     Content="Employee"
+                                     Uid="8"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdEmployee}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
                                 <ToolTip Content="Product Management"
+                                <ToolTip Content="Employee"
+                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <!--10-->
                         <RadioButton x:Name="rdAcount"
                                      Style="{DynamicResource MenuRadioButtonStyle}"
                                      Tag="Account"
-                                     Margin="0 5 0 5"
-                                     Click="rdAcount_Click">
+                                     Content="Account"
+                                     Uid="9"
+                                     Command="{Binding SwitchTabCommand}"
+                                     CommandParameter="{Binding ElementName=wdMain}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                           CommandParameter="{Binding ElementName=rdAcount}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <RadioButton.ToolTip>
                                 <ToolTip Content="Account Management"
                                          Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                             </RadioButton.ToolTip>
                         </RadioButton>
+
                     </StackPanel>
                     <Grid Grid.Row="3"
                           VerticalAlignment="Bottom"
@@ -187,16 +328,2149 @@
 
                 </StackPanel>
 
-                <Border Grid.Row="1"
+                <Grid Margin="10"
+                      Grid.Row="1">
+                    <!--0-->
+                    
+                    <!--1-->
+                    <Border CornerRadius="8"
+                            Background="{DynamicResource PrimaryBackgroundColor}"
+                            x:Name="grdSale"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1.4*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="80" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0"
+                                        CornerRadius="8"
+                                        Background="White"
+                                        Margin="0 0 5 0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="Search"
+                                                   FontSize="20"
+                                                   FontFamily="Poppins"
+                                                   Foreground="{DynamicResource Blue1}"
+                                                   FontWeight="SemiBold"
+                                                   Margin="20 0 0 0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                                            <Rectangle  Width="240"
+                                                        Height="40"
+                                                        RadiusY="6"
+                                                        RadiusX="6"
+                                                        Stroke="{StaticResource Blue1}"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Margin="80 0 20 0"
+                                                        StrokeThickness="2" />
+                                            <TextBox x:Name="txtSearch"
+                                                     materialDesign:HintAssist.Hint="Search"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Margin="80 0 20 0"
+                                                     Width="220"
+                                                     FontSize="16"
+                                                     BorderThickness="0"
+                                                     MaxLines="1"
+                                                     Padding="0"
+                                                     Foreground="{DynamicResource Blue1}"
+                                                     Height="40"
+                                                     HorizontalContentAlignment="Left"
+                                                     VerticalContentAlignment="Center"
+                                                     SelectionBrush="{x:Null}"
+                                                     FontWeight="SemiBold"
+                                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue1}"
+                                                     Grid.ColumnSpan="2">
+                                            </TextBox>
+                                        </Grid>
+                                        <Grid Grid.Column="1"
+                                              Margin="0 0 20 0">
+                                            <Label Content="Type"
+                                                   FontSize="20"
+                                                   FontFamily="Poppins"
+                                                   Foreground="{DynamicResource Blue1}"
+                                                   FontWeight="SemiBold"
+                                                   Margin="20 0 0 0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                                            <Rectangle  Width="240"
+                                                        Height="40"
+                                                        RadiusY="6"
+                                                        RadiusX="6"
+                                                        Stroke="{StaticResource Blue1}"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        StrokeThickness="2"
+                                                        Margin="80 0 20 0" />
+                                            <ComboBox x:Name="txtSort"
+                                                      materialDesign:HintAssist.Hint="Type"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Margin="80 0 20 0"
+                                                      Width="220"
+                                                      FontSize="16"
+                                                      BorderThickness="0"
+                                                      Padding="0"
+                                                      Foreground="{DynamicResource Blue1}"
+                                                      Height="40"
+                                                      HorizontalContentAlignment="Left"
+                                                      VerticalContentAlignment="Center"
+                                                      FontWeight="SemiBold"
+                                                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                                                      Grid.ColumnSpan="2">
+                                                <ComboBoxItem Content="1"></ComboBoxItem>
+                                                <ComboBoxItem Content="1"></ComboBoxItem>
+                                                <ComboBoxItem Content="1"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Border Grid.Row="1"
+                                        CornerRadius="8"
+                                        Background="White"
+                                        Margin="0 5 5 0">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <WrapPanel x:Name="wrpGoods"
+                                                   Margin="4">
+                                            <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadGoodsCommand}"
+                                                           CommandParameter="{Binding ElementName=wdImportStock}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                                        </WrapPanel>
+                                    </ScrollViewer>
+                                </Border>
+                                <!--<Border Grid.Row="2"
+                        CornerRadius="8"
+                        Background="White"
+                        Margin="0 5 5 0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="8 8 0 0"
+                                Grid.Row="0"
+                                Background="{DynamicResource Blue1}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="0.75*" />
+                                    <ColumnDefinition Width="0.75*" />
+                                    <ColumnDefinition Width="0.75*" />
+                                    <ColumnDefinition Width="0.5*" />
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                        </Border>
+                        <ScrollViewer Grid.Row="1"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled">
+                            <StackPanel x:Name="wrpBills"
+                                        Margin="0 0 0 6">
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                <uc:InvoiceControl></uc:InvoiceControl>
+                                -->
+                                <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadGoodsCommand}"
+                                                           CommandParameter="{Binding ElementName=wdImportStock}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                                <!--
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>-->
+                            </Grid>
+                            <Border Grid.Column="1"
+                                    Background="White"
+                                    CornerRadius="8" />
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="80" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Label x:Name="lbBill"
+                                           Content="Bills "
+                                           FontSize="32"
+                                           FontFamily="Poppins"
+                                           Margin="20 10 0 10"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" />
+                                    <Label x:Name="lbIdBill"
+                                           Content="1001"
+                                           FontSize="28"
+                                           FontFamily="Poppins"
+                                           Margin="100 10 0 10"
+                                           FontWeight="UltraLight"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" />
+                                    <Label Content="Date "
+                                           FontSize="32"
+                                           FontFamily="Poppins"
+                                           Margin="0 10 160 10"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right" />
+                                    <Label x:Name="lbDateSale"
+                                           Content="21/09/2001"
+                                           FontSize="28"
+                                           FontFamily="Poppins"
+                                           Margin="0 10 20 10"
+                                           FontWeight="UltraLight"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right" />
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition />
+                                        <RowDefinition Height="64" />
+                                        <RowDefinition Height="64" />
+                                        <RowDefinition Height="64" />
+                                        <RowDefinition Height="64" />
+                                        <RowDefinition Height="64" />
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Column="0"
+                                            CornerRadius="8 0 0 0"
+                                            Background="{DynamicResource Blue1}" />
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.25*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1.25*" />
+                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0"
+                                               Content="No."
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="White"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle Grid.Column="0"
+                                                   HorizontalAlignment="Right"
+                                                   Height="30"
+                                                   Margin="0"
+                                                   Width="2"
+                                                   Fill="White"
+                                                   VerticalAlignment="Center" />
+                                        <Label Grid.Column="1"
+                                               Content="Product"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="White"
+                                               FontWeight="SemiBold"
+                                               Margin="10 0 0 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle Grid.Column="1"
+                                                   HorizontalAlignment="Right"
+                                                   Height="30"
+                                                   Margin="0"
+                                                   Width="2"
+                                                   Fill="White"
+                                                   VerticalAlignment="Center" />
+                                        <Label Grid.Column="2"
+                                               Content="Unit Price"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="White"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle Grid.Column="2"
+                                                   HorizontalAlignment="Right"
+                                                   Height="30"
+                                                   Margin="0"
+                                                   Width="2"
+                                                   Fill="White"
+                                                   VerticalAlignment="Center" />
+                                        <Label Grid.Column="3"
+                                               Content="Quantity"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="White"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle Grid.Column="3"
+                                                   HorizontalAlignment="Right"
+                                                   Height="30"
+                                                   Margin="0"
+                                                   Width="2"
+                                                   Fill="White"
+                                                   VerticalAlignment="Center" />
+                                        <Label Grid.Column="4"
+                                               Content="Total"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="White"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle Grid.Column="4"
+                                                   HorizontalAlignment="Right"
+                                                   Height="30"
+                                                   Margin="0"
+                                                   Width="2"
+                                                   Fill="White"
+                                                   VerticalAlignment="Center" />
+                                        <Rectangle Grid.Column="5"
+                                                   HorizontalAlignment="Right"
+                                                   Height="30"
+                                                   Margin="0"
+                                                   Width="2"
+                                                   Fill="White"
+                                                   VerticalAlignment="Center" />
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Disabled">
+                                            <StackPanel x:Name="stkxxxxxBill"
+                                                        ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                        Width="535.2"
+                                                        HorizontalAlignment="Left">
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                                <uc:InvoiceInfoControl></uc:InvoiceInfoControl>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Label Content="Total"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="{DynamicResource Blue1}"
+                                               FontWeight="SemiBold"
+                                               Margin="20 0 0 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle  Width="200"
+                                                    Height="40"
+                                                    RadiusY="6"
+                                                    RadiusX="6"
+                                                    Margin="70,0,20,0"
+                                                    Stroke="{StaticResource Pallet4}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    StrokeThickness="2" />
+                                        <TextBox x:Name="txtTotalMoney"
+                                                 materialDesign:HintAssist.Hint="Total"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Center"
+                                                 Cursor="Arrow"
+                                                 Width="180"
+                                                 FontSize="16"
+                                                 BorderThickness="0"
+                                                 MaxLines="1"
+                                                 Padding="0"
+                                                 Foreground="{DynamicResource Pallet4}"
+                                                 Margin="80 0 30 0"
+                                                 Height="40"
+                                                 IsReadOnly="True"
+                                                 HorizontalContentAlignment="Left"
+                                                 VerticalContentAlignment="Center"
+                                                 SelectionBrush="{x:Null}"
+                                                 FontWeight="SemiBold"
+                                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Pallet4}"
+                                                 Grid.ColumnSpan="2">
+                                            <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction TargetObject="{Binding }"
+                                                         MethodName="NumberValidationTextBox" />
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
+                                                           CommandParameter="{Binding ElementName=txtTotalMoney}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                                        </TextBox>
+                                    </Grid>
+                                    <Grid Grid.Row="3">
+                                        <Label Content="Money give by Customer"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="{DynamicResource Blue1}"
+                                               FontWeight="SemiBold"
+                                               Margin="20 0 0 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle  Width="200"
+                                                    Height="40"
+                                                    RadiusY="6"
+                                                    RadiusX="6"
+                                                    Margin="70,0,20,0"
+                                                    Stroke="{StaticResource Blue1}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    StrokeThickness="2" />
+                                        <TextBox x:Name="txtMoneyCustomer"
+                                                 materialDesign:HintAssist.Hint="Money"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Center"
+                                                 Cursor="IBeam"
+                                                 Width="180"
+                                                 FontSize="16"
+                                                 BorderThickness="0"
+                                                 MaxLines="1"
+                                                 Padding="0"
+                                                 Foreground="{DynamicResource Blue2}"
+                                                 Margin="80 0 30 0"
+                                                 Height="40"
+                                                 HorizontalContentAlignment="Left"
+                                                 VerticalContentAlignment="Center"
+                                                 SelectionBrush="{x:Null}"
+                                                 FontWeight="SemiBold"
+                                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                                                 Grid.ColumnSpan="2">
+                                            <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction TargetObject="{Binding }"
+                                                         MethodName="NumberValidationTextBox" />
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
+                                                           CommandParameter="{Binding ElementName=txtMoneyCustomer}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                                        </TextBox>
+                                    </Grid>
+                                    <Grid Grid.Row="4">
+                                        <Label Content="Return money"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="{DynamicResource Blue1}"
+                                               FontWeight="SemiBold"
+                                               Margin="20 0 0 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle  Width="200"
+                                                    Height="40"
+                                                    RadiusY="6"
+                                                    RadiusX="6"
+                                                    Margin="70,0,20,0"
+                                                    Stroke="{StaticResource Pallet4}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    StrokeThickness="2" />
+                                        <TextBox x:Name="txtMoneyChange"
+                                                 materialDesign:HintAssist.Hint="Money"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Center"
+                                                 Cursor="Arrow"
+                                                 IsReadOnly="true"
+                                                 Width="180"
+                                                 FontSize="16"
+                                                 BorderThickness="0"
+                                                 MaxLines="1"
+                                                 Padding="0"
+                                                 Foreground="{DynamicResource Pallet4}"
+                                                 Margin="80 0 30 0"
+                                                 Height="40"
+                                                 HorizontalContentAlignment="Left"
+                                                 VerticalContentAlignment="Center"
+                                                 SelectionBrush="{x:Null}"
+                                                 FontWeight="SemiBold"
+                                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Pallet4}"
+                                                 Grid.ColumnSpan="2">
+                                            <!--<i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewTextInput">
+                                    <ei:CallMethodAction TargetObject="{Binding }"
+                                                         MethodName="NumberValidationTextBox" />
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
+                                                           CommandParameter="{Binding ElementName=txtMoneyChange}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>-->
+                                        </TextBox>
+                                    </Grid>
+                                    <Grid Grid.Row="5">
+                                        <Label Content="Table"
+                                               FontSize="16"
+                                               FontFamily="Poppins"
+                                               Foreground="{DynamicResource Blue1}"
+                                               FontWeight="SemiBold"
+                                               Margin="20 0 0 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center" />
+                                        <Rectangle x:Name="recIDEmployee"
+                                                   Width="200"
+                                                   Height="40"
+                                                   RadiusY="6"
+                                                   RadiusX="6"
+                                                   Margin="70,0,20,0"
+                                                   Stroke="{StaticResource Blue1}"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   StrokeThickness="2" />
+                                        <TextBox x:Name="txtIdTable"
+                                                 materialDesign:HintAssist.Hint="Table"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Center"
+                                                 Cursor="IBeam"
+                                                 Width="180"
+                                                 FontSize="16"
+                                                 BorderThickness="0"
+                                                 MaxLines="1"
+                                                 Padding="0"
+                                                 Foreground="{DynamicResource Blue2}"
+                                                 Margin="80 0 30 0"
+                                                 Height="40"
+                                                 HorizontalContentAlignment="Left"
+                                                 VerticalContentAlignment="Center"
+                                                 SelectionBrush="{x:Null}"
+                                                 FontWeight="SemiBold"
+                                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                                                 Grid.ColumnSpan="2">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewTextInput">
+                                                    <ei:CallMethodAction TargetObject="{Binding }"
+                                                                         MethodName="NumberValidationTextBox" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </TextBox>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Height="30"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Margin="80 0 0 0">
+                                            <RadioButton x:Name="rdoOnSpot"
+                                                         Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                         IsChecked="True"
+                                                         Content="On Spot"
+                                                         Height="30"
+                                                         Width="100"
+                                                         Padding="10,0,0,0"
+                                                         FontSize="14"
+                                                         FontWeight="Bold"
+                                                         BorderBrush="{DynamicResource Blue1}"
+                                                         Background="{DynamicResource Blue1}"
+                                                         HorizontalAlignment="Left"
+                                                         VerticalAlignment="Center" />
+                                            <RadioButton x:Name="rdoTakeAway"
+                                                         Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                         BorderBrush="{StaticResource Blue1}"
+                                                         Background="{StaticResource Blue1}"
+                                                         Content="Take away"
+                                                         Padding="10,0,0,0"
+                                                         FontSize="14"
+                                                         FontWeight="Bold"
+                                                         Height="30"
+                                                         Width="100"
+                                                         VerticalAlignment="Center"
+                                                         HorizontalAlignment="Left"
+                                                         Margin="10,0,0,0" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Row="6">
+                                        <StackPanel HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Horizontal">
+                                            <Button x:Name="btnPrint"
+                                                    Content="Print"
+                                                    BorderThickness="0"
+                                                    Height="45"
+                                                    Width="130"
+                                                    ToolTip="Checkout"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FocusVisualStyle="{x:Null}"
+                                                    FontSize="18"
+                                                    Foreground="{DynamicResource Blue2}"
+                                                    Background="{DynamicResource Pallet3}"
+                                                    materialDesign:ButtonAssist.CornerRadius="7">
+                                            </Button>
+                                            <Button x:Name="btnSave"
+                                                    Content="Save"
+                                                    BorderThickness="0"
+                                                    Height="45"
+                                                    Width="130"
+                                                    ToolTip="Checkout"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FocusVisualStyle="{x:Null}"
+                                                    FontSize="18"
+                                                    Margin="20 0 0 0"
+                                                    Background="{DynamicResource Pallet2}"
+                                                    materialDesign:ButtonAssist.CornerRadius="7">
+                                            </Button>
+                                            <Button x:Name="btnCheckout"
+                                                    Content="Checkout"
+                                                    BorderThickness="0"
+                                                    Height="45"
+                                                    Width="130"
+                                                    ToolTip="Checkout"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    FocusVisualStyle="{x:Null}"
+                                                    FontSize="18"
+                                                    Margin="20 0 0 0"
+                                                    Background="{DynamicResource Blue2}"
+                                                    materialDesign:ButtonAssist.CornerRadius="7">
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--2-->
+                    <Border CornerRadius="8"
+                            Background="White"
+                            x:Name="grdInvoice"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadInvoiceCommand}"
+                                                           CommandParameter="{Binding ElementName=pageInvoice}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Button Height="50"
+                                        Width="200"
+                                        Content="Add New Invoice"
+                                        FontSize="18"
+                                        FontFamily="poppins"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="7"
+                                        BorderThickness="0"
+                                        FlowDirection="LeftToRight"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Margin="0 0 20 0"
+                                        Command="{Binding OpenAddInvoiceWindowCommand}"
+                                        CommandParameter="{Binding ElementName=pageInvoice}" />
+                                <Label x:Name="lbDate"
+                                       Content="{Binding Datez}"
+                                       FontFamily="Poppins"
+                                       FontSize="20"
+                                       FontWeight="SemiBold"
+                                       Margin="20 0 0 0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource TextColor}" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Border Grid.Row="1"
+                                        Height="50"
+                                        Width="1260"
+                                        CornerRadius="8 8 0 0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource Blue1}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="Id Bill"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="Employee"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   Margin="20 0 0 0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Content="Time"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Content="Money"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Content="Money's Customer"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="5">
+                                            <Label Content="Status"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="6">
+                                            <Label Content=""
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Grid Margin="0 50 0 20"
+                                      Width="1260">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="stkInvoice"
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                    HorizontalAlignment="Center">
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                                <Rectangle HorizontalAlignment="Center"
+                                           Height="2"
+                                           Margin="0 0 0 19"
+                                           Width="1260"
+                                           Fill="{DynamicResource Blue2}"
+                                           VerticalAlignment="Bottom" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--3-->
+                    <Grid Background="White"
+                          x:Name="grdProduct"
+                          Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.1*" />
+                            <RowDefinition Height="9*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock Text="Product Management"
+                                       FontFamily="Poppins"
+                                       FontSize="52"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Foreground="{DynamicResource Blue1}" />
+                        </Grid>
+                        <ScrollViewer Grid.Row="1">
+                            <WrapPanel>
+                                <uc:ProductViewControl></uc:ProductViewControl>
+                                <uc:ProductViewControl></uc:ProductViewControl>
+                                <uc:ProductViewControl></uc:ProductViewControl>
+                                <uc:ProductViewControl></uc:ProductViewControl>
+                                <uc:ProductViewControl></uc:ProductViewControl>
+                                <uc:ProductViewControl></uc:ProductViewControl>
+                                <uc:ProductViewControl></uc:ProductViewControl>
+
+                                <Border Background="White"
+                                        BorderThickness="3"
+                                        BorderBrush="{StaticResource Blue1}"
+                                        CornerRadius="20"
+                                        Height="305"
+                                        Margin="25 0 0 0"
+                                        Width="206"
+                                        Padding="25">
+                                    <Button x:Name="btnEdit"
+                                            Grid.Row="4"
+                                            Content="+"
+                                            Height="300"
+                                            Width="240"
+                                            BorderBrush="White"
+                                            BorderThickness="0"
+                                            FontSize="100"
+                                            UseLayoutRounding="False"
+                                            SnapsToDevicePixels="False"
+                                            Opacity="0.8"
+                                            Background="White"
+                                            Foreground="{StaticResource Blue1}"
+                                            materialDesign:ButtonAssist.CornerRadius="6"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding OpenAddProductCommand}">
+                                    </Button>
+                                </Border>
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <!--4-->
+                    <Grid Background="{DynamicResource PrimaryBackgroundColor}"
+                          x:Name="grdMaterial"
+                          Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="9*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Button Height="50"
+                                    Width="200"
+                                    BorderThickness="0 "
+                                    Content="+ Add new material"
+                                    FontSize="18"
+                                    FontFamily="poppins"
+                                    Background="{DynamicResource Blue2}"
+                                    materialDesign:ButtonAssist.CornerRadius="7"
+                                    FlowDirection="LeftToRight"
+                                    HorizontalAlignment="Right"
+                                    Margin="0 0 40 0"
+                                    Command="{Binding OpenAddMaterialCommand}" />
+                            <Button Height="50"
+                                    Width="200"
+                                    BorderThickness="0"
+                                    Content="Update Material List"
+                                    FontSize="18"
+                                    FontFamily="poppins"
+                                    Background="{DynamicResource Blue2}"
+                                    materialDesign:ButtonAssist.CornerRadius="7"
+                                    FlowDirection="LeftToRight"
+                                    HorizontalAlignment="Right"
+                                    HorizontalContentAlignment="Center"
+                                    Margin="0 0 280 0"
+                                    Command="{Binding OpenUpdateProductCommand}" />
+                            <Line Height="2"
+                                  Width="1220"
+                                  VerticalAlignment="Bottom"
+                                  Opacity="0.7" />
+                        </Grid>
+                        <Border Grid.Row="1"
+                                Width="1220"
+                                Height="620"
+                                VerticalAlignment="Top"
+                                Margin="0 10 0 0"
+                                Background="White"
+                                BorderThickness="1"
+                                CornerRadius="20 ">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1.4*" />
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="8.2*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0"
+                                      Margin="0 10 0 0">
+                                    <Rectangle Height="40"
+                                               Width="160"
+                                               StrokeThickness="1"
+                                               Stroke="Gray"
+                                               Opacity="1"
+                                               RadiusY="7"
+                                               RadiusX="7"
+                                               Fill="White"
+                                               HorizontalAlignment="Right"
+                                               Margin="0 0 380 0" />
+                                    <ComboBox materialDesign:HintAssist.Hint="Type: All"
+                                              Height="35"
+                                              Width="145"
+                                              FontSize="18"
+                                              FontFamily="poppins"
+                                              Padding="5"
+                                              Opacity="0.8"
+                                              BorderBrush="Gray"
+                                              Background="White"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Right"
+                                              Margin="0 5 387 0.5" />
+                                    <Rectangle Height="40"
+                                               Width="160"
+                                               StrokeThickness="1"
+                                               Stroke="Gray"
+                                               Fill="White"
+                                               Opacity="1"
+                                               RadiusY="7"
+                                               RadiusX="7"
+                                               HorizontalAlignment="Right"
+                                               Margin="0 0 200 0" />
+                                    <ComboBox materialDesign:HintAssist.Hint="Quantity: All"
+                                              Height="35"
+                                              Width="145"
+                                              FontSize="18"
+                                              FontFamily="poppins"
+                                              Padding="5"
+                                              Opacity="0.8"
+                                              BorderBrush="Gray"
+                                              Background="White"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Right"
+                                              Margin="0 5 207 0.5" />
+                                    <Rectangle Height="40"
+                                               Width="160"
+                                               StrokeThickness="1"
+                                               Stroke="Gray"
+                                               Fill="White"
+                                               Opacity="1"
+                                               RadiusY="7"
+                                               RadiusX="7"
+                                               HorizontalAlignment="Right"
+                                               Margin="0 0 20 0" />
+                                    <ComboBox materialDesign:HintAssist.Hint="Status: All"
+                                              Height="35"
+                                              Width="145"
+                                              FontSize="18"
+                                              FontFamily="poppins"
+                                              Padding="5"
+                                              Opacity="0.8"
+                                              BorderBrush="Gray"
+                                              Background="White"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Right"
+                                              Margin="0 5 27 0.5" />
+                                    <TextBlock Text="Material  list"
+                                               FontSize="28"
+                                               FontWeight="Bold"
+                                               FontFamily="poppins"
+                                               Foreground="{DynamicResource Blue1}"
+                                               Margin="30 5 0 0" />
+                                    <materialDesign:PackIcon Kind="Update"
+                                                             Foreground="{DynamicResource Blue1}"
+                                                             Height="28"
+                                                             Width="28"
+                                                             Margin="30 35 0 0" />
+                                    <TextBlock Text="23:10, October 23, 2021"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               FontFamily="poppins"
+                                               Foreground="Black"
+                                               Opacity="0.4"
+                                               Margin="65 41 0 0" />
+                                </Grid>
+                                <Border Grid.Row="1"
+                                        Height="50"
+                                        Width="1160"
+                                        CornerRadius="8 8 0 0"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource Blue1}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="No."
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="Image"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Content="Material"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Content="Type"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Content="Remain quantity"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="5">
+                                            <Label Content="Unit"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="6">
+                                            <Label Content="Purchase Price"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="7">
+                                            <Label Content="Status"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="8">
+                                            <Label Content=""
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Grid Grid.Row="2"
+                                      Width="1160"
+                                      VerticalAlignment="Top">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="stkGoodBill"
+                                                    Width="1160"
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                    HorizontalAlignment="Left">
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <!--5-->
+                    
+                    <!--6-->
+                    <Border CornerRadius="8"
+                            Background="White"
+                            x:Name="grdPaymentVoucher"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding LoadInvoiceCommand}"
+                                           CommandParameter="{Binding ElementName=pageInvoice}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Button Height="50"
+                                        Width="220"
+                                        Content="Add Payment Voucher"
+                                        HorizontalAlignment="Right"
+                                        FontSize="18"
+                                        FontFamily="poppins"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="7"
+                                        BorderThickness="0"
+                                        FlowDirection="LeftToRight"
+                                        Margin="0 0 20 0"
+                                        Command="{Binding OpenAddPaymentVoucherWindowCommand}"
+                                        CommandParameter="{Binding ElementName=pagePaymentVoucher}" />
+                            </Grid>
+                            <Grid Grid.Row="1"
+                                  x:Name="grd_payment_voucher"
+                                  Visibility="Visible">
+                                <Border Grid.Row="1"
+                                        Height="50"
+                                        Width="1260"
+                                        CornerRadius="8 8 0 0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource Blue1}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="Id Bill"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="Employee"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   Margin="20 0 0 0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Content="Time"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Content="Money"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Content="Note"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="5">
+                                            <Label Content="Id Import Bill"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Grid Margin="0 50 0 20"
+                                      Width="1260">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="stkPaymentVoucher"
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                    HorizontalAlignment="Center">
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--7-->
+                    <Border CornerRadius="8"
+                            Background="White"
+                            x:Name="grdReceiptVoucher"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding LoadInvoiceCommand}"
+                                           CommandParameter="{Binding ElementName=pageInvoice}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Button Height="50"
+                                        Width="220"
+                                        Content="Add Receipt Voucher"
+                                        HorizontalAlignment="Right"
+                                        FontSize="18"
+                                        FontFamily="poppins"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="7"
+                                        BorderThickness="0"
+                                        FlowDirection="LeftToRight"
+                                        Margin="0 0 20 0"
+                                        Command="{Binding OpenAddReceiptVoucherWindowCommand}"
+                                        CommandParameter="{Binding ElementName=pageReceiptVoucher}" />
+                            </Grid>
+                            <Grid Grid.Row="1"
+                                  x:Name="grd_receipt_voucher"
+                                  Visibility="Visible">
+                                <Border Grid.Row="1"
+                                        Height="50"
+                                        Width="1260"
+                                        CornerRadius="8 8 0 0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource Blue1}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="Id Bill"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="Employee"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   Margin="20 0 0 0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Content="Time"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Content="Money"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Content="Note"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Grid Margin="0 50 0 20"
+                                      Width="1260">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="stkReceiptVoucher"
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                    HorizontalAlignment="Center">
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                            <uc:ReceiptVoucherControl />
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--8-->
+                    <Border CornerRadius="8"
+                            Background="{DynamicResource PrimaryBackgroundColor}"
+                            x:Name="grdIncident"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="8*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Button x:Name="btnAddIncident"
+                                        Height="50"
+                                        Width="200"
+                                        Command="{Binding OpenWindowAddIncidentCommand}"
+                                        HorizontalAlignment="Right"
+                                        Content="+ New incident"
+                                        FontSize="18"
+                                        FontFamily="Poppins"
+                                        FontWeight="DemiBold"
+                                        BorderThickness="0"
+                                        Margin="40 0 40 0"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="8" />
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Row="1"
+                                        Height="50"
+                                        Width="1020"
+                                        CornerRadius="8 8 0 0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Left"
+                                        Margin="0 20 0 0"
+                                        Background="{DynamicResource Blue1}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.1*" />
+                                            <ColumnDefinition Width="1.8*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="0.75*" />
+                                            <ColumnDefinition Width="1.25*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0">
+                                            <Label Content="No."
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="40"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="Incident name"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="40"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Content="Date"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="40"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Content="Employee"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="40"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Content="State"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="40"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="5">
+                                            <Label Content="Pay?"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="40"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="6">
+                                            <Label Content="Money"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                              HorizontalScrollBarVisibility="Disabled"
+                                              VerticalAlignment="Top"
+                                              HorizontalAlignment="Left">
+                                    <StackPanel x:Name="incidentItem"
+                                                Width="1020"
+                                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                HorizontalAlignment="Left">
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                        <uc:IncidentControls></uc:IncidentControls>
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <Grid Grid.Column="1">
+                                    <StackPanel>
+                                        <Label Content="Pay range"
+                                               FontFamily="poppins"
+                                               FontSize="22"
+                                               FontWeight="Bold" />
+                                        <CheckBox HorizontalAlignment="Left"
+                                                  VerticalAlignment="Top"
+                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                                  FontSize="18"
+                                                  FontFamily="poppins"
+                                                  FontWeight="Medium"
+                                                  Foreground="Gray"
+                                                  Margin="5">
+                                            under 20.000
+                                            <CheckBox.Resources>
+                                                <!--Unchecked state-->
+                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                                 Color="Gray" />
+                                                <!--Checked state-->
+                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                                 Color="Blue" />
+                                            </CheckBox.Resources>
+                                        </CheckBox>
+
+                                        <CheckBox HorizontalAlignment="Left"
+                                                  VerticalAlignment="Top"
+                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                                  FontSize="18"
+                                                  FontFamily="poppins"
+                                                  FontWeight="Medium"
+                                                  Foreground="Gray"
+                                                  Margin="5">
+                                            20.000 - 50.000
+                                            <CheckBox.Resources>
+                                                <!--Unchecked state-->
+                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                                 Color="Gray" />
+                                                <!--Checked state-->
+                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                                 Color="Blue" />
+                                            </CheckBox.Resources>
+                                        </CheckBox>
+
+                                        <CheckBox HorizontalAlignment="Left"
+                                                  VerticalAlignment="Top"
+                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                                  FontSize="18"
+                                                  FontFamily="poppins"
+                                                  FontWeight="Medium"
+                                                  Foreground="Gray"
+                                                  Margin="5">
+                                            50.000 - 100.000
+                                            <CheckBox.Resources>
+                                                <!--Unchecked state-->
+                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                                 Color="Gray" />
+                                                <!--Checked state-->
+                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                                 Color="Blue" />
+                                            </CheckBox.Resources>
+                                        </CheckBox>
+
+                                        <CheckBox HorizontalAlignment="Left"
+                                                  VerticalAlignment="Top"
+                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                                  FontSize="18"
+                                                  FontFamily="poppins"
+                                                  FontWeight="Medium"
+                                                  Foreground="Gray"
+                                                  Margin="5">
+                                            over 100.000
+                                            <CheckBox.Resources>
+                                                <!--Unchecked state-->
+                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                                 Color="Gray" />
+                                                <!--Checked state-->
+                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                                 Color="Blue" />
+                                            </CheckBox.Resources>
+                                        </CheckBox>
+
+                                        <Label Content="Pay?"
+                                               FontFamily="poppins"
+                                               FontSize="22"
+                                               FontWeight="Bold"
+                                               Margin="0 10 0 0" />
+
+                                        <RadioButton FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     GroupName="Pay?"
+                                                     Margin="5"
+                                                     Background="{DynamicResource Blue2}"
+                                                     BorderBrush="{DynamicResource Blue2}">
+                                            No
+                                        </RadioButton>
+
+                                        <RadioButton FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     GroupName="Pay?"
+                                                     Margin="5"
+                                                     Background="{DynamicResource Blue2}"
+                                                     BorderBrush="{DynamicResource Blue2}">
+                                            Yes
+                                        </RadioButton>
+
+                                        <Label Content="State"
+                                               FontFamily="poppins"
+                                               FontSize="22"
+                                               FontWeight="Bold"
+                                               Margin="0 10 0 0" />
+                                        <RadioButton FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     GroupName="State"
+                                                     Margin="5"
+                                                     Background="{DynamicResource Blue2}"
+                                                     BorderBrush="{DynamicResource Blue2}">
+                                            Done
+                                        </RadioButton>
+                                        <RadioButton FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     GroupName="State"
+                                                     Margin="5"
+                                                     Background="{DynamicResource Blue2}"
+                                                     BorderBrush="{DynamicResource Blue2}">
+                                            Undone
+                                        </RadioButton>
+
+                                        <Label Content="Time"
+                                               FontFamily="poppins"
+                                               FontSize="22"
+                                               FontWeight="Bold"
+                                               Margin="0 10 0 0" />
+                                        <RadioButton FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     GroupName="Time"
+                                                     Margin="5"
+                                                     Background="{DynamicResource Blue2}"
+                                                     BorderBrush="{DynamicResource Blue2}">
+                                            This week
+                                        </RadioButton>
+                                        <RadioButton FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     GroupName="Time"
+                                                     Margin="5"
+                                                     Background="{DynamicResource Blue2}"
+                                                     BorderBrush="{DynamicResource Blue2}">
+                                            This monnth
+                                        </RadioButton>
+                                        <RadioButton FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     GroupName="Time"
+                                                     Margin="5"
+                                                     Background="{DynamicResource Blue2}"
+                                                     BorderBrush="{DynamicResource Blue2}">
+                                            This year
+                                        </RadioButton>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--9-->
+                    <Border CornerRadius="8"
+                            Background="White"
+                            x:Name="grdEmployee"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Button Height="50"
+                                        Width="220"
+                                        Content="Add Employee"
+                                        HorizontalAlignment="Right"
+                                        FontSize="18"
+                                        FontFamily="poppins"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="7"
+                                        BorderThickness="0"
+                                        FlowDirection="LeftToRight"
+                                        Margin="0 0 20 0"
+                                        x:Name="xxxx"
+                                        Command="{Binding openAddEmployeeWindowCommand}"
+                                        CommandParameter="{Binding ElementName=pageEmployee}" />
+                            </Grid>
+                            <Grid Grid.Row="1"
+                                  x:Name="grd_employee">
+                                <Border Grid.Row="1"
+                                        Height="50"
+                                        Width="1260"
+                                        CornerRadius="8 8 0 0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center"
+                                        Background="{DynamicResource Blue1}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="ID"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="Name"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   Margin="20 0 0 0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Content="Position"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Content="Date of Birth"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Content="Gender"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="5">
+                                            <Label Content=""
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Grid Margin="0 50 0 20"
+                                      Width="1260">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="stkEmployee"
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                    HorizontalAlignment="Center">
+                                            <uc:EmployeeControl></uc:EmployeeControl>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--10-->
+                    <Border CornerRadius="8"
+                            Background="{DynamicResource SecundaryGrayColor}"
+                            x:Name="grdAccount"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*" />
+                                <RowDefinition Height="8.5*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Label Content="ACCOUNT MANAGEMENT"
+                                       FontSize="24"
+                                       FontFamily="poppins"
+                                       FontWeight="Bold"
+                                       Foreground="{DynamicResource Blue2}"
+                                       VerticalAlignment="Center"
+                                       Margin="20 0 0 0" />
+                                <Button HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource Blue2}"
+                                        Margin="0 0 20 0"
+                                        Content="+ Create New Account"
+                                        materialDesign:ButtonAssist.CornerRadius="5" />
+                            </Grid>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0">
+                                    <Border Background="{DynamicResource SecundaryGrayColor}"
+                                            Margin="30 0 0 0">
+                                        <WrapPanel>
+                                            <uc:AccountControl Height="170"
+                                                               Width="170"
+                                                               Padding="0 0 20 15" />
+                                            <uc:AccountControl Height="170"
+                                                               Width="170"
+                                                               Padding="0 0 20 15" />
+                                            <uc:AccountControl Height="170"
+                                                               Width="170"
+                                                               Padding="0 0 20 15" />
+                                            <uc:AccountControl Height="170"
+                                                               Width="170"
+                                                               Padding="0 0 20 15" />
+                                            <uc:AccountControl Height="170"
+                                                               Width="170"
+                                                               Padding="0 0 20 15" />
+                                            <uc:AccountControl Height="170"
+                                                               Width="170"
+                                                               Padding="0 0 20 15" />
+                                            <uc:AccountControl Height="170"
+                                                               Width="170"
+                                                               Padding="0 0 20 15" />
+                                        </WrapPanel>
+                                    </Border>
+                                </Grid>
+
+                                <Grid Grid.Column="1">
+                                    <Border Margin="0 0 20 20"
+                                            CornerRadius="10"
+                                            Background="{DynamicResource PrimaryBackgroundColor}">
+
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!--<Border Grid.Row="1"
                         Margin="10"
                         CornerRadius="10"
                         Background="White">
                     <Frame x:Name="PagesNavigation"
                            NavigationUIVisibility="Hidden"
                            Navigated="PagesNavigation_Navigated">
-                        <!-- Page Content -->
+                        -->
+                <!-- Page Content -->
+                <!--
                     </Frame>
-                </Border>
+                </Border>-->
             </Grid>
         </Grid>
     </Border>
