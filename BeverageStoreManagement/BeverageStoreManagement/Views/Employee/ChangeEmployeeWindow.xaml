@@ -11,10 +11,11 @@
         mc:Ignorable="d"
         Height="590"
         Width="600"
+        Name="wdUpdateEmployee"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        DataContext="{StaticResource PaymentVoucherVM}"
+        DataContext="{StaticResource EmployeeVM}"
         WindowState="Normal">
     <Grid>
         <Grid.RowDefinitions>
@@ -45,15 +46,13 @@
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}"
                        Stroke="{DynamicResource Blue1}"
-                       Grid.Column="1"
-                       Margin="0,15,29.6,15.4" />
+                       Grid.Column="1"/>
             <TextBox x:Name="txtIdEmployee"
                      IsReadOnly="True"
                      Style="{StaticResource TextBoxInputText}"
                      materialDesign:HintAssist.Hint="ID Employee"
                      materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                     Grid.Column="1"
-                     Margin="0,15,39.6,15.4">
+                     Grid.Column="1">
             </TextBox>
         </Grid>
         <Grid Grid.Row="2">
@@ -111,8 +110,8 @@
             <ComboBox x:Name="txtPositionEmployee"
                       materialDesign:HintAssist.Hint="Position"
                       Style="{StaticResource ComboBoxStyle1}">
-                <ComboBoxItem Content="Manager" />
                 <ComboBoxItem Content="Accoutant" />
+                <ComboBoxItem Content="Manager" />
             </ComboBox>
         </Grid>
         <Grid Grid.Row="7">
@@ -128,8 +127,8 @@
                         materialDesign:ButtonAssist.CornerRadius="7"
                         BorderThickness="0"
                         FlowDirection="LeftToRight"
-                        Command="{Binding saveAddEmployeeCommand}"
-                        CommandParameter="{Binding ElementName=wdAddEmployee}" />
+                        Command="{Binding SaveChangeInformationEmployeeCommand}"
+                        CommandParameter="{Binding ElementName=wdUpdateEmployee}" />
             </StackPanel>
         </Grid>
     </Grid>

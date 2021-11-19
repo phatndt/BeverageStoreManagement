@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Style x:Key="MenuRadioButtonStyle"
-           TargetType="{x:Type RadioButton}">
+           TargetType="{x:Type Button}">
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="Foreground"
@@ -17,7 +17,7 @@
                 Value="60" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type RadioButton}">
+                <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="menuButton"
                             Background="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}">
@@ -38,19 +38,19 @@
                             <!-- Icon -->
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon x:Name="Icon"
-                                                         Width="40"
-                                                         Height="40"
-                                                         Kind="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
+                                                         Width="25"
+                                                         Height="25"
+                                                         Kind="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
                                                          VerticalAlignment="Center"
                                                          HorizontalAlignment="Center"
                                                          Margin="15 0 0 0"/>
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
-                                           Text="{Binding Content, RelativeSource={RelativeSource AncestorType={x:Type RadioButton}}}"
+                                           Text="{Binding Content, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
                                            FontWeight="SemiBold"
                                            Margin="15 0 0 0" 
                                            FontSize="18"
-                                           x:Name="content"/>
+                                           x:Name="NameContent"/>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -69,8 +69,11 @@
                             <Setter TargetName="btnSelected"
                                     Property="Background"
                                     Value="{DynamicResource SecundaryGrayColorLight}" />
+                            <Setter TargetName="NameContent"
+                                    Property="Foreground"
+                                    Value="{DynamicResource Blue9}" />
                         </Trigger>
-                        <Trigger Property="IsChecked"
+                        <!--<Trigger Property="IsPressed"
                                  Value="True">
                             <Setter TargetName="Icon"
                                     Property="Foreground"
@@ -84,7 +87,7 @@
                             <Setter TargetName="btnSelected"
                                     Property="Background"
                                     Value="{DynamicResource SecundaryGrayColor}" />
-                        </Trigger>
+                        </Trigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -207,5 +210,58 @@
                 Value="Center" />
         <Setter Property="VerticalAlignment"
                 Value="Center" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="HorizontalExpanderContentTextBlock">
+        <Setter Property="Opacity"
+                Value=".68" />
+        <Setter Property="Text"
+                Value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+    </Style>
+    <Style TargetType="{x:Type Border}"
+           x:Key="HorizontalDividerBorder">
+        <Setter Property="Background"
+                Value="{DynamicResource MaterialDesignDivider}" />
+        <Setter Property="UseLayoutRounding"
+                Value="True" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="Height"
+                Value="1" />
+    </Style>
+
+    <Style x:Key="CustomExpender"
+           TargetType="{x:Type Expander}">
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource PrimaryGrayColor}" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+        <Setter Property="FontSize"
+                Value="15" />
+        <Setter Property="Height"
+                Value="60" />
+        <Setter Property="Style"
+                Value="{StaticResource MaterialDesignExpander}"></Setter>
+        <!--<Setter Property="Header">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Expander}}}"
+                                                 VerticalAlignment="Center"
+                                                 Width="24"
+                                                 Height="24" />
+                        <TextBlock Text="{Binding Header, RelativeSource={RelativeSource AncestorType={x:Type Expander}}}"
+                                   Margin="10,0,0,0" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>-->
     </Style>
 </ResourceDictionary>

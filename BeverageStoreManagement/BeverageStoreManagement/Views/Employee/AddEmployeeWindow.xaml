@@ -29,7 +29,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Content="Change Employee Information Window"
+            <Label Content="Add Employee Window"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="24"

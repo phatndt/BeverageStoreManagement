@@ -24,8 +24,8 @@
             Background="{DynamicResource PrimaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition  />
-                <ColumnDefinition Width="1320"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="1320" />
             </Grid.ColumnDefinitions>
             <Border CornerRadius="8 0 0 8"
                     Background="{DynamicResource SecundaryBackgroundColor}">
@@ -39,227 +39,307 @@
                           Height="40">
                         <Image Source="/BeverageStoreManagement;component/Resources/Images/logo.png" />
                     </Grid>
-                    <StackPanel Grid.Row="1" >
-                         <!--0 Home-->
-                        <RadioButton x:Name="rdHome"
-                                     IsChecked="True"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="HomeMinusOutline"
-                                     Content="Home"
-                                     Uid="0"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdHome}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Home"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                    <StackPanel Grid.Row="1">
+                        <!--0 Home-->
+                        <Expander x:Name="expanderHome">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal"
+                                            Height="30">
+                                    <TextBlock Text="Home"
+                                               TextAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <Button x:Name="rdHome"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="HomeMinusOutline"
+                                             Content="Home"
+                                             Uid="0"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdHome}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Home"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                                <Button x:Name="rdSale"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="HomeModern"
+                                             Content="Sale"
+                                             Uid="1"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdSale}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Sale"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
 
                         <!--1 -->
-                        <RadioButton x:Name="rdSale"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="HomeModern"
-                                     Content="Sale"
-                                     Uid="1"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdSale}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Sale"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                        <Expander x:Name="expanderStore">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock Text="Store"
+                                               TextAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <Button x:Name="rdInvoice"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="Account"
+                                             Content="Invoice"
+                                             Uid="2"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdInvoice}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Invoice"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
 
                         <!--2 -->
-                        <RadioButton x:Name="rdInvoice"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="Account"
-                                     Content="Invoice"
-                                     Uid="2"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdAcount}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Invoice"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
-                        
+
                         <!--3-->
-                        <RadioButton x:Name="rdProduct"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="GoogleMyBusiness"
-                                     Content="Product"
-                                     Uid="3"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdProduct}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Product"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                        <Expander x:Name="expanderWarehouse">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
 
-                        <!--4-->
-                        <RadioButton x:Name="rdMaterial"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="HomePlus"
-                                     Content="Material"
-                                     Uid="4"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdMaterial}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Material"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                                    <TextBlock Text="Warehouse"
+                                               TextAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <Button x:Name="rdProduct"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="GoogleMyBusiness"
+                                             Content="Product"
+                                             Uid="3"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdProduct}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Product"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
 
-                        <!--5-->
-                        <RadioButton x:Name="rdImportBill"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="GlassTulip"
-                                     Content="Import Bill"
-                                     Uid="5"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdImportBill}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Import Bill"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
-                        
+                                <!--4-->
+                                <Button x:Name="rdMaterial"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="HomePlus"
+                                             Content="Material"
+                                             Uid="4"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdMaterial}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Material"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                                <!--5-->
+                                <Button x:Name="rdImportBill"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="GlassTulip"
+                                             Content="Import Bill"
+                                             Uid="5"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdImportBill}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Import Bill"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
+
                         <!--6-->
-                        <RadioButton x:Name="rdPaymentVoucher"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="Receipt"
-                                     Content="Payment VC"
-                                     Uid="5"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdPaymentVoucher}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Payment Voucher"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                        <Expander  x:Name="expanderVoucher">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
 
-                        <!--7-->
-                        <RadioButton x:Name="rdReceiptVoucher"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="Receipt"
-                                     Content="Receipt VC"
-                                     Uid="6"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdReceiptVoucher}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Receipt Voucher"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                                    <TextBlock Text="Voucher"
+                                               TextAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <Button x:Name="rdPaymentVoucher"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="Receipt"
+                                             Content="Payment"
+                                             Uid="6"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdPaymentVoucher}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Payment Voucher"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
 
-                        <!--8-->
-                        <RadioButton x:Name="rdIncident"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="PaperRollOutline"
-                                     Content="Incident"
-                                     Uid="7"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdIncident}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Incident"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                                <!--7-->
+                                <Button x:Name="rdReceiptVoucher"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="Receipt"
+                                             Content="Receipt"
+                                             Uid="7"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdReceiptVoucher}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Receipt Voucher"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
 
-                        <!--9-->
-                        <RadioButton x:Name="rdEmployee"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="BadgeAccountHorizontalOutline"
-                                     Content="Employee"
-                                     Uid="8"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdEmployee}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Employee"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                        <Expander  x:Name="expanderManage">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Manage"
+                                               TextAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <!--8-->
+                                <Button x:Name="rdIncident"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="PaperRollOutline"
+                                             Content="Incident"
+                                             Uid="8"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdIncident}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Incident"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
 
-                        <!--10-->
-                        <RadioButton x:Name="rdAcount"
-                                     Style="{DynamicResource MenuRadioButtonStyle}"
-                                     Tag="Account"
-                                     Content="Account"
-                                     Uid="9"
-                                     Command="{Binding SwitchTabCommand}"
-                                     CommandParameter="{Binding ElementName=wdMain}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseMove">
-                                    <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                           CommandParameter="{Binding ElementName=rdAcount}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <RadioButton.ToolTip>
-                                <ToolTip Content="Account Management"
-                                         Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                            </RadioButton.ToolTip>
-                        </RadioButton>
+                                <!--9-->
+                                <Button x:Name="rdEmployee"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="BadgeAccountHorizontalOutline"
+                                             Content="Employee"
+                                             Uid="9"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdEmployee}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Employee"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+
+                                <!--10-->
+                                <Button x:Name="rdAcount"
+                                             Style="{DynamicResource MenuRadioButtonStyle}"
+                                             Tag="Account"
+                                             Content="Account"
+                                             Uid="10"
+                                             Command="{Binding SwitchTabCommand}"
+                                             CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdAcount}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Account Management"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
+                        
+
+                        
 
                     </StackPanel>
                     <Grid Grid.Row="3"
@@ -324,7 +404,7 @@
                 <Grid Margin="10"
                       Grid.Row="1">
                     <!--0-->
-                    
+
                     <!--1-->
                     <Border CornerRadius="8"
                             Background="{DynamicResource PrimaryBackgroundColor}"
@@ -1505,7 +1585,7 @@
                         </Border>
                     </Grid>
                     <!--5-->
-                    
+
                     <!--6-->
                     <Border CornerRadius="8"
                             Background="White"
@@ -2230,12 +2310,19 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdEmployee"
-                            Visibility="Collapsed">
+                            Visibility="Visible"
+                            DataContext="{StaticResource EmployeeVM}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadEmployeeCommand}"
+                                                           CommandParameter="{Binding ElementName=wdMain}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Grid Grid.Row="0">
                                 <Button Height="50"
                                         Width="220"
@@ -2265,9 +2352,10 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="2*" />
                                             <ColumnDefinition Width="1.5*" />
                                             <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
@@ -2333,6 +2421,21 @@
                                                        VerticalAlignment="Center" />
                                         </Grid>
                                         <Grid Grid.Column="4">
+                                            <Label Content="Date Start Work"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="5">
                                             <Label Content="Gender"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
