@@ -7,15 +7,18 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Width="1260"
-             Height="40">
+             Height="40"
+             x:Name="EmployeeUc"
+             DataContext="{StaticResource EmployeeVM}">
     <Grid x:Name="grdMain"
           Background="{DynamicResource Blue9}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1.5*" />
             <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
@@ -27,6 +30,16 @@
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />
         <TextBlock x:Name="id"
+                   Grid.Column="0"
+                   Text="1000"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   Foreground="{DynamicResource TextColor}"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" 
+                   Visibility="Hidden"/>
+        <TextBlock x:Name="no"
                    Grid.Column="0"
                    Text="1000"
                    FontSize="18"
@@ -91,8 +104,17 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_money_give_by_customer"
+        <TextBlock x:Name="txb_date_start_work"
                    Grid.Column="4"
+                   Text="No"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   Foreground="{DynamicResource TextColor}"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+        <TextBlock x:Name="txb_gender"
+                   Grid.Column="5"
                    Text="No"
                    FontSize="18"
                    FontFamily="Poppins"
@@ -114,12 +136,12 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <StackPanel Grid.Column="5" Orientation="Horizontal"
+        <StackPanel Grid.Column="6" Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
-            <Button  x:Name="btnSeeInvoice"
-                     Command="{Binding DeleteBillDetailCommand}"
-                     CommandParameter="{Binding ElementName=SaleBillUC}"
+            <Button  x:Name="btnChangeInformationEmployee"
+                     Command="{Binding OpenChangeInformationEmployeeCommand}"
+                     CommandParameter="{Binding ElementName=EmployeeUc}"
                      Style="{StaticResource MaterialDesignRaisedButton}"
                      ToolTip="See Invoice"
                      Height="24"
@@ -138,10 +160,10 @@
                                          Height="24"
                                          Width="24" />
             </Button>
-            <Grid Width="30"></Grid>
-            <Button x:Name="btnDeleteInvoice"
-                    Command="{Binding DeleteBillDetailCommand}"
-                    CommandParameter="{Binding ElementName=SaleBillUC}"
+            <Grid Width="20"></Grid>
+            <Button x:Name="btnDeleteEmployee"
+                    Command="{Binding DeleteEmployeeCommand}"
+                    CommandParameter="{Binding ElementName=EmployeeUc}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Height="24"
                     materialDesign:ButtonAssist.CornerRadius="6"

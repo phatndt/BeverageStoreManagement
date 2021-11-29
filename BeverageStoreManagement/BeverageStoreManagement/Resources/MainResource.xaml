@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:viewmodels="clr-namespace:BeverageStoreManagement.ViewModels">
+                    xmlns:viewmodels="clr-namespace:BeverageStoreManagement.ViewModels"
+                    xmlns:models="clr-namespace:BeverageStoreManagement.Models">
     <viewmodels:SaleViewModel x:Key="SaleVM"></viewmodels:SaleViewModel>
     <viewmodels:PaymentVoucherViewModel x:Key="PaymentVoucherVM"></viewmodels:PaymentVoucherViewModel>
     <viewmodels:ReceiptVoucherViewModel x:Key="ReceiptVoucherVM"></viewmodels:ReceiptVoucherViewModel>
@@ -20,5 +21,9 @@
     <viewmodels:GoodsPageViewModel x:Key="GoodsPageVM"></viewmodels:GoodsPageViewModel>
     <viewmodels:ProductPageViewModel x:Key="ProductPageVM"></viewmodels:ProductPageViewModel>
     <viewmodels:IncidentViewModel x:Key="IncidentVM"></viewmodels:IncidentViewModel>
-    <viewmodels:HomeViewModel x:Key="HomeVM"/>
+    <viewmodels:AccountViewModel x:Key="AccountVM"></viewmodels:AccountViewModel>
+    <viewmodels:HomeViewModel x:Key="HomeVM" />
+    <viewmodels:SupplierViewModel x:Key="SupplierVM" />
+
+    <models:Supplier x:Key="Supplier"/>
 </ResourceDictionary>

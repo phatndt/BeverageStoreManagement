@@ -9,16 +9,19 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
         mc:Ignorable="d"
-        Height="590"
+        Height="730"
         Width="600"
+        Name="wdUpdateEmployee"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        DataContext="{StaticResource PaymentVoucherVM}"
+        DataContext="{StaticResource EmployeeVM}"
         WindowState="Normal">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="70" />
             <RowDefinition Height="70" />
             <RowDefinition Height="70" />
@@ -45,15 +48,13 @@
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}"
                        Stroke="{DynamicResource Blue1}"
-                       Grid.Column="1"
-                       Margin="0,15,29.6,15.4" />
+                       Grid.Column="1"/>
             <TextBox x:Name="txtIdEmployee"
                      IsReadOnly="True"
                      Style="{StaticResource TextBoxInputText}"
                      materialDesign:HintAssist.Hint="ID Employee"
                      materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
-                     Grid.Column="1"
-                     Margin="0,15,39.6,15.4">
+                     Grid.Column="1">
             </TextBox>
         </Grid>
         <Grid Grid.Row="2">
@@ -94,6 +95,35 @@
             </DatePicker>
         </Grid>
         <Grid Grid.Row="5">
+            <Label Content="Address"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtAddressEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Address"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Label Content="Phone Number"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtphoneNumberEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Phone Number"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
+                     MaxLength="10">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="7">
             <Label Content="Gender"
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}" />
@@ -104,18 +134,18 @@
                 <ComboBoxItem Content="Female" />
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="8">
             <Label Content="Position"
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}" />
             <ComboBox x:Name="txtPositionEmployee"
                       materialDesign:HintAssist.Hint="Position"
                       Style="{StaticResource ComboBoxStyle1}">
-                <ComboBoxItem Content="Manager" />
                 <ComboBoxItem Content="Accoutant" />
+                <ComboBoxItem Content="Manager" />
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="7">
+        <Grid Grid.Row="9">
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                 <Button Height="50"
@@ -128,8 +158,8 @@
                         materialDesign:ButtonAssist.CornerRadius="7"
                         BorderThickness="0"
                         FlowDirection="LeftToRight"
-                        Command="{Binding saveAddEmployeeCommand}"
-                        CommandParameter="{Binding ElementName=wdAddEmployee}" />
+                        Command="{Binding SaveChangeInformationEmployeeCommand}"
+                        CommandParameter="{Binding ElementName=wdUpdateEmployee}" />
             </StackPanel>
         </Grid>
     </Grid>
