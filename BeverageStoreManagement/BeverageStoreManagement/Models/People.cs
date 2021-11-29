@@ -10,6 +10,7 @@ namespace BeverageStoreManagement.Models
     {
         protected string name;
         protected DateTime dateOfBirth;
+        protected string address;
         protected bool gender;
     }
 }

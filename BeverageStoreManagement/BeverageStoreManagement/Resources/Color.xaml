@@ -43,4 +43,15 @@
 
     <SolidColorBrush x:Key="White"
                      Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="Gray3"
+                     Color="#FFE0E0E0" />
+    <SolidColorBrush x:Key="Success"
+                     Color="#FF1BA345" />
+    <SolidColorBrush x:Key="Warning"
+                     Color="#FFFEC001" />
+    <SolidColorBrush x:Key="Error"
+                     Color="#FFDE3E44" />
+
+    <SolidColorBrush x:Key="Gray"
+                     Color="#FF9098B1" />
 </ResourceDictionary>

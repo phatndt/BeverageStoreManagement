@@ -1,0 +1,138 @@
+﻿<Window x:Class="BeverageStoreManagement.Views.Supplier.ChangeSupplierWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeverageStoreManagement.Views.Supplier"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
+        mc:Ignorable="d"
+        Height="460"
+        Width="600"
+        x:Name="wdEditSupplier"
+        Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        DataContext="{StaticResource SupplierVM}"
+        WindowState="Normal">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="80" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label Content="Change Information Supplier Window"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="24"
+                   FontFamily="Poppins"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="ID Supplier"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Stroke="{DynamicResource Blue1}" 
+                       Fill="{DynamicResource Gray3}"/>
+            <TextBox x:Name="txtIdSupplier"
+                     IsReadOnly="True"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="ID Supplier"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="Name Supplier"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtNameSupplier"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Name Supplier"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="NameSupplier"
+                             Source="{StaticResource Supplier}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter name!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Label Content="Address Supplier"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtAddressSupplier"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Address Supplier"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="AddressSupplier"
+                             Source="{StaticResource Supplier}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter address!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Label Content="Phone Supplier"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtPhoneSupplier"
+                     MaxLength="10"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Phone Supplier"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="PhoneSupplier"
+                             Source="{StaticResource Supplier}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter phone!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="5">
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Height="45"
+                        Width="140"
+                        Content="Save"
+                        Style="{StaticResource BlueButton}"
+                        Command="{Binding SaveEditSupplierCommand}"
+                        CommandParameter="{Binding ElementName=wdEditSupplier}" />
+                <Button Height="45"
+                        Width="140"
+                        Margin="20 0 30 0"
+                        Style="{StaticResource CancelButton}"
+                        Content="Cancel"
+                        Command="{Binding ExitEditSupplierCommand}"
+                        CommandParameter="{Binding ElementName=wdEditSupplier}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
