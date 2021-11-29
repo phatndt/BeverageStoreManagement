@@ -39,6 +39,8 @@ namespace BeverageStoreManagement.ViewModels
             parameter.grdEmployee.Visibility = Visibility.Collapsed;
             parameter.grdAccount.Visibility = Visibility.Collapsed;
 
+            parameter.grdSupplier.Visibility = Visibility.Collapsed;
+
             string focusColor = "#FF1e88e5";
             string color = "#FF828282";
 

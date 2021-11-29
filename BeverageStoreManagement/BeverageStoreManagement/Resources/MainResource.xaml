@@ -23,7 +23,6 @@
     <viewmodels:IncidentViewModel x:Key="IncidentVM"></viewmodels:IncidentViewModel>
     <viewmodels:HomeViewModel x:Key="HomeVM" />
     <viewmodels:SupplierViewModel x:Key="SupplierVM" />
-    <viewmodels:HomeViewModel x:Key="HomeVM"/>
 
     <models:Supplier x:Key="Supplier"/>
 
