@@ -12,7 +12,6 @@ namespace BeverageStoreManagement.Models
         private int idProductType;
         private string nameProduct;
         private string description;
-        private int quantity;
         private double price;
         private bool status;
         private byte[] image;
@@ -22,20 +21,18 @@ namespace BeverageStoreManagement.Models
         public int IdProductType { get => idProductType; set => idProductType = value; }
         public string NameProduct { get => nameProduct; set => nameProduct = value; }
         public string Description { get => description; set => description = value; }
-        public int Quantity { get => quantity; set => quantity = value; }
         public double Price { get => price; set => price = value; }
         public bool Status { get => status; set => status = value; }
         public byte[] Image { get => image; set => image = value; }
         public bool IsDelete { get => isDelete; set => isDelete = value; }
 
         public Product() { }
-        public Product(int idProduct, int idProductType, string nameProduct, string description, int quantity, double price, bool status, byte[] image, bool isDelete)
+        public Product(int idProduct, int idProductType, string nameProduct, string description, double price, bool status, byte[] image, bool isDelete)
         {
             this.idProduct = idProduct;
             this.idProductType = idProductType;
             this.nameProduct = nameProduct;
             this.description = description;
-            this.quantity = quantity;
             this.price = price;
             this.status = status;
             this.image = image;
