@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Media;
-
 namespace BeverageStoreManagement.ViewModels
 {
     class HomeViewModel : BaseViewModel

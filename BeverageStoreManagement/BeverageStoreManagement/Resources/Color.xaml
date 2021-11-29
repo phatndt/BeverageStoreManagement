@@ -43,8 +43,6 @@
 
     <SolidColorBrush x:Key="White"
                      Color="#FFFFFFFF" />
-
-
     <SolidColorBrush x:Key="Gray3"
                      Color="#FFE0E0E0" />
     <SolidColorBrush x:Key="Success"

@@ -1,4 +1,4 @@
-﻿using BeverageStoreManagement.DAL;
+using BeverageStoreManagement.DAL;
 using BeverageStoreManagement.Models;
 using BeverageStoreManagement.Resources.UserControls;
 using BeverageStoreManagement.Validations;

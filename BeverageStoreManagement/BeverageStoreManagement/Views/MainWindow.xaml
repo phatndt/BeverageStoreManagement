@@ -372,10 +372,7 @@
                                 </Button>
                             </StackPanel>
                         </Expander>
-                        
-
-                        
-
+                      
                     </StackPanel>
                     <Grid Grid.Row="3"
                           VerticalAlignment="Bottom"

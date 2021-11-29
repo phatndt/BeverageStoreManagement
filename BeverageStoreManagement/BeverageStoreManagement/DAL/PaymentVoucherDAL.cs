@@ -73,6 +73,5 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
-
     }
 }

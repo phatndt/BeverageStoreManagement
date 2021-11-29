@@ -105,6 +105,7 @@
     <Compile Include="DAL\PaymentVoucherDAL.cs" />
     <Compile Include="DAL\PositionDAL.cs" />
     <Compile Include="DAL\SupplierDAL.cs" />
+    <Compile Include="DAL\PaymentVoucherDAL.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\GoodType.cs" />

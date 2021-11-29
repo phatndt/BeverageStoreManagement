@@ -239,6 +239,7 @@ ALTER TABLE InvoiceInfo ADD CONSTRAINT FK_InvoiceInfo_Product FOREIGN KEY(idProd
 
 ALTER TABLE Incident ADD CONSTRAINT FK_Incident_Employee FOREIGN KEY(idEmployee) REFERENCES Employee(idEmployee)
 
+
 ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Position FOREIGN KEY(idPosition) REFERENCES Position(idPosition)
 
 ALTER TABLE Product ADD CONSTRAINT FK_Product_ProductType FOREIGN KEY(idProductType) REFERENCES ProductType(idProductType)
