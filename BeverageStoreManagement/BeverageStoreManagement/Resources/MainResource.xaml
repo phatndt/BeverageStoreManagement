@@ -21,10 +21,9 @@
     <viewmodels:GoodsPageViewModel x:Key="GoodsPageVM"></viewmodels:GoodsPageViewModel>
     <viewmodels:ProductPageViewModel x:Key="ProductPageVM"></viewmodels:ProductPageViewModel>
     <viewmodels:IncidentViewModel x:Key="IncidentVM"></viewmodels:IncidentViewModel>
+    <viewmodels:AccountViewModel x:Key="AccountVM"></viewmodels:AccountViewModel>
     <viewmodels:HomeViewModel x:Key="HomeVM" />
     <viewmodels:SupplierViewModel x:Key="SupplierVM" />
 
     <models:Supplier x:Key="Supplier"/>
-
-
 </ResourceDictionary>

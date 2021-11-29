@@ -15,7 +15,7 @@
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        WindowStyle="None"
+        WindowStyle="None"  
         AllowsTransparency="True"
         ResizeMode="NoResize"
         WindowState="Normal"
@@ -330,7 +330,7 @@
                                                  Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                                     </Button.ToolTip>
                                 </Button>
-
+                              
                                 <!--9-->
                                 <Button x:Name="rdEmployee"
                                              Style="{DynamicResource MenuRadioButtonStyle}"
@@ -350,7 +350,6 @@
                                                  Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                                     </Button.ToolTip>
                                 </Button>
-
                                 <!--10-->
                                 <Button x:Name="rdAcount"
                                              Style="{DynamicResource MenuRadioButtonStyle}"
@@ -388,6 +387,7 @@
                         </Ellipse>
                     </Grid>
                 </Grid>
+                
             </Border>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -1987,7 +1987,7 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource PrimaryBackgroundColor}"
                             x:Name="grdIncident"
-                            Visibility="Collapsed">
+                            Visibility="Visible">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
@@ -2529,7 +2529,8 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource SecundaryGrayColor}"
                             x:Name="grdAccount"
-                            Visibility="Collapsed">
+                            Visibility="Collapsed"
+                            DataContext="{StaticResource AccountVM}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1.5*" />
@@ -2538,18 +2539,13 @@
 
                             <Grid Grid.Row="0">
                                 <Label Content="ACCOUNT MANAGEMENT"
-                                       FontSize="24"
+                                       FontSize="32"
                                        FontFamily="poppins"
                                        FontWeight="Bold"
                                        Foreground="{DynamicResource Blue2}"
                                        VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
                                        Margin="20 0 0 0" />
-                                <Button HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Background="{DynamicResource Blue2}"
-                                        Margin="0 0 20 0"
-                                        Content="+ Create New Account"
-                                        materialDesign:ButtonAssist.CornerRadius="5" />
                             </Grid>
 
                             <Grid Grid.Row="1">
@@ -2560,29 +2556,29 @@
 
                                 <Grid Grid.Column="0">
                                     <Border Background="{DynamicResource SecundaryGrayColor}"
-                                            Margin="30 0 0 0">
+                                            Margin="25 0 0 0">
                                         <WrapPanel>
                                             <uc:AccountControl Height="170"
-                                                               Width="170"
-                                                               Padding="0 0 20 15" />
+                                                               Width="175"
+                                                               Padding="0 0 15 15" />
                                             <uc:AccountControl Height="170"
-                                                               Width="170"
-                                                               Padding="0 0 20 15" />
+                                                               Width="175"
+                                                               Padding="0 0 15 15" />
                                             <uc:AccountControl Height="170"
-                                                               Width="170"
-                                                               Padding="0 0 20 15" />
+                                                               Width="175"
+                                                               Padding="0 0 15 15" />
                                             <uc:AccountControl Height="170"
-                                                               Width="170"
-                                                               Padding="0 0 20 15" />
+                                                               Width="175"
+                                                               Padding="0 0 15 15" />
                                             <uc:AccountControl Height="170"
-                                                               Width="170"
-                                                               Padding="0 0 20 15" />
+                                                               Width="175"
+                                                               Padding="0 0 15 15" />
                                             <uc:AccountControl Height="170"
-                                                               Width="170"
-                                                               Padding="0 0 20 15" />
+                                                               Width="175"
+                                                               Padding="0 0 15 15" />
                                             <uc:AccountControl Height="170"
-                                                               Width="170"
-                                                               Padding="0 0 20 15" />
+                                                               Width="175"
+                                                               Padding="0 0 15 15" />
                                         </WrapPanel>
                                     </Border>
                                 </Grid>
@@ -2591,7 +2587,228 @@
                                     <Border Margin="0 0 20 20"
                                             CornerRadius="10"
                                             Background="{DynamicResource PrimaryBackgroundColor}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="15" />
+                                                <RowDefinition Height="80" />
+                                                <RowDefinition Height="80" />
+                                                <RowDefinition Height="80" />
+                                                <RowDefinition Height="80" />
+                                                <RowDefinition Height="80" />
+                                                <RowDefinition Height="80" />
+                                                <RowDefinition Height="80" />
+                                            </Grid.RowDefinitions>
 
+                                            <Grid Grid.Row="1">
+                                                <Rectangle Width="330"
+                                                           Height="40"
+                                                           RadiusY="6"
+                                                           RadiusX="6"
+                                                           Margin="0,0,20,0"
+                                                           Stroke="{DynamicResource PrimaryGrayColor}"
+                                                           HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center" />
+                                                <TextBox x:Name="txtEmpName"
+                                                         materialDesign:HintAssist.Hint="Employee's name"
+                                                         HorizontalAlignment="Right"
+                                                         VerticalAlignment="Center"
+                                                         Width="320"
+                                                         FontSize="16"
+                                                         BorderThickness="0"
+                                                         MaxLines="1"
+                                                         Padding="0"
+                                                         Foreground="{DynamicResource Blue2}"
+                                                         Margin="0,20,20,21"
+                                                         Height="40"
+                                                         HorizontalContentAlignment="Left"
+                                                         VerticalContentAlignment="Center"
+                                                         SelectionBrush="{x:Null}"
+                                                         FontWeight="SemiBold"
+                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                                                         Grid.ColumnSpan="2">
+                                                </TextBox>
+                                            </Grid>
+
+                                            <Grid Grid.Row="2">
+                                                <Rectangle HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"
+                                                           Height="40"
+                                                           Width="330"
+                                                           RadiusY="6"
+                                                           RadiusX="6"
+                                                           Stroke="{DynamicResource PrimaryGrayColor}"
+                                                           Margin="0 0 20 0" />
+                                                <TextBox x:Name="txtEmployeeDateOfBirth"
+                                                         materialDesign:HintAssist.Hint="Date of Birth"
+                                                         HorizontalAlignment="Right"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="IBeam"
+                                                         Height="40"
+                                                         Width="320"
+                                                         FontSize="16"
+                                                         BorderThickness="0"
+                                                         MaxLines="1"
+                                                         Padding="0"
+                                                         Foreground="{DynamicResource Blue2}"
+                                                         Margin="0 0 20 0"
+                                                         HorizontalContentAlignment="Left"
+                                                         VerticalContentAlignment="Center"
+                                                         FontWeight="SemiBold"
+                                                         SelectionBrush="{x:Null}"
+                                                         CaretBrush="{x:Null}"
+                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
+                                            </Grid>
+
+                                            <Grid Grid.Row="3">
+                                                <Rectangle HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"
+                                                           Height="40"
+                                                           Width="330"
+                                                           RadiusY="6"
+                                                           RadiusX="6"
+                                                           Stroke="{DynamicResource PrimaryGrayColor}"
+                                                           Margin="0 0 20 0" />
+                                                <TextBox x:Name="txtEmployeePosition"
+                                                         materialDesign:HintAssist.Hint="Position"
+                                                         HorizontalAlignment="Right"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="IBeam"
+                                                         Height="40"
+                                                         Width="320"
+                                                         FontSize="16"
+                                                         BorderThickness="0"
+                                                         MaxLines="1"
+                                                         Padding="0"
+                                                         Foreground="{DynamicResource Blue2}"
+                                                         Margin="0 0 20 0"
+                                                         HorizontalContentAlignment="Left"
+                                                         VerticalContentAlignment="Center"
+                                                         FontWeight="SemiBold"
+                                                         SelectionBrush="{x:Null}"
+                                                         CaretBrush="{x:Null}"
+                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
+                                            </Grid>
+
+                                            <Grid Grid.Row="4">
+                                                <Label Content="Gender"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="20"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="{DynamicResource Blue2}"
+                                                       Height="40"
+                                                       Margin="20 0 0 0" />
+                                                <StackPanel Orientation="Horizontal"
+                                                            Height="30"
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Center"
+                                                            Margin="0 0 20 0">
+                                                    <RadioButton x:Name="rdoPay"
+                                                                 Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                                 IsChecked="True"
+                                                                 Content="Male"
+                                                                 Height="30"
+                                                                 Width="100"
+                                                                 Padding="20,0,0,0"
+                                                                 FontSize="16"
+                                                                 FontWeight="Bold"
+                                                                 BorderBrush="{DynamicResource Blue2}"
+                                                                 Background="{DynamicResource Blue2}"
+                                                                 HorizontalAlignment="Left"
+                                                                 VerticalAlignment="Center"
+                                                                 GroupName="Pay?" />
+                                                    <RadioButton x:Name="rdoNotPay"
+                                                                 Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                                 BorderBrush="{DynamicResource Blue2}"
+                                                                 Background="{DynamicResource Blue2}"
+                                                                 Content="Female"
+                                                                 Padding="20,0,0,0"
+                                                                 FontSize="16"
+                                                                 FontWeight="Bold"
+                                                                 Height="30"
+                                                                 Width="100"
+                                                                 VerticalAlignment="Center"
+                                                                 HorizontalAlignment="Left"
+                                                                 Margin="20,0,0,0"
+                                                                 GroupName="Pay?" />
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <Grid Grid.Row="5">
+                                                <Rectangle HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"
+                                                           Height="40"
+                                                           Width="330"
+                                                           RadiusY="6"
+                                                           RadiusX="6"
+                                                           Stroke="{DynamicResource PrimaryGrayColor}"
+                                                           Margin="0 0 20 0" />
+                                                <TextBox x:Name="txtUserName"
+                                                         materialDesign:HintAssist.Hint="User name"
+                                                         HorizontalAlignment="Right"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="IBeam"
+                                                         Height="40"
+                                                         Width="320"
+                                                         FontSize="16"
+                                                         BorderThickness="0"
+                                                         MaxLines="1"
+                                                         Padding="0"
+                                                         Foreground="{DynamicResource Blue2}"
+                                                         Margin="0 0 20 0"
+                                                         HorizontalContentAlignment="Left"
+                                                         VerticalContentAlignment="Center"
+                                                         FontWeight="SemiBold"
+                                                         SelectionBrush="{x:Null}"
+                                                         CaretBrush="{x:Null}"
+                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
+                                            </Grid>
+
+                                            <Grid Grid.Row="6">
+                                                <Rectangle HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"
+                                                           Height="40"
+                                                           Width="330"
+                                                           RadiusY="6"
+                                                           RadiusX="6"
+                                                           Stroke="{DynamicResource PrimaryGrayColor}"
+                                                           Margin="0 0 20 0" />
+                                                <TextBox x:Name="txtPassword"
+                                                         materialDesign:HintAssist.Hint="Password"
+                                                         HorizontalAlignment="Right"
+                                                         VerticalAlignment="Center"
+                                                         Cursor="IBeam"
+                                                         Height="40"
+                                                         Width="320"
+                                                         FontSize="16"
+                                                         BorderThickness="0"
+                                                         MaxLines="1"
+                                                         Padding="0"
+                                                         Foreground="{DynamicResource Blue2}"
+                                                         Margin="0 0 20 0"
+                                                         HorizontalContentAlignment="Left"
+                                                         VerticalContentAlignment="Center"
+                                                         FontWeight="SemiBold"
+                                                         SelectionBrush="{x:Null}"
+                                                         CaretBrush="{x:Null}"
+                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
+                                            </Grid>
+
+                                            <Grid Grid.Row="7">
+                                                <Button HorizontalAlignment="Right"
+                                                        VerticalAlignment="Center"
+                                                        Width="200"
+                                                        Height="50"
+                                                        Background="{DynamicResource Blue2}"
+                                                        Margin="0 0 20 0"
+                                                        Content="+ Create New Account"
+                                                        FontSize="16"
+                                                        FontFamily="Poppins"
+                                                        FontWeight="DemiBold"
+                                                        BorderThickness="0"
+                                                        materialDesign:ButtonAssist.CornerRadius="8" />
+                                            </Grid>
+                                        </Grid>
                                     </Border>
                                 </Grid>
                             </Grid>
