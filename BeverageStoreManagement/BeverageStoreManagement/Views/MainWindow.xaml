@@ -93,7 +93,6 @@
                                 </Button>
                             </StackPanel>
                         </Expander>
-
                         <!--1 -->
                         <Expander x:Name="expanderStore">
                             <Expander.Header>
@@ -130,8 +129,6 @@
                             </StackPanel>
                         </Expander>
 
-                        <!--2 -->
-
                         <!--3-->
                         <Expander x:Name="expanderWarehouse">
                             <Expander.Header>
@@ -165,7 +162,7 @@
                                                  Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                                     </Button.ToolTip>
                                 </Button>
-
+                              
                                 <!--4-->
                                 <Button x:Name="rdMaterial"
                                         Style="{DynamicResource MenuRadioButtonStyle}"
@@ -1248,6 +1245,7 @@
                     <!--3-->
                     <Grid Background="White"
                           x:Name="grdProduct"
+                          DataContext="{StaticResource ProductPageVM}"
                           Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1.1*" />
@@ -1305,6 +1303,7 @@
                     <!--4-->
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdMaterial"
+                          DataContext="{StaticResource GoodsPageVM}"
                           Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
@@ -1623,12 +1622,318 @@
                         </Border>
                     </Grid>
                     <!--5-->
-                    <Border CornerRadius="8"
-                            Background="{DynamicResource PrimaryBackgroundColor}"
-                            x:Name="grdImportBill"
-                            Visibility="Collapsed">
-                        <Grid Background="Red"></Grid>
-                    </Border>
+                    <Grid Background="{DynamicResource PrimaryBackgroundColor}"
+                          x:Name="grdImportBill"
+                          DataContext="{StaticResource GoodsPageVM}"
+                          Visibility="Visible">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="0.3*" />
+                            <RowDefinition Height="4.2*" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0"
+                                Height="50"
+                                Width="1300"
+                                CornerRadius="12 12 0 0"
+                                Margin="0 0 0 5"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Background="{DynamicResource Blue1}">
+                            <Grid Height="50"
+                                  Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.75*" />
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1.2*" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Label Content="No."
+                                           FontFamily="Poppins"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="White" />
+                                    <Rectangle Grid.Column="1"
+                                               HorizontalAlignment="Right"
+                                               Height="30"
+                                               Margin="0"
+                                               Width="2"
+                                               Fill="{DynamicResource Blue10}"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Label Content="Employee"
+                                           FontFamily="Poppins"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="White" />
+                                    <Rectangle HorizontalAlignment="Right"
+                                               Height="30"
+                                               Margin="0"
+                                               Width="2"
+                                               Fill="{DynamicResource Blue10}"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <Label Content="Supplier"
+                                           FontFamily="Poppins"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="White" />
+                                    <Rectangle Grid.Column="1"
+                                               HorizontalAlignment="Right"
+                                               Height="30"
+                                               Margin="0"
+                                               Width="2"
+                                               Fill="{DynamicResource Blue10}"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <Label Content="Date"
+                                           FontFamily="Poppins"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="White" />
+                                    <Rectangle Grid.Column="1"
+                                               HorizontalAlignment="Right"
+                                               Height="30"
+                                               Margin="0"
+                                               Width="2"
+                                               Fill="{DynamicResource Blue10}"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                                <Grid Grid.Column="4">
+                                    <Label Content="Total Money"
+                                           FontFamily="Poppins"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="White" />
+                                    <Rectangle Grid.Column="1"
+                                               HorizontalAlignment="Right"
+                                               Height="30"
+                                               Margin="0"
+                                               Width="2"
+                                               Fill="{DynamicResource Blue10}"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                                <Grid Grid.Column="5">
+                                    <Label Content="Status"
+                                           FontFamily="Poppins"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="White" />
+                                    <Rectangle Grid.Column="1"
+                                               HorizontalAlignment="Right"
+                                               Height="30"
+                                               Margin="0"
+                                               Width="2"
+                                               Fill="{DynamicResource Blue10}"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Grid Grid.Row="1"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Left"
+                              Width="1300">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Disabled">
+                                <StackPanel x:Name="stkImportMaterial"
+                                            Width="1280"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                            HorizontalAlignment="Left">
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                    <uc:ImportMaterialControl></uc:ImportMaterialControl>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0"
+                                        Height="50"
+                                        Width="1040"
+                                        CornerRadius="12 12 0 0"
+                                        Margin="0 0 0 5"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left"
+                                        Background="{DynamicResource Blue1}">
+                                    <Grid Height="50"
+                                          Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.75*" />
+                                            <ColumnDefinition Width="1.5*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1.2*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Label Content="No."
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="1">
+                                            <Label Content="Employee"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="2">
+                                            <Label Content="Supplier"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="3">
+                                            <Label Content="Date"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="4">
+                                            <Label Content="Total Money"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                        <Grid Grid.Column="5">
+                                            <Label Content="Status"
+                                                   FontFamily="Poppins"
+                                                   FontSize="20"
+                                                   FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="White" />
+                                            <Rectangle Grid.Column="1"
+                                                       HorizontalAlignment="Right"
+                                                       Height="30"
+                                                       Margin="0"
+                                                       Width="2"
+                                                       Fill="{DynamicResource Blue10}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Grid Grid.Row="1"
+                                      Width="1040"
+                                      VerticalAlignment="Top">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <StackPanel x:Name="stkImportedMaterial"
+                                                    Width="1020"
+                                                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                                    HorizontalAlignment="Left">
+                                            <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
+                                            <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
+                                            <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
+                                            <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
+                                            <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
+                                            <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <Button Height="50"
+                                        Width="200"
+                                        BorderThickness="0 "
+                                        Content="Add a import request"
+                                        FontSize="16"
+                                        FontFamily="poppins"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="7"
+                                        FlowDirection="LeftToRight"
+                                        HorizontalAlignment="Right"
+                                        Command="{Binding OpenAddMaterialCommand}" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
                     <!--6-->
                     <Border CornerRadius="8"
                             Background="White"
