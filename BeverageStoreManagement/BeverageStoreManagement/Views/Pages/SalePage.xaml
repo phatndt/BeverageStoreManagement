@@ -16,6 +16,300 @@
       Background="Transparent">
 
     <Border CornerRadius="8"
+            Background="{DynamicResource White}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button Height="50"
+                        Width="220"
+                        Content="Add Supplier"
+                        HorizontalAlignment="Right"
+                        FontSize="18"
+                        FontFamily="poppins"
+                        Background="{DynamicResource Blue2}"
+                        materialDesign:ButtonAssist.CornerRadius="7"
+                        BorderThickness="0"
+                        FlowDirection="LeftToRight"
+                        Margin="0 0 20 0"
+                        Command="{Binding OpenAddPaymentVoucherWindowCommand}"
+                        CommandParameter="{Binding ElementName=pagePaymentVoucher}" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Grid Height="250"
+                          Style="{StaticResource DropShadow}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                                   RadiusY="4"
+                                   RadiusX="4"
+                                   Grid.RowSpan="4"
+                                   Panel.ZIndex="-1" />
+                        <Grid Grid.Row="0">
+                            <TextBlock FontSize="22"
+                                       FontWeight="SemiBold"
+                                       FontFamily="Poppins"
+                                       Foreground="{DynamicResource Blue2}"
+                                       Text="Sort"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Margin="20,0,0,0" />
+                            <Rectangle Height="3"
+                                       Fill="{StaticResource Blue2}"
+                                       VerticalAlignment="Bottom"
+                                       Margin="20,0" />
+                        </Grid>
+                        <StackPanel Grid.Row="1"
+                                    Margin="0 10 0 0"
+                                    VerticalAlignment="Top">
+                            <ComboBox Margin="20,30,20,0"
+                                      VerticalAlignment="Center"
+                                      x:Name="cboSortType"
+                                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                                      materialDesign:HintAssist.Hint="Sắp xếp theo"
+                                      materialDesign:HintAssist.IsFloating="True"
+                                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                      Foreground="{StaticResource Blue1}"
+                                      Height="40"
+                                      FontSize="18"
+                                      Padding="10,0"
+                                      VerticalContentAlignment="Center"
+                                      HorizontalContentAlignment="Left"
+                                      FontWeight="SemiBold"
+                                      BorderBrush="{StaticResource Blue1}"
+                                      BorderThickness="1.5"
+                                      FocusVisualStyle="{x:Null}"
+                                      Background="{StaticResource White}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding SelectSortTypeCommand}"
+                                                               CommandParameter="{Binding ElementName=wdMain}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <ComboBoxItem Content="Tên nhà cung cấp" />
+                                <ComboBoxItem Content="Số lượng đơn hàng" />
+                                <ComboBoxItem Content="Số tiền đã trả" />
+                            </ComboBox>
+                            <ComboBox Margin="20,30,20,0"
+                                      VerticalAlignment="Center"
+                                      x:Name="cboSortSupplier"
+                                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                                      materialDesign:HintAssist.Hint="Cách sắp xếp"
+                                      materialDesign:HintAssist.IsFloating="True"
+                                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                      Foreground="{StaticResource Blue1}"
+                                      ItemsSource="{Binding IteamSource}"
+                                      Height="40"
+                                      FontSize="18"
+                                      Padding="10,0"
+                                      VerticalContentAlignment="Center"
+                                      HorizontalContentAlignment="Left"
+                                      FontWeight="SemiBold"
+                                      BorderBrush="{StaticResource Blue1}"
+                                      BorderThickness="1.5"
+                                      Background="{StaticResource White}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding SortCommand}"
+                                                               CommandParameter="{Binding ElementName=wdMain}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Height="180"
+                          Style="{StaticResource DropShadow}"
+                          Margin="0,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                                   RadiusY="4"
+                                   RadiusX="4"
+                                   Grid.RowSpan="4"
+                                   Panel.ZIndex="-1" />
+                        <TextBlock Grid.Row="0"
+                                   FontSize="22"
+                                   FontWeight="SemiBold"
+                                   FontFamily="Poppins"
+                                   Foreground="{DynamicResource Blue2}"
+                                   Text="Supplier"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20,0,0,0" />
+                        <Rectangle Grid.Row="0"
+                                   Height="2"
+                                   Fill="{StaticResource Blue1}"
+                                   Margin="20,0"
+                                   VerticalAlignment="Bottom" />
+                        <TextBlock x:Name="txbSupplierQuantity"
+                                   Grid.Row="1"
+                                   MaxWidth="200"
+                                   FontWeight="Regular"
+                                   FontFamily="Poppins"
+                                   Foreground="{DynamicResource Blue2}"
+                                   Height="Auto"
+                                   FontSize="24"
+                                   Margin="20,0,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Height="180"
+                          Style="{StaticResource DropShadow}"
+                          Margin="0,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                                   RadiusY="4"
+                                   RadiusX="4"
+                                   Grid.RowSpan="4"
+                                   Panel.ZIndex="-1" />
+                        <TextBlock Grid.Row="0"
+                                   FontSize="22"
+                                   FontWeight="SemiBold"
+                                   FontFamily="Poppins"
+                                   Foreground="{DynamicResource Blue2}"
+                                   Text="Total money"
+                                   Height="Auto"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="20,0,0,0" />
+                        <Rectangle Grid.Row="0"
+                                   Height="2"
+                                   Fill="{StaticResource Primary}"
+                                   Margin="20,0"
+                                   VerticalAlignment="Bottom" />
+                        <TextBlock x:Name="txbTotalSpentToSupplier"
+                                   Grid.Row="1"
+                                   FontWeight="Regular"
+                                   FontFamily="Poppins"
+                                   Foreground="{DynamicResource Blue2}"
+                                   MaxWidth="200"
+                                   Height="Auto"
+                                   FontSize="24"
+                                   Margin="20,0,0,0"
+                                   HorizontalAlignment="Left" />
+                    </Grid>
+                </StackPanel>
+                <Grid Grid.Column="1"
+                      Style="{StaticResource DropShadow}"
+                      Margin="20,0,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                               RadiusY="4"
+                               RadiusX="4"
+                               Grid.RowSpan="4"
+                               Panel.ZIndex="-1" />
+                    <Grid Width="400"
+                          Height="46"
+                          Style="{StaticResource DropShadow}"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Margin="20,0,0,0">
+                        <Rectangle Fill="{DynamicResource White}"
+                                   RadiusY="4"
+                                   RadiusX="4"
+                                   Panel.ZIndex="-1" />
+                        <TextBox x:Name="txtSearchSupplier"
+                                 materialDesign:HintAssist.Hint="Search name"
+                                 FontSize="18"
+                                 BorderThickness="0"
+                                 MaxLines="1"
+                                 Margin="12,0,40,0"
+                                 FontWeight="SemiBold"
+                                 Foreground="{StaticResource Blue1}"
+                                 Height="40"
+                                 VerticalAlignment="Center"
+                                 HorizontalContentAlignment="Left"
+                                 VerticalContentAlignment="Center"
+                                 Padding="2,0,0,0" />
+                        <Button IsDefault="True"
+                                Style="{StaticResource TransperantButton}"
+                                Command="{Binding SearchCommand}"
+                                CommandParameter="{Binding ElementName=wdMain}"
+                                Height="30"
+                                Width="30"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                ToolTip="Tìm theo tên sản phẩm">
+                            <materialDesign:PackIcon Kind="Magnify"
+                                                     Width="30"
+                                                     Height="30"
+                                                     Foreground="{StaticResource Blue1}" />
+                        </Button>
+                    </Grid>
+                    <Border CornerRadius="4,4,0,0"
+                            BorderThickness="1"
+                            Grid.Row="1"
+                            Margin="20,0"
+                            Height="40"
+                            VerticalAlignment="Top"
+                            BorderBrush="{StaticResource Primary}"
+                            Background="{StaticResource Primary}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="No."
+                                       Grid.Column="0"
+                                       Style="{StaticResource SupplierTitle}" />
+                            <Label Content="Name"
+                                       Grid.Column="1"
+                                       Style="{StaticResource SupplierTitle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,0,0,0" />
+                            <Label Content="Address"
+                                       Grid.Column="2"
+                                       Style="{StaticResource SupplierTitle}" />
+                            <Label Content="Phone"
+                                       Grid.Column="3"
+                                       Style="{StaticResource SupplierTitle}" />
+                            <Label Content="Bill"
+                                       Grid.Column="4"
+                                       Style="{StaticResource SupplierTitle}" />
+                            <Label Content="Money"
+                                       Grid.Column="5"
+                                       Style="{StaticResource SupplierTitle}" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="2"
+                            CornerRadius="0,0,4,4"
+                            BorderThickness="0,0,0,0"
+                            Margin="20,0,20,20">
+                        <StackPanel x:Name="stkSupplier">
+                            <uc:SupplierControl />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+    
+    <!--<Border CornerRadius="8"
             Background="{DynamicResource PrimaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -124,16 +418,16 @@
                                   HorizontalScrollBarVisibility="Disabled">
                         <WrapPanel x:Name="wrpGoods"
                                    Margin="4">
-                            <!--<i:Interaction.Triggers>
+                            --><!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Loaded">
                                     <i:InvokeCommandAction Command="{Binding LoadGoodsCommand}"
                                                            CommandParameter="{Binding ElementName=wdImportStock}" />
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>-->
+                            </i:Interaction.Triggers>--><!--
                         </WrapPanel>
                     </ScrollViewer>
                 </Border>
-                <!--<Border Grid.Row="2"
+                --><!--<Border Grid.Row="2"
                         CornerRadius="8"
                         Background="White"
                         Margin="0 5 5 0">
@@ -176,7 +470,7 @@
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
-                </Border>-->
+                </Border>--><!--
             </Grid>
             <Border Grid.Column="1"
                     Background="White"
@@ -385,7 +679,7 @@
                                  FontWeight="SemiBold"
                                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Pallet4}"
                                  Grid.ColumnSpan="2">
-                            <!--<i:Interaction.Triggers>
+                            --><!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding }"
                                                          MethodName="NumberValidationTextBox" />
@@ -394,7 +688,7 @@
                                     <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
                                                            CommandParameter="{Binding ElementName=txtTotalMoney}" />
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>-->
+                            </i:Interaction.Triggers>--><!--
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -434,7 +728,7 @@
                                  FontWeight="SemiBold"
                                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
                                  Grid.ColumnSpan="2">
-                            <!--<i:Interaction.Triggers>
+                            --><!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding }"
                                                          MethodName="NumberValidationTextBox" />
@@ -443,7 +737,7 @@
                                     <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
                                                            CommandParameter="{Binding ElementName=txtMoneyCustomer}" />
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>-->
+                            </i:Interaction.Triggers>--><!--
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="4">
@@ -484,7 +778,7 @@
                                  FontWeight="SemiBold"
                                  materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Pallet4}"
                                  Grid.ColumnSpan="2">
-                            <!--<i:Interaction.Triggers>
+                            --><!--<i:Interaction.Triggers>
                                 <i:EventTrigger EventName="PreviewTextInput">
                                     <ei:CallMethodAction TargetObject="{Binding }"
                                                          MethodName="NumberValidationTextBox" />
@@ -493,7 +787,7 @@
                                     <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
                                                            CommandParameter="{Binding ElementName=txtMoneyChange}" />
                                 </i:EventTrigger>
-                            </i:Interaction.Triggers>-->
+                            </i:Interaction.Triggers>--><!--
                         </TextBox>
                     </Grid>
                     <Grid Grid.Row="5">
@@ -625,5 +919,5 @@
                 </Grid>
             </Grid>
         </Grid>
-    </Border>
+    </Border>-->
 </Page>

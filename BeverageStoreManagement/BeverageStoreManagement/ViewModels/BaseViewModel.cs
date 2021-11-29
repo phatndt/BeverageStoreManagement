@@ -29,5 +29,16 @@ namespace BeverageStoreManagement.ViewModels
             }
             return hash.ToString();
         }
+        public long ConvertToNumber(string str)
+        {
+            string[] s = str.Split(',');
+            string tmp = "";
+            foreach (string a in s)
+            {
+                tmp += a;
+            }
+
+            return long.Parse(tmp);
+        }
     }
 }

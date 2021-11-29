@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace BeverageStoreManagement
 {
-    class Converter
+    public class Converter
     {
         public string MD5Hash(string str)
         {
@@ -20,6 +22,29 @@ namespace BeverageStoreManagement
                 hash.Append(bytes[i].ToString("X2"));
             }
             return hash.ToString();
+        }
+        public byte[] ConvertBitmapImageToBytes(BitmapImage bitmapImage)
+        {
+            byte[] data;
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                data = ms.ToArray();
+            }
+            return data;
+        }
+        public long ConvertToNumber(string str)
+        {
+            string[] s = str.Split(',');
+            string tmp = "";
+            foreach (string a in s)
+            {
+                tmp += a;
+            }
+
+            return long.Parse(tmp);
         }
     }
 }
