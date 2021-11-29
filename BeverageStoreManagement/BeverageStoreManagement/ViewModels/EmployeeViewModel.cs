@@ -1,12 +1,14 @@
 ﻿using BeverageStoreManagement.DAL;
 using BeverageStoreManagement.Models;
 using BeverageStoreManagement.Resources.UserControls;
+using BeverageStoreManagement.Validations;
 using BeverageStoreManagement.Views.Employee;
 using BeverageStoreManagement.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +36,8 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand DeleteEmployeeCommand { get; set; }
 
         private MainWindow mainWindow;
+
+        private EmployeeDALValidation employeeDALValidation = new EmployeeDALValidation();
         public EmployeeViewModel()
         {
             openAddEmployeeWindowCommand = new RelayCommand<EmployeePage>((parameter) => true, (parameter) => openAddEmployeeWindow(parameter));
@@ -51,21 +55,11 @@ namespace BeverageStoreManagement.ViewModels
         private void DeleteEmployee(EmployeeControl parameter)
         {
             MessageBoxResult messageBoxResult = CustomMessageBox.ShowYesNo("Confirm delelte employee!", "Information", "Yes", "No", MessageBoxImage.Warning);
-            if (messageBoxResult == MessageBoxResult.OK)
+            if (messageBoxResult == MessageBoxResult.Yes)
             {
 
                 int idEmployee = int.Parse(parameter.id.Text);
-
-                if (
-                EmployeeDAL.Instance.DeleteEmployeeById(idEmployee) == 1)
-                {
-                    Notification.Instance.Success("Delete Employee Success");
-                }
-                else
-                {
-
-                    Notification.Instance.Failed("Delete Employee Fail");
-                }
+                EmployeeDAL.Instance.DeleteEmployeeById(idEmployee); Notification.Instance.Success("Delete Employee Success");
                 LoadEmployee(mainWindow);
             }
         }
@@ -81,8 +75,10 @@ namespace BeverageStoreManagement.ViewModels
             changeEmployeeWindow.txtNameEmployee.Text = employee.Name;
             changeEmployeeWindow.txtDateEmployee.Text = employee.DateOfBirth.ToString("dd/MM/yyyy");
             changeEmployeeWindow.txtDateStartWorkEmployee.Text = employee.DateStartWorking.ToString("dd/MM/yyyy");
+            changeEmployeeWindow.txtAddressEmployee.Text = employee.Address;
+            changeEmployeeWindow.txtphoneNumberEmployee.Text = employee.PhoneNumber;
             changeEmployeeWindow.txtGenderEmployee.Text = employee.Gender ? "Male" : "Female";
-            changeEmployeeWindow.txtPositionEmployee.Text = PositionDAL.Instance.GetNamePositionById(idEmployee);
+            changeEmployeeWindow.txtPositionEmployee.Text = PositionDAL.Instance.GetNamePositionById(employee.IdPosition);
 
             changeEmployeeWindow.ShowDialog();
         }
@@ -169,13 +165,13 @@ namespace BeverageStoreManagement.ViewModels
                 parameter.txtPositionEmployee.Focus();
                 return false;
             }
-            if (!EmployeeDAL.Instance.CompareDateAnDateStartWork(DateTime.Parse(parameter.txtDateEmployee.Text), DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
+            if (!employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse(parameter.txtDateEmployee.Text), DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
             {
                 CustomMessageBox.Show("Conflict Date of Birth and Date Start Working", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtDateEmployee.Focus();
                 return false;
             }
-            if (!EmployeeDAL.Instance.CompareDateAnDateNow(DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
+            if (!employeeDALValidation.CompareDateStartWorkingAnDateNow(DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
             {
                 CustomMessageBox.Show("Conflict Date Start Working and Today", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtDateStartWorkEmployee.Focus();
@@ -198,6 +194,8 @@ namespace BeverageStoreManagement.ViewModels
                     parameter.txtNameEmployee.Text,
                     DateTime.Parse(parameter.txtDateEmployee.Text),
                     DateTime.Parse(parameter.txtDateStartWorkEmployee.Text),
+                    parameter.txtAddressEmployee.Text,
+                    parameter.txtphoneNumberEmployee.Text,
                     gender,
                     false);
                 if (EmployeeDAL.Instance.AddNewEmployee(employee) == 1)
@@ -250,13 +248,13 @@ namespace BeverageStoreManagement.ViewModels
                 parameter.txtPositionEmployee.Focus();
                 return false;
             }
-            if (!EmployeeDAL.Instance.CompareDateAnDateStartWork(DateTime.Parse(parameter.txtDateEmployee.Text), DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
+            if (!employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse(parameter.txtDateEmployee.Text), DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
             {
                 CustomMessageBox.Show("Conflict Date of Birth and Date Start Working", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtDateEmployee.Focus();
                 return false;
             }
-            if (!EmployeeDAL.Instance.CompareDateAnDateNow(DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
+            if (!employeeDALValidation.CompareDateStartWorkingAnDateNow(DateTime.Parse(parameter.txtDateStartWorkEmployee.Text)))
             {
                 CustomMessageBox.Show("Conflict Date Start Working and Today", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtDateStartWorkEmployee.Focus();
@@ -278,6 +276,8 @@ namespace BeverageStoreManagement.ViewModels
                     parameter.txtNameEmployee.Text,
                     DateTime.Parse(parameter.txtDateEmployee.Text),
                     DateTime.Parse(parameter.txtDateStartWorkEmployee.Text),
+                    parameter.txtAddressEmployee.Text,
+                    parameter.txtphoneNumberEmployee.Text,
                     gender,
                     false);
                 if (EmployeeDAL.Instance.UpdateEmployee(employee) == 1)
@@ -297,5 +297,11 @@ namespace BeverageStoreManagement.ViewModels
         }
         #endregion
 
+
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
 }

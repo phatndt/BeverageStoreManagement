@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace BeverageStoreManagement.ViewModels
 {
-    class PaymentVoucherViewModel: BaseViewModel
+    public class PaymentVoucherViewModel: BaseViewModel
     {
         public ICommand SeparateThousandsCommand { get; set; }
         public ICommand OpenAddPaymentVoucherWindowCommand { get; set; }
@@ -56,8 +56,18 @@ namespace BeverageStoreManagement.ViewModels
 
         private void OpenPaymentVoucherWindow(PaymentVoucherPage parameter)
         {
-            AddPaymentVoucherWindow addPaymentVoucherWindow = new AddPaymentVoucherWindow();
-            addPaymentVoucherWindow.ShowDialog();
+            int idPaymentVoucher = PaymentVoucherDAL.Instance.GetMaxIdPaymentVoucher() + 1;
+            if (idPaymentVoucher != 0)
+            {
+                AddPaymentVoucherWindow addPaymentVoucherWindow = new AddPaymentVoucherWindow();
+                addPaymentVoucherWindow.txtId.Text = idPaymentVoucher.ToString();
+                addPaymentVoucherWindow.ShowDialog();
+                
+            }
+            else
+            {
+                Notification.Instance.Failed("Connected to database failed!!!");
+            }
         }
         public void SeparateThousands(TextBox txt)
         {

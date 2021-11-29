@@ -18,7 +18,7 @@ namespace BeverageStoreManagement.DAL
             private set { PositionDAL.instance = value; }
         }
 
-        public String GetNamePositionById(int idPosition)
+        public string GetNamePositionById(int idPosition)
         {
             try
             {

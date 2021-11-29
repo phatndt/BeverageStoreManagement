@@ -9,7 +9,7 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
         mc:Ignorable="d"
-        Height="590"
+        Height="730"
         Width="600"
         Name="wdUpdateEmployee"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
@@ -20,6 +20,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="70" />
             <RowDefinition Height="70" />
             <RowDefinition Height="70" />
@@ -93,6 +95,35 @@
             </DatePicker>
         </Grid>
         <Grid Grid.Row="5">
+            <Label Content="Address"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtAddressEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Address"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Label Content="Phone Number"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtphoneNumberEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Phone Number"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
+                     MaxLength="10">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="7">
             <Label Content="Gender"
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}" />
@@ -103,7 +134,7 @@
                 <ComboBoxItem Content="Female" />
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="8">
             <Label Content="Position"
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}" />
@@ -114,7 +145,7 @@
                 <ComboBoxItem Content="Manager" />
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="7">
+        <Grid Grid.Row="9">
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                 <Button Height="50"

@@ -49,7 +49,7 @@
                                                TextAlignment="Center"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
-                                               FontSize="20"
+                                               FontSize="18"
                                                FontWeight="SemiBold"
                                                Foreground="{StaticResource PrimaryGrayColor}" />
                                 </StackPanel>
@@ -110,12 +110,12 @@
                             </Expander.Header>
                             <StackPanel>
                                 <Button x:Name="rdInvoice"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="Account"
-                                             Content="Invoice"
-                                             Uid="2"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="Account"
+                                        Content="Invoice"
+                                        Uid="2"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -148,12 +148,12 @@
                             </Expander.Header>
                             <StackPanel>
                                 <Button x:Name="rdProduct"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="GoogleMyBusiness"
-                                             Content="Product"
-                                             Uid="3"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="GoogleMyBusiness"
+                                        Content="Product"
+                                        Uid="3"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -168,12 +168,12 @@
 
                                 <!--4-->
                                 <Button x:Name="rdMaterial"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="HomePlus"
-                                             Content="Material"
-                                             Uid="4"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="HomePlus"
+                                        Content="Material"
+                                        Uid="4"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -187,12 +187,12 @@
                                 </Button>
                                 <!--5-->
                                 <Button x:Name="rdImportBill"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="GlassTulip"
-                                             Content="Import Bill"
-                                             Uid="5"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="GlassTulip"
+                                        Content="Import Bill"
+                                        Uid="5"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -201,6 +201,41 @@
                                     </i:Interaction.Triggers>
                                     <Button.ToolTip>
                                         <ToolTip Content="Import Bill"
+                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
+
+                        <Expander x:Name="expanderPartner">
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock Text="Partner"
+                                               TextAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <StackPanel>
+                                <Button x:Name="rdSupplier"
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="TruckOutline"
+                                        Content="Supplier"
+                                        Uid="12"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                   CommandParameter="{Binding ElementName=rdSupplier}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <Button.ToolTip>
+                                        <ToolTip Content="Dolly"
                                                  Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                                     </Button.ToolTip>
                                 </Button>
@@ -404,12 +439,18 @@
                 <Grid Margin="10"
                       Grid.Row="1">
                     <!--0-->
-
+                    <Border CornerRadius="8"
+                            Background="{DynamicResource PrimaryBackgroundColor}"
+                            x:Name="grdHome"
+                            Visibility="Collapsed">
+                        <Grid Background="Aqua"></Grid>
+                    </Border>
                     <!--1-->
                     <Border CornerRadius="8"
                             Background="{DynamicResource PrimaryBackgroundColor}"
                             x:Name="grdSale"
-                            Visibility="Collapsed">
+                            Visibility="Collapsed"
+                            DataContext="{StaticResource SaleVM}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*" />
@@ -1585,12 +1626,18 @@
                         </Border>
                     </Grid>
                     <!--5-->
-
+                    <Border CornerRadius="8"
+                            Background="{DynamicResource PrimaryBackgroundColor}"
+                            x:Name="grdImportBill"
+                            Visibility="Collapsed">
+                        <Grid Background="Red"></Grid>
+                    </Border>
                     <!--6-->
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdPaymentVoucher"
-                            Visibility="Collapsed">
+                            Visibility="Collapsed"
+                            DataContext="{StaticResource PaymentVoucherVM}">
                         <Grid>
                             <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="Loaded">
@@ -2310,7 +2357,7 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdEmployee"
-                            Visibility="Visible"
+                            Visibility="Hidden"
                             DataContext="{StaticResource EmployeeVM}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -2548,6 +2595,327 @@
                                             CornerRadius="10"
                                             Background="{DynamicResource PrimaryBackgroundColor}">
 
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <!--11-->
+                    <Border CornerRadius="8"
+                            Background="{DynamicResource White}"
+                            DataContext="{StaticResource SupplierVM}"
+                            x:Name="grdSupplier"
+                            Visibility="Collapsed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadSupplierCommand}"
+                                                           CommandParameter="{Binding ElementName=wdMain}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid Grid.Row="0">
+                                <Button Height="50"
+                                        Width="220"
+                                        Content="Add Supplier"
+                                        HorizontalAlignment="Right"
+                                        FontSize="18"
+                                        FontFamily="poppins"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="7"
+                                        BorderThickness="0"
+                                        FlowDirection="LeftToRight"
+                                        Margin="0 0 20 0"
+                                        Command="{Binding OpenAddSupplierWindowCommand}"
+                                        CommandParameter="{Binding ElementName=wd}" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="320" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="20 0 0 0">
+                                    <Grid Height="250"
+                                          Style="{StaticResource DropShadow}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="60" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                                                   RadiusY="4"
+                                                   RadiusX="4"
+                                                   Grid.RowSpan="4"
+                                                   Panel.ZIndex="-1" />
+                                        <Grid Grid.Row="0">
+                                            <TextBlock FontSize="22"
+                                                       FontWeight="SemiBold"
+                                                       FontFamily="Poppins"
+                                                       Foreground="{DynamicResource Blue2}"
+                                                       Text="Sort"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Margin="20,0,0,0" />
+                                            <Rectangle Height="3"
+                                                       Fill="{StaticResource Blue2}"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="20,0" />
+                                        </Grid>
+                                        <StackPanel Grid.Row="1"
+                                                    Margin="0 10 0 0"
+                                                    VerticalAlignment="Top">
+                                            <ComboBox Margin="20,30,20,0"
+                                                      VerticalAlignment="Center"
+                                                      x:Name="cboSortType"
+                                                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                                                      materialDesign:HintAssist.Hint="Sắp xếp theo"
+                                                      materialDesign:HintAssist.IsFloating="True"
+                                                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                                      Foreground="{StaticResource Blue1}"
+                                                      Height="40"
+                                                      FontSize="18"
+                                                      Padding="10,0"
+                                                      VerticalContentAlignment="Center"
+                                                      HorizontalContentAlignment="Left"
+                                                      FontWeight="SemiBold"
+                                                      BorderBrush="{StaticResource Blue1}"
+                                                      BorderThickness="1.5"
+                                                      FocusVisualStyle="{x:Null}"
+                                                      Background="{StaticResource White}"
+                                                      materialDesign:HintAssist.Foreground="{DynamicResource Blue1}"
+                                                      materialDesign:HintAssist.Background="White">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding SelectSortTypeCommand}"
+                                                                               CommandParameter="{Binding ElementName=wdMain}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <ComboBoxItem Content="Name" />
+                                                <ComboBoxItem Content="Bills" />
+                                                <ComboBoxItem Content="Money" />
+                                            </ComboBox>
+                                            <ComboBox Margin="20,30,20,0"
+                                                      VerticalAlignment="Center"
+                                                      x:Name="cboSortSupplier"
+                                                      materialDesign:ComboBoxAssist.ClassicMode="True"
+                                                      materialDesign:HintAssist.Hint="Cách sắp xếp"
+                                                      materialDesign:HintAssist.IsFloating="True"
+                                                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                                      Foreground="{StaticResource Blue1}"
+                                                      ItemsSource="{Binding IteamSource}"
+                                                      Height="40"
+                                                      FontSize="18"
+                                                      Padding="10,0"
+                                                      VerticalContentAlignment="Center"
+                                                      HorizontalContentAlignment="Left"
+                                                      FontWeight="SemiBold"
+                                                      BorderBrush="{StaticResource Blue1}"
+                                                      BorderThickness="1.5"
+                                                      Background="{StaticResource White}"
+                                                      materialDesign:HintAssist.Foreground="{DynamicResource Blue1}"
+                                                      materialDesign:HintAssist.Background="White">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="SelectionChanged">
+                                                        <i:InvokeCommandAction Command="{Binding SortCommand}"
+                                                                               CommandParameter="{Binding ElementName=wdMain}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Height="170"
+                                          Style="{StaticResource DropShadow}"
+                                          Margin="0,20,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="60" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                                                   RadiusY="4"
+                                                   RadiusX="4"
+                                                   Grid.RowSpan="4"
+                                                   Panel.ZIndex="-1" />
+                                        <TextBlock Grid.Row="0"
+                                                   FontSize="22"
+                                                   FontWeight="SemiBold"
+                                                   FontFamily="Poppins"
+                                                   Foreground="{DynamicResource Blue2}"
+                                                   Text="Supplier"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Margin="20,0,0,0" />
+                                        <Rectangle Grid.Row="0"
+                                                   Height="2"
+                                                   Fill="{StaticResource Blue1}"
+                                                   Margin="20,0"
+                                                   VerticalAlignment="Bottom" />
+                                        <TextBlock x:Name="txbSupplierQuantity"
+                                                   Grid.Row="1"
+                                                   MaxWidth="200"
+                                                   FontWeight="Regular"
+                                                   FontFamily="Poppins"
+                                                   Foreground="{DynamicResource Blue2}"
+                                                   Height="Auto"
+                                                   FontSize="24"
+                                                   Margin="20,0,0,0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                                    </Grid>
+                                    <Grid Height="170"
+                                          Style="{StaticResource DropShadow}"
+                                          Margin="0,20,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="60" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                                                   RadiusY="4"
+                                                   RadiusX="4"
+                                                   Grid.RowSpan="4"
+                                                   Panel.ZIndex="-1" />
+                                        <TextBlock Grid.Row="0"
+                                                   FontSize="22"
+                                                   FontWeight="SemiBold"
+                                                   FontFamily="Poppins"
+                                                   Foreground="{DynamicResource Blue2}"
+                                                   Text="Total money"
+                                                   Height="Auto"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Margin="20,0,0,0" />
+                                        <Rectangle Grid.Row="0"
+                                                   Height="2"
+                                                   Fill="{StaticResource Primary}"
+                                                   Margin="20,0"
+                                                   VerticalAlignment="Bottom" />
+                                        <TextBlock x:Name="txbTotalSpentToSupplier"
+                                                   Grid.Row="1"
+                                                   FontWeight="Regular"
+                                                   FontFamily="Poppins"
+                                                   Foreground="{DynamicResource Blue2}"
+                                                   MaxWidth="200"
+                                                   Height="Auto"
+                                                   FontSize="24"
+                                                   Margin="20,0,0,0"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center" />
+                                    </Grid>
+                                </StackPanel>
+                                <Grid Grid.Column="1"
+                                      Style="{StaticResource DropShadow}"
+                                      Margin="20,0,20,20">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100" />
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition Height="5*" />
+                                    </Grid.RowDefinitions>
+                                    <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
+                                               RadiusY="4"
+                                               RadiusX="4"
+                                               Grid.RowSpan="4"
+                                               Panel.ZIndex="-1" />
+                                    <Grid Width="400"
+                                          Height="46"
+                                          Style="{StaticResource DropShadow}"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"
+                                          Margin="20,0,0,0">
+                                        <Rectangle Fill="{DynamicResource White}"
+                                                   RadiusY="4"
+                                                   RadiusX="4"
+                                                   Panel.ZIndex="-1" />
+                                        <TextBox x:Name="txtSearchSupplier"
+                                                 materialDesign:HintAssist.Hint="Search name"
+                                                 FontSize="18"
+                                                 BorderThickness="0"
+                                                 MaxLines="1"
+                                                 Margin="12,0,40,0"
+                                                 FontWeight="SemiBold"
+                                                 Foreground="{StaticResource Blue1}"
+                                                 Height="40"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalContentAlignment="Left"
+                                                 VerticalContentAlignment="Center"
+                                                 Padding="2,0,0,0"
+                                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue1}"/>
+                                        <Button IsDefault="True"
+                                                Style="{StaticResource TransperantButton}"
+                                                Command="{Binding SearchCommand}"
+                                                CommandParameter="{Binding ElementName=wdMain}"
+                                                Height="30"
+                                                Width="30"
+                                                Margin="0,0,10,0"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Right"
+                                                ToolTip="Tìm theo tên sản phẩm">
+                                            <materialDesign:PackIcon Kind="Magnify"
+                                                                     Width="30"
+                                                                     Height="30"
+                                                                     Foreground="{StaticResource Blue1}" />
+                                        </Button>
+                                    </Grid>
+                                    <Border CornerRadius="4,4,0,0"
+                                            BorderThickness="1"
+                                            Grid.Row="1"
+                                            Margin="20,0"
+                                            Height="40"
+                                            VerticalAlignment="Top"
+                                            BorderBrush="{StaticResource Primary}"
+                                            Background="{StaticResource Primary}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60" />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="150" />
+                                                <ColumnDefinition Width="100" />
+                                                <ColumnDefinition Width="120" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="20" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Content="No."
+                                                   Grid.Column="0"
+                                                   Style="{StaticResource SupplierTitle}" />
+                                            <Rectangle Grid.Column="0"
+                                                       Style="{StaticResource RectangleTitle}" />
+                                            <Label Content="Name"
+                                                   Grid.Column="1"
+                                                   Style="{StaticResource SupplierTitle}"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="20,0,0,0" />
+                                            <Rectangle Grid.Column="1"
+                                                       Style="{StaticResource RectangleTitle}" />
+                                            <Label Content="Address"
+                                                   Grid.Column="2"
+                                                   Style="{StaticResource SupplierTitle}" />
+                                            <Rectangle Grid.Column="2"
+                                                       Style="{StaticResource RectangleTitle}" />
+                                            <Label Content="Phone"
+                                                   Grid.Column="3"
+                                                   Style="{StaticResource SupplierTitle}" />
+                                            <Rectangle Grid.Column="3"
+                                                       Style="{StaticResource RectangleTitle}" />
+                                            <Label Content="Bill"
+                                                   Grid.Column="4"
+                                                   Style="{StaticResource SupplierTitle}" />
+                                            <Rectangle Grid.Column="4"
+                                                       Style="{StaticResource RectangleTitle}" />
+                                            <Label Content="Money"
+                                                   Grid.Column="5"
+                                                   Style="{StaticResource SupplierTitle}" />
+                                            <Rectangle Grid.Column="5"
+                                                       Style="{StaticResource RectangleTitle}" />
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Row="2"
+                                            CornerRadius="0,0,4,4"
+                                            BorderThickness="0,0,0,0"
+                                            Margin="20,0,20,20">
+                                        <StackPanel x:Name="stkSupplier">
+                                            
+                                        </StackPanel>
                                     </Border>
                                 </Grid>
                             </Grid>

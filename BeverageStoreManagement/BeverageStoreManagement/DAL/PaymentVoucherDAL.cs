@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -51,5 +52,27 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
+        public int GetMaxIdPaymentVoucher()
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "SELECT MAX(idPaymentVoucher) FROM PaymentVoucher";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                return int.Parse(dataTable.Rows[0].ItemArray[0].ToString());
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
     }
 }

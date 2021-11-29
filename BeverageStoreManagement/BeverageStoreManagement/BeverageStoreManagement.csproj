@@ -101,8 +101,10 @@
     <Compile Include="CustomMessageBox.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
+    <Compile Include="DAL\ImportBillDAL.cs" />
     <Compile Include="DAL\PaymentVoucherDAL.cs" />
     <Compile Include="DAL\PositionDAL.cs" />
+    <Compile Include="DAL\SupplierDAL.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\GoodType.cs" />
@@ -149,12 +151,17 @@
     <Compile Include="Resources\UserControls\ReceiptVoucherControl.xaml.cs">
       <DependentUpon>ReceiptVoucherControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\SupplierControl.xaml.cs">
+      <DependentUpon>SupplierControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Util.cs" />
+    <Compile Include="Validations\EmployeeDALValidation.cs" />
     <Compile Include="Validations\NotNullValidation.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\PaymentVoucherViewModel.cs" />
     <Compile Include="ViewModels\ReceiptVoucherViewModel.cs" />
+    <Compile Include="ViewModels\SupplierViewModel.cs" />
     <Compile Include="Views\AddInvoiceWindow.xaml.cs">
       <DependentUpon>AddInvoiceWindow.xaml</DependentUpon>
     </Compile>
@@ -232,6 +239,12 @@
     <Compile Include="Views\Pages\SalePage.xaml.cs">
       <DependentUpon>SalePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Supplier\AddSupplierWindow.xaml.cs">
+      <DependentUpon>AddSupplierWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Supplier\ChangeSupplierWindow.xaml.cs">
+      <DependentUpon>ChangeSupplierWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UpdateGoodsWindow.xaml.cs">
       <DependentUpon>UpdateGoodsWindow.xaml</DependentUpon>
     </Compile>
@@ -240,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Color.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DropShadowStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -292,6 +309,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\ReceiptVoucherControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\SupplierControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -408,6 +429,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\SalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Supplier\AddSupplierWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Supplier\ChangeSupplierWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

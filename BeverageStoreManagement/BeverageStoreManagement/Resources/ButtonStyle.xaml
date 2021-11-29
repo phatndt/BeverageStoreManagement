@@ -166,11 +166,10 @@
                 Value="Transparent" />
         <Setter Property="Foreground"
                 Value="White" />
-        <!--<Setter Property="FontFamily" Value="Fonts/Roboto-Light.ttf #Roboto"/>-->
         <Setter Property="FontSize"
                 Value="16" />
         <Setter Property="PlacementRectangle"
-                Value="70,15,0,0" />
+                Value="170,3,0,0" />
         <Setter Property="HorizontalOffset"
                 Value="15" />
         <Setter Property="VerticalOffset"
@@ -263,5 +262,99 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>-->
+    </Style>
+    <Style x:Key="TransperantButton"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MaterialDesignRaisedButton }">
+        <Setter Property="Background"
+                Value="{x:Null}" />
+        <Setter Property="BorderBrush"
+                Value="{x:Null}" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius"
+                Value="0" />
+        <Setter Property="materialDesign:ShadowAssist.ShadowDepth"
+                Value="Depth0" />
+    </Style>
+    <Style x:Key="CancelButton"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background"
+                Value="{DynamicResource Gray}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource Gray}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource White}" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Height"
+                Value="45" />
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="FontFamily"
+                Value="poppins" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius"
+                Value="7" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource Gray}" />
+                <Setter Property="Background"
+                        Value="{DynamicResource White}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource White}" />
+                <Setter Property="Background"
+                        Value="{DynamicResource Gray}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="BlueButton"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background"
+                Value="{DynamicResource Blue2}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource Blue2}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource White}" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Height"
+                Value="45" />
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="FontFamily"
+                Value="poppins" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius"
+                Value="7" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource Blue2}" />
+                <Setter Property="Background"
+                        Value="{DynamicResource White}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource White}" />
+                <Setter Property="Background"
+                        Value="{DynamicResource Blue2}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -19,24 +19,6 @@ namespace BeverageStoreManagement.DAL
             private set { EmployeeDAL.instance = value; }
         }
 
-        public bool CompareDateAnDateStartWork(DateTime date, DateTime dateStartWorking)
-        {
-            if (date < dateStartWorking)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool CompareDateAnDateNow(DateTime dateStartWorking)
-        {
-            if (dateStartWorking < DateTime.Now)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public object GetList()
         {
             try
@@ -52,8 +34,8 @@ namespace BeverageStoreManagement.DAL
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    bool gender = (bool)dt.Rows[i].ItemArray[5]; 
-                    bool isDelete = (bool)dt.Rows[i].ItemArray[6];
+                    bool gender = (bool)dt.Rows[i].ItemArray[7];
+                    bool isDelete = (bool)dt.Rows[i].ItemArray[8];
 
                     Employee employee = new Employee(
                         int.Parse(dt.Rows[i].ItemArray[0].ToString()),
@@ -61,6 +43,8 @@ namespace BeverageStoreManagement.DAL
                         dt.Rows[i].ItemArray[2].ToString(),
                         DateTime.Parse(dt.Rows[i].ItemArray[3].ToString()),
                         DateTime.Parse(dt.Rows[i].ItemArray[4].ToString()),
+                        dt.Rows[i].ItemArray[5].ToString(),
+                        dt.Rows[i].ItemArray[6].ToString(),
                         gender,
                         isDelete);
 
@@ -69,9 +53,9 @@ namespace BeverageStoreManagement.DAL
 
                 return employees;
             }
-            catch
+            catch (Exception e)
             {
-                //CustomMessageBox.Show(e.ToString());
+                CustomMessageBox.Show(e.ToString());
                 return new List<Employee>();
             }
             finally
@@ -92,8 +76,8 @@ namespace BeverageStoreManagement.DAL
                 DataTable dt = new DataTable();
                 dt.Load(dataReader);
 
-                bool gender = (bool)dt.Rows[0].ItemArray[5];
-                bool isDelete = (bool)dt.Rows[0].ItemArray[6];
+                bool gender = (bool)dt.Rows[0].ItemArray[7];
+                bool isDelete = (bool)dt.Rows[0].ItemArray[8];
 
                 return new Employee(
                        int.Parse(dt.Rows[0].ItemArray[0].ToString()),
@@ -101,10 +85,12 @@ namespace BeverageStoreManagement.DAL
                        dt.Rows[0].ItemArray[2].ToString(),
                        DateTime.Parse(dt.Rows[0].ItemArray[3].ToString()),
                        DateTime.Parse(dt.Rows[0].ItemArray[4].ToString()),
+                       dt.Rows[0].ItemArray[5].ToString(),
+                       dt.Rows[0].ItemArray[6].ToString(),
                        gender,
                        isDelete);
             }
-            catch 
+            catch
             {
                 //CustomMessageBox.Show(e.ToString());
                 return new Employee();
@@ -115,7 +101,7 @@ namespace BeverageStoreManagement.DAL
             }
         }
 
-        public int DeleteEmployeeById(int idEmployee)
+        public void DeleteEmployeeById(int idEmployee)
         {
             try
             {
@@ -126,12 +112,12 @@ namespace BeverageStoreManagement.DAL
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
-                return int.Parse(dataTable.Rows[0].ItemArray[0].ToString());
+                //return int.Parse(dataTable.Rows[0].ItemArray[0].ToString());
             }
-            catch 
+            catch(Exception e)
             {
-                //CustomMessageBox.Show(e.ToString());
-                return 0;
+                CustomMessageBox.Show(e.ToString());
+                //return 0;
             }
             finally
             {
@@ -151,7 +137,7 @@ namespace BeverageStoreManagement.DAL
                 adapter.Fill(dataTable);
                 return int.Parse(dataTable.Rows[0].ItemArray[0].ToString());
             }
-            catch 
+            catch
             {
                 return 0;
             }
@@ -166,21 +152,24 @@ namespace BeverageStoreManagement.DAL
             try
             {
                 OpenConnection();
-                string queryStr = "INSERT INTO Employee VALUES (@idEmployee,@idPosition,@name,@date,@dateStartWork,@gender,'0')";
+                string queryStr = "INSERT INTO Employee VALUES (@idEmployee,@idPosition,@name,@date,@dateStartWork,@address,@phoneNumber,@gender,'0')";
                 SqlCommand command = new SqlCommand(queryStr, conn);
                 command.Parameters.AddWithValue("@idEmployee", employee.IdEmployee);
                 command.Parameters.AddWithValue("@idPosition", employee.IdPosition);
                 command.Parameters.AddWithValue("@name", employee.Name);
                 command.Parameters.AddWithValue("@date", employee.DateOfBirth);
                 command.Parameters.AddWithValue("@dateStartWork", employee.DateStartWorking);
+                command.Parameters.AddWithValue("@address", employee.Address);
+                command.Parameters.AddWithValue("@phoneNumber", employee.PhoneNumber);
                 command.Parameters.AddWithValue("@gender", employee.Gender);
 
                 int result = command.ExecuteNonQuery();
 
                 return result;
             }
-            catch
+            catch (Exception e)
             {
+                CustomMessageBox.Show(e.ToString());
                 return 0;
             }
             finally
@@ -195,14 +184,16 @@ namespace BeverageStoreManagement.DAL
             {
                 OpenConnection();
 
-                int gender = employee.Gender ? 1: 0;
+                int gender = employee.Gender ? 1 : 0;
 
-                string queryStr = "UPDATE Employee SET idPosition=@idPosition,name=@name,dateOfBirth=@date,dateStartWorking=@dateStartWork,gender=@gender WHERE idEmployee=@idEmployee";
+                string queryStr = "UPDATE Employee SET idPosition=@idPosition,name=@name,dateOfBirth=@date,dateStartWorking=@dateStartWork,address=@address,phoneNumber=@phoneNumber,gender=@gender WHERE idEmployee=@idEmployee";
                 SqlCommand command = new SqlCommand(queryStr, conn);
                 command.Parameters.AddWithValue("@idPosition", employee.IdPosition);
                 command.Parameters.AddWithValue("@name", employee.Name);
                 command.Parameters.AddWithValue("@date", employee.DateOfBirth);
                 command.Parameters.AddWithValue("@dateStartWork", employee.DateStartWorking);
+                command.Parameters.AddWithValue("@address", employee.Address);
+                command.Parameters.AddWithValue("@phoneNumber", employee.PhoneNumber);
                 command.Parameters.AddWithValue("@gender", gender);
                 command.Parameters.AddWithValue("@idEmployee", employee.IdEmployee);
 
