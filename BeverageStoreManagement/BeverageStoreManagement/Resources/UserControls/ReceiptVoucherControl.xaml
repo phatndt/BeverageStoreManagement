@@ -7,7 +7,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Width="1260"
-             Height="40">
+             Height="40"
+             Name="ReceiptVoucherUc"
+             DataContext="{StaticResource ReceiptVoucherVM}">
     <Grid x:Name="grdMain"
           Background="{DynamicResource Blue9}">
         <Grid.ColumnDefinitions>
@@ -34,6 +36,16 @@
                    Foreground="{DynamicResource TextColor}"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
+                   VerticalAlignment="Center" 
+                   Visibility="Hidden"/>
+        <TextBlock x:Name="no"
+                   Grid.Column="0"
+                   Text="1000"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   Foreground="{DynamicResource TextColor}"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
                    VerticalAlignment="Center" />
         <!--<Rectangle Grid.Column="0"
                    HorizontalAlignment="Right"
@@ -44,7 +56,7 @@
                    VerticalAlignment="Center" />-->
         <Grid Grid.Column="1"
               Background="#FFf9f9f9"></Grid>
-        <TextBlock x:Name="txb_eployee_name"
+        <TextBlock x:Name="txb_receiptVoucher_name"
                    Grid.Column="1"
                    Text="Thanh Phat"
                    FontSize="18"
@@ -61,7 +73,7 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_time"
+        <TextBlock x:Name="txb_receiptVoucher_time"
                    Grid.Column="2"
                    Text="21/09/2001"
                    FontSize="18"
@@ -79,7 +91,7 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_money"
+        <TextBlock x:Name="txb_receiptVoucher_money"
                    Grid.Column="3"
                    Text="15,000"
                    FontSize="18"
@@ -95,7 +107,7 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_money_give_by_customer"
+        <TextBlock x:Name="txb_receiptVoucher_note"
                    Grid.Column="4"
                    Text="No"
                    FontSize="18"
@@ -131,35 +143,12 @@
                    VerticalAlignment="Center" />-->
         <Grid Grid.Column="6"
               Background="#FFf9f9f9"></Grid>
-        <Button Grid.Column="6"
-                x:Name="btnSeeInvoice"
-                Command="{Binding DeleteBillDetailCommand}"
-                CommandParameter="{Binding ElementName=SaleBillUC}"
-                Style="{StaticResource MaterialDesignRaisedButton}"
-                ToolTip="See Invoice"
-                Height="24"
-                materialDesign:ButtonAssist.CornerRadius="6"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{DynamicResource TextColor}"
-                FontSize="16"
-                VerticalAlignment="Center"
-                FocusVisualStyle="{x:Null}"
-                Width="26"
-                HorizontalAlignment="Center"
-                FontWeight="SemiBold"
-                Padding="0"
-                Visibility="Hidden">
-            <materialDesign:PackIcon Kind="Eye"
-                                     Height="24"
-                                     Width="24" />
-        </Button>
         <Button Grid.Column="5"
-                x:Name="btnDeleteInvoice"
-                Command="{Binding DeleteBillDetailCommand}"
-                CommandParameter="{Binding ElementName=SaleBillUC}"
+                x:Name="btnDeleteReceiptVoucher"
+                Command="{Binding DeleteReceiptVoucherCommand}"
+                CommandParameter="{Binding ElementName=ReceiptVoucherUc}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
-                ToolTip="See Invoice"
+                ToolTip="Delete ReceiptVoucher"
                 Height="24"
                 materialDesign:ButtonAssist.CornerRadius="6"
                 Background="{x:Null}"
