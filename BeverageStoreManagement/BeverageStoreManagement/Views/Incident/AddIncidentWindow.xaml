@@ -5,148 +5,102 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeverageStoreManagement.Views.Incident"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
         mc:Ignorable="d"
         x:Name="wdAddIncident"
         DataContext="{StaticResource IncidentVM}"
         WindowStartupLocation="CenterScreen"
-        Title="Add New Incident" Height="470" Width="600">
+        Title="Add New Incident"
+        Height="660"
+        Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="80" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition  Height="70"/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0">
-            <Label Content="Incident Name"
-                   HorizontalAlignment="Left"
-                   FontSize="20"
+            <Label Content="Add Incident Window"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="24"
+                   FontFamily="Poppins"
                    FontWeight="SemiBold"
-                   FontFamily="poppins"
-                   Foreground="{DynamicResource Blue2}"
-                   Height="32"
-                   Margin="50 0 0 0"
-                   VerticalAlignment="Center" />
-            <Rectangle Width="300"
-                       Height="40"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Margin="0,0,50,0"
-                       Stroke="{DynamicResource PrimaryGrayColor}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center" />
-            <TextBox x:Name="txtIncidentName"
-                     materialDesign:HintAssist.Hint="Enter name"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Center"
-                     Width="280"
-                     FontSize="16"
-                     BorderThickness="0"
-                     MaxLines="1"
-                     Padding="0"
-                     Foreground="{DynamicResource Blue2}"
-                     Margin="0,20,60,21"
-                     Height="40"
-                     HorizontalContentAlignment="Left"
-                     VerticalContentAlignment="Center"
-                     SelectionBrush="{x:Null}"
-                     FontWeight="SemiBold"
-                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
-                     Grid.ColumnSpan="2">
+                   Foreground="{DynamicResource Blue1}" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="ID Supplier"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Stroke="{DynamicResource Blue1}"
+                       Fill="{DynamicResource Gray3}" />
+            <TextBox x:Name="txtIdIncident"
+                     IsReadOnly="True"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="ID Supplier"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent">
             </TextBox>
         </Grid>
-
-        <Grid Grid.Row="1">
-            <Label Content="Employee"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue2}"
-                   Height="40"
-                   Margin="50 0 0 0" />
-            <Rectangle HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Height="40"
-                       Width="300"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Stroke="{DynamicResource PrimaryGrayColor}"
-                       Margin="0 0 50 0" />
-            <TextBox x:Name="txtEmployeeName"
-                     materialDesign:HintAssist.Hint="Employee's name"
-                     HorizontalAlignment="Right"
-                     VerticalAlignment="Center"
-                     Cursor="IBeam"
-                     Height="40"
-                     Width="280"
-                     FontSize="16"
-                     BorderThickness="0"
-                     MaxLines="1"
-                     Padding="0"
-                     Foreground="{DynamicResource Blue2}"
-                     Margin="0 0 60 0"
-                     HorizontalContentAlignment="Left"
-                     VerticalContentAlignment="Center"
-                     FontWeight="SemiBold"
-                     SelectionBrush="{x:Null}"
-                     CaretBrush="{x:Null}"
-                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
-        </Grid>
-
-        <Grid Grid.Row="2">
-            <Label Content="Date"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue2}"
-                   Height="40"
-                   Margin="50 0 0 0" />
-            <DatePicker materialDesign:HintAssist.Hint="Date"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Cursor="IBeam"
-                        Height="40"
-                        Width="280"
-                        FontSize="14"
-                        BorderThickness="0"
-                        Padding="0"
-                        Foreground="{DynamicResource Blue2}"
-                        Margin="0,0,60,0"
-                        HorizontalContentAlignment="Left"
-                        VerticalContentAlignment="Center"
-                        FontWeight="SemiBold"
-                        materialDesign:ThemeAssist.Theme="Light"
-                         />
-            <Rectangle HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Height="40"
-                       Width="300"
-                       Margin="0 0 50 0"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Stroke="{DynamicResource PrimaryGrayColor}" />
-        </Grid>
-
         <Grid Grid.Row="3">
+            <Label Content="Date"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <DatePicker x:Name="txtDateIncident"
+                        materialDesign:HintAssist.Hint="Date"
+                        Style="{StaticResource DatePickerStyle1}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="Employee"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Fill="{DynamicResource Gray3}"  />
+            <TextBox x:Name="txtEmployee"
+                     IsReadOnly="True"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Employee"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Name"
+                             Source="{StaticResource Employee}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter employee!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox x:Name="txtIdEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Employee"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     IsEnabled="False"
+                     Visibility="Hidden">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="4">
             <Label Content="State"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue2}"
-                   Height="40"
-                   Margin="50 0 0 0" />
+                   Style="{StaticResource LabelCustom}" />
             <StackPanel Orientation="Horizontal"
                         Height="30"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Margin="0 0 100 0">
+                        Margin="0 0 80 0">
                 <RadioButton x:Name="rdoDone"
                              Style="{StaticResource MaterialDesignLightRadioButton}"
                              IsChecked="True"
@@ -159,8 +113,8 @@
                              BorderBrush="{DynamicResource Blue2}"
                              Background="{DynamicResource Blue2}"
                              HorizontalAlignment="Left"
-                             VerticalAlignment="Center" 
-                             GroupName="State"/>
+                             VerticalAlignment="Center"
+                             GroupName="State" />
                 <RadioButton x:Name="rdoUndone"
                              Style="{StaticResource MaterialDesignLightRadioButton}"
                              BorderBrush="{DynamicResource Blue2}"
@@ -173,25 +127,18 @@
                              Width="100"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
-                             Margin="20,0,0,0" 
-                             GroupName="State"/>
+                             Margin="20,0,0,0"
+                             GroupName="State" />
             </StackPanel>
         </Grid>
-
-        <Grid Grid.Row="4">
-            <Label Content="Pay ?"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue2}"
-                   Height="40"
-                   Margin="50 0 0 0" />
+        <Grid Grid.Row="5">
+            <Label Content="Pay"
+                   Style="{StaticResource LabelCustom}" />
             <StackPanel Orientation="Horizontal"
                         Height="30"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Margin="0 0 100 0">
+                        Margin="0 0 80 0">
                 <RadioButton x:Name="rdoPay"
                              Style="{StaticResource MaterialDesignLightRadioButton}"
                              IsChecked="True"
@@ -204,8 +151,8 @@
                              BorderBrush="{DynamicResource Blue2}"
                              Background="{DynamicResource Blue2}"
                              HorizontalAlignment="Left"
-                             VerticalAlignment="Center" 
-                             GroupName="Pay?"/>
+                             VerticalAlignment="Center"
+                             GroupName="Pay?" />
                 <RadioButton x:Name="rdoNotPay"
                              Style="{StaticResource MaterialDesignLightRadioButton}"
                              BorderBrush="{DynamicResource Blue2}"
@@ -218,79 +165,68 @@
                              Width="100"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Left"
-                             Margin="20,0,0,0" 
-                             GroupName="Pay?"/>
+                             Margin="20,0,0,0"
+                             GroupName="Pay?" />
             </StackPanel>
         </Grid>
-
-        <Grid Grid.Row="5">
-            <Label Content="Money"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontSize="20"
-                   FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue2}"
-                   Height="40"
-                   Margin="50 0 0 0" />
-            <TextBox x:Name="txtMoney"
-                        materialDesign:HintAssist.Hint="VNĐ"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Cursor="IBeam"
-                        Height="40"
-                        Width="280"
-                        FontSize="14"
-                        Padding="0"
-                        Foreground="{DynamicResource Blue2}"
-                        Margin="0,0,60,0"
-                        FontWeight="SemiBold"
-                        HorizontalContentAlignment="Left" 
-                        VerticalContentAlignment="Center"/>
-            <Rectangle HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Height="40"
-                       Width="300"
-                       Margin="0 0 50 0"
-                       RadiusY="6"
-                       RadiusX="6"
-                       Stroke="{DynamicResource PrimaryGrayColor}" />
+        <Grid Grid.Row="7">
+            <Label Content="Total Money"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtMoneyIncident"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Total money"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="TotalMoney"
+                             Source="{StaticResource Incident}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter money!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </Grid>
-
-        <StackPanel Grid.Row="7"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
-                    Margin="0 0 90 0"
-                    Orientation="Horizontal"
-                    Height="60">
-            <Button Height="40"
-                    materialDesign:ButtonAssist.CornerRadius="10"
-                    BorderThickness="0"
-                    Margin="0"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Width="100"
-                    Content="Save"
-                    FontSize="18"
-                    FontWeight="SemiBold"
-                    Background="{DynamicResource Blue2}">
-            </Button>
-            <Button Height="40"
-                    materialDesign:ButtonAssist.CornerRadius="10"
-                    Command="{Binding CloseWindowAddIncidentCommand}"
-                    CommandParameter="{Binding ElementName=wdAddIncident}"
-                    BorderThickness="2"
-                    Margin="20 0 0 0"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Width="100"
-                    Content="Cancel"
-                    FontSize="18"
-                    FontWeight="SemiBold"
-                    FlowDirection="LeftToRight"
-                    Background="White"
-                    Foreground="{DynamicResource Blue2}"
-                    BorderBrush="{DynamicResource Blue2}">
-            </Button>
-        </StackPanel>
+        <Grid Grid.Row="6">
+            <Label Content="Description"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtDescriptionIncident"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Description"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Description"
+                             Source="{StaticResource Incident}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter description!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="8">
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Height="45"
+                        Width="140"
+                        Content="Save"
+                        Style="{StaticResource BlueButton}"
+                        Command="{Binding SaveAddIncidentCommand}"
+                        CommandParameter="{Binding ElementName=wdAddIncident}" />
+                <Button Height="45"
+                        Width="140"
+                        Margin="20 0 30 0"
+                        Style="{StaticResource CancelButton}"
+                        Content="Cancel"
+                        Command="{Binding ExitAddIncidentCommand}"
+                        CommandParameter="{Binding ElementName=wdAddIncident}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

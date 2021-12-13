@@ -22,7 +22,8 @@
         DataContext="{StaticResource HomeVM}">
     <Border CornerRadius="8"
             Background="{DynamicResource PrimaryBackgroundColor}">
-        <Grid>
+        <Grid Height="800"
+              VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="1320" />
@@ -374,14 +375,18 @@
                           VerticalAlignment="Bottom"
                           Width="80"
                           Margin="0 0 0 20">
-                        <Ellipse Width="40"
+                        <Button Background="{StaticResource Blue2}"
+                                Content="Logout"
+                                Command="{Binding LogoutCommand}"
+                                CommandParameter="{Binding ElementName=wdMain}"/>
+                        <!--<Ellipse Width="40"
                                  Height="40"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="/BeverageStoreManagement;component/Resources/Images/logo.png" />
                             </Ellipse.Fill>
-                        </Ellipse>
+                        </Ellipse>-->
                     </Grid>
                 </Grid>
 
@@ -1947,12 +1952,12 @@
                             Visibility="Collapsed"
                             DataContext="{StaticResource PaymentVoucherVM}">
                         <Grid>
-                            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <i:InvokeCommandAction Command="{Binding LoadInvoiceCommand}"
-                                           CommandParameter="{Binding ElementName=pageInvoice}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadPaymentVoucherCommand}"
+                                                           CommandParameter="{Binding ElementName=wdMain}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80" />
                                 <RowDefinition />
@@ -1970,7 +1975,7 @@
                                         FlowDirection="LeftToRight"
                                         Margin="0 0 20 0"
                                         Command="{Binding OpenAddPaymentVoucherWindowCommand}"
-                                        CommandParameter="{Binding ElementName=pagePaymentVoucher}" />
+                                        CommandParameter="{Binding ElementName=wdMain}" />
                             </Grid>
                             <Grid Grid.Row="1"
                                   x:Name="grd_payment_voucher"
@@ -2093,31 +2098,6 @@
                                         <StackPanel x:Name="stkPaymentVoucher"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Center">
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2128,14 +2108,15 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdReceiptVoucher"
-                            Visibility="Collapsed">
+                            Visibility="Collapsed"
+                            DataContext="{StaticResource ReceiptVoucherVM}">
                         <Grid>
-                            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <i:InvokeCommandAction Command="{Binding LoadInvoiceCommand}"
-                                           CommandParameter="{Binding ElementName=pageInvoice}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadReceiptVoucherCommand}"
+                                                           CommandParameter="{Binding ElementName=wdMain}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80" />
                                 <RowDefinition />
@@ -2260,34 +2241,6 @@
                                         <StackPanel x:Name="stkReceiptVoucher"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Center">
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2298,7 +2251,14 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource PrimaryBackgroundColor}"
                             x:Name="grdIncident"
-                            Visibility="Collapsed">
+                            Visibility="Visible"
+                            DataContext="{StaticResource IncidentVM}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadIncidentCommand}"
+                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
@@ -2310,8 +2270,9 @@
                                         Height="50"
                                         Width="200"
                                         Command="{Binding OpenWindowAddIncidentCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}"
                                         HorizontalAlignment="Right"
-                                        Content="+ New incident"
+                                        Content="Add A New incident"
                                         FontSize="18"
                                         FontFamily="Poppins"
                                         FontWeight="DemiBold"
@@ -2469,19 +2430,6 @@
                                                 Width="1020"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                 HorizontalAlignment="Left">
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
                                     </StackPanel>
                                 </ScrollViewer>
 

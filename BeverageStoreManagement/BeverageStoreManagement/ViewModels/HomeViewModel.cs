@@ -13,6 +13,7 @@ namespace BeverageStoreManagement.ViewModels
     {
         public ICommand GetUidCommand { get; set; }
         public ICommand SwitchTabCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         private string uid;
         public string Uid { get => uid; set => uid = value; }
@@ -20,6 +21,8 @@ namespace BeverageStoreManagement.ViewModels
         {
             GetUidCommand = new RelayCommand<Button>((parameter) => true, (parameter) => Uid = parameter.Uid);
             SwitchTabCommand = new RelayCommand<MainWindow>((parameter) => true, (parameter) => SwitchTab(parameter));
+
+            LogoutCommand = new RelayCommand<MainWindow>((parameter) => true, (parameter) => logout(parameter));
         }
 
         private void SwitchTab(MainWindow parameter)
@@ -226,6 +229,11 @@ namespace BeverageStoreManagement.ViewModels
                     //parameter.expanderPartner.IsExpanded = false;
                     break;
             }
+        }
+
+        void logout(MainWindow parameter)
+        {
+            parameter.Close();
         }
     }
 }

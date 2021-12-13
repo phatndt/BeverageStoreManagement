@@ -57,7 +57,6 @@ namespace BeverageStoreManagement
 
             return long.Parse(tmp);
         }
-
         public BitmapImage ConvertByteToBitmapImage(Byte[] image)
         {
             BitmapImage bi = new BitmapImage();
@@ -76,6 +75,17 @@ namespace BeverageStoreManagement
             bi.StreamSource = ms;
             bi.EndInit();
             return bi;
+        }
+        public string SeparateThousands(String text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+                ulong valueBefore = ulong.Parse(ConvertToNumber(text).ToString(), System.Globalization.NumberStyles.AllowThousands);
+                string res = String.Format(culture, "{0:N0}", valueBefore);
+                return res;
+            }
+            return "";
         }
     }
 }

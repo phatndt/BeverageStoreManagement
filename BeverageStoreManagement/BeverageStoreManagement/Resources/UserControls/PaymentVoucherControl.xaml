@@ -35,6 +35,16 @@
                    Foreground="{DynamicResource TextColor}"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Visibility="Collapsed"/>
+        <TextBlock x:Name="no"
+                   Grid.Column="0"
+                   Text="1000"
+                   FontSize="18"
+                   FontFamily="Poppins"
+                   Foreground="{DynamicResource TextColor}"
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Center"
                    VerticalAlignment="Center" />
         <!--<Rectangle Grid.Column="0"
                    HorizontalAlignment="Right"
@@ -45,7 +55,7 @@
                    VerticalAlignment="Center" />-->
         <Grid Grid.Column="1"
               Background="#FFf9f9f9"></Grid>
-        <TextBlock x:Name="txb_eployee_name"
+        <TextBlock x:Name="txb_paymentVoucher_name"
                    Grid.Column="1"
                    Text="Thanh Phat"
                    FontSize="18"
@@ -62,7 +72,7 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_time"
+        <TextBlock x:Name="txb_paymentVoucher_time"
                    Grid.Column="2"
                    Text="21/09/2001"
                    FontSize="18"
@@ -80,7 +90,7 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_money"
+        <TextBlock x:Name="txb_paymentVoucher_money"
                    Grid.Column="3"
                    Text="15,000"
                    FontSize="18"
@@ -96,7 +106,7 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_money_give_by_customer"
+        <TextBlock x:Name="txb_paymentVoucher_note"
                    Grid.Column="4"
                    Text="No"
                    FontSize="18"
@@ -114,7 +124,7 @@
                    Width="2"
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
-        <TextBlock x:Name="txb_id_import_bill"
+        <TextBlock x:Name="txb_paymentVoucher_import_bill"
                    Grid.Column="5"
                    Text="1"
                    FontSize="18"
@@ -131,34 +141,11 @@
                    Fill="{DynamicResource Blue2}"
                    VerticalAlignment="Center" />-->
         <Button Grid.Column="6"
-                x:Name="btnSeeInvoice"
+                x:Name="btnDeletePaymentVoucher"
                 Command="{Binding DeleteBillDetailCommand}"
                 CommandParameter="{Binding ElementName=SaleBillUC}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
-                ToolTip="See Invoice"
-                Height="24"
-                materialDesign:ButtonAssist.CornerRadius="6"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Foreground="{DynamicResource TextColor}"
-                FontSize="16"
-                VerticalAlignment="Center"
-                FocusVisualStyle="{x:Null}"
-                Width="26"
-                HorizontalAlignment="Center"
-                FontWeight="SemiBold"
-                Padding="0"
-                Visibility="Hidden">
-            <materialDesign:PackIcon Kind="Eye"
-                                     Height="24"
-                                     Width="24" />
-        </Button>
-        <Button Grid.Column="6"
-                x:Name="btnDeleteInvoice"
-                Command="{Binding DeleteBillDetailCommand}"
-                CommandParameter="{Binding ElementName=SaleBillUC}"
-                Style="{StaticResource MaterialDesignRaisedButton}"
-                ToolTip="See Invoice"
+                ToolTip="Delete PaymentVoucher"
                 Height="24"
                 materialDesign:ButtonAssist.CornerRadius="6"
                 Background="{x:Null}"

@@ -98,15 +98,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter.cs" />
+    <Compile Include="CurrentAccount.cs" />
     <Compile Include="CustomMessageBox.cs" />
+    <Compile Include="DAL\AccountDAL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
     <Compile Include="DAL\ImportBillDAL.cs" />
+    <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="DAL\PaymentVoucherDAL.cs" />
     <Compile Include="DAL\PositionDAL.cs" />
     <Compile Include="DAL\ProductDAL.cs" />
+    <Compile Include="DAL\ReceiptVoucherDAL.cs" />
     <Compile Include="DAL\SupplierDAL.cs" />
-    <Compile Include="DAL\PaymentVoucherDAL.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\GoodType.cs" />

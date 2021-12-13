@@ -5,16 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BeverageStoreManagement.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
         mc:Ignorable="d"
         Height="600"
         Width="800"
+        x:Name="wdLogin"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="NoResize"
-        WindowState="Normal">
+        WindowState="Normal"
+        DataContext="{StaticResource AccountVM}">
     <Border CornerRadius="8"
             Background="{DynamicResource PrimaryBackgroundColor}">
         <Grid>
@@ -73,7 +78,18 @@
                          materialDesign:HintAssist.Hint="User name"
                          materialDesign:HintAssist.Foreground="{DynamicResource Blue2}"
                          VerticalContentAlignment="Center"
-                         Grid.RowSpan="1" />
+                         Grid.RowSpan="1"
+                         Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                    <TextBox.Text>
+                        <Binding Path="Username"
+                                 Source="{StaticResource Account}"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <vd:NotNullValidation ErrorMessage="Please enter username!!!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <materialDesign:PackIcon Height="23"
                                          Width="26"
                                          Kind="Account"
@@ -104,7 +120,9 @@
                              materialDesign:TextFieldAssist.TrailingIcon="PackageOff"
                              materialDesign:TextFieldAssist.LeadingIconSize="26"
                              VerticalContentAlignment="Center"
-                             Grid.Row="1" />
+                             Grid.Row="1"
+                             Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                </PasswordBox>
                 <materialDesign:PackIcon Height="23"
                                          Width="26"
                                          Kind="Lock"
@@ -129,7 +147,9 @@
                         FontSize="14"
                         Background="{DynamicResource Blue2}"
                         materialDesign:ButtonAssist.CornerRadius="20"
-                        Grid.Row="1" />
+                        Grid.Row="1" 
+                        Command="{Binding OnClickLoginCommand}"
+                        CommandParameter="{Binding ElementName=wdLogin}"/>
             </Grid>
             <Grid Grid.Column="0">
                 <Image Source="/BeverageStoreManagement;component/Resources/Images/welcome/drink.png"
