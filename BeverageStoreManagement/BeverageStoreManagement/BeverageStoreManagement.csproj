@@ -104,6 +104,7 @@
     <Compile Include="DAL\ImportBillDAL.cs" />
     <Compile Include="DAL\PaymentVoucherDAL.cs" />
     <Compile Include="DAL\PositionDAL.cs" />
+    <Compile Include="DAL\ProductDAL.cs" />
     <Compile Include="DAL\SupplierDAL.cs" />
     <Compile Include="DAL\PaymentVoucherDAL.cs" />
     <Compile Include="Models\Account.cs" />

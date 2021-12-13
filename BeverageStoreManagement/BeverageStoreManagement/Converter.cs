@@ -11,6 +11,17 @@ namespace BeverageStoreManagement
 {
     public class Converter
     {
+        private static Converter instance;
+
+        public static Converter Instance
+        {
+            get { if (instance == null) instance = new Converter(); return Converter.instance; }
+            private set { Converter.instance = value; }
+        }
+        private Converter()
+        {
+
+        }
         public string MD5Hash(string str)
         {
             StringBuilder hash = new StringBuilder();
@@ -45,6 +56,26 @@ namespace BeverageStoreManagement
             }
 
             return long.Parse(tmp);
+        }
+
+        public BitmapImage ConvertByteToBitmapImage(Byte[] image)
+        {
+            BitmapImage bi = new BitmapImage();
+            MemoryStream stream = new MemoryStream();
+            if (image == null)
+            {
+                return null;
+            }
+            stream.Write(image, 0, image.Length);
+            stream.Position = 0;
+            System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+            bi.BeginInit();
+            MemoryStream ms = new MemoryStream();
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            ms.Seek(0, SeekOrigin.Begin);
+            bi.StreamSource = ms;
+            bi.EndInit();
+            return bi;
         }
     }
 }

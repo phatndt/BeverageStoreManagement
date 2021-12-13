@@ -15,7 +15,7 @@
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        WindowStyle="None"  
+        WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="NoResize"
         WindowState="Normal"
@@ -56,12 +56,12 @@
                             </Expander.Header>
                             <StackPanel>
                                 <Button x:Name="rdHome"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="HomeMinusOutline"
-                                             Content="Home"
-                                             Uid="0"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="HomeMinusOutline"
+                                        Content="Home"
+                                        Uid="0"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -74,12 +74,12 @@
                                     </Button.ToolTip>
                                 </Button>
                                 <Button x:Name="rdSale"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="HomeModern"
-                                             Content="Sale"
-                                             Uid="1"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="HomeModern"
+                                        Content="Sale"
+                                        Uid="1"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -162,7 +162,7 @@
                                                  Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                                     </Button.ToolTip>
                                 </Button>
-                              
+
                                 <!--4-->
                                 <Button x:Name="rdMaterial"
                                         Style="{DynamicResource MenuRadioButtonStyle}"
@@ -255,12 +255,12 @@
                             </Expander.Header>
                             <StackPanel>
                                 <Button x:Name="rdPaymentVoucher"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="Receipt"
-                                             Content="Payment"
-                                             Uid="6"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="Receipt"
+                                        Content="Payment"
+                                        Uid="6"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -275,12 +275,12 @@
 
                                 <!--7-->
                                 <Button x:Name="rdReceiptVoucher"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="Receipt"
-                                             Content="Receipt"
-                                             Uid="7"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="Receipt"
+                                        Content="Receipt"
+                                        Uid="7"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -310,12 +310,12 @@
                             <StackPanel>
                                 <!--8-->
                                 <Button x:Name="rdIncident"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="PaperRollOutline"
-                                             Content="Incident"
-                                             Uid="8"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="PaperRollOutline"
+                                        Content="Incident"
+                                        Uid="8"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -327,15 +327,15 @@
                                                  Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
                                     </Button.ToolTip>
                                 </Button>
-                              
+
                                 <!--9-->
                                 <Button x:Name="rdEmployee"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="BadgeAccountHorizontalOutline"
-                                             Content="Employee"
-                                             Uid="9"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="BadgeAccountHorizontalOutline"
+                                        Content="Employee"
+                                        Uid="9"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -349,12 +349,12 @@
                                 </Button>
                                 <!--10-->
                                 <Button x:Name="rdAcount"
-                                             Style="{DynamicResource MenuRadioButtonStyle}"
-                                             Tag="Account"
-                                             Content="Account"
-                                             Uid="10"
-                                             Command="{Binding SwitchTabCommand}"
-                                             CommandParameter="{Binding ElementName=wdMain}">
+                                        Style="{DynamicResource MenuRadioButtonStyle}"
+                                        Tag="Account"
+                                        Content="Account"
+                                        Uid="10"
+                                        Command="{Binding SwitchTabCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseMove">
                                             <i:InvokeCommandAction Command="{Binding GetUidCommand}"
@@ -368,7 +368,7 @@
                                 </Button>
                             </StackPanel>
                         </Expander>
-                      
+
                     </StackPanel>
                     <Grid Grid.Row="3"
                           VerticalAlignment="Bottom"
@@ -384,7 +384,7 @@
                         </Ellipse>
                     </Grid>
                 </Grid>
-                
+
             </Border>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -1246,12 +1246,20 @@
                     <Grid Background="White"
                           x:Name="grdProduct"
                           DataContext="{StaticResource ProductPageVM}"
-                          Visibility="Collapsed">
+                          Visibility="Visible">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadProductCommand}"
+                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1.1*" />
-                            <RowDefinition Height="9*" />
+                            <RowDefinition Height="79*" />
+                            <RowDefinition Height="342*" />
+                            <RowDefinition Height="309*" />
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
+                        <Grid Grid.Row="0"
+                              Margin="0,0,0,0.2">
                             <TextBlock Text="Product Management"
                                        FontFamily="Poppins"
                                        FontSize="52"
@@ -1260,15 +1268,10 @@
                                        VerticalAlignment="Bottom"
                                        Foreground="{DynamicResource Blue1}" />
                         </Grid>
-                        <ScrollViewer Grid.Row="1">
-                            <WrapPanel>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
+                        <ScrollViewer Margin="0,79,0,0.4"
+                                      Grid.RowSpan="3"
+                                      VerticalAlignment="Top">
+                            <WrapPanel x:Name="stkProduct">
 
                                 <Border Background="White"
                                         BorderThickness="3"
@@ -1277,12 +1280,12 @@
                                         Height="305"
                                         Margin="25 0 0 0"
                                         Width="206"
-                                        Padding="25">
+                                        Padding="30">
                                     <Button x:Name="btnEdit"
                                             Grid.Row="4"
                                             Content="+"
                                             Height="300"
-                                            Width="240"
+                                            Width="256"
                                             BorderBrush="White"
                                             BorderThickness="0"
                                             FontSize="100"
@@ -1297,6 +1300,9 @@
                                             Command="{Binding OpenAddProductCommand}">
                                     </Button>
                                 </Border>
+
+                                <Border Background="White"
+                                        Width="26"/>
                             </WrapPanel>
                         </ScrollViewer>
                     </Grid>
@@ -1625,7 +1631,7 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdImportBill"
                           DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Visible">
+                          Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="5*" />
@@ -2292,7 +2298,7 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource PrimaryBackgroundColor}"
                             x:Name="grdIncident"
-                            Visibility="Visible">
+                            Visibility="Collapsed">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
@@ -3156,7 +3162,8 @@
                                     <ColumnDefinition Width="320" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" Margin="20 0 0 0">
+                                <StackPanel Grid.Column="0"
+                                            Margin="20 0 0 0">
                                     <Grid Height="250"
                                           Style="{StaticResource DropShadow}">
                                         <Grid.RowDefinitions>
@@ -3358,7 +3365,7 @@
                                                  HorizontalContentAlignment="Left"
                                                  VerticalContentAlignment="Center"
                                                  Padding="2,0,0,0"
-                                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue1}"/>
+                                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue1}" />
                                         <Button IsDefault="True"
                                                 Style="{StaticResource TransperantButton}"
                                                 Command="{Binding SearchCommand}"
@@ -3433,7 +3440,7 @@
                                             BorderThickness="0,0,0,0"
                                             Margin="20,0,20,20">
                                         <StackPanel x:Name="stkSupplier">
-                                            
+
                                         </StackPanel>
                                     </Border>
                                 </Grid>
