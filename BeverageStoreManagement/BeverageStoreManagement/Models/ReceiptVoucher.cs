@@ -20,7 +20,7 @@ namespace BeverageStoreManagement.Models
         public ReceiptVoucher() { }
         public ReceiptVoucher(int idReceiptVoucher, int idEmployee, DateTime date, double totalMoney, string note, bool isDelete)
         {
-            this.idEmployee = idReceiptVoucher;
+            this.idReceiptVoucher = idReceiptVoucher;
             this.idEmployee = idEmployee;
             this.date = date;
             this.totalMoney = totalMoney;

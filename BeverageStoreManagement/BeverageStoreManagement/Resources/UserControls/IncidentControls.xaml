@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:BeverageStoreManagement.Resources.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1020">
+             Height="50">
     <Grid Height="50"
           Background="{DynamicResource Blue7}">
         <Grid.ColumnDefinitions>
@@ -19,45 +19,46 @@
             <ColumnDefinition Width="1.25*" />   
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <Label Content="No."
+            <TextBlock Text="No."
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="White" />
+                   Foreground="White" 
+                   x:Name="id"/>
             <Rectangle Grid.Column="1"
                        HorizontalAlignment="Right"
                        Height="30"
-                       Margin="0"
                        Width="1"
                        Fill="{DynamicResource Blue10}"
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="1">
-            <Label Content="Incident name"
+            <TextBlock Text="Incident name"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="White" />
+                   Foreground="White"
+                   x:Name="name" />
             <Rectangle Grid.Column="1"
                        HorizontalAlignment="Right"
-                       Height="30"
                        Margin="0"
                        Width="1"
                        Fill="{DynamicResource Blue10}"
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="2">
-            <Label Content="Date"
+            <TextBlock Text="Date"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="White" />
+                   Foreground="White"
+                   x:Name="date" />
             <Rectangle Grid.Column="1"
                        HorizontalAlignment="Right"
                        Height="30"
@@ -67,13 +68,14 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="3">
-            <Label Content="Employee"
+            <TextBlock Text="Employee"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="White" />
+                   Foreground="White"
+                   x:Name="employee" />
             <Rectangle Grid.Column="1"
                        HorizontalAlignment="Right"
                        Height="30"
@@ -83,24 +85,18 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="4">
-            <ComboBox materialDesign:HintAssist.Hint="State"
-                      FontSize="20"
-                      FontFamily="poppins"
-                      Opacity="0.8"
-                      BorderBrush="White"
-                      Background="Transparent"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center"
-                      Foreground="White">
-                <ComboBoxItem Content="Done"
-                              FontSize="19"
-                              FontFamily="poppins"
-                              Background="{DynamicResource Blue7}"/>
-                <ComboBoxItem Content="Undone"
-                              FontSize="19"
-                              FontFamily="poppins"
-                              Background="{DynamicResource Blue7}" />
-            </ComboBox>
+            <CheckBox HorizontalAlignment="Center"
+                      x:Name="status"
+                      materialDesign:CheckBoxAssist.CheckBoxSize="25">
+                <CheckBox.Resources>
+                    <!--Unchecked state-->
+                    <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                     Color="White" />
+                    <!--Checked state-->
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                     Color="Blue" />
+                </CheckBox.Resources>
+            </CheckBox>
             <Rectangle Grid.Column="1"
                        HorizontalAlignment="Right"
                        Height="30"
@@ -111,6 +107,7 @@
         </Grid>
         <Grid Grid.Column="5">
             <CheckBox HorizontalAlignment="Center"
+                      x:Name="pay"
                       materialDesign:CheckBoxAssist.CheckBoxSize="25">
                     <CheckBox.Resources>
                     <!--Unchecked state-->
@@ -130,13 +127,14 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="6">
-            <Label Content="Money"
+            <TextBlock Text="Money"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Foreground="White" />
+                   Foreground="White" 
+                   x:Name="money"/>
         </Grid>
     </Grid> 
 </UserControl>

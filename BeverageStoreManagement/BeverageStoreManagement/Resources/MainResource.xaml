@@ -25,5 +25,10 @@
     <viewmodels:HomeViewModel x:Key="HomeVM" />
     <viewmodels:SupplierViewModel x:Key="SupplierVM" />
 
-    <models:Supplier x:Key="Supplier"/>
+    <models:Supplier x:Key="Supplier" />
+    <models:PaymentVoucher x:Key="PaymentVoucher" />
+    <models:ReceiptVoucher x:Key="ReceiptVoucher" />
+    <models:Account x:Key="Account" />
+    <models:Incident x:Key="Incident" />
+    <models:Employee x:Key="Employee" />
 </ResourceDictionary>
