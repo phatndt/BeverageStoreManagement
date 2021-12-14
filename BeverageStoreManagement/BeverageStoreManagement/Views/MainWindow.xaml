@@ -373,12 +373,13 @@
                     </StackPanel>
                     <Grid Grid.Row="3"
                           VerticalAlignment="Bottom"
-                          Width="80"
                           Margin="0 0 0 20">
-                        <Button Background="{StaticResource Blue2}"
+                        <Button Style="{StaticResource BlueButton}"
+                                Width="120"
+                                Height="45"
                                 Content="Logout"
                                 Command="{Binding LogoutCommand}"
-                                CommandParameter="{Binding ElementName=wdMain}"/>
+                                CommandParameter="{Binding ElementName=wdMain}" />
                         <!--<Ellipse Width="40"
                                  Height="40"
                                  HorizontalAlignment="Center"
@@ -2251,7 +2252,7 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource PrimaryBackgroundColor}"
                             x:Name="grdIncident"
-                            Visibility="Visible"
+                            Visibility="Collapsed"
                             DataContext="{StaticResource IncidentVM}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
@@ -2272,7 +2273,7 @@
                                         Command="{Binding OpenWindowAddIncidentCommand}"
                                         CommandParameter="{Binding ElementName=wdMain}"
                                         HorizontalAlignment="Right"
-                                        Content="Add A New incident"
+                                        Content="Add New incident"
                                         FontSize="18"
                                         FontFamily="Poppins"
                                         FontWeight="DemiBold"
@@ -2372,7 +2373,7 @@
                                                        VerticalAlignment="Center" />
                                         </Grid>
                                         <Grid Grid.Column="4">
-                                            <Label Content="State"
+                                            <Label Content="Status"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
                                                    FontWeight="SemiBold"
@@ -2388,7 +2389,7 @@
                                                        VerticalAlignment="Center" />
                                         </Grid>
                                         <Grid Grid.Column="5">
-                                            <Label Content="Pay?"
+                                            <Label Content="Pay"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
                                                    FontWeight="SemiBold"
@@ -2428,6 +2429,7 @@
                                               HorizontalAlignment="Left">
                                     <StackPanel x:Name="incidentItem"
                                                 Width="1020"
+                                                Height="550"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                 HorizontalAlignment="Left">
                                     </StackPanel>
@@ -2439,83 +2441,47 @@
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold" />
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             under 20.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             20.000 - 50.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             50.000 - 100.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             over 100.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <Label Content="Pay?"
+                                        <Label Content="Pay"
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold"
@@ -2543,7 +2509,7 @@
                                             Yes
                                         </RadioButton>
 
-                                        <Label Content="State"
+                                        <Label Content="Status"
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold"
@@ -3078,7 +3044,7 @@
                             Background="{DynamicResource White}"
                             DataContext="{StaticResource SupplierVM}"
                             x:Name="grdSupplier"
-                            Visibility="Collapsed">
+                            Visibility="Visible">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80" />
@@ -3091,16 +3057,10 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Grid Grid.Row="0">
-                                <Button Height="50"
-                                        Width="220"
+                                <Button Width="220"
+                                        Style="{StaticResource BlueButton}"
                                         Content="Add Supplier"
                                         HorizontalAlignment="Right"
-                                        FontSize="18"
-                                        FontFamily="poppins"
-                                        Background="{DynamicResource Blue2}"
-                                        materialDesign:ButtonAssist.CornerRadius="7"
-                                        BorderThickness="0"
-                                        FlowDirection="LeftToRight"
                                         Margin="0 0 20 0"
                                         Command="{Binding OpenAddSupplierWindowCommand}"
                                         CommandParameter="{Binding ElementName=wd}" />
@@ -3144,7 +3104,7 @@
                                                       VerticalAlignment="Center"
                                                       x:Name="cboSortType"
                                                       materialDesign:ComboBoxAssist.ClassicMode="True"
-                                                      materialDesign:HintAssist.Hint="Sắp xếp theo"
+                                                      materialDesign:HintAssist.Hint="Sort by"
                                                       materialDesign:HintAssist.IsFloating="True"
                                                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                                       Foreground="{StaticResource Blue1}"
@@ -3174,7 +3134,7 @@
                                                       VerticalAlignment="Center"
                                                       x:Name="cboSortSupplier"
                                                       materialDesign:ComboBoxAssist.ClassicMode="True"
-                                                      materialDesign:HintAssist.Hint="Cách sắp xếp"
+                                                      materialDesign:HintAssist.Hint="Sort type"
                                                       materialDesign:HintAssist.IsFloating="True"
                                                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                                       Foreground="{StaticResource Blue1}"
@@ -3222,7 +3182,7 @@
                                                    Margin="20,0,0,0" />
                                         <Rectangle Grid.Row="0"
                                                    Height="2"
-                                                   Fill="{StaticResource Blue1}"
+                                                   Fill="{StaticResource Blue2}"
                                                    Margin="20,0"
                                                    VerticalAlignment="Bottom" />
                                         <TextBlock x:Name="txbSupplierQuantity"
@@ -3261,7 +3221,7 @@
                                                    Margin="20,0,0,0" />
                                         <Rectangle Grid.Row="0"
                                                    Height="2"
-                                                   Fill="{StaticResource Primary}"
+                                                   Fill="{StaticResource Blue2}"
                                                    Margin="20,0"
                                                    VerticalAlignment="Bottom" />
                                         <TextBlock x:Name="txbTotalSpentToSupplier"
@@ -3327,7 +3287,7 @@
                                             <materialDesign:PackIcon Kind="Magnify"
                                                                      Width="30"
                                                                      Height="30"
-                                                                     Foreground="{StaticResource Blue1}" />
+                                                                     Foreground="{StaticResource Blue2}" />
                                         </Button>
                                     </Grid>
                                     <Border CornerRadius="4,4,0,0"
@@ -3349,7 +3309,7 @@
                                                 <ColumnDefinition Width="50" />
                                                 <ColumnDefinition Width="20" />
                                             </Grid.ColumnDefinitions>
-                                            <Label Content="No."
+                                            <Label Content="No"
                                                    Grid.Column="0"
                                                    Style="{StaticResource SupplierTitle}" />
                                             <Rectangle Grid.Column="0"

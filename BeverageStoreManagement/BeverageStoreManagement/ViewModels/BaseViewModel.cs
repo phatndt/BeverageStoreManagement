@@ -6,8 +6,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
+using System.Windows.Input;
+
 
 namespace BeverageStoreManagement.ViewModels
 {
@@ -98,6 +102,30 @@ namespace BeverageStoreManagement.ViewModels
             if (a == "Snacks")
                 return 5;
             return 0;
+        }
+        
+        public string SeparateThousands(String text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+                ulong valueBefore = ulong.Parse(ConvertToNumber(text).ToString(), System.Globalization.NumberStyles.AllowThousands);
+                string res = String.Format(culture, "{0:N0}", valueBefore);
+                return res;
+            }
+            return "";
+        }
+        
+        public void NumberValidationTextBox(object sender, KeyEventArgs e)
+        {
+
+            e.Handled = e.Key == Key.Space;
+        }
+        
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

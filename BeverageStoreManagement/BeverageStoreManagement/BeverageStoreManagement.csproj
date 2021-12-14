@@ -99,6 +99,7 @@
     </ApplicationDefinition>
     <Compile Include="Converter.cs" />
     <Compile Include="CurrentAccount.cs" />
+    <Compile Include="CurrentEmployee.cs" />
     <Compile Include="CustomMessageBox.cs" />
     <Compile Include="DAL\AccountDAL.cs" />
     <Compile Include="DAL\BaseDAL.cs" />

@@ -25,7 +25,7 @@
             <RowDefinition Height="70" />
             <RowDefinition Height="70" />
             <RowDefinition Height="70" />
-            <RowDefinition  Height="70"/>
+            <RowDefinition  Height="70" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Label Content="Add Incident Window"
@@ -68,7 +68,7 @@
             <Label Content="Employee"
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}"
-                       Fill="{DynamicResource Gray3}"  />
+                       Fill="{DynamicResource Gray3}" />
             <TextBox x:Name="txtEmployee"
                      IsReadOnly="True"
                      Style="{StaticResource TextBoxInputText}"
@@ -178,9 +178,22 @@
                      materialDesign:HintAssist.Hint="Total money"
                      materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                      Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewKeyDown">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
+                                               CommandParameter="{Binding ElementName=txtMoneyIncident}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <TextBox.Text>
                     <Binding Path="TotalMoney"
-                             Source="{StaticResource Incident}"
                              UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <vd:NotNullValidation ErrorMessage="Please enter money!!!" />
