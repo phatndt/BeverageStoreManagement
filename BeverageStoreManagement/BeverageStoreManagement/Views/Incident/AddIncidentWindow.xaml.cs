@@ -23,5 +23,6 @@ namespace BeverageStoreManagement.Views.Incident
         {
             InitializeComponent();
         }
+
     }
 }

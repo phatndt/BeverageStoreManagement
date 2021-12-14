@@ -5,17 +5,23 @@ using BeverageStoreManagement.Views.Incident;
 using BeverageStoreManagement.Views.Pages;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace BeverageStoreManagement.ViewModels
 {
     class IncidentViewModel : BaseViewModel
     {
         private MainWindow mainWindow;
+        private string totalMoney;
+        public string TotalMoney { get => totalMoney; set => totalMoney = value; }
         //addSupplierWindow
         public ICommand SaveAddIncidentCommand { get; set; }
         public ICommand ExitAddIncidentCommand { get; set; }
@@ -24,6 +30,12 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand LoadIncidentCommand { get; set; }
 
         public ICommand CloseWindowAddIncidentCommand { get; set; }
+
+        public ICommand SeparateThousandsCommand { get; set; }
+
+
+        private List<IncidentControls> listIncidentToView = new List<IncidentControls>();
+        public List<IncidentControls> ListIncidentToView { get => listIncidentToView; set => listIncidentToView = value; }
 
         public IncidentViewModel()
         {
@@ -34,6 +46,8 @@ namespace BeverageStoreManagement.ViewModels
 
             SaveAddIncidentCommand = new RelayCommand<AddIncidentWindow>(parameter => true, parameter => SaveAddIncident(parameter));
             ExitAddIncidentCommand = new RelayCommand<AddIncidentWindow>(parameter => true, parameter => parameter.Close());
+
+            SeparateThousandsCommand = new RelayCommand<TextBox>((parameter) => true, (parameter) => SeparateThousands(parameter));
         }
         #region gridSupplier
         private void LoadIncident(MainWindow parameter)
@@ -41,24 +55,44 @@ namespace BeverageStoreManagement.ViewModels
             mainWindow = parameter;
             parameter.incidentItem.Children.Clear();
             List<Incident> incidents = IncidentDAL.Instance.GetList();
+            ListIncidentToView.Clear();
 
             int id = 1;
+            bool flag = true;
+                
             foreach (Incident incident in incidents)
             {
-                IncidentControls incidentControls = new IncidentControls();
+                IncidentControls incidentControls = new IncidentControls(); 
+                flag = !flag;
+                if (flag)
+                {
+                    incidentControls.grdMain.Background = (Brush)new BrushConverter().ConvertFrom("#FFffffff");
+                }
 
                 incidentControls.id.Text = incident.IdIncident.ToString();
                 incidentControls.name.Text = incident.Description;
                 incidentControls.date.Text = incident.Date.ToString("dd/MM/yyyy");
                 incidentControls.employee.Text = EmployeeDAL.Instance.GetEmployeeById(incident.IdEmployee).Name;
-                incidentControls.money.Text = incident.TotalMoney.ToString();
+                incidentControls.money.Text = SeparateThousands(incident.TotalMoney.ToString());
                 incidentControls.status.IsChecked = incident.Status;
-                incidentControls.pay.IsChecked = incident.Pay;
-                parameter.incidentItem.Children.Add(incidentControls);
+                incidentControls.pay.IsChecked = incident.Pay; 
+
+                ListIncidentToView.Add(incidentControls);
 
                 id++;
             }
+            LoadLoad(mainWindow);
         }
+
+        public void LoadLoad(MainWindow parameter)
+        {
+            for(int i = 0; i < ListIncidentToView.Count; i++)
+            {
+
+                parameter.incidentItem.Children.Add(ListIncidentToView[i]);
+            }
+        }
+
         private void AddNewIncident(MainWindow parameter)
         {
             int idIncident = IncidentDAL.Instance.GetMaxIdIncident() + 1;
@@ -67,7 +101,7 @@ namespace BeverageStoreManagement.ViewModels
                 AddIncidentWindow addIncidentWindow = new AddIncidentWindow();
                 addIncidentWindow.txtIdIncident.Text = idIncident.ToString();
                 addIncidentWindow.txtIdEmployee.Text = CurrentAccount.IdEmployee.ToString();
-                addIncidentWindow.txtEmployee.Text = EmployeeDAL.Instance.GetEmployeeById(CurrentAccount.IdEmployee).Name;
+                addIncidentWindow.txtEmployee.Text = CurrentEmployee.Name;
                 addIncidentWindow.ShowDialog();
             }
             else
@@ -146,5 +180,16 @@ namespace BeverageStoreManagement.ViewModels
             }
         }
         #endregion
+
+        public void SeparateThousands(TextBox txt)
+        {
+            if (!string.IsNullOrEmpty(txt.Text))
+            {
+                System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+                ulong valueBefore = ulong.Parse(ConvertToNumber(txt.Text).ToString(), System.Globalization.NumberStyles.AllowThousands);
+                txt.Text = String.Format(culture, "{0:N0}", valueBefore);
+                txt.Select(txt.Text.Length, 0);
+            }
+        }
     }
 }

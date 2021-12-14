@@ -178,22 +178,5 @@ namespace BeverageStoreManagement.ViewModels
                 txt.Select(txt.Text.Length, 0);
             }
         }
-
-        public long ConvertToNumber(string str)
-        {
-            string[] s = str.Split(',');
-            string tmp = "";
-            foreach (string a in s)
-            {
-                tmp += a;
-            }
-            return long.Parse(tmp);
-        }
-
-        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
     }
 }

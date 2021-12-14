@@ -38,6 +38,15 @@ namespace BeverageStoreManagement.ViewModels
                 CurrentAccount.IsDelete = account.IsDelete;
                 if (employee.IdEmployee >= 1)
                 {
+                    CurrentEmployee.IdEmployee = employee.IdEmployee;
+                    CurrentEmployee.IdPosition = employee.IdPosition;
+                    CurrentEmployee.DateStartWorking = employee.DateStartWorking;
+                    CurrentEmployee.PhoneNumber = employee.PhoneNumber;
+                    CurrentEmployee.IsDelete = employee.IsDelete;
+                    CurrentEmployee.Name = employee.Name;
+                    CurrentEmployee.DateOfBirth = employee.DateOfBirth;
+                    CurrentEmployee.Address = employee.Address;
+                    CurrentEmployee.Gender = employee.Gender;
                     if (employee.IdPosition == 1)
                     {
                         mainWindow.ShowDialog();
