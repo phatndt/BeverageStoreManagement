@@ -19,8 +19,6 @@ namespace BeverageStoreManagement.ViewModels
     public class PaymentVoucherViewModel : BaseViewModel
     {
         private MainWindow mainWindow; 
-
-        private Converter converter = new Converter();
         //grdPaymentVoucherLoadInvoiceCommand
         public ICommand LoadPaymentVoucherCommand { get; set; }
         public ICommand OpenAddPaymentVoucherWindowCommand { get; set; }
@@ -66,7 +64,7 @@ namespace BeverageStoreManagement.ViewModels
                 paymentVoucherControl.no.Text = id.ToString();
                 paymentVoucherControl.txb_paymentVoucher_name.Text = employee.Name;
                 paymentVoucherControl.txb_paymentVoucher_time.Text = paymentVoucher.Date.ToString("dd/MM/yyyy");
-                paymentVoucherControl.txb_paymentVoucher_money.Text = converter.SeparateThousands(paymentVoucher.TotalMoney.ToString());
+                paymentVoucherControl.txb_paymentVoucher_money.Text = Converter.Instance.SeparateThousands(paymentVoucher.TotalMoney.ToString());
                 paymentVoucherControl.txb_paymentVoucher_note.Text = paymentVoucher.Note;
                 paymentVoucherControl.txb_paymentVoucher_import_bill.Text = paymentVoucher.IdImportBill.ToString();
                 parameter.stkPaymentVoucher.Children.Add(paymentVoucherControl);

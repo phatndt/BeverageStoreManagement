@@ -19,8 +19,6 @@ namespace BeverageStoreManagement.ViewModels
     class ReceiptVoucherViewModel : BaseViewModel
     {
         private MainWindow mainWindow;
-
-        private Converter converter = new Converter();
         public ICommand SeparateThousandsCommand { get; set; }
 
         //grdReceiptVoucher
@@ -72,7 +70,7 @@ namespace BeverageStoreManagement.ViewModels
                 receiptVoucherControl.no.Text = id.ToString();
                 receiptVoucherControl.txb_receiptVoucher_name.Text = employee.Name;
                 receiptVoucherControl.txb_receiptVoucher_time.Text = receiptVoucher.Date.ToString("dd/MM/yyyy");
-                receiptVoucherControl.txb_receiptVoucher_money.Text = converter.SeparateThousands(receiptVoucher.TotalMoney.ToString());
+                receiptVoucherControl.txb_receiptVoucher_money.Text = Converter.Instance.SeparateThousands(receiptVoucher.TotalMoney.ToString());
                 receiptVoucherControl.txb_receiptVoucher_note.Text = receiptVoucher.Note;
                 parameter.stkReceiptVoucher.Children.Add(receiptVoucherControl);
 

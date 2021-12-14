@@ -14,7 +14,6 @@ namespace BeverageStoreManagement.ViewModels
     {
         public ICommand OnClickLoginCommand { get; set; }
 
-        private Converter converter = new Converter();
         public AccountViewModel()
         {
             OnClickLoginCommand = new RelayCommand<LoginWindow>((parameter) => true, (parameter) => onClickLogin(parameter));
@@ -23,7 +22,7 @@ namespace BeverageStoreManagement.ViewModels
         private void onClickLogin(LoginWindow parameter)
         {
             string username = parameter.txtUsername.Text;
-            string password = converter.MD5Hash(parameter.txtPassword.Password.Trim());
+            string password = Converter.Instance.MD5Hash(parameter.txtPassword.Password.Trim());
 
             Account account = AccountDAL.Instance.GetAccount(username, password);
 

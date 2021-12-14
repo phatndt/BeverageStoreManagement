@@ -14,7 +14,7 @@ namespace BeverageStoreManagement.Validations
         }
         public bool CompareDateAnDateStartWork(DateTime date, DateTime dateStartWorking)
         {
-            DateTime dateTime_18 = date.AddYears(18); 
+            DateTime dateTime_18 = date.AddYears(18);
             if (dateTime_18.Date <= dateStartWorking.Date)
             {
                 return true;

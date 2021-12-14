@@ -15,16 +15,16 @@ namespace BeverageStoreManagement.Test
         [Test]
         public void TestCase1()
         {
-            Assert.AreEqual(true, employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse("20/09/2001"), DateTime.Parse("21/09/2021")));
-            Assert.AreEqual(true, employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse("1/01/2001"), DateTime.Parse("21/09/2021")));
-            Assert.AreEqual(true, employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse("31/12/2001"), DateTime.Parse("21/09/2022")));
+            Assert.AreEqual(true, employeeDALValidation.CompareDateAnDateStartWork(DateTime.ParseExact("20/09/2001", "dd/MM/yyyy", null), DateTime.ParseExact("21/09/2021", "dd/MM/yyyy", null)));
+            Assert.AreEqual(true, employeeDALValidation.CompareDateAnDateStartWork(DateTime.ParseExact("01/01/2001", "dd/MM/yyyy", null), DateTime.ParseExact("21/09/2021", "dd/MM/yyyy", null)));
+            Assert.AreEqual(true, employeeDALValidation.CompareDateAnDateStartWork(DateTime.ParseExact("31/12/2001", "dd/MM/yyyy", null), DateTime.ParseExact("21/09/2022", "dd/MM/yyyy", null)));
         }
         [Test]
         public void TestCase2()
         {
-            Assert.AreEqual(false, employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse("22/09/2021"), DateTime.Parse("21/09/2021")));
-            Assert.AreEqual(false, employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse("1/01/3000"), DateTime.Parse("21/09/2021")));
-            Assert.AreEqual(false, employeeDALValidation.CompareDateAnDateStartWork(DateTime.Parse("31/12/2020"), DateTime.Parse("21/09/2000")));
+            Assert.AreEqual(false, employeeDALValidation.CompareDateAnDateStartWork(DateTime.ParseExact("22/09/2021", "dd/MM/yyyy", null), DateTime.ParseExact("21/09/2021", "dd/MM/yyyy", null)));
+            Assert.AreEqual(false, employeeDALValidation.CompareDateAnDateStartWork(DateTime.ParseExact("01/01/3000", "dd/MM/yyyy", null), DateTime.ParseExact("21/09/2021", "dd/MM/yyyy", null)));
+            Assert.AreEqual(false, employeeDALValidation.CompareDateAnDateStartWork(DateTime.ParseExact("31/12/2020", "dd/MM/yyyy", null), DateTime.ParseExact("21/09/2000", "dd/MM/yyyy", null)));
         }
     }
 }
