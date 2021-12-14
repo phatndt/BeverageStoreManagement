@@ -1252,12 +1252,20 @@
                     <Grid Background="White"
                           x:Name="grdProduct"
                           DataContext="{StaticResource ProductPageVM}"
-                          Visibility="Collapsed">
+                          Visibility="Visible">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadProductCommand}"
+                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1.1*" />
-                            <RowDefinition Height="9*" />
+                            <RowDefinition Height="79*" />
+                            <RowDefinition Height="342*" />
+                            <RowDefinition Height="309*" />
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
+                        <Grid Grid.Row="0"
+                              Margin="0,0,0,0.2">
                             <TextBlock Text="Product Management"
                                        FontFamily="Poppins"
                                        FontSize="52"
@@ -1266,15 +1274,10 @@
                                        VerticalAlignment="Bottom"
                                        Foreground="{DynamicResource Blue1}" />
                         </Grid>
-                        <ScrollViewer Grid.Row="1">
-                            <WrapPanel>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
+                        <ScrollViewer Margin="0,79,0,0.4"
+                                      Grid.RowSpan="3"
+                                      VerticalAlignment="Top">
+                            <WrapPanel x:Name="stkProduct">
 
                                 <Border Background="White"
                                         BorderThickness="3"
@@ -1283,12 +1286,12 @@
                                         Height="305"
                                         Margin="25 0 0 0"
                                         Width="206"
-                                        Padding="25">
+                                        Padding="30">
                                     <Button x:Name="btnEdit"
                                             Grid.Row="4"
                                             Content="+"
                                             Height="300"
-                                            Width="240"
+                                            Width="256"
                                             BorderBrush="White"
                                             BorderThickness="0"
                                             FontSize="100"
@@ -1303,6 +1306,9 @@
                                             Command="{Binding OpenAddProductCommand}">
                                     </Button>
                                 </Border>
+
+                                <Border Background="White"
+                                        Width="26"/>
                             </WrapPanel>
                         </ScrollViewer>
                     </Grid>
