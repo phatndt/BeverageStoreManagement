@@ -158,8 +158,7 @@ namespace BeverageStoreManagement.DAL
             try
             {
                 OpenConnection();
-                string queryString = "insert into Product (idProduct, idProductType, nameProduct, description, price, status, image, isDelelte) " +
-                    "values(@idProduct, @idProductType, @nameProduct, @description, @price, @status, @image, @isDelelte)";
+                string queryString = "insert into Product values (@idProduct, @idProductType, @nameProduct, @description, @price, @status, @image, 0)";
                 SqlCommand command = new SqlCommand(queryString, conn);
                 command.Parameters.AddWithValue("@idProduct", product.IdProduct.ToString());
                 command.Parameters.AddWithValue("@idProductType", product.IdProductType.ToString());
@@ -168,7 +167,6 @@ namespace BeverageStoreManagement.DAL
                 command.Parameters.AddWithValue("@price", product.Price.ToString());
                 command.Parameters.AddWithValue("@status", product.Status.ToString());
                 command.Parameters.AddWithValue("@image", Convert.ToBase64String(product.Image));
-                command.Parameters.AddWithValue("@isDelelte", product.IsDelete.ToString());
                 int rs = command.ExecuteNonQuery();
                 return true;
             }
@@ -181,31 +179,31 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
-        public bool UpdateOnDB(Product product)
-        {
-            try
-            {
-                OpenConnection();
-                string queryString = "update Product set nameProduct=@nameProduct,price=@price, image=@image, status=@status " +
-                    "where MaSP =" + product.IdProduct.ToString();
-                SqlCommand command = new SqlCommand(queryString, conn);
-                command.Parameters.AddWithValue("@nameProduct", product.NameProduct);
-                command.Parameters.AddWithValue("@price", product.Price.ToString());
-                command.Parameters.AddWithValue("@image", Convert.ToBase64String(product.Image));
-                command.Parameters.AddWithValue("@status", product.Status.ToString());
+        //public bool UpdateOnDB(Product product)
+        //{
+        //    try
+        //    {
+        //        OpenConnection();
+        //        string queryString = "update Product set nameProduct=@nameProduct,price=@price, image=@image, status=@status " +
+        //            "where MaSP =" + product.IdProduct.ToString();
+        //        SqlCommand command = new SqlCommand(queryString, conn);
+        //        command.Parameters.AddWithValue("@nameProduct", product.NameProduct);
+        //        command.Parameters.AddWithValue("@price", product.Price.ToString());
+        //        command.Parameters.AddWithValue("@image", Convert.ToBase64String(product.Image));
+        //        command.Parameters.AddWithValue("@status", product.Status.ToString());
 
-                int rs = command.ExecuteNonQuery();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
+        //        int rs = command.ExecuteNonQuery();
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //    finally
+        //    {
+        //        CloseConnection();
+        //    }
+        //}
         public int GetMaxId()
         {
             int res = 0;
@@ -248,5 +246,43 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
+        public Product GetProductById(int idProduct)
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "SELECT * FROM Product WHERE idProduct = @idProduct";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                command.Parameters.AddWithValue("@idProduct", idProduct);
+                SqlDataReader dataReader = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dataReader);
+
+                bool status = (bool)dt.Rows[0].ItemArray[5];
+                bool isDelete = (bool)dt.Rows[0].ItemArray[7];
+                byte[] image = Convert.FromBase64String(dt.Rows[0].ItemArray[6].ToString());
+
+                return new Product(
+                    int.Parse(dt.Rows[0].ItemArray[0].ToString()),
+                    int.Parse(dt.Rows[0].ItemArray[1].ToString()),
+                    dt.Rows[0].ItemArray[2].ToString(),
+                    dt.Rows[0].ItemArray[3].ToString(),
+                    int.Parse( dt.Rows[0].ItemArray[4].ToString()),
+                    status, 
+                    image,
+                    isDelete);
+
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return new Product();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
     }
 }

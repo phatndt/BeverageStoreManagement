@@ -74,6 +74,8 @@
                     Width="58"
                     Height="35"
                     Margin="0 0 90 0"
+                    Command="{Binding OpenEditProductCommand}"
+                    CommandParameter="{Binding ElementName=ProductUC}"
                     Background="{StaticResource Blue1}"
                     materialDesign:ButtonAssist.CornerRadius="6"
                     BorderBrush="{x:Null}"

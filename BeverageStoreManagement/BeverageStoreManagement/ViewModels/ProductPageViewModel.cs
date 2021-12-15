@@ -6,6 +6,7 @@ using BeverageStoreManagement.Views.Pages;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,18 +24,22 @@ namespace BeverageStoreManagement.ViewModels
         private MainWindow mainWindow;
         public ICommand OpenAddProductCommand { get; set; }
         public ICommand ExitCommand { get; set; }
+        public ICommand ExitChangeCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
         public ICommand LoadProductCommand { get; set; }
         public ICommand AddProductCommand { get; set; }
         public ICommand DeleteProductCommand { get; set; }
+        public ICommand OpenEditProductCommand { get; set; }
         public ProductPageViewModel()
         {
             OpenAddProductCommand = new RelayCommand<MainWindow>(parameter => true, parameter => OpenAddProductWindow(parameter));
             ExitCommand = new RelayCommand<AddProductWindow>((parameter) => true, (parameter) => parameter.Close());
+            ExitChangeCommand = new RelayCommand<ChangeProductWindow>((parameter) => true, (parameter) => parameter.Close());
             SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
             LoadProductCommand = new RelayCommand<MainWindow>(parameter => true, parameter => LoadProduct(parameter));
             AddProductCommand = new RelayCommand<AddProductWindow>(parameter => true, parameter => AddProduct(parameter));
             DeleteProductCommand = new RelayCommand<ProductViewControl>(parameter => true, parameter => DeleteProduct(parameter));
+            OpenEditProductCommand = new RelayCommand<ProductViewControl>(parameter => true, parameter => OpenEditProductWindow(parameter));
         }
 
         private void ChooseImage(Grid parameter)
@@ -68,11 +73,11 @@ namespace BeverageStoreManagement.ViewModels
             {
                 string id = (ProductDAL.Instance.GetMaxId() + 1).ToString();
 
-                addProductWindow.txtIdGoods.Text = id;
+                addProductWindow.txtIdProduct.Text = id;
             }
             catch
             {
-                addProductWindow.txtIdGoods.Text = "1";
+                addProductWindow.txtIdProduct.Text = "1";
             }
 
             addProductWindow.ShowDialog();
@@ -103,104 +108,97 @@ namespace BeverageStoreManagement.ViewModels
                 ProductViewControl productViewControl = new ProductViewControl();
                 productViewControl.idProduct.Text = product.IdProduct.ToString();
                 productViewControl.Name.Text = product.NameProduct.ToString();
-                productViewControl.Price.Text = product.Price.ToString();
+                productViewControl.Price.Text = product.Price.ToString("N0");
                 productViewControl.Status.Text = status;
                 productViewControl.imgProduct.Source = Converter.Instance.ConvertByteToBitmapImage(product.Image);
-
-                
 
                 mainWindow.stkProduct.Children.Add(productViewControl);
                 i++;
             }
         }
 
-        public void AddProduct(AddProductWindow parameter)
+        private bool CheckEmptyAddProduct(AddProductWindow parameter)
         {
-            List<Product> products = ProductDAL.Instance.ConvertDBToList();
             if (string.IsNullOrWhiteSpace(parameter.txtName.Text))
             {
+                CustomMessageBox.Show("Please enter product name!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtName.Focus();
                 parameter.txtName.Text = "";
-                return;
+                return false;
             }
             if (string.IsNullOrEmpty(parameter.txtType.Text))
             {
+                CustomMessageBox.Show("Please enter product type!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtType.Focus();
-                parameter.txtPrice.Text = "";
-                return;
+                return false;
             }
             if (string.IsNullOrEmpty(parameter.txtPrice.Text))
             {
+                CustomMessageBox.Show("Please enter product price!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtPrice.Focus();
                 parameter.txtPrice.Text = "";
-                return;
+                return false;
             }
             if (string.IsNullOrEmpty(parameter.txtStatus.Text))
             {
+                CustomMessageBox.Show("Please enter product status!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtStatus.Focus();
-                parameter.txtStatus.Text = "";
-                return;
+                return false;
             }
-            
             if (parameter.grdSelectImg.Background == null)
             {
-                CustomMessageBox.Show("Vui lòng thêm hình ảnh!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                CustomMessageBox.Show("Please enter product image!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
-            byte[] imgByteArr;
-            try
-            {
-                imgByteArr = ConvertImageToBytes(imageFileName);
-            }
-            catch
-            {
-                imgByteArr = ProductDAL.Instance.GetProduct(parameter.txtIdGoods.Text).Image;
-            }
-            Product newProduct = new Product(int.Parse(parameter.txtIdGoods.Text), ConvertToType(parameter.txtType.Text), parameter.txtName.Text,
-                 "", int.Parse(parameter.txtPrice.Text), ConvertToBoolean(parameter.txtStatus.Text),
-                 imgByteArr, false);
+            return true;
+        }
 
-            bool isSuccessed1 = true, isSuccessed2 = true, isSuccessed4 = true;
+        public void AddProduct(AddProductWindow parameter)
+        {
+            if (CheckEmptyAddProduct(parameter))
+            {
+                int idProduct = int.Parse(parameter.txtIdProduct.Text);
+                bool status;
+                byte[] imgByteArr;
+                try
+                {
+                    imgByteArr = ConvertImageToBytes(imageFileName);
+                }
+                catch
+                {
+                    imgByteArr = ProductDAL.Instance.GetProduct(parameter.txtIdProduct.Text).Image;
+                }
 
-            if (products.Count == 0 || newProduct.IdProduct > products[products.Count - 1].IdProduct)
-            {
-                if (ProductDAL.Instance.IsExistProductName(parameter.txtName.Text))
+                if (parameter.txtStatus.Text == "Available")
                 {
-                    CustomMessageBox.Show("Existed Product, please try again!", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
-                    parameter.txtName.Focus();
-                    parameter.txtName.Text = "";
-                    return;
+                    status = true; 
                 }
-                isSuccessed1 = ProductDAL.Instance.AddIntoDB(newProduct);
-                if (isSuccessed1)
+                else
                 {
-                    CustomMessageBox.Show("Add successfully!", "Notification", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    status = false;
                 }
-            }
-            else
-            {
-                if (ProductDAL.Instance.GetProduct(parameter.txtIdGoods.Text).NameProduct != parameter.txtName.Text)
+                Product product = new Product(idProduct,
+                    int.Parse(parameter.txtType.Text),
+                    parameter.txtName.Text,
+                    "",
+                    int.Parse(parameter.txtPrice.Text),
+                    status,
+                    imgByteArr,
+                    false);
+
+                if(ProductDAL.Instance.AddIntoDB(product))
                 {
-                    if (ProductDAL.Instance.IsExistProductName(parameter.txtName.Text))
-                    {
-                        CustomMessageBox.Show("Existed Product, please try again!", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
-                        parameter.txtName.Focus();
-                        parameter.txtName.Text = "";
-                        return;
-                    }
+                    Notification.Instance.Success("Add Product Success!");
+                    parameter.Close();
+                    LoadProduct(mainWindow);
                 }
-                isSuccessed2 = ProductDAL.Instance.UpdateOnDB(newProduct);
-                if (isSuccessed2 && isSuccessed4)
+                else
                 {
-                    CustomMessageBox.Show("Update successfully!", "Notification", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    Notification.Instance.Failed("Add Product Failed!");
+                    parameter.Close();
                 }
             }
-            if (!isSuccessed1 || !isSuccessed2)
-            {
-                CustomMessageBox.Show("Existed Product, please try again!", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            parameter.Close();
-            LoadProduct(mainWindow);
+            
         }
 
         public void DeleteProduct(ProductViewControl productViewControl)
@@ -220,6 +218,26 @@ namespace BeverageStoreManagement.ViewModels
                     MessageBox.Show("Action failed, please try again!", "Notification", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        public void OpenEditProductWindow(ProductViewControl parameter)
+        {
+            int idProduct = int.Parse(parameter.idProduct.Text);
+
+            Product product = ProductDAL.Instance.GetProductById(idProduct);
+            ChangeProductWindow changeProductWindow = new ChangeProductWindow();
+
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = Converter.Instance.ConvertByteToBitmapImage(product.Image);
+
+            changeProductWindow.txtIdProduct.Text = product.IdProduct.ToString();
+            changeProductWindow.txtName.Text = product.NameProduct;
+            changeProductWindow.txtType.Text = ConvertIntToType(product.IdProductType);
+            changeProductWindow.txtPrice.Text = product.Price.ToString();
+            changeProductWindow.txtStatus.Text = ConvertBooleanToStatus(product.Status);
+            changeProductWindow.grdSelectImg.Background = imageBrush;
+
+            changeProductWindow.ShowDialog();
         }
     }
 }
