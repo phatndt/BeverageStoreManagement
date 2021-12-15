@@ -8,7 +8,7 @@ using BeverageStoreManagement.ViewModels;
 namespace BeverageStoreManagement.Test
 {
 
-    [TestFixture]
+    [TestFixture]   
     class NumberValidationTextBoxTest
     {
         PaymentVoucherViewModel paymentVoucherViewModel = new PaymentVoucherViewModel();
