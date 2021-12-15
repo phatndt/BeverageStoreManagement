@@ -18,7 +18,15 @@ namespace BeverageStoreManagement.ViewModels
 {
     public class PaymentVoucherViewModel : BaseViewModel
     {
-        private MainWindow mainWindow; 
+        private MainWindow mainWindow;
+
+
+        private string idImportBill;
+        public string IdImportBill { get => idImportBill; set => idImportBill = value; }
+
+        private string totalMoney;
+        public string TotalMoney { get => totalMoney; set => totalMoney = value; }
+
         //grdPaymentVoucherLoadInvoiceCommand
         public ICommand LoadPaymentVoucherCommand { get; set; }
         public ICommand OpenAddPaymentVoucherWindowCommand { get; set; }
@@ -80,7 +88,9 @@ namespace BeverageStoreManagement.ViewModels
             {
                 AddPaymentVoucherWindow addPaymentVoucherWindow = new AddPaymentVoucherWindow();
                 addPaymentVoucherWindow.txtId.Text = idPaymentVoucher.ToString();
-                addPaymentVoucherWindow.txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                addPaymentVoucherWindow.txtDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                addPaymentVoucherWindow.txtIdEmployee.Text = CurrentAccount.IdEmployee.ToString();
+                addPaymentVoucherWindow.txtNameEmployee.Text = CurrentEmployee.Name;
                 addPaymentVoucherWindow.ShowDialog();
 
             }
@@ -141,11 +151,12 @@ namespace BeverageStoreManagement.ViewModels
         {
             if (CheckEmptyAddPaymentVoucher(parameter))
             {
-                int idPaymentVoucher = int.Parse(parameter.txtId.Text);
+                int idPaymentVoucher = int.Parse(parameter.txtId.Text); 
+                int idEmployee = int.Parse(parameter.txtIdEmployee.Text);
                 int idImportBill = int.Parse(parameter.txtImportBill.Text);
                 PaymentVoucher paymentVoucher = new PaymentVoucher(
                        idPaymentVoucher,
-                       parameter.txtNameEmployee.SelectedIndex + 1,
+                       idEmployee,
                        idImportBill,
                        DateTime.Parse(parameter.txtDate.Text),
                        double.Parse(parameter.txtTotalMoney.Text),

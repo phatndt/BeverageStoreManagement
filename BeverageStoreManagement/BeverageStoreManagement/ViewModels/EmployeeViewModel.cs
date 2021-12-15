@@ -23,10 +23,12 @@ namespace BeverageStoreManagement.ViewModels
         private string name = null;
         public ICommand openAddEmployeeWindowCommand { get; set; }
         public ICommand saveAddEmployeeCommand { get; set; }
+        public ICommand ExitAddEmployeeCommand { get; set; }
         public string Name { get => name; set => name = value; }
 
         //ChangeInformationEmployee
         public ICommand SaveChangeInformationEmployeeCommand { get; set; }
+        public ICommand ExitUpdateEmployeeCommand { get; set; }
 
         //grd 
         public ICommand LoadEmployeeCommand { get; set; }
@@ -42,8 +44,10 @@ namespace BeverageStoreManagement.ViewModels
         {
             openAddEmployeeWindowCommand = new RelayCommand<EmployeePage>((parameter) => true, (parameter) => openAddEmployeeWindow(parameter));
             saveAddEmployeeCommand = new RelayCommand<AddEmployeeWindow>((parameter) => true, (parameter) => SaveAddEmployee(parameter));
+            ExitAddEmployeeCommand = new RelayCommand<AddEmployeeWindow>(parameter => true, parameter => parameter.Close());
 
             SaveChangeInformationEmployeeCommand = new RelayCommand<ChangeEmployeeWindow>((parameter) => true, (parameter) => SaveChangeInformationEmployee(parameter));
+            ExitUpdateEmployeeCommand = new RelayCommand<AddEmployeeWindow>(parameter => true, parameter => parameter.Close());
 
             LoadEmployeeCommand = new RelayCommand<MainWindow>((parameter) => true, (parameter) => LoadEmployee(parameter));
 

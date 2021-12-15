@@ -19,6 +19,10 @@ namespace BeverageStoreManagement.ViewModels
     class ReceiptVoucherViewModel : BaseViewModel
     {
         private MainWindow mainWindow;
+
+        private string totalMoney;
+        public string TotalMoney { get => totalMoney; set => totalMoney = value; }
+
         public ICommand SeparateThousandsCommand { get; set; }
 
         //grdReceiptVoucher
@@ -84,7 +88,9 @@ namespace BeverageStoreManagement.ViewModels
             {
                 AddReceiptVoucherWindow addReceiptVoucherWindow = new AddReceiptVoucherWindow();
                 addReceiptVoucherWindow.txtId.Text = idReceiptVoucher.ToString();
-                addReceiptVoucherWindow.txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                addReceiptVoucherWindow.txtDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                addReceiptVoucherWindow.txtIdEmployee.Text = CurrentAccount.IdEmployee.ToString();
+                addReceiptVoucherWindow.txtNameEmployee.Text = CurrentEmployee.Name;
                 addReceiptVoucherWindow.ShowDialog();
             }
             else
@@ -139,10 +145,11 @@ namespace BeverageStoreManagement.ViewModels
             if (CheckEmptyAddReceiptVoucher(parameter))
             {
                 int idReceiptVoucher = int.Parse(parameter.txtId.Text);
+                int idEmployee = int.Parse(parameter.txtIdEmployee.Text);
 
                 ReceiptVoucher receiptVoucher = new ReceiptVoucher(
                        idReceiptVoucher,
-                       parameter.txtNameEmployee.SelectedIndex + 1,
+                       idEmployee,
                        DateTime.Parse(parameter.txtDate.Text),
                        double.Parse(parameter.txtTotalMoney.Text),
                        parameter.txtNote.Text,
@@ -187,21 +194,5 @@ namespace BeverageStoreManagement.ViewModels
             }
         }
 
-        //public long ConvertToNumber(string str)
-        //{
-        //    string[] s = str.Split(',');
-        //    string tmp = "";
-        //    foreach (string a in s)
-        //    {
-        //        tmp += a;
-        //    }
-        //    return long.Parse(tmp);
-        //}
-
-        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
     }
 }

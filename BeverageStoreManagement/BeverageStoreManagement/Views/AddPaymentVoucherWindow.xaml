@@ -35,12 +35,13 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <Grid Grid.Row="0">
-            <Label Content="Payment Voucher Window"
+            <Label Content="Add payment voucher window"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="24"
                    FontFamily="Poppins"
-                   FontWeight="SemiBold" />
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"  />
         </Grid>
         <Grid Grid.Row="1">
             <Label Content="ID Payment Voucher"
@@ -58,17 +59,25 @@
         <Grid Grid.Row="2">
             <Label Content="Employee"
                    Style="{StaticResource LabelCustom}" />
-            <Rectangle Style="{StaticResource Rectangle}" />
-            <ComboBox x:Name="txtNameEmployee"
-                      materialDesign:HintAssist.Hint="Employee"
-                      Style="{StaticResource ComboBoxStyle1}"
-                      ItemsSource="{Binding ItemSourceEmployee}">
-            </ComboBox>
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Fill="{DynamicResource Gray3}" />
+            <TextBox x:Name="txtNameEmployee"
+                     IsReadOnly="True"
+                     materialDesign:HintAssist.Hint="Employee"
+                     Style="{StaticResource TextBoxInputText}">
+            </TextBox>
+            <TextBox x:Name="txtIdEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Employee"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     IsEnabled="False"
+                     Visibility="Hidden">
+            </TextBox>
         </Grid>
         <Grid Grid.Row="3">
             <Label Content="Date"
                    Style="{StaticResource LabelCustom}" />
-            <Rectangle Style="{StaticResource Rectangle}"/>
+            <Rectangle Style="{StaticResource Rectangle}" />
             <DatePicker x:Name="txtDate"
                         materialDesign:HintAssist.Hint="Date"
                         Style="{StaticResource DatePickerStyle1}">
@@ -85,15 +94,24 @@
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}" />
             <TextBox x:Name="txtImportBill"
-                       materialDesign:HintAssist.Hint="ID Import Bill"
-                       Style="{StaticResource TextBoxInputText}"
-                       Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                     materialDesign:HintAssist.Hint="ID Import Bill"
+                     Style="{StaticResource TextBoxInputText}"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewKeyDown">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <TextBox.Text>
                     <Binding Path="IdImportBill"
-                             Source="{StaticResource PaymentVoucher}"
                              UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <vd:NotNullValidation ErrorMessage="Please enter ID Import Bill!!!" />
+                            <vd:NotNullValidation ErrorMessage="Please enter ID import bill!" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -131,6 +149,10 @@
                         <ei:CallMethodAction TargetObject="{Binding }"
                                              MethodName="NumberValidationTextBox" />
                     </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewKeyDown">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
                     <i:EventTrigger EventName="TextChanged">
                         <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
                                                CommandParameter="{Binding ElementName=txtTotalMoney}" />
@@ -138,7 +160,6 @@
                 </i:Interaction.Triggers>
                 <TextBox.Text>
                     <Binding Path="TotalMoney"
-                             Source="{StaticResource PaymentVoucher}"
                              UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <vd:NotNullValidation ErrorMessage="Please enter total money!!!" />
