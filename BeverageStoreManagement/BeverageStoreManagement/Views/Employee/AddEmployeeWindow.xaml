@@ -43,7 +43,8 @@
             <Label Content="ID Employee"
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}"
-                       Stroke="{DynamicResource Blue1}" />
+                       Stroke="{DynamicResource Blue1}"
+                       Fill="{DynamicResource Gray3}" />
             <TextBox x:Name="txtIdEmployee"
                      IsReadOnly="True"
                      Style="{StaticResource TextBoxInputText}"
@@ -140,19 +141,21 @@
             </ComboBox>
         </Grid>
         <Grid Grid.Row="9">
-            <StackPanel HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-                <Button Height="50"
-                        Width="220"
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Height="45"
+                        Width="140"
                         Content="Save"
-                        HorizontalAlignment="Right"
-                        FontSize="18"
-                        FontFamily="poppins"
-                        Background="{DynamicResource Blue2}"
-                        materialDesign:ButtonAssist.CornerRadius="7"
-                        BorderThickness="0"
-                        FlowDirection="LeftToRight"
+                        Style="{StaticResource BlueButton}"
                         Command="{Binding saveAddEmployeeCommand}"
+                        CommandParameter="{Binding ElementName=wdAddEmployee}" />
+                <Button Height="45"
+                        Width="140"
+                        Margin="20 0 30 0"
+                        Style="{StaticResource CancelButton}"
+                        Content="Cancel"
+                        Command="{Binding ExitAddEmployeeCommand}"
                         CommandParameter="{Binding ElementName=wdAddEmployee}" />
             </StackPanel>
         </Grid>

@@ -34,13 +34,13 @@
             </i:EventTrigger>
         </i:Interaction.Triggers>
         <Grid Grid.Row="0">
-            <Label Content="Payment Voucher Window"
+            <Label Content="Add receipt voucher window"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="24"
                    FontFamily="Poppins"
                    FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue1}"/>
+                   Foreground="{DynamicResource Blue1}" />
         </Grid>
         <Grid Grid.Row="1">
             <Label Content="ID Payment Voucher"
@@ -58,12 +58,20 @@
         <Grid Grid.Row="2">
             <Label Content="Employee"
                    Style="{StaticResource LabelCustom}" />
-            <Rectangle Style="{StaticResource Rectangle}" />
-            <ComboBox x:Name="txtNameEmployee"
-                      materialDesign:HintAssist.Hint="Employee"
-                      Style="{StaticResource ComboBoxStyle1}"
-                      ItemsSource="{Binding ItemSourceEmployee}">
-            </ComboBox>
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Fill="{DynamicResource Gray3}" />
+            <TextBox x:Name="txtNameEmployee"
+                     IsReadOnly="True"
+                     materialDesign:HintAssist.Hint="Employee"
+                     Style="{StaticResource TextBoxInputText}">
+            </TextBox>
+            <TextBox x:Name="txtIdEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Employee"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     IsEnabled="False"
+                     Visibility="Hidden">
+            </TextBox>
         </Grid>
         <Grid Grid.Row="3">
             <Label Content="Date"
@@ -117,15 +125,14 @@
                                                CommandParameter="{Binding ElementName=txtTotalMoney}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <!--<TextBox.Text>
+                <TextBox.Text>
                     <Binding Path="TotalMoney"
-                             Source="{StaticResource PaymentVoucher}"
                              UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <vd:NotNullValidation ErrorMessage="Please enter total money!!!" />
                         </Binding.ValidationRules>
                     </Binding>
-                </TextBox.Text>-->
+                </TextBox.Text>
             </TextBox>
         </Grid>
         <Grid Grid.Row="6">

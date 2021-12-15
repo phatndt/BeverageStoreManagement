@@ -100,6 +100,7 @@ namespace BeverageStoreManagement.ViewModels
             {
                 AddIncidentWindow addIncidentWindow = new AddIncidentWindow();
                 addIncidentWindow.txtIdIncident.Text = idIncident.ToString();
+                addIncidentWindow.txtDateIncident.Text = DateTime.Now.ToString("MM/dd/yyyy");
                 addIncidentWindow.txtIdEmployee.Text = CurrentAccount.IdEmployee.ToString();
                 addIncidentWindow.txtEmployee.Text = CurrentEmployee.Name;
                 addIncidentWindow.ShowDialog();

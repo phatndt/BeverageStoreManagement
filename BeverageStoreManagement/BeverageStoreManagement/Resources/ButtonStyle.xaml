@@ -43,14 +43,14 @@
                                                          Kind="{Binding Tag, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
                                                          VerticalAlignment="Center"
                                                          HorizontalAlignment="Center"
-                                                         Margin="15 0 0 0"/>
+                                                         Margin="15 0 0 0" />
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Text="{Binding Content, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
                                            FontWeight="SemiBold"
-                                           Margin="15 0 0 0" 
+                                           Margin="15 0 0 0"
                                            FontSize="18"
-                                           x:Name="NameContent"/>
+                                           x:Name="NameContent" />
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -355,5 +355,35 @@
                         Value="{DynamicResource Blue2}" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+    <Style x:Key="MainButton"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background"
+                Value="{DynamicResource Blue2}" />
+        <Setter Property="BorderBrush"
+                Value="{DynamicResource Blue2}" />
+        <Setter Property="Foreground"
+                Value="{DynamicResource White}" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Height"
+                Value="50" />
+        <Setter Property="Width"
+                Value="220" />
+        <Setter Property="Margin"
+                Value="0 0 20 0" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="FontFamily"
+                Value="poppins" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="materialDesign:ButtonAssist.CornerRadius"
+                Value="7" />
     </Style>
 </ResourceDictionary>
