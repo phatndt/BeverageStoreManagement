@@ -26,7 +26,6 @@ namespace BeverageStoreManagement.Resources.UserControls
 
         public event EventHandler PropertyChanged;
         public event EventHandler ValueChanged;
-        public event EventHandler TextChanged;
         #endregion
 
         public NumericSpinner()

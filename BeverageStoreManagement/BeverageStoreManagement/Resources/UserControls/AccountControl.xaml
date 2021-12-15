@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="BeverageStoreManagement.Resources.UserControls.AccountControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BeverageStoreManagement.Resources.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="160" d:DesignWidth="180">
+
+    <Border CornerRadius="8"
+            Background="{DynamicResource PrimaryBackgroundColor}"
+            BorderBrush="{DynamicResource SecundaryGrayColor}"
+            BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect 
+                Color="{DynamicResource MaterialDesignShadow}"
+                Opacity="0.2"
+                ShadowDepth="2"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6.5*" />
+                <RowDefinition Height="3.5*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Border Width="70"
+                         Height="70"
+                         Background="{DynamicResource Blue8}"
+                         VerticalAlignment="Bottom"
+                         CornerRadius="5"
+                         Margin="0 0 0 10">
+                    <Label Content="NB"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontFamily="poppins"
+                           FontSize="26"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource Blue2}"/>
+                </Border>
+                
+            </Grid>
+            <Grid Grid.Row="1">
+                <Label FontFamily="poppins"
+                       FontSize="16"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       Margin="10 5 10 5">
+                    <TextBlock TextWrapping="WrapWithOverflow">
+                        Nguyen Thi Binh
+                    </TextBlock>
+                </Label>
+            </Grid>
+        </Grid>
+    </Border>
+    
+</UserControl>

@@ -1,0 +1,164 @@
+﻿<Window x:Class="BeverageStoreManagement.Views.Employee.ChangeEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeverageStoreManagement.Views.Employee"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
+        mc:Ignorable="d"
+        Height="730"
+        Width="600"
+        Name="wdUpdateEmployee"
+        Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        DataContext="{StaticResource EmployeeVM}"
+        WindowState="Normal">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label Content="Change Employee Information Window"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="24"
+                   FontFamily="Poppins"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="ID Employee"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Stroke="{DynamicResource Blue1}"
+                       Fill="{DynamicResource Gray3}" />
+            <TextBox x:Name="txtIdEmployee"
+                     IsReadOnly="True"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="ID Employee"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Grid.Column="1">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="Name Employee"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtNameEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Name"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Name"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter name!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Label Content="Date of Birth"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <DatePicker x:Name="txtDateEmployee"
+                        materialDesign:HintAssist.Hint="Date of birth"
+                        Style="{StaticResource DatePickerStyle1}">
+            </DatePicker>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Label Content="Date Start Work"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <DatePicker x:Name="txtDateStartWorkEmployee"
+                        materialDesign:HintAssist.Hint="Date Start Work"
+                        Style="{StaticResource DatePickerStyle1}">
+            </DatePicker>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Label Content="Address"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtAddressEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Address"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Label Content="Phone Number"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtphoneNumberEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Phone Number"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
+                     MaxLength="10">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="7">
+            <Label Content="Gender"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <ComboBox x:Name="txtGenderEmployee"
+                      materialDesign:HintAssist.Hint="Gender"
+                      Style="{StaticResource ComboBoxStyle1}">
+                <ComboBoxItem Content="Male" />
+                <ComboBoxItem Content="Female" />
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="8">
+            <Label Content="Position"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <ComboBox x:Name="txtPositionEmployee"
+                      materialDesign:HintAssist.Hint="Position"
+                      Style="{StaticResource ComboBoxStyle1}">
+                <ComboBoxItem Content="Accoutant" />
+                <ComboBoxItem Content="Manager" />
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="9">
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Height="45"
+                        Width="140"
+                        Content="Save"
+                        Style="{StaticResource BlueButton}"
+                        Command="{Binding SaveChangeInformationEmployeeCommand}"
+                        CommandParameter="{Binding ElementName=wdUpdateEmployee}" />
+                <Button Height="45"
+                        Width="140"
+                        Margin="20 0 30 0"
+                        Style="{StaticResource CancelButton}"
+                        Content="Cancel"
+                        Command="{Binding ExitUpdateEmployeeCommand}"
+                        CommandParameter="{Binding ElementName=wdUpdateEmployee}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

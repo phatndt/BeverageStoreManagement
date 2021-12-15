@@ -1,0 +1,191 @@
+﻿<Window x:Class="BeverageStoreManagement.Views.AddPaymentVoucherWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeverageStoreManagement.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:vd="clr-namespace:BeverageStoreManagement.Validations"
+        mc:Ignorable="d"
+        Height="590"
+        Width="600"
+        x:Name="wdAddPaymentVoucher"
+        Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        DataContext="{StaticResource PaymentVoucherVM}"
+        WindowState="Normal">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding GetListEmployeeCommand}"
+                                       CommandParameter="{Binding ElementName=wdAddPaymentVoucher}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Grid Grid.Row="0">
+            <Label Content="Add payment voucher window"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="24"
+                   FontFamily="Poppins"
+                   FontWeight="SemiBold"
+                   Foreground="{DynamicResource Blue1}"  />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="ID Payment Voucher"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Stroke="{DynamicResource Blue1}"
+                       Fill="{DynamicResource Gray3}" />
+            <TextBox x:Name="txtId"
+                     IsReadOnly="True"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="ID Payment Voucher"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Label Content="Employee"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Fill="{DynamicResource Gray3}" />
+            <TextBox x:Name="txtNameEmployee"
+                     IsReadOnly="True"
+                     materialDesign:HintAssist.Hint="Employee"
+                     Style="{StaticResource TextBoxInputText}">
+            </TextBox>
+            <TextBox x:Name="txtIdEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Employee"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     IsEnabled="False"
+                     Visibility="Hidden">
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Label Content="Date"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <DatePicker x:Name="txtDate"
+                        materialDesign:HintAssist.Hint="Date"
+                        Style="{StaticResource DatePickerStyle1}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Label Content="ID Import BIll"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtImportBill"
+                     materialDesign:HintAssist.Hint="ID Import Bill"
+                     Style="{StaticResource TextBoxInputText}"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewKeyDown">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBox.Text>
+                    <Binding Path="IdImportBill"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter ID import bill!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Label Content="Note"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtNote"
+                     materialDesign:HintAssist.Hint="Note"
+                     Style="{StaticResource TextBoxInputText}"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Note"
+                             Source="{StaticResource PaymentVoucher}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter note!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Label Content="Total money"
+                   Style="{StaticResource LabelCustom}" />
+            <Rectangle Style="{StaticResource Rectangle}" />
+            <TextBox x:Name="txtTotalMoney"
+                     materialDesign:HintAssist.Hint="Total money"
+                     Style="{StaticResource TextBoxInputText}"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="PreviewKeyDown">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding SeparateThousandsCommand}"
+                                               CommandParameter="{Binding ElementName=txtTotalMoney}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBox.Text>
+                    <Binding Path="TotalMoney"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter total money!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="7">
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Height="45"
+                        Width="140"
+                        Content="Save"
+                        Style="{StaticResource BlueButton}"
+                        Command="{Binding SavePaymentVoucherWindowCommand}"
+                        CommandParameter="{Binding ElementName=wdAddPaymentVoucher}" />
+                <Button Height="45"
+                        Width="140"
+                        Margin="20 0 30 0"
+                        Style="{StaticResource CancelButton}"
+                        Content="Cancel"
+                        Command="{Binding ExitAddPaymentVoucherCommand}"
+                        CommandParameter="{Binding ElementName=wdAddPaymentVoucher}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

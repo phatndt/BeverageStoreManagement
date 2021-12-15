@@ -15,6 +15,9 @@
     <SolidColorBrush x:Key="Pallet3" Color="#FFf7fff7"></SolidColorBrush>
     <SolidColorBrush x:Key="Pallet4" Color="#FFff6b6b"></SolidColorBrush>
     <SolidColorBrush x:Key="Pallet5" Color="#FFffe66d"></SolidColorBrush>
+    
+    <SolidColorBrush x:Key="TextColor" Color="#FF000066"></SolidColorBrush>
+    <SolidColorBrush x:Key="TextColor1" Color="#FF000099"></SolidColorBrush>
     <!-- Background Colors -->
     <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#f3f3f3"/>
     <SolidColorBrush x:Key="SecundaryBackgroundColor" Color="#f9f9f9"/>
@@ -34,4 +37,21 @@
 
     <!-- Icons Colors -->
     <SolidColorBrush x:Key="ActionIconColor" Color="#434344"/>
+
+    <SolidColorBrush x:Key="Primary"
+                     Color="#FF0d47a1" />
+
+    <SolidColorBrush x:Key="White"
+                     Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="Gray3"
+                     Color="#FFE0E0E0" />
+    <SolidColorBrush x:Key="Success"
+                     Color="#FF1BA345" />
+    <SolidColorBrush x:Key="Warning"
+                     Color="#FFFEC001" />
+    <SolidColorBrush x:Key="Error"
+                     Color="#FFDE3E44" />
+
+    <SolidColorBrush x:Key="Gray"
+                     Color="#FF9098B1" />
 </ResourceDictionary>

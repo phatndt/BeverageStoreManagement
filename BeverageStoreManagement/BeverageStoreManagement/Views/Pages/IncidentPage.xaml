@@ -1,18 +1,383 @@
 ﻿<Page x:Class="BeverageStoreManagement.Views.Pages.IncidentPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:BeverageStoreManagement.Views.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="IncidentPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:uc="clr-namespace:BeverageStoreManagement.Resources.UserControls"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="Incident"
       Height="730"
       Width="1300"
+      DataContext="{StaticResource IncidentVM}"
       Background="Transparent">
+    
+    <Border 
+        CornerRadius="8"
+        Background="{DynamicResource PrimaryBackgroundColor}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button x:Name="btnAddIncident"
+                        Height="50"
+                        Width="200"
+                        Command="{Binding OpenWindowAddIncidentCommand}"
+                        HorizontalAlignment="Right"
+                        Content="+ New incident"
+                        FontSize="18"
+                        FontFamily="Poppins"
+                        FontWeight="DemiBold"
+                        BorderThickness="0"
+                        Margin="40 0 40 0"
+                        Background="{DynamicResource Blue2}"
+                        materialDesign:ButtonAssist.CornerRadius="8" 
+                        />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
 
-    <Border CornerRadius="8"
-            Background="{DynamicResource PrimaryBackgroundColor}">
-        
+                <Border Grid.Row="1"
+                        Height="50"
+                        Width="1020"
+                        CornerRadius="8 8 0 0"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="0 20 0 0"
+                        Background="{DynamicResource Blue1}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="1.1*" />
+                            <ColumnDefinition Width="1.8*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.75*" />
+                            <ColumnDefinition Width="1.25*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Label Content="No."
+                                   FontFamily="Poppins"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                            <Rectangle Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       Height="40"
+                                       Margin="0"
+                                       Width="2"
+                                       Fill="{DynamicResource Blue10}"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Label Content="Incident name"
+                                   FontFamily="Poppins"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                            <Rectangle Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       Height="40"
+                                       Margin="0"
+                                       Width="2"
+                                       Fill="{DynamicResource Blue10}"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Label Content="Date"
+                                   FontFamily="Poppins"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                            <Rectangle Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       Height="40"
+                                       Margin="0"
+                                       Width="2"
+                                       Fill="{DynamicResource Blue10}"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <Label Content="Employee"
+                                   FontFamily="Poppins"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                            <Rectangle Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       Height="40"
+                                       Margin="0"
+                                       Width="2"
+                                       Fill="{DynamicResource Blue10}"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid Grid.Column="4">
+                            <Label Content="State"
+                                   FontFamily="Poppins"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                            <Rectangle Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       Height="40"
+                                       Margin="0"
+                                       Width="2"
+                                       Fill="{DynamicResource Blue10}"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid Grid.Column="5">
+                            <Label Content="Pay?"
+                                   FontFamily="Poppins"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                            <Rectangle Grid.Column="1"
+                                       HorizontalAlignment="Right"
+                                       Height="40"
+                                       Margin="0"
+                                       Width="2"
+                                       Fill="{DynamicResource Blue10}"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid Grid.Column="6">
+                            <Label Content="Money"
+                                   FontFamily="Poppins"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Left">
+                    <StackPanel x:Name="incidentItem"
+                                Width="1020"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                HorizontalAlignment="Left">
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                        <uc:IncidentControls></uc:IncidentControls>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <Label Content="Pay range"
+                               FontFamily="poppins"
+                               FontSize="22"
+                               FontWeight="Bold" />
+                        <CheckBox HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                  FontSize="18"
+                                  FontFamily="poppins"
+                                  FontWeight="Medium"
+                                  Foreground="Gray"
+                                  Margin="5">
+                            under 20.000
+                            <CheckBox.Resources>
+                                <!--Unchecked state-->
+                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                 Color="Gray" />
+                                <!--Checked state-->
+                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                 Color="Blue" />
+                            </CheckBox.Resources>
+                        </CheckBox>
+                        
+                        <CheckBox HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                  FontSize="18"
+                                  FontFamily="poppins"
+                                  FontWeight="Medium"
+                                  Foreground="Gray"
+                                  Margin="5">
+                            20.000 - 50.000
+                            <CheckBox.Resources>
+                                <!--Unchecked state-->
+                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                 Color="Gray" />
+                                <!--Checked state-->
+                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                 Color="Blue" />
+                            </CheckBox.Resources>
+                        </CheckBox>
+                        
+                        <CheckBox HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                  FontSize="18"
+                                  FontFamily="poppins"
+                                  FontWeight="Medium"
+                                  Foreground="Gray"
+                                  Margin="5">
+                            50.000 - 100.000
+                            <CheckBox.Resources>
+                                <!--Unchecked state-->
+                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                 Color="Gray" />
+                                <!--Checked state-->
+                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                 Color="Blue" />
+                            </CheckBox.Resources>
+                        </CheckBox>
+                        
+                        <CheckBox HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                                  FontSize="18"
+                                  FontFamily="poppins"
+                                  FontWeight="Medium"
+                                  Foreground="Gray"
+                                  Margin="5">
+                            over 100.000
+                            <CheckBox.Resources>
+                                <!--Unchecked state-->
+                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
+                                                 Color="Gray" />
+                                <!--Checked state-->
+                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
+                                                 Color="Blue" />
+                            </CheckBox.Resources>
+                        </CheckBox>
+
+                        <Label Content="Pay?"
+                               FontFamily="poppins"
+                               FontSize="22"
+                               FontWeight="Bold" 
+                               Margin="0 10 0 0"/>
+
+                        <RadioButton FontSize="18"
+                                     FontFamily="poppins"
+                                     FontWeight="Medium"
+                                     Foreground="Gray"
+                                     GroupName="Pay?"
+                                     Margin="5"
+                                     Background="{DynamicResource Blue2}"
+                                     BorderBrush="{DynamicResource Blue2}">
+                            No
+                        </RadioButton>
+
+                        <RadioButton FontSize="18"
+                                     FontFamily="poppins"
+                                     FontWeight="Medium"
+                                     Foreground="Gray"
+                                     GroupName="Pay?"
+                                     Margin="5"
+                                     Background="{DynamicResource Blue2}"
+                                     BorderBrush="{DynamicResource Blue2}">
+                            Yes
+                        </RadioButton>
+
+                        <Label Content="State"
+                               FontFamily="poppins"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="0 10 0 0" />
+                        <RadioButton FontSize="18"
+                                     FontFamily="poppins"
+                                     FontWeight="Medium"
+                                     Foreground="Gray"
+                                     GroupName="State"
+                                     Margin="5"
+                                     Background="{DynamicResource Blue2}"
+                                     BorderBrush="{DynamicResource Blue2}">
+                            Done
+                        </RadioButton>
+                        <RadioButton FontSize="18"
+                                     FontFamily="poppins"
+                                     FontWeight="Medium"
+                                     Foreground="Gray"
+                                     GroupName="State"
+                                     Margin="5"
+                                     Background="{DynamicResource Blue2}"
+                                     BorderBrush="{DynamicResource Blue2}">
+                            Undone
+                        </RadioButton>
+
+                        <Label Content="Time"
+                               FontFamily="poppins"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="0 10 0 0" />
+                        <RadioButton FontSize="18"
+                                     FontFamily="poppins"
+                                     FontWeight="Medium"
+                                     Foreground="Gray"
+                                     GroupName="Time"
+                                     Margin="5"
+                                     Background="{DynamicResource Blue2}"
+                                     BorderBrush="{DynamicResource Blue2}">
+                            This week
+                        </RadioButton>
+                        <RadioButton FontSize="18"
+                                     FontFamily="poppins"
+                                     FontWeight="Medium"
+                                     Foreground="Gray"
+                                     GroupName="Time"
+                                     Margin="5"
+                                     Background="{DynamicResource Blue2}"
+                                     BorderBrush="{DynamicResource Blue2}">
+                            This monnth
+                        </RadioButton>
+                        <RadioButton FontSize="18"
+                                     FontFamily="poppins"
+                                     FontWeight="Medium"
+                                     Foreground="Gray"
+                                     GroupName="Time"
+                                     Margin="5"
+                                     Background="{DynamicResource Blue2}"
+                                     BorderBrush="{DynamicResource Blue2}">
+                            This year
+                        </RadioButton>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
     </Border>
 </Page>
