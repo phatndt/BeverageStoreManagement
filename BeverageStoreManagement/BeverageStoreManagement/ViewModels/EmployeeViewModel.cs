@@ -163,6 +163,18 @@ namespace BeverageStoreManagement.ViewModels
                 parameter.txtGenderEmployee.Focus();
                 return false;
             }
+            if (parameter.txtAddressEmployee.Text == "")
+            {
+                CustomMessageBox.Show("Please enter address!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtAddressEmployee.Focus();
+                return false;
+            }
+            if (parameter.txtphoneNumberEmployee.Text == "")
+            {
+                CustomMessageBox.Show("Please enter phone number!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtphoneNumberEmployee.Focus();
+                return false;
+            }
             if (parameter.txtPositionEmployee.Text == "")
             {
                 CustomMessageBox.Show("Please enter position!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
