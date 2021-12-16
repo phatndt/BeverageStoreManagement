@@ -5,25 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BeverageStoreManagement.Resources.UserControls"
              mc:Ignorable="d"
-             d:DesignHeight="50"
+             d:DesignHeight="80"
              d:DesignWidth="1280"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Grid Height="50"
+             x:Name="GoodsUC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             DataContext="{StaticResource GoodsPageVM}">
+    <Grid Height="80"
           Background="{DynamicResource Blue6}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1.5*" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="1.3*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.4*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
+        <TextBlock x:Name="idMaterial"
+                   Grid.Row="1"
+                   Text="Nike AF 1/1"
+                   FontSize="18"
+                   Margin="15,0,0,0"
+                   FontFamily="Time news Roman"
+                   Foreground="Black"
+                   FontWeight="Medium"
+                   Visibility="Hidden" />
         <Grid Grid.Column="0">
-            <Label Content="No."
+            <Label x:Name="txtNo"
+                Content="No."
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -39,13 +51,11 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="1">
-            <Label Content="Image"
-                   FontFamily="Poppins"
-                   FontSize="20"
-                   FontWeight="SemiBold"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="White" />
+            <Image x:Name="txtImg"
+                   Grid.Row="0"
+                   Width="80"
+                   Height="70" 
+                   Stretch="Uniform"/>
             <Rectangle HorizontalAlignment="Right"
                        Height="30"
                        Margin="0"
@@ -54,7 +64,8 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="2">
-            <Label Content="Material"
+            <Label x:Name="txtMaterial"
+                Content="Material"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -71,6 +82,7 @@
         </Grid>
         <Grid Grid.Column="3">
             <Label Content="Type"
+                   x:Name="txtType"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -87,6 +99,7 @@
         </Grid>
         <Grid Grid.Column="4">
             <Label Content="Remain quantity"
+                   x:Name="txtQuantity"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -103,6 +116,7 @@
         </Grid>
         <Grid Grid.Column="5">
             <Label Content="Unit"
+                   x:Name="txtUnit"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -118,6 +132,7 @@
         </Grid>
         <Grid Grid.Column="6">
             <Label Content="Purchase Price"
+                   x:Name="txtPrice"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -134,6 +149,7 @@
         </Grid>
         <Grid Grid.Column="7">
             <Label Content="Status"
+                   x:Name="txtStatus"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -149,13 +165,26 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="8">
-            <Label Content=""
-                   FontFamily="Poppins"
-                   FontSize="20"
-                   FontWeight="SemiBold"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="White" />
+            <Button x:Name="btnDeleteInvoice"
+                    Command="{Binding DeleteMaterialCommand}"
+                    CommandParameter="{Binding ElementName=GoodsUC}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Height="24"
+                    materialDesign:ButtonAssist.CornerRadius="6"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="{DynamicResource TextColor}"
+                    FontSize="16"
+                    VerticalAlignment="Center"
+                    FocusVisualStyle="{x:Null}"
+                    Width="26"
+                    HorizontalAlignment="Center"
+                    FontWeight="SemiBold"
+                    Padding="0">
+                <materialDesign:PackIcon Kind="DeleteOutline"
+                                         Height="24"
+                                         Width="24" />
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

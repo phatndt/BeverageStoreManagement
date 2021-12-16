@@ -80,7 +80,7 @@ namespace BeverageStoreManagement.ViewModels
             return imgByteArr;
         }
 
-        public bool ConvertToBoolean(string a)
+        public bool ConvertStatusToBoolean(string a)
         {
             if (a == "Available")
                 return true;
@@ -88,8 +88,16 @@ namespace BeverageStoreManagement.ViewModels
                 return false;
             return true;
         }
+        public string ConvertBooleanToStatus(bool a)
+        {
+            if (a == true)
+                return "Available";
+            if (a == false)
+                return "Unavailable";
+            return "";
+        }
 
-        public int ConvertToType(string a)
+        public int ConvertTypeToInt(string a)
         {
             if (a == "Coffee")
                 return 1;
@@ -126,6 +134,29 @@ namespace BeverageStoreManagement.ViewModels
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+        
+        public string ConvertIntToType(int? a)
+        {
+            if (a == 1)
+                return "Coffee";
+            if (a == 2)
+                return "Tea";
+            if (a == 3)
+                return "Milk Tea";
+            if (a == 4)
+                return "Fruit Tea";
+            if (a == 5)
+                return "Snacks";
+            return "";
+        }
+
+        public bool ConvertToStatus(double a)
+        {
+            if (a > 0)
+                return true;
+            else
+                return false;
         }
     }
 }
