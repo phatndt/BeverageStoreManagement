@@ -98,6 +98,15 @@
                      materialDesign:HintAssist.Hint="Address"
                      materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                      Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
+                <TextBox.Text>
+                    <Binding Path="Address"
+                             Source="{StaticResource Employee}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter address!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
         </Grid>
         <Grid Grid.Row="6">
@@ -110,6 +119,15 @@
                      materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
                      Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
                      MaxLength="10">
+                <TextBox.Text>
+                    <Binding Path="PhoneNumber"
+                             Source="{StaticResource Employee}"
+                             UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <vd:NotNullValidation ErrorMessage="Please enter phone number!!!" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewTextInput">
                         <ei:CallMethodAction TargetObject="{Binding }"

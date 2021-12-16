@@ -12,7 +12,6 @@ namespace BeverageStoreManagement.Test
     {
         [TestCase("", ExpectedResult = "D41D8CD98F00B204E9800998ECF8427E")]
         [TestCase("1", ExpectedResult = "C4CA4238A0B923820DCC509A6F75849B")]
-
         public string TestMD5Hash(string password)
         {
             return Converter.Instance.MD5Hash(password);
