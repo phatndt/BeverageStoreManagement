@@ -30,16 +30,16 @@
               Width="170"
               Height="200"
               HorizontalAlignment="Left">
-            <Rectangle x:Name="recImage"
-                       StrokeDashArray="4 2"
-                       Stroke="{DynamicResource Blue1}"
-                       StrokeThickness="4"
-                       RadiusX="4"
-                       RadiusY="4"
-                       Width="170"
-                       Height="200"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top" />
+                <Rectangle x:Name="recImage"
+                           StrokeDashArray="4 2"
+                           Stroke="{DynamicResource Blue1}"
+                           StrokeThickness="4"
+                           RadiusX="4"
+                           RadiusY="4"
+                           Width="170"
+                           Height="200"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top" />
                 <Button x:Name="btnSelectImage"
                         Height="35"
                         Width="130"
@@ -48,7 +48,7 @@
                         FontWeight="SemiBold"
                         ToolTip="Choose picture"
                         Background="{DynamicResource Blue2}"
-                        Margin="0,0,0,22"
+                        Margin="0,0,0,-60"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         FocusVisualStyle="{x:Null}"
@@ -58,7 +58,7 @@
                         materialDesign:ButtonAssist.CornerRadius="7">
                 </Button>
             </Grid>
-        <Grid x:Name="grdInfo"
+            <Grid x:Name="grdInfo"
               HorizontalAlignment="Left"
               Height="330"
               Margin="260,50,0,0"
@@ -250,8 +250,8 @@
               Width="220"
               HorizontalAlignment="Right">
             <Button x:Name="btnSave"
-                    Command="{Binding AddProductCommand}"
-                    CommandParameter="{Binding ElementName=wdAddProduct}"
+                    Command="{Binding SaveEditProductCommand}"
+                    CommandParameter="{Binding ElementName=wdChangeProduct}"
                     BorderThickness="0"
                     IsDefault="True"
                     Height="40"
@@ -268,7 +268,7 @@
             </Button>
             <Button x:Name="btnCancel"
                     Command="{Binding ExitChangeCommand}"
-                    CommandParameter="{Binding ElementName=wdAddProduct}"
+                    CommandParameter="{Binding ElementName=wdChangeProduct}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     BorderThickness="0"
                     Height="40"

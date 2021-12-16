@@ -136,7 +136,7 @@ namespace BeverageStoreManagement.ViewModels
             e.Handled = regex.IsMatch(e.Text);
         }
         
-        public String ConvertIntToType(int a)
+        public string ConvertIntToType(int? a)
         {
             if (a == 1)
                 return "Coffee";
@@ -149,6 +149,14 @@ namespace BeverageStoreManagement.ViewModels
             if (a == 5)
                 return "Snacks";
             return "";
+        }
+
+        public bool ConvertToStatus(double a)
+        {
+            if (a > 0)
+                return true;
+            else
+                return false;
         }
     }
 }

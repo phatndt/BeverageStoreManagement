@@ -55,7 +55,7 @@ namespace BeverageStoreManagement.DAL
             catch (Exception e)
             {
                 CustomMessageBox.Show(e.ToString());
-                return new List<Employee>();
+                return new List<Product>();
             }
             finally
             {
@@ -78,9 +78,14 @@ namespace BeverageStoreManagement.DAL
                 adapter.Fill(dataTable);
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
-                    Product acc = new Product(int.Parse(dataTable.Rows[i].ItemArray[0].ToString()), int.Parse(dataTable.Rows[i].ItemArray[1].ToString()),
-                        dataTable.Rows[i].ItemArray[2].ToString(), dataTable.Rows[i].ItemArray[3].ToString(),
-                        int.Parse(dataTable.Rows[i].ItemArray[4].ToString()), true, Convert.FromBase64String(dataTable.Rows[i].ItemArray[5].ToString()), false);
+                    Product acc = new Product(int.Parse(dataTable.Rows[i].ItemArray[0].ToString()), 
+                        int.Parse(dataTable.Rows[i].ItemArray[1].ToString()),
+                        dataTable.Rows[i].ItemArray[2].ToString(), 
+                        dataTable.Rows[i].ItemArray[3].ToString(),
+                        int.Parse(dataTable.Rows[i].ItemArray[4].ToString()),
+                        true, 
+                        Convert.FromBase64String(dataTable.Rows[i].ItemArray[5].ToString()), 
+                        false);
 
                     productList.Add(acc);
                 }
@@ -96,12 +101,12 @@ namespace BeverageStoreManagement.DAL
             }
         }
 
-        public Product GetProduct(string idProduct) // lấy thông tin hàng hóa khi biết id 
+        public Product GetProduct(string idProduct) 
         {
             try
             {
                 OpenConnection();
-                string queryString = "select * from SANPHAM where Product.idProduct = " + "'" + idProduct + "'";
+                string queryString = "select * from Product where Product.idProduct = " + "'" + idProduct + "'";
 
                 SqlCommand command = new SqlCommand(queryString, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -110,7 +115,7 @@ namespace BeverageStoreManagement.DAL
                 adapter.Fill(dataTable);
 
                 Product res = new Product(int.Parse(idProduct), int.Parse( dataTable.Rows[0].ItemArray[1].ToString()),
-                    dataTable.Rows[2].ItemArray[1].ToString(),"", int.Parse(dataTable.Rows[0].ItemArray[4].ToString()), (bool)dataTable.Rows[0].ItemArray[5],
+                    dataTable.Rows[0].ItemArray[1].ToString(),"", int.Parse(dataTable.Rows[0].ItemArray[4].ToString()), (bool)dataTable.Rows[0].ItemArray[5],
                     Convert.FromBase64String(dataTable.Rows[0].ItemArray[6].ToString()), (bool)dataTable.Rows[0].ItemArray[7]);
                 return res;
             }
@@ -283,6 +288,53 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
+        public int UpdateProduct(Product product)
+        {
+            try
+            {
+                OpenConnection();
+                int result;
+                if (product.Image == null)
+                {
+                    string queryStr = "UPDATE Product SET idProductType=@idProductType, nameProduct=@nameProduct, description=@description, price=@price, status=@status WHERE idProduct=@idProduct";
+                    SqlCommand command = new SqlCommand(queryStr, conn);
+                    command.Parameters.AddWithValue("@idProduct", product.IdProduct.ToString());
+                    command.Parameters.AddWithValue("@idProductType", product.IdProductType.ToString());
+                    command.Parameters.AddWithValue("@nameProduct", product.NameProduct);
+                    command.Parameters.AddWithValue("@description", product.Description);
+                    command.Parameters.AddWithValue("@price", product.Price.ToString());
+                    command.Parameters.AddWithValue("@status", product.Status.ToString());
 
+                    result = command.ExecuteNonQuery();
+                }
+                else
+                {
+                    string queryStr = "UPDATE Product SET idProductType=@idProductType, nameProduct=@nameProduct, description=@description, price=@price, status=@status, image=@image WHERE idProduct=@idProduct";
+                    SqlCommand command = new SqlCommand(queryStr, conn);
+                    command.Parameters.AddWithValue("@idProduct", product.IdProduct.ToString());
+                    command.Parameters.AddWithValue("@idProductType", product.IdProductType.ToString());
+                    command.Parameters.AddWithValue("@nameProduct", product.NameProduct);
+                    command.Parameters.AddWithValue("@description", product.Description);
+                    command.Parameters.AddWithValue("@price", product.Price.ToString());
+                    command.Parameters.AddWithValue("@status", product.Status.ToString());
+                    command.Parameters.AddWithValue("@image", Convert.ToBase64String(product.Image));
+
+                    result = command.ExecuteNonQuery();
+                }
+
+                
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
     }
 }

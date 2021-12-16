@@ -31,8 +31,7 @@
             </Grid.RowDefinitions>
             <Image x:Name="imgProduct"
                    Grid.Row="0"
-                   Width="200"
-                   Height="170" />
+                   />
             <TextBlock x:Name="idProduct"
                        Grid.Row="1"
                        Text="Nike AF 1/1"
