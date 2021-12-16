@@ -15,37 +15,37 @@ namespace BeverageStoreManagement.Test
         [Test]
         public void testCase1()
         {
-            Assert.AreEqual(3, baseViewModel.ConvertToType("Milk Tea"));
+            Assert.AreEqual(3, baseViewModel.ConvertTypeToInt("Milk Tea"));
         }
         [Test]
         public void testCase2()
         {
-            Assert.AreEqual(1, baseViewModel.ConvertToType("Coffee"));
+            Assert.AreEqual(1, baseViewModel.ConvertTypeToInt("Coffee"));
         }
         [Test]
         public void testCase3()
         {
-            Assert.AreEqual(2, baseViewModel.ConvertToType("Tea"));
+            Assert.AreEqual(2, baseViewModel.ConvertTypeToInt("Tea"));
         }
         [Test]
         public void testCase4()
         {
-            Assert.AreEqual(4, baseViewModel.ConvertToType("Fruit Tea"));
+            Assert.AreEqual(4, baseViewModel.ConvertTypeToInt("Fruit Tea"));
         }
         [Test]
         public void testCase5()
         {
-            Assert.AreEqual(5, baseViewModel.ConvertToType("Snacks"));
+            Assert.AreEqual(5, baseViewModel.ConvertTypeToInt("Snacks"));
         }
         [Test]
         public void testCase6()
         {
-            Assert.AreEqual(0, baseViewModel.ConvertToType(""));
+            Assert.AreEqual(0, baseViewModel.ConvertTypeToInt(""));
         }
         [Test]
         public void testCase7()
         {
-            Assert.AreEqual(0, baseViewModel.ConvertToType(null));
+            Assert.AreEqual(0, baseViewModel.ConvertTypeToInt(null));
         }
     }
 }
