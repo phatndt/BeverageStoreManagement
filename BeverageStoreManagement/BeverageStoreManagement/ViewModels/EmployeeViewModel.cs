@@ -25,7 +25,7 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand saveAddEmployeeCommand { get; set; }
         public string Name { get => name; set => name = value; }
 
-        //ChangeInformationEmployee
+        //ChangeInformationEmployee 
         public ICommand SaveChangeInformationEmployeeCommand { get; set; }
 
         //grd 
@@ -56,8 +56,7 @@ namespace BeverageStoreManagement.ViewModels
         {
             MessageBoxResult messageBoxResult = CustomMessageBox.ShowYesNo("Confirm delelte employee!", "Information", "Yes", "No", MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.Yes)
-            {
-
+            { 
                 int idEmployee = int.Parse(parameter.id.Text);
                 EmployeeDAL.Instance.DeleteEmployeeById(idEmployee); Notification.Instance.Success("Delete Employee Success");
                 LoadEmployee(mainWindow);

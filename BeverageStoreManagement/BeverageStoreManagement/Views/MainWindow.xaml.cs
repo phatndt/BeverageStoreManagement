@@ -80,7 +80,7 @@ namespace BeverageStoreManagement
         //{
         //    PagesNavigation.Content = new EmployeePage();
         //}
-        
+
         //private void PagesNavigation_Navigated(object sender, NavigationEventArgs e)
         //{
 

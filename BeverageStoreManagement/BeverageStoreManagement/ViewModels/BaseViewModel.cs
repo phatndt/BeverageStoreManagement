@@ -5,7 +5,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BeverageStoreManagement.ViewModels
 {
@@ -39,6 +41,18 @@ namespace BeverageStoreManagement.ViewModels
             }
 
             return long.Parse(tmp);
+        }
+
+        public void NumberValidationTextBox(object sender, KeyEventArgs e)
+        {
+
+            e.Handled = e.Key == Key.Space;
+        }
+
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
