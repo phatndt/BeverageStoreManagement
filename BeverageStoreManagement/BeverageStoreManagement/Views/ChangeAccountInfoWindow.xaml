@@ -1,0 +1,192 @@
+﻿<Window x:Class="BeverageStoreManagement.Views.ChangeAccountInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeverageStoreManagement.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        mc:Ignorable="d"
+        Height="510" Width="400"
+        Name="wdUpdateAccount"
+        DataContext="{StaticResource AccountVM}">
+    <Border CornerRadius="10"
+            Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="90" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label Content="UPDATE ACCOUNT INFORMATION"
+                       FontSize="20"
+                       FontFamily="poppins"
+                       FontWeight="Bold"
+                       Foreground="{DynamicResource Blue2}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Image Source="/BeverageStoreManagement;component/Resources/Images/update.png" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Rectangle HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Height="40"
+                           Width="330"
+                           RadiusY="6"
+                           RadiusX="6"
+                           Stroke="{DynamicResource PrimaryGrayColor}"
+                           Margin="0 0 0 0" 
+                           Visibility="Hidden"/>
+                <TextBox x:Name="txtUpdateIDEmployee"
+                         materialDesign:HintAssist.Hint="Id Employee"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Cursor="IBeam"
+                         Height="40"
+                         Width="300"
+                         FontSize="16"
+                         BorderThickness="0"
+                         MaxLines="1"
+                         Padding="0"
+                         Foreground="{DynamicResource Blue2}"
+                         Margin="20 0 20 0"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         FontWeight="SemiBold"
+                         SelectionBrush="{x:Null}"
+                         CaretBrush="{x:Null}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                         MaxLength="3" 
+                         Visibility="Hidden"/>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewTextInput">
+                        <ei:CallMethodAction TargetObject="{Binding }"
+                                             MethodName="NumberValidationTextBox" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Rectangle HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Height="40"
+                           Width="330"
+                           RadiusY="6"
+                           RadiusX="6"
+                           Stroke="{DynamicResource PrimaryGrayColor}"
+                           Margin="0 0 0 0" />
+                <TextBox x:Name="txtUpdateUsername"
+                         materialDesign:HintAssist.Hint="User name"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Cursor="IBeam"
+                         Height="40"
+                         Width="300"
+                         FontSize="16"
+                         BorderThickness="0"
+                         Padding="0"
+                         Foreground="{DynamicResource Blue2}"
+                         Margin="20 0 20 0"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         FontWeight="SemiBold"
+                         SelectionBrush="{x:Null}"
+                         CaretBrush="{x:Null}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                         MaxLength="15"
+                         MaxLines="1" 
+                         IsReadOnly="True"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Rectangle HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Height="40"
+                           Width="330"
+                           RadiusY="6"
+                           RadiusX="6"
+                           Stroke="{DynamicResource PrimaryGrayColor}"
+                           Margin="0 0 0 0" />
+                <TextBox x:Name="txtUpdatePassword"
+                         materialDesign:HintAssist.Hint="New password"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Cursor="IBeam"
+                         Height="40"
+                         Width="300"
+                         FontSize="16"
+                         BorderThickness="0"
+                         Padding="0"
+                         Foreground="{DynamicResource Blue2}"
+                         Margin="20 0 20 0"
+                         HorizontalContentAlignment="Left"
+                         VerticalContentAlignment="Center"
+                         FontWeight="SemiBold"
+                         SelectionBrush="{x:Null}"
+                         CaretBrush="{x:Null}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                         MaxLength="15"
+                         MaxLines="1" />
+            </Grid>
+
+            <Grid Grid.Row="5">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button x:Name="btnCancleAccountUpdate"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="110"
+                            Height="45"
+                            Background="{DynamicResource White}"
+                            Content="Cancel"
+                            FontSize="18"
+                            FontFamily="Poppins"
+                            FontWeight="DemiBold"
+                            Foreground="{DynamicResource Blue2}"
+                            BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            Margin="0 0 20 0"
+                            Command="{Binding closeUpdateInfoCommand}"
+                            CommandParameter="{Binding ElementName=wdUpdateAccount}" />
+
+                    <Button x:Name="btnSaveUpdateAccount"
+                        HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="110"
+                            Height="45"
+                            Background="{DynamicResource Blue2}"
+                            Content="Save"
+                            FontSize="18"
+                            FontFamily="Poppins"
+                            FontWeight="DemiBold"
+                            BorderThickness="0"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            Margin="20 0 0 0"
+                            Command="{Binding saveUpdateInfoCommand}"
+                            CommandParameter="{Binding ElementName=wdUpdateAccount}">
+
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock x:Name="txtIdAccount"
+                       Grid.Column="0"
+                       Text="1000"
+                       FontSize="18"
+                       FontFamily="Poppins"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Visibility="Hidden" />
+        </Grid>
+    </Border>
+</Window>

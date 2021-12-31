@@ -1427,11 +1427,11 @@
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="2*" />
                                             <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1.5*" />
                                             <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="1.3*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="0.4*" />
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
@@ -1570,7 +1570,7 @@
                                       VerticalAlignment="Top">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   HorizontalScrollBarVisibility="Disabled">
-                                        <StackPanel x:Name="stkGoodBill"
+                                        <StackPanel x:Name="stkMaterial"
                                                     Width="1160"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Left">
@@ -1588,7 +1588,6 @@
                                             <uc:GoodsViewControl></uc:GoodsViewControl>
                                             <uc:GoodsViewControl></uc:GoodsViewControl>
                                             <uc:GoodsViewControl></uc:GoodsViewControl>
-
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2033,7 +2032,7 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdReceiptVoucher"
-                            Visibility="Visible"
+                            Visibility="Hidden"
                             DataContext="{StaticResource ReceiptVoucherVM}">
                         <Grid>
                             <i:Interaction.Triggers>
@@ -2591,9 +2590,9 @@
                     </Border>
                     <!--10-->
                     <Border CornerRadius="8"
-                            Background="{DynamicResource SecundaryGrayColor}"
+                            Background="{DynamicResource White}"
                             x:Name="grdAccount"
-                            Visibility="Collapsed"
+                            Visibility="Visible"
                             DataContext="{StaticResource AccountVM}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -2619,78 +2618,164 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Grid Grid.Column="0">
-                                    <Border Background="{DynamicResource SecundaryGrayColor}"
-                                            Margin="25 0 0 0">
-                                        <WrapPanel>
-                                            <uc:AccountControl Height="170"
-                                                               Width="175"
-                                                               Padding="0 0 15 15" />
-                                            <uc:AccountControl Height="170"
-                                                               Width="175"
-                                                               Padding="0 0 15 15" />
-                                            <uc:AccountControl Height="170"
-                                                               Width="175"
-                                                               Padding="0 0 15 15" />
-                                            <uc:AccountControl Height="170"
-                                                               Width="175"
-                                                               Padding="0 0 15 15" />
-                                            <uc:AccountControl Height="170"
-                                                               Width="175"
-                                                               Padding="0 0 15 15" />
-                                            <uc:AccountControl Height="170"
-                                                               Width="175"
-                                                               Padding="0 0 15 15" />
-                                            <uc:AccountControl Height="170"
-                                                               Width="175"
-                                                               Padding="0 0 15 15" />
-                                        </WrapPanel>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Loaded">
+                                            <i:InvokeCommandAction Command="{Binding LoadAccountCommand}"
+                                                                   CommandParameter="{Binding ElementName=wdMain}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+
+                                    <Border Background="Transparent"
+                                            Margin="20 0 0 0"
+                                            Visibility="Visible">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="9*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Label Content="IDs"
+                                                       FontFamily="poppins"
+                                                       FontSize="22"
+                                                       FontWeight="Bold"
+                                                       VerticalContentAlignment="Center"
+                                                       Margin="50 0 0 0" />
+                                                <Label Content="Username"
+                                                       FontFamily="poppins"
+                                                       FontSize="22"
+                                                       FontWeight="Bold"
+                                                       VerticalContentAlignment="Center"
+                                                       Margin="160 0 0 0" />
+                                                <Label Content="Position"
+                                                       FontFamily="poppins"
+                                                       FontSize="22"
+                                                       FontWeight="Bold"
+                                                       VerticalContentAlignment="Center"
+                                                       Margin="475 0 0 0" />
+                                                <Label Content="Actions"
+                                                       FontFamily="poppins"
+                                                       FontSize="22"
+                                                       FontWeight="Bold"
+                                                       VerticalContentAlignment="Center"
+                                                       Margin="730 0 0 0" />
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <ScrollViewer>
+                                                    <StackPanel x:Name="stkAccount">
+                                                        <uc:AccountControl2 Height="85"
+                                                                            Width="800"
+                                                                            Padding="0 0 15 12" />
+                                                        <uc:AccountControl2 Height="85"
+                                                                            Width="800"
+                                                                            Padding="0 0 15 12" />
+                                                        <uc:AccountControl2 Height="85"
+                                                                            Width="800"
+                                                                            Padding="0 0 15 12" />
+                                                        <uc:AccountControl2 Height="85"
+                                                                            Width="800"
+                                                                            Padding="0 0 15 12" />
+                                                        <uc:AccountControl2 Height="85"
+                                                                            Width="800"
+                                                                            Padding="0 0 15 12" />
+                                                        <uc:AccountControl2 Height="85"
+                                                                            Width="800"
+                                                                            Padding="0 0 15 12" />
+                                                        <uc:AccountControl2 Height="85"
+                                                                            Width="800"
+                                                                            Padding="0 0 15 12" />
+                                                    </StackPanel>
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </Grid>
                                     </Border>
                                 </Grid>
 
                                 <Grid Grid.Column="1">
                                     <Border Margin="0 0 20 20"
                                             CornerRadius="10"
-                                            Background="{DynamicResource PrimaryBackgroundColor}">
+                                            Background="{DynamicResource White}">
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="15" />
-                                                <RowDefinition Height="80" />
-                                                <RowDefinition Height="80" />
-                                                <RowDefinition Height="80" />
-                                                <RowDefinition Height="80" />
+                                                <RowDefinition Height="255" />
+                                                <RowDefinition Height="70" />
                                                 <RowDefinition Height="80" />
                                                 <RowDefinition Height="80" />
                                                 <RowDefinition Height="80" />
                                             </Grid.RowDefinitions>
 
+                                            <Grid Grid.Row="0">
+                                                <Image Source="/BeverageStoreManagement;component/Resources/Images/add_information.png" />
+                                            </Grid>
+
                                             <Grid Grid.Row="1">
-                                                <Rectangle Width="330"
-                                                           Height="40"
-                                                           RadiusY="6"
-                                                           RadiusX="6"
-                                                           Margin="0,0,20,0"
-                                                           Stroke="{DynamicResource PrimaryGrayColor}"
-                                                           HorizontalAlignment="Right"
-                                                           VerticalAlignment="Center" />
-                                                <TextBox x:Name="txtEmpName"
-                                                         materialDesign:HintAssist.Hint="Employee's name"
-                                                         HorizontalAlignment="Right"
-                                                         VerticalAlignment="Center"
-                                                         Width="320"
-                                                         FontSize="16"
-                                                         BorderThickness="0"
-                                                         MaxLines="1"
-                                                         Padding="0"
-                                                         Foreground="{DynamicResource Blue2}"
-                                                         Margin="0,20,20,21"
-                                                         Height="40"
-                                                         HorizontalContentAlignment="Left"
-                                                         VerticalContentAlignment="Center"
-                                                         SelectionBrush="{x:Null}"
-                                                         FontWeight="SemiBold"
-                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
-                                                         Grid.ColumnSpan="2">
-                                                </TextBox>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2.5*" />
+                                                    <ColumnDefinition Width="7.5*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid Grid.Column="0"
+                                                      Margin="10">
+                                                    <Rectangle HorizontalAlignment="Right"
+                                                               VerticalAlignment="Center"
+                                                               Height="40"
+                                                               Width="60"
+                                                               RadiusY="6"
+                                                               RadiusX="6"
+                                                               Stroke="{DynamicResource PrimaryGrayColor}"
+                                                               Margin="10 0 0 0" />
+                                                    <ComboBox x:Name="cbbIDEmployee"
+                                                              MaxDropDownHeight="80"
+                                                              FontFamily="poppins"
+                                                              FontSize="18"
+                                                              Foreground="{DynamicResource TextColor}"
+                                                              BorderBrush="{DynamicResource Blue2}"
+                                                              Width="40"
+                                                              Height="30"
+                                                              FontWeight="Bold"
+                                                              Margin="10 0 0 6.6"
+                                                              VerticalAlignment="Bottom">
+
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="SelectionChanged">
+                                                                <ei:CallMethodAction TargetObject="{Binding }"
+                                                                                     MethodName="setFullNameToTXTField" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </ComboBox>
+                                                </Grid>
+
+                                                <Grid Grid.Column="1">
+                                                    <Rectangle HorizontalAlignment="Right"
+                                                               VerticalAlignment="Center"
+                                                               Height="2"
+                                                               Width="250"
+                                                               RadiusY="6"
+                                                               RadiusX="6"
+                                                               Stroke="{DynamicResource SecundaryGrayColorLight}"
+                                                               Margin="0 35 20 0" />
+                                                    <TextBox x:Name="txtFullName"
+                                                             materialDesign:HintAssist.Hint="Full name"
+                                                             HorizontalAlignment="Right"
+                                                             VerticalAlignment="Center"
+                                                             Cursor="IBeam"
+                                                             Height="40"
+                                                             Width="245"
+                                                             FontSize="16"
+                                                             BorderThickness="0"
+                                                             MaxLines="1"
+                                                             Padding="0"
+                                                             Foreground="{DynamicResource Blue2}"
+                                                             Margin="0,16,21.6,15.2"
+                                                             HorizontalContentAlignment="Left"
+                                                             VerticalContentAlignment="Center"
+                                                             FontWeight="SemiBold"
+                                                             SelectionBrush="{x:Null}"
+                                                             CaretBrush="{x:Null}"
+                                                             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                                                             IsReadOnly="True" />
+                                                </Grid>
                                             </Grid>
 
                                             <Grid Grid.Row="2">
@@ -2702,133 +2787,29 @@
                                                            RadiusX="6"
                                                            Stroke="{DynamicResource PrimaryGrayColor}"
                                                            Margin="0 0 20 0" />
-                                                <TextBox x:Name="txtEmployeeDateOfBirth"
-                                                         materialDesign:HintAssist.Hint="Date of Birth"
-                                                         HorizontalAlignment="Right"
-                                                         VerticalAlignment="Center"
-                                                         Cursor="IBeam"
-                                                         Height="40"
-                                                         Width="320"
-                                                         FontSize="16"
-                                                         BorderThickness="0"
-                                                         MaxLines="1"
-                                                         Padding="0"
-                                                         Foreground="{DynamicResource Blue2}"
-                                                         Margin="0 0 20 0"
-                                                         HorizontalContentAlignment="Left"
-                                                         VerticalContentAlignment="Center"
-                                                         FontWeight="SemiBold"
-                                                         SelectionBrush="{x:Null}"
-                                                         CaretBrush="{x:Null}"
-                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
-                                            </Grid>
-
-                                            <Grid Grid.Row="3">
-                                                <Rectangle HorizontalAlignment="Right"
-                                                           VerticalAlignment="Center"
-                                                           Height="40"
-                                                           Width="330"
-                                                           RadiusY="6"
-                                                           RadiusX="6"
-                                                           Stroke="{DynamicResource PrimaryGrayColor}"
-                                                           Margin="0 0 20 0" />
-                                                <TextBox x:Name="txtEmployeePosition"
-                                                         materialDesign:HintAssist.Hint="Position"
-                                                         HorizontalAlignment="Right"
-                                                         VerticalAlignment="Center"
-                                                         Cursor="IBeam"
-                                                         Height="40"
-                                                         Width="320"
-                                                         FontSize="16"
-                                                         BorderThickness="0"
-                                                         MaxLines="1"
-                                                         Padding="0"
-                                                         Foreground="{DynamicResource Blue2}"
-                                                         Margin="0 0 20 0"
-                                                         HorizontalContentAlignment="Left"
-                                                         VerticalContentAlignment="Center"
-                                                         FontWeight="SemiBold"
-                                                         SelectionBrush="{x:Null}"
-                                                         CaretBrush="{x:Null}"
-                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
-                                            </Grid>
-
-                                            <Grid Grid.Row="4">
-                                                <Label Content="Gender"
-                                                       HorizontalAlignment="Left"
-                                                       VerticalAlignment="Center"
-                                                       FontSize="20"
-                                                       FontWeight="SemiBold"
-                                                       Foreground="{DynamicResource Blue2}"
-                                                       Height="40"
-                                                       Margin="20 0 0 0" />
-                                                <StackPanel Orientation="Horizontal"
-                                                            Height="30"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Center"
-                                                            Margin="0 0 20 0">
-                                                    <RadioButton x:Name="rdoPay"
-                                                                 Style="{StaticResource MaterialDesignLightRadioButton}"
-                                                                 IsChecked="True"
-                                                                 Content="Male"
-                                                                 Height="30"
-                                                                 Width="100"
-                                                                 Padding="20,0,0,0"
-                                                                 FontSize="16"
-                                                                 FontWeight="Bold"
-                                                                 BorderBrush="{DynamicResource Blue2}"
-                                                                 Background="{DynamicResource Blue2}"
-                                                                 HorizontalAlignment="Left"
-                                                                 VerticalAlignment="Center"
-                                                                 GroupName="Pay?" />
-                                                    <RadioButton x:Name="rdoNotPay"
-                                                                 Style="{StaticResource MaterialDesignLightRadioButton}"
-                                                                 BorderBrush="{DynamicResource Blue2}"
-                                                                 Background="{DynamicResource Blue2}"
-                                                                 Content="Female"
-                                                                 Padding="20,0,0,0"
-                                                                 FontSize="16"
-                                                                 FontWeight="Bold"
-                                                                 Height="30"
-                                                                 Width="100"
-                                                                 VerticalAlignment="Center"
-                                                                 HorizontalAlignment="Left"
-                                                                 Margin="20,0,0,0"
-                                                                 GroupName="Pay?" />
-                                                </StackPanel>
-                                            </Grid>
-
-                                            <Grid Grid.Row="5">
-                                                <Rectangle HorizontalAlignment="Right"
-                                                           VerticalAlignment="Center"
-                                                           Height="40"
-                                                           Width="330"
-                                                           RadiusY="6"
-                                                           RadiusX="6"
-                                                           Stroke="{DynamicResource PrimaryGrayColor}"
-                                                           Margin="0 0 20 0" />
-                                                <TextBox x:Name="txtUserName"
+                                                <TextBox x:Name="txtUsername"
                                                          materialDesign:HintAssist.Hint="User name"
                                                          HorizontalAlignment="Right"
                                                          VerticalAlignment="Center"
                                                          Cursor="IBeam"
                                                          Height="40"
-                                                         Width="320"
+                                                         Width="300"
                                                          FontSize="16"
                                                          BorderThickness="0"
-                                                         MaxLines="1"
                                                          Padding="0"
                                                          Foreground="{DynamicResource Blue2}"
-                                                         Margin="0 0 20 0"
+                                                         Margin="0,21,36.4,19.8"
                                                          HorizontalContentAlignment="Left"
                                                          VerticalContentAlignment="Center"
                                                          FontWeight="SemiBold"
                                                          SelectionBrush="{x:Null}"
                                                          CaretBrush="{x:Null}"
-                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
+                                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                                                         MaxLength="15"
+                                                         MaxLines="1" />
                                             </Grid>
 
-                                            <Grid Grid.Row="6">
+                                            <Grid Grid.Row="3">
                                                 <Rectangle HorizontalAlignment="Right"
                                                            VerticalAlignment="Center"
                                                            Height="40"
@@ -2843,34 +2824,37 @@
                                                          VerticalAlignment="Center"
                                                          Cursor="IBeam"
                                                          Height="40"
-                                                         Width="320"
+                                                         Width="300"
                                                          FontSize="16"
                                                          BorderThickness="0"
                                                          MaxLines="1"
                                                          Padding="0"
                                                          Foreground="{DynamicResource Blue2}"
-                                                         Margin="0 0 20 0"
+                                                         Margin="0,21,36.4,19.8"
                                                          HorizontalContentAlignment="Left"
                                                          VerticalContentAlignment="Center"
                                                          FontWeight="SemiBold"
                                                          SelectionBrush="{x:Null}"
                                                          CaretBrush="{x:Null}"
+                                                         MaxLength="15"
                                                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}" />
                                             </Grid>
 
-                                            <Grid Grid.Row="7">
+                                            <Grid Grid.Row="4">
                                                 <Button HorizontalAlignment="Right"
                                                         VerticalAlignment="Center"
                                                         Width="200"
                                                         Height="50"
                                                         Background="{DynamicResource Blue2}"
                                                         Margin="0 0 20 0"
-                                                        Content="+ Create New Account"
+                                                        Content="Create New Account"
                                                         FontSize="16"
                                                         FontFamily="Poppins"
                                                         FontWeight="DemiBold"
                                                         BorderThickness="0"
-                                                        materialDesign:ButtonAssist.CornerRadius="8" />
+                                                        materialDesign:ButtonAssist.CornerRadius="8"
+                                                        Command="{Binding saveAccountCommand}"
+                                                        CommandParameter="{Binding ElementName=wdMain}" />
                                             </Grid>
                                         </Grid>
                                     </Border>

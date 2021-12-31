@@ -11,7 +11,6 @@ namespace BeverageStoreManagement.DAL
 {
     class ProductDAL : Connection, BaseDAL
     {
-
         private static ProductDAL instance;
 
         public static ProductDAL Instance
