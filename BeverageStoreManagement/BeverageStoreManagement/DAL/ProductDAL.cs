@@ -247,7 +247,91 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
+        public Product GetProductById(int idProduct)
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "SELECT * FROM Product WHERE idProduct = @idProduct";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                command.Parameters.AddWithValue("@idProduct", idProduct);
+                SqlDataReader dataReader = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dataReader);
 
+                bool status = (bool)dt.Rows[0].ItemArray[5];
+                bool isDelete = (bool)dt.Rows[0].ItemArray[7];
+                byte[] image = Convert.FromBase64String(dt.Rows[0].ItemArray[6].ToString());
+
+                return new Product(
+                    int.Parse(dt.Rows[0].ItemArray[0].ToString()),
+                    int.Parse(dt.Rows[0].ItemArray[1].ToString()),
+                    dt.Rows[0].ItemArray[2].ToString(),
+                    dt.Rows[0].ItemArray[3].ToString(),
+                    int.Parse(dt.Rows[0].ItemArray[4].ToString()),
+                    status,
+                    image,
+                    isDelete);
+
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return new Product();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public int UpdateProduct(Product product)
+        {
+            try
+            {
+                OpenConnection();
+                int result;
+                if (product.Image == null)
+                {
+                    string queryStr = "UPDATE Product SET idProductType=@idProductType, nameProduct=@nameProduct, description=@description, price=@price, status=@status WHERE idProduct=@idProduct";
+                    SqlCommand command = new SqlCommand(queryStr, conn);
+                    command.Parameters.AddWithValue("@idProduct", product.IdProduct.ToString());
+                    command.Parameters.AddWithValue("@idProductType", product.IdProductType.ToString());
+                    command.Parameters.AddWithValue("@nameProduct", product.NameProduct);
+                    command.Parameters.AddWithValue("@description", product.Description);
+                    command.Parameters.AddWithValue("@price", product.Price.ToString());
+                    command.Parameters.AddWithValue("@status", product.Status.ToString());
+
+                    result = command.ExecuteNonQuery();
+                }
+                else
+                {
+                    string queryStr = "UPDATE Product SET idProductType=@idProductType, nameProduct=@nameProduct, description=@description, price=@price, status=@status, image=@image WHERE idProduct=@idProduct";
+                    SqlCommand command = new SqlCommand(queryStr, conn);
+                    command.Parameters.AddWithValue("@idProduct", product.IdProduct.ToString());
+                    command.Parameters.AddWithValue("@idProductType", product.IdProductType.ToString());
+                    command.Parameters.AddWithValue("@nameProduct", product.NameProduct);
+                    command.Parameters.AddWithValue("@description", product.Description);
+                    command.Parameters.AddWithValue("@price", product.Price.ToString());
+                    command.Parameters.AddWithValue("@status", product.Status.ToString());
+                    command.Parameters.AddWithValue("@image", Convert.ToBase64String(product.Image));
+
+                    result = command.ExecuteNonQuery();
+                }
+
+
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
         public List<string> GetNameType()
         {
             try

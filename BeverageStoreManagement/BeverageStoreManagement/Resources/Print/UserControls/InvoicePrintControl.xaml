@@ -57,7 +57,7 @@
                    Text="100.000"
                    Grid.Column="5" />
         <Rectangle Grid.ColumnSpan="6"
-                   Fill="{StaticResource Light}"
+                   Fill="#FFEBF0FF"
                    Height="2"
                    VerticalAlignment="Bottom" />
     </Grid>

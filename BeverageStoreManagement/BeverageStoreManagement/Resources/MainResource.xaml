@@ -25,7 +25,6 @@
     <viewmodels:SupplierViewModel x:Key="SupplierVM" />
     <viewmodels:SaleViewModel x:Key="SaleVM" />
     <viewmodels:InvoiceViewModel x:Key="InvoiceVM" />
-
     <models:Supplier x:Key="Supplier" />
     <models:PaymentVoucher x:Key="PaymentVoucher" />
     <models:ReceiptVoucher x:Key="ReceiptVoucher" />

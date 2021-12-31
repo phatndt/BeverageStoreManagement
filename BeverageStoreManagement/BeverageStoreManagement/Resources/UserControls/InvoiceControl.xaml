@@ -7,7 +7,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              Width="1260"
-             Height="40">
+             Height="40"
+             DataContext="{StaticResource InvoiceVM}"
+             x:Name="InvoiceUc">
     <Grid x:Name="grdMain"
           Background="{DynamicResource Blue9}">
         <Grid.ColumnDefinitions>
@@ -136,8 +138,8 @@
                    VerticalAlignment="Center" />
         <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="btnEditInvoice"
-                    Command="{Binding DeleteBillDetailCommand}"
-                    CommandParameter="{Binding ElementName=SaleBillUC}"
+                    Command="{Binding SeeDetailInvoiceCommand}"
+                    CommandParameter="{Binding ElementName=InvoiceUc}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="Edit Invoice"
                     Height="24"
@@ -151,7 +153,8 @@
                     Width="26"
                     HorizontalAlignment="Center"
                     FontWeight="SemiBold"
-                    Padding="0">
+                    Padding="0"
+                    >
                 <materialDesign:PackIcon Kind="Eye"
                                          Height="24"
                                          Width="24" />
