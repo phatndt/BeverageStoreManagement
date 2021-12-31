@@ -134,6 +134,9 @@
     <Compile Include="Resources\Expander.xaml.cs">
       <DependentUpon>Expander.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\AccountControl2.xaml.cs">
+      <DependentUpon>AccountControl2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\EmployeeControl.xaml.cs">
       <DependentUpon>EmployeeControl.xaml</DependentUpon>
     </Compile>
@@ -168,6 +171,7 @@
       <DependentUpon>SupplierControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util.cs" />
+    <Compile Include="Validations\AccountDALValidation.cs" />
     <Compile Include="Validations\EmployeeDALValidation.cs" />
     <Compile Include="Validations\NotNullValidation.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
@@ -184,6 +188,9 @@
     </Compile>
     <Compile Include="Views\AddReceiptVoucherWindow.xaml.cs">
       <DependentUpon>AddReceiptVoucherWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangeAccountInfoWindow.xaml.cs">
+      <DependentUpon>ChangeAccountInfoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ChangeProductWindow.xaml.cs">
       <DependentUpon>ChangeProductWindow.xaml</DependentUpon>
@@ -289,6 +296,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\UserControls\AccountControl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\UserControls\EmployeeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -350,6 +361,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddReceiptVoucherWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChangeAccountInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -516,6 +531,15 @@
     <Resource Include="Resources\Images\info.png" />
     <Resource Include="Resources\Images\succes.png" />
     <Resource Include="Resources\Images\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\add_information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\update.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\help.png" />
