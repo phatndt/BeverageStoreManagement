@@ -9,7 +9,8 @@
              x:Name="ProductUC"
              Height="355"
              Width="256"
-             Padding="25">
+             Padding="25"
+             DataContext="{StaticResource ProductPageVM}">
     <Border Background="White"
             BorderThickness="3"
             BorderBrush="{StaticResource Blue1}"
@@ -20,7 +21,7 @@
                 Opacity="0.3"
                 ShadowDepth="3"/>
         </Border.Effect>
-        <Grid>
+        <Grid x:Name="grdMain">
             <Grid.RowDefinitions>
                 <RowDefinition Height="6*" />
                 <RowDefinition />
@@ -30,8 +31,7 @@
             </Grid.RowDefinitions>
             <Image x:Name="imgProduct"
                    Grid.Row="0"
-                   Width="200"
-                   Height="170" />
+                   />
             <TextBlock x:Name="idProduct"
                        Grid.Row="1"
                        Text="Nike AF 1/1"
@@ -73,6 +73,8 @@
                     Width="58"
                     Height="35"
                     Margin="0 0 90 0"
+                    Command="{Binding OpenEditProductCommand}"
+                    CommandParameter="{Binding ElementName=ProductUC}"
                     Background="{StaticResource Blue1}"
                     materialDesign:ButtonAssist.CornerRadius="6"
                     BorderBrush="{x:Null}"
@@ -88,6 +90,8 @@
                     Width="58"
                     Height="35"
                     Margin="90 0 0 0"
+                    Command="{Binding DeleteProductCommand}"
+                    CommandParameter="{Binding ElementName=ProductUC}"
                     Background="{StaticResource Blue1}"
                     materialDesign:ButtonAssist.CornerRadius="6"
                     BorderBrush="{x:Null}"

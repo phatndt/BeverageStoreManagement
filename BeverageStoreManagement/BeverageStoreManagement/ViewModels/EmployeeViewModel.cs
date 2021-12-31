@@ -23,10 +23,12 @@ namespace BeverageStoreManagement.ViewModels
         private string name = null;
         public ICommand openAddEmployeeWindowCommand { get; set; }
         public ICommand saveAddEmployeeCommand { get; set; }
+        public ICommand ExitAddEmployeeCommand { get; set; }
         public string Name { get => name; set => name = value; }
 
         //ChangeInformationEmployee 
         public ICommand SaveChangeInformationEmployeeCommand { get; set; }
+        public ICommand ExitUpdateEmployeeCommand { get; set; }
 
         //grd 
         public ICommand LoadEmployeeCommand { get; set; }
@@ -42,8 +44,10 @@ namespace BeverageStoreManagement.ViewModels
         {
             openAddEmployeeWindowCommand = new RelayCommand<EmployeePage>((parameter) => true, (parameter) => openAddEmployeeWindow(parameter));
             saveAddEmployeeCommand = new RelayCommand<AddEmployeeWindow>((parameter) => true, (parameter) => SaveAddEmployee(parameter));
+            ExitAddEmployeeCommand = new RelayCommand<AddEmployeeWindow>(parameter => true, parameter => parameter.Close());
 
             SaveChangeInformationEmployeeCommand = new RelayCommand<ChangeEmployeeWindow>((parameter) => true, (parameter) => SaveChangeInformationEmployee(parameter));
+            ExitUpdateEmployeeCommand = new RelayCommand<AddEmployeeWindow>(parameter => true, parameter => parameter.Close());
 
             LoadEmployeeCommand = new RelayCommand<MainWindow>((parameter) => true, (parameter) => LoadEmployee(parameter));
 
@@ -156,6 +160,18 @@ namespace BeverageStoreManagement.ViewModels
             {
                 CustomMessageBox.Show("Please enter gender!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtGenderEmployee.Focus();
+                return false;
+            }
+            if (parameter.txtAddressEmployee.Text == "")
+            {
+                CustomMessageBox.Show("Please enter address!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtAddressEmployee.Focus();
+                return false;
+            }
+            if (parameter.txtphoneNumberEmployee.Text == "")
+            {
+                CustomMessageBox.Show("Please enter phone number!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtphoneNumberEmployee.Focus();
                 return false;
             }
             if (parameter.txtPositionEmployee.Text == "")

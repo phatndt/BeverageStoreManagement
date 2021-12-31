@@ -22,7 +22,8 @@
         DataContext="{StaticResource HomeVM}">
     <Border CornerRadius="8"
             Background="{DynamicResource PrimaryBackgroundColor}">
-        <Grid>
+        <Grid Height="800"
+              VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="1320" />
@@ -372,16 +373,21 @@
                     </StackPanel>
                     <Grid Grid.Row="3"
                           VerticalAlignment="Bottom"
-                          Width="80"
                           Margin="0 0 0 20">
-                        <Ellipse Width="40"
+                        <Button Style="{StaticResource BlueButton}"
+                                Width="120"
+                                Height="45"
+                                Content="Logout"
+                                Command="{Binding LogoutCommand}"
+                                CommandParameter="{Binding ElementName=wdMain}" />
+                        <!--<Ellipse Width="40"
                                  Height="40"
                                  HorizontalAlignment="Center"
                                  VerticalAlignment="Center">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="/BeverageStoreManagement;component/Resources/Images/logo.png" />
                             </Ellipse.Fill>
-                        </Ellipse>
+                        </Ellipse>-->
                     </Grid>
                 </Grid>
 
@@ -1247,11 +1253,19 @@
                           x:Name="grdProduct"
                           DataContext="{StaticResource ProductPageVM}"
                           Visibility="Collapsed">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadProductCommand}"
+                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1.1*" />
-                            <RowDefinition Height="9*" />
+                            <RowDefinition Height="79*" />
+                            <RowDefinition Height="342*" />
+                            <RowDefinition Height="309*" />
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0">
+                        <Grid Grid.Row="0"
+                              Margin="0,0,0,0.2">
                             <TextBlock Text="Product Management"
                                        FontFamily="Poppins"
                                        FontSize="52"
@@ -1260,15 +1274,10 @@
                                        VerticalAlignment="Bottom"
                                        Foreground="{DynamicResource Blue1}" />
                         </Grid>
-                        <ScrollViewer Grid.Row="1">
-                            <WrapPanel>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
-                                <uc:ProductViewControl></uc:ProductViewControl>
+                        <ScrollViewer Margin="0,79,0,0.4"
+                                      Grid.RowSpan="3"
+                                      VerticalAlignment="Top">
+                            <WrapPanel x:Name="stkProduct">
 
                                 <Border Background="White"
                                         BorderThickness="3"
@@ -1277,12 +1286,12 @@
                                         Height="305"
                                         Margin="25 0 0 0"
                                         Width="206"
-                                        Padding="25">
+                                        Padding="30">
                                     <Button x:Name="btnEdit"
                                             Grid.Row="4"
                                             Content="+"
                                             Height="300"
-                                            Width="240"
+                                            Width="256"
                                             BorderBrush="White"
                                             BorderThickness="0"
                                             FontSize="100"
@@ -1297,6 +1306,9 @@
                                             Command="{Binding OpenAddProductCommand}">
                                     </Button>
                                 </Border>
+
+                                <Border Background="White"
+                                        Width="26" />
                             </WrapPanel>
                         </ScrollViewer>
                     </Grid>
@@ -1304,7 +1316,13 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdMaterial"
                           DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Collapsed">
+                          Visibility="Visible">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadMaterialCommand}"
+                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="9*" />
@@ -1454,11 +1472,11 @@
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="2*" />
                                             <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1.5*" />
                                             <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="1.3*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="0.4*" />
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
@@ -1597,24 +1615,11 @@
                                       VerticalAlignment="Top">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   HorizontalScrollBarVisibility="Disabled">
-                                        <StackPanel x:Name="stkGoodBill"
+                                        <StackPanel x:Name="stkMaterial"
                                                     Width="1160"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Left">
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
+                                            
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -1625,7 +1630,7 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdImportBill"
                           DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Visible">
+                          Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
                             <RowDefinition Height="5*" />
@@ -1941,36 +1946,27 @@
                             Visibility="Collapsed"
                             DataContext="{StaticResource PaymentVoucherVM}">
                         <Grid>
-                            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <i:InvokeCommandAction Command="{Binding LoadInvoiceCommand}"
-                                           CommandParameter="{Binding ElementName=pageInvoice}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadPaymentVoucherCommand}"
+                                                           CommandParameter="{Binding ElementName=wdMain}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Button Height="50"
-                                        Width="220"
-                                        Content="Add Payment Voucher"
-                                        HorizontalAlignment="Right"
-                                        FontSize="18"
-                                        FontFamily="poppins"
-                                        Background="{DynamicResource Blue2}"
-                                        materialDesign:ButtonAssist.CornerRadius="7"
-                                        BorderThickness="0"
-                                        FlowDirection="LeftToRight"
-                                        Margin="0 0 20 0"
+                                <Button Style="{StaticResource MainButton}"
+                                        Content="Add payment voucher"
                                         Command="{Binding OpenAddPaymentVoucherWindowCommand}"
-                                        CommandParameter="{Binding ElementName=pagePaymentVoucher}" />
+                                        CommandParameter="{Binding ElementName=wdMain}" />
                             </Grid>
                             <Grid Grid.Row="1"
                                   x:Name="grd_payment_voucher"
                                   Visibility="Visible">
                                 <Border Grid.Row="1"
-                                        Height="50"
+                                        Height="45"
                                         Width="1260"
                                         CornerRadius="8 8 0 0"
                                         VerticalAlignment="Top"
@@ -1988,13 +1984,8 @@
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <Label Content="Id Bill"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                            <Label Content="Id bill"
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2004,13 +1995,9 @@
                                         </Grid>
                                         <Grid Grid.Column="1">
                                             <Label Content="Employee"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
+                                                   Style="{StaticResource SupplierTitle}"
                                                    Margin="20 0 0 0"
-                                                   HorizontalAlignment="Left"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   HorizontalAlignment="Left" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2020,12 +2007,7 @@
                                         </Grid>
                                         <Grid Grid.Column="2">
                                             <Label Content="Time"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2035,12 +2017,7 @@
                                         </Grid>
                                         <Grid Grid.Column="3">
                                             <Label Content="Money"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2050,12 +2027,7 @@
                                         </Grid>
                                         <Grid Grid.Column="4">
                                             <Label Content="Note"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2064,13 +2036,8 @@
                                                        VerticalAlignment="Center" />
                                         </Grid>
                                         <Grid Grid.Column="5">
-                                            <Label Content="Id Import Bill"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                            <Label Content="Id import bill"
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2080,38 +2047,13 @@
                                         </Grid>
                                     </Grid>
                                 </Border>
-                                <Grid Margin="0 50 0 20"
+                                <Grid Margin="0 45 0 20"
                                       Width="1260">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   HorizontalScrollBarVisibility="Disabled">
                                         <StackPanel x:Name="stkPaymentVoucher"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Center">
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
-                                            <uc:PaymentVoucherControl />
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2122,30 +2064,22 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdReceiptVoucher"
-                            Visibility="Collapsed">
+                            Visibility="Hidden"
+                            DataContext="{StaticResource ReceiptVoucherVM}">
                         <Grid>
-                            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="Loaded">
-                    <i:InvokeCommandAction Command="{Binding LoadInvoiceCommand}"
-                                           CommandParameter="{Binding ElementName=pageInvoice}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadReceiptVoucherCommand}"
+                                                           CommandParameter="{Binding ElementName=wdMain}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="80" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Button Height="50"
-                                        Width="220"
-                                        Content="Add Receipt Voucher"
-                                        HorizontalAlignment="Right"
-                                        FontSize="18"
-                                        FontFamily="poppins"
-                                        Background="{DynamicResource Blue2}"
-                                        materialDesign:ButtonAssist.CornerRadius="7"
-                                        BorderThickness="0"
-                                        FlowDirection="LeftToRight"
-                                        Margin="0 0 20 0"
+                                <Button Style="{StaticResource MainButton}"
+                                        Content="Add receipt voucher"
                                         Command="{Binding OpenAddReceiptVoucherWindowCommand}"
                                         CommandParameter="{Binding ElementName=pageReceiptVoucher}" />
                             </Grid>
@@ -2153,7 +2087,7 @@
                                   x:Name="grd_receipt_voucher"
                                   Visibility="Visible">
                                 <Border Grid.Row="1"
-                                        Height="50"
+                                        Height="45"
                                         Width="1260"
                                         CornerRadius="8 8 0 0"
                                         VerticalAlignment="Top"
@@ -2170,13 +2104,8 @@
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <Label Content="Id Bill"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                            <Label Content="Id bill"
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2186,13 +2115,9 @@
                                         </Grid>
                                         <Grid Grid.Column="1">
                                             <Label Content="Employee"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
                                                    Margin="20 0 0 0"
                                                    HorizontalAlignment="Left"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2202,12 +2127,7 @@
                                         </Grid>
                                         <Grid Grid.Column="2">
                                             <Label Content="Time"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2217,12 +2137,7 @@
                                         </Grid>
                                         <Grid Grid.Column="3">
                                             <Label Content="Money"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2232,12 +2147,7 @@
                                         </Grid>
                                         <Grid Grid.Column="4">
                                             <Label Content="Note"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2247,41 +2157,13 @@
                                         </Grid>
                                     </Grid>
                                 </Border>
-                                <Grid Margin="0 50 0 20"
+                                <Grid Margin="0 45 0 20"
                                       Width="1260">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   HorizontalScrollBarVisibility="Disabled">
                                         <StackPanel x:Name="stkReceiptVoucher"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Center">
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
-                                            <uc:ReceiptVoucherControl />
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2290,39 +2172,34 @@
                     </Border>
                     <!--8-->
                     <Border CornerRadius="8"
-                            Background="{DynamicResource PrimaryBackgroundColor}"
+                            Background="White"
                             x:Name="grdIncident"
-                            Visibility="Visible">
+                            Visibility="Collapsed"
+                            DataContext="{StaticResource IncidentVM}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding LoadIncidentCommand}"
+                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="8*" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Button x:Name="btnAddIncident"
-                                        Height="50"
-                                        Width="200"
+                                <Button Style="{StaticResource MainButton}"
                                         Command="{Binding OpenWindowAddIncidentCommand}"
-                                        HorizontalAlignment="Right"
-                                        Content="+ New incident"
-                                        FontSize="18"
-                                        FontFamily="Poppins"
-                                        FontWeight="DemiBold"
-                                        BorderThickness="0"
-                                        Margin="40 0 40 0"
-                                        Background="{DynamicResource Blue2}"
-                                        materialDesign:ButtonAssist.CornerRadius="8" />
+                                        CommandParameter="{Binding ElementName=wdMain}"
+                                        Content="Add new incident" />
                             </Grid>
-
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="8*" />
                                     <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
-
                                 <Border Grid.Row="1"
-                                        Height="50"
+                                        Height="45"
                                         Width="1020"
                                         CornerRadius="8 8 0 0"
                                         VerticalAlignment="Top"
@@ -2341,7 +2218,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Grid Grid.Column="0">
-                                            <Label Content="No."
+                                            <Label Content="No"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
                                                    FontWeight="SemiBold"
@@ -2405,7 +2282,7 @@
                                                        VerticalAlignment="Center" />
                                         </Grid>
                                         <Grid Grid.Column="4">
-                                            <Label Content="State"
+                                            <Label Content="Status"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
                                                    FontWeight="SemiBold"
@@ -2421,7 +2298,7 @@
                                                        VerticalAlignment="Center" />
                                         </Grid>
                                         <Grid Grid.Column="5">
-                                            <Label Content="Pay?"
+                                            <Label Content="Pay"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
                                                    FontWeight="SemiBold"
@@ -2449,119 +2326,71 @@
                                 </Border>
                             </Grid>
 
-                            <Grid Grid.Row="2">
+                            <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="8*" />
                                     <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
-
                                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                                               HorizontalScrollBarVisibility="Disabled"
                                               VerticalAlignment="Top"
-                                              HorizontalAlignment="Left">
+                                              HorizontalAlignment="Left"
+                                              Margin="0 65 0 0">
                                     <StackPanel x:Name="incidentItem"
                                                 Width="1020"
+                                                Height="550"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                 HorizontalAlignment="Left">
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
-                                        <uc:IncidentControls></uc:IncidentControls>
                                     </StackPanel>
                                 </ScrollViewer>
 
                                 <Grid Grid.Column="1">
-                                    <StackPanel>
+                                    <StackPanel Margin="0 65 0 0">
                                         <Label Content="Pay range"
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold" />
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             under 20.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             20.000 - 50.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             50.000 - 100.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <CheckBox HorizontalAlignment="Left"
-                                                  VerticalAlignment="Top"
-                                                  materialDesign:CheckBoxAssist.CheckBoxSize="25"
-                                                  FontSize="18"
-                                                  FontFamily="poppins"
-                                                  FontWeight="Medium"
-                                                  Foreground="Gray"
-                                                  Margin="5">
+                                        <RadioButton HorizontalAlignment="Left"
+                                                     VerticalAlignment="Top"
+                                                     FontSize="18"
+                                                     FontFamily="poppins"
+                                                     FontWeight="Medium"
+                                                     Foreground="Gray"
+                                                     Margin="5">
                                             over 100.000
-                                            <CheckBox.Resources>
-                                                <!--Unchecked state-->
-                                                <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
-                                                                 Color="Gray" />
-                                                <!--Checked state-->
-                                                <SolidColorBrush x:Key="PrimaryHueMidBrush"
-                                                                 Color="Blue" />
-                                            </CheckBox.Resources>
-                                        </CheckBox>
+                                        </RadioButton>
 
-                                        <Label Content="Pay?"
+                                        <Label Content="Pay"
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold"
@@ -2589,7 +2418,7 @@
                                             Yes
                                         </RadioButton>
 
-                                        <Label Content="State"
+                                        <Label Content="Status"
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold"
@@ -2659,7 +2488,7 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdEmployee"
-                            Visibility="Hidden"
+                            Visibility="Collapsed"
                             DataContext="{StaticResource EmployeeVM}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -2673,25 +2502,15 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Grid Grid.Row="0">
-                                <Button Height="50"
-                                        Width="220"
-                                        Content="Add Employee"
-                                        HorizontalAlignment="Right"
-                                        FontSize="18"
-                                        FontFamily="poppins"
-                                        Background="{DynamicResource Blue2}"
-                                        materialDesign:ButtonAssist.CornerRadius="7"
-                                        BorderThickness="0"
-                                        FlowDirection="LeftToRight"
-                                        Margin="0 0 20 0"
-                                        x:Name="xxxx"
+                                <Button Content="Add employee"
+                                        Style="{StaticResource MainButton}"
                                         Command="{Binding openAddEmployeeWindowCommand}"
                                         CommandParameter="{Binding ElementName=pageEmployee}" />
                             </Grid>
                             <Grid Grid.Row="1"
                                   x:Name="grd_employee">
                                 <Border Grid.Row="1"
-                                        Height="50"
+                                        Height="45"
                                         Width="1260"
                                         CornerRadius="8 8 0 0"
                                         VerticalAlignment="Top"
@@ -2710,12 +2529,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
                                             <Label Content="ID"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2725,13 +2539,9 @@
                                         </Grid>
                                         <Grid Grid.Column="1">
                                             <Label Content="Name"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
+                                                   Style="{StaticResource SupplierTitle}"
                                                    Margin="20 0 0 0"
-                                                   HorizontalAlignment="Left"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   HorizontalAlignment="Left" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2741,12 +2551,7 @@
                                         </Grid>
                                         <Grid Grid.Column="2">
                                             <Label Content="Position"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2756,12 +2561,7 @@
                                         </Grid>
                                         <Grid Grid.Column="3">
                                             <Label Content="Date of Birth"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2771,12 +2571,7 @@
                                         </Grid>
                                         <Grid Grid.Column="4">
                                             <Label Content="Date Start Work"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2786,12 +2581,7 @@
                                         </Grid>
                                         <Grid Grid.Column="5">
                                             <Label Content="Gender"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}"/>
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2816,7 +2606,7 @@
                                         </Grid>
                                     </Grid>
                                 </Border>
-                                <Grid Margin="0 50 0 20"
+                                <Grid Margin="0 45 0 20"
                                       Width="1260">
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   HorizontalScrollBarVisibility="Disabled">
@@ -3122,17 +2912,8 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <Grid Grid.Row="0">
-                                <Button Height="50"
-                                        Width="220"
+                                <Button Style="{StaticResource MainButton}"
                                         Content="Add Supplier"
-                                        HorizontalAlignment="Right"
-                                        FontSize="18"
-                                        FontFamily="poppins"
-                                        Background="{DynamicResource Blue2}"
-                                        materialDesign:ButtonAssist.CornerRadius="7"
-                                        BorderThickness="0"
-                                        FlowDirection="LeftToRight"
-                                        Margin="0 0 20 0"
                                         Command="{Binding OpenAddSupplierWindowCommand}"
                                         CommandParameter="{Binding ElementName=wd}" />
                             </Grid>
@@ -3175,7 +2956,7 @@
                                                       VerticalAlignment="Center"
                                                       x:Name="cboSortType"
                                                       materialDesign:ComboBoxAssist.ClassicMode="True"
-                                                      materialDesign:HintAssist.Hint="Sắp xếp theo"
+                                                      materialDesign:HintAssist.Hint="Sort by"
                                                       materialDesign:HintAssist.IsFloating="True"
                                                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                                       Foreground="{StaticResource Blue1}"
@@ -3205,7 +2986,7 @@
                                                       VerticalAlignment="Center"
                                                       x:Name="cboSortSupplier"
                                                       materialDesign:ComboBoxAssist.ClassicMode="True"
-                                                      materialDesign:HintAssist.Hint="Cách sắp xếp"
+                                                      materialDesign:HintAssist.Hint="Sort type"
                                                       materialDesign:HintAssist.IsFloating="True"
                                                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                                       Foreground="{StaticResource Blue1}"
@@ -3253,7 +3034,7 @@
                                                    Margin="20,0,0,0" />
                                         <Rectangle Grid.Row="0"
                                                    Height="2"
-                                                   Fill="{StaticResource Blue1}"
+                                                   Fill="{StaticResource Blue2}"
                                                    Margin="20,0"
                                                    VerticalAlignment="Bottom" />
                                         <TextBlock x:Name="txbSupplierQuantity"
@@ -3292,7 +3073,7 @@
                                                    Margin="20,0,0,0" />
                                         <Rectangle Grid.Row="0"
                                                    Height="2"
-                                                   Fill="{StaticResource Primary}"
+                                                   Fill="{StaticResource Blue2}"
                                                    Margin="20,0"
                                                    VerticalAlignment="Bottom" />
                                         <TextBlock x:Name="txbTotalSpentToSupplier"
@@ -3313,7 +3094,7 @@
                                       Margin="20,0,20,20">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="100" />
-                                        <RowDefinition Height="40" />
+                                        <RowDefinition Height="45" />
                                         <RowDefinition Height="5*" />
                                     </Grid.RowDefinitions>
                                     <Rectangle Fill="{DynamicResource PrimaryBackgroundColor}"
@@ -3358,14 +3139,14 @@
                                             <materialDesign:PackIcon Kind="Magnify"
                                                                      Width="30"
                                                                      Height="30"
-                                                                     Foreground="{StaticResource Blue1}" />
+                                                                     Foreground="{StaticResource Blue2}" />
                                         </Button>
                                     </Grid>
                                     <Border CornerRadius="4,4,0,0"
                                             BorderThickness="1"
                                             Grid.Row="1"
                                             Margin="20,0"
-                                            Height="40"
+                                            Height="45"
                                             VerticalAlignment="Top"
                                             BorderBrush="{StaticResource Primary}"
                                             Background="{StaticResource Primary}">
@@ -3380,7 +3161,7 @@
                                                 <ColumnDefinition Width="50" />
                                                 <ColumnDefinition Width="20" />
                                             </Grid.ColumnDefinitions>
-                                            <Label Content="No."
+                                            <Label Content="No"
                                                    Grid.Column="0"
                                                    Style="{StaticResource SupplierTitle}" />
                                             <Rectangle Grid.Column="0"

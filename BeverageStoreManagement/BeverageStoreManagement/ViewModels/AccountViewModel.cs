@@ -30,6 +30,8 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand closeUpdateInfoCommand { get; set; }
 
         public ICommand openUpdateInfoCommand { get; set; }
+        
+        public ICommand OnClickLoginCommand { get; set; }
 
         public AccountViewModel()
         {
@@ -39,6 +41,7 @@ namespace BeverageStoreManagement.ViewModels
             saveUpdateInfoCommand = new RelayCommand<ChangeAccountInfoWindow>((parameter) => true, (parameter) => saveUpdateInfo(parameter));
             closeUpdateInfoCommand = new RelayCommand<ChangeAccountInfoWindow>((parameter) => true, (parameter) => parameter.Close());
             openUpdateInfoCommand = new RelayCommand<AccountControl2>((parameter) => true, (parameter) => openUpdateInfoWindow(parameter));
+            OnClickLoginCommand = new RelayCommand<LoginWindow>((parameter) => true, (parameter) => onClickLogin(parameter));
         }
 
         #region Account control
@@ -263,6 +266,44 @@ namespace BeverageStoreManagement.ViewModels
                 }
             }
         }
-        #endregion
+        
+        #endregion 
+        
+        private void onClickLogin(LoginWindow parameter)
+        {
+            string username = parameter.txtUsername.Text;
+            string password = Converter.Instance.MD5Hash(parameter.txtPassword.Password.Trim());
+
+            Account account = AccountDAL.Instance.GetAccount(username, password);
+
+            if (account.IdAccount >= 1)
+            {
+                Employee employee = EmployeeDAL.Instance.GetEmployeeById(account.IdEmployee);
+                MainWindow mainWindow = new MainWindow();
+                CurrentAccount.IdAccount = account.IdAccount;
+                CurrentAccount.IdEmployee = account.IdEmployee;
+                CurrentAccount.Username = account.Username;
+                CurrentAccount.Password = account.Password;
+                CurrentAccount.IsDelete = account.IsDelete;
+                if (employee.IdEmployee >= 1)
+                {
+                    CurrentEmployee.IdEmployee = employee.IdEmployee;
+                    CurrentEmployee.IdPosition = employee.IdPosition;
+                    CurrentEmployee.DateStartWorking = employee.DateStartWorking;
+                    CurrentEmployee.PhoneNumber = employee.PhoneNumber;
+                    CurrentEmployee.IsDelete = employee.IsDelete;
+                    CurrentEmployee.Name = employee.Name;
+                    CurrentEmployee.DateOfBirth = employee.DateOfBirth;
+                    CurrentEmployee.Address = employee.Address;
+                    CurrentEmployee.Gender = employee.Gender;
+                    if (employee.IdPosition == 1)
+                    {
+                        mainWindow.ShowDialog();
+                        parameter.txtUsername.Clear();
+                        parameter.txtPassword.Clear();
+                    }
+                }
+            }
+        }
     }
 }

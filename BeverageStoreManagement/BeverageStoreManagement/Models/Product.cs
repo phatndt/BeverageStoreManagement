@@ -12,7 +12,7 @@ namespace BeverageStoreManagement.Models
         private int idProductType;
         private string nameProduct;
         private string description;
-        private double price;
+        private int price;
         private bool status;
         private byte[] image;
         private bool isDelete;
@@ -21,13 +21,13 @@ namespace BeverageStoreManagement.Models
         public int IdProductType { get => idProductType; set => idProductType = value; }
         public string NameProduct { get => nameProduct; set => nameProduct = value; }
         public string Description { get => description; set => description = value; }
-        public double Price { get => price; set => price = value; }
+        public int Price { get => price; set => price = value; }
         public bool Status { get => status; set => status = value; }
         public byte[] Image { get => image; set => image = value; }
         public bool IsDelete { get => isDelete; set => isDelete = value; }
 
         public Product() { }
-        public Product(int idProduct, int idProductType, string nameProduct, string description, double price, bool status, byte[] image, bool isDelete)
+        public Product(int idProduct, int idProductType, string nameProduct, string description, int price, bool status, byte[] image, bool isDelete)
         {
             this.idProduct = idProduct;
             this.idProductType = idProductType;

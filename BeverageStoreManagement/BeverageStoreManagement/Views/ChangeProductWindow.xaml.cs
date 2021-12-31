@@ -12,17 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BeverageStoreManagement.Views.Incident
+namespace BeverageStoreManagement.Views
 {
     /// <summary>
-    /// Interaction logic for AddIncidentWindow.xaml
+    /// Interaction logic for ChangeProductWindow.xaml
     /// </summary>
-    public partial class AddIncidentWindow : Window
+    public partial class ChangeProductWindow : Window
     {
-        public AddIncidentWindow()
+        public ChangeProductWindow()
         {
             InitializeComponent();
         }
-
     }
 }

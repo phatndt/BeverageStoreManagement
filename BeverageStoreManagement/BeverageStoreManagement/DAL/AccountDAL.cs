@@ -59,6 +59,11 @@ namespace BeverageStoreManagement.DAL
         }
 
         public List<int> getListIdAccount()
+            get { if (instance == null) instance = new AccountDAL(); return AccountDAL.instance; }
+            private set { AccountDAL.instance = value; }
+        }
+
+        public Account GetAccount(string username, string password)
         {
             try
             {

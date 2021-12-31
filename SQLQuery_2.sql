@@ -34,12 +34,11 @@ CREATE TABLE Position (
     isDelete BIT,
     CONSTRAINT PK_Position PRIMARY KEY(idPosition)
 )
-
 CREATE TABLE Account (
     idAccount INT,
     idEmployee INT,
     username NVARCHAR(100),
-    password NVARCHAR(100),
+    password NVARCHAR(1000),
     isDelete BIT,
     CONSTRAINT PK_Account PRIMARY KEY(idAccount)
 )
@@ -167,10 +166,10 @@ CREATE TABLE Incident (
 
 CREATE TABLE Material (
     idMaterial INT,
-    nameMaterail INT,
+    nameMaterial NVARCHAR(100),
     type NVARCHAR(100),
     countUnit NVARCHAR(100),
-    quantity INT,
+    quantity REAL,
     purchasePrice REAL,
     image NVARCHAR(MAX),
     status BIT,
@@ -239,7 +238,6 @@ ALTER TABLE InvoiceInfo ADD CONSTRAINT FK_InvoiceInfo_Product FOREIGN KEY(idProd
 
 ALTER TABLE Incident ADD CONSTRAINT FK_Incident_Employee FOREIGN KEY(idEmployee) REFERENCES Employee(idEmployee)
 
-
 ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Position FOREIGN KEY(idPosition) REFERENCES Position(idPosition)
 
 ALTER TABLE Product ADD CONSTRAINT FK_Product_ProductType FOREIGN KEY(idProductType) REFERENCES ProductType(idProductType)
@@ -278,3 +276,30 @@ SELECT * FROM Employee WHERE idEmployee != 0 AND isDelete = 0
 
 SET DATEFORMAT dmy
 INSERT INTO Employee VALUES ('1','1','Phat','21/09/2001','21/09/2021','Duy Phuoc','0783249260','1','0')
+
+SET DATEFORMAT dmy
+INSERT INTO ReceiptVoucher VALUES ('1','1','21/09/2001','100000','No','0')
+SELECT * FROM ReceiptVoucher
+SELECT * FROM Employee
+SELECT * FROM Incident
+Delete from ReceiptVoucher
+
+SET DATEFORMAT dmy
+INSERT INTO ImportBill VALUES ('1','1','1','1/12/2001','100000','No','0','0')
+SET DATEFORMAT dmy
+INSERT INTO PaymentVoucher VALUES ('1','1','1','21/09/2001','100000','No','0')
+
+SELECT * FROM PaymentVoucher
+
+SELECT * FROM Account
+SELECT * FROM [Position]
+INSERT INTO Position VALUES ('1','Manager','7500000','30','0')
+INSERT INTO Position VALUES ('2','Accountant','7500000','30','0')
+INSERT INTO Position VALUES ('3','Bartender','7500000','30','0')
+INSERT INTO Account VALUES ('1','1','thanhphat219','c4ca4238a0b923820dcc509a6f75849b','0')
+
+SELECT * FROM Account WHERE username='thanhphat219' AND password='c4ca4238a0b923820dcc509a6f75849b' AND isDelete=0 AND idAccount != 0
+
+SELECT * FROM Incident 
+
+SELECT * FROM ImportBill

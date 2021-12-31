@@ -11,6 +11,7 @@
         mc:Ignorable="d"
         Height="520"
         Width="600"
+        Name="wdReceiptVoucher"
         Icon="/BeverageStoreManagement;component/Resources/Images/logo.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -26,20 +27,27 @@
             <RowDefinition Height="70" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding GetListEmployeeCommand}"
+                                       CommandParameter="{Binding ElementName=wdReceiptVoucher}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <Grid Grid.Row="0">
-            <Label Content="Payment Voucher Window"
+            <Label Content="Add receipt voucher window"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="24"
                    FontFamily="Poppins"
                    FontWeight="SemiBold"
-                   Foreground="{DynamicResource Blue1}"/>
+                   Foreground="{DynamicResource Blue1}" />
         </Grid>
         <Grid Grid.Row="1">
             <Label Content="ID Payment Voucher"
                    Style="{StaticResource LabelCustom}" />
             <Rectangle Style="{StaticResource Rectangle}"
-                       Stroke="{DynamicResource Blue1}" />
+                       Stroke="{DynamicResource Blue1}"
+                       Fill="{DynamicResource Gray3}" />
             <TextBox x:Name="txtId"
                      IsReadOnly="True"
                      Style="{StaticResource TextBoxInputText}"
@@ -50,11 +58,20 @@
         <Grid Grid.Row="2">
             <Label Content="Employee"
                    Style="{StaticResource LabelCustom}" />
-            <Rectangle Style="{StaticResource Rectangle}" />
-            <ComboBox x:Name="txtNameEmployee"
-                      materialDesign:HintAssist.Hint="Employee"
-                      Style="{StaticResource ComboBoxStyle1}">
-            </ComboBox>
+            <Rectangle Style="{StaticResource Rectangle}"
+                       Fill="{DynamicResource Gray3}" />
+            <TextBox x:Name="txtNameEmployee"
+                     IsReadOnly="True"
+                     materialDesign:HintAssist.Hint="Employee"
+                     Style="{StaticResource TextBoxInputText}">
+            </TextBox>
+            <TextBox x:Name="txtIdEmployee"
+                     Style="{StaticResource TextBoxInputText}"
+                     materialDesign:HintAssist.Hint="Employee"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent"
+                     IsEnabled="False"
+                     Visibility="Hidden">
+            </TextBox>
         </Grid>
         <Grid Grid.Row="3">
             <Label Content="Date"
@@ -81,9 +98,10 @@
                      Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}">
                 <TextBox.Text>
                     <Binding Path="Note"
+                             Source="{StaticResource ReceiptVoucher}"
                              UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <vd:NotNullValidation ErrorMessage="Please enter name!!!" />
+                            <vd:NotNullValidation ErrorMessage="Please enter note!!!" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -111,27 +129,29 @@
                     <Binding Path="TotalMoney"
                              UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <vd:NotNullValidation ErrorMessage="Please enter name!!!" />
+                            <vd:NotNullValidation ErrorMessage="Please enter total money!!!" />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
         </Grid>
         <Grid Grid.Row="6">
-            <StackPanel HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-                <Button Height="50"
-                        Width="220"
+            <StackPanel HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Height="45"
+                        Width="140"
                         Content="Save"
-                        HorizontalAlignment="Right"
-                        FontSize="18"
-                        FontFamily="poppins"
-                        Background="{DynamicResource Blue2}"
-                        materialDesign:ButtonAssist.CornerRadius="7"
-                        BorderThickness="0"
-                        FlowDirection="LeftToRight"
-                        Command="{Binding SavePaymentVoucherWindowCommand}"
-                        CommandParameter="{Binding ElementName=wdAddPaymentVoucher}" />
+                        Style="{StaticResource BlueButton}"
+                        Command="{Binding SaveAddReceiptVoucherCommand}"
+                        CommandParameter="{Binding ElementName=wdReceiptVoucher}" />
+                <Button Height="45"
+                        Width="140"
+                        Margin="20 0 30 0"
+                        Style="{StaticResource CancelButton}"
+                        Content="Cancel"
+                        Command="{Binding ExitAddReceiptVoucherCommand}"
+                        CommandParameter="{Binding ElementName=wdReceiptVoucher}" />
             </StackPanel>
         </Grid>
     </Grid>
