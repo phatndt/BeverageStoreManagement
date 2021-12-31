@@ -58,13 +58,9 @@ namespace BeverageStoreManagement.DAL
             }
         }
 
-        public List<int> getListIdAccount()
-            get { if (instance == null) instance = new AccountDAL(); return AccountDAL.instance; }
-            private set { AccountDAL.instance = value; }
-        }
-
-        public Account GetAccount(string username, string password)
-        {
+        public List<int> getListIdAccount() 
+        { 
+            
             try
             {
                 OpenConnection();
@@ -215,6 +211,39 @@ namespace BeverageStoreManagement.DAL
             {
                 CustomMessageBox.Show(e.ToString());
                 return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public Account GetAccount(string username, string password)
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "SELECT * FROM Account WHERE username=@username AND password=@password AND isDelete=0 AND idAccount != 0";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                SqlDataReader dataReader = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dataReader);
+
+                bool isDelete = (bool)dt.Rows[0].ItemArray[4];
+
+                return new Account(
+                       int.Parse(dt.Rows[0].ItemArray[0].ToString()),
+                       int.Parse(dt.Rows[0].ItemArray[1].ToString()),
+                       dt.Rows[0].ItemArray[2].ToString(),
+                       dt.Rows[0].ItemArray[3].ToString(),
+                       isDelete);
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString() + "Man");
+                return new Account();
             }
             finally
             {

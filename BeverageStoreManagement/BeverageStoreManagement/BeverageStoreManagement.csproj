@@ -536,9 +536,6 @@
     <Resource Include="Resources\Images\add_information.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\close.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\update.png" />
   </ItemGroup>
   <ItemGroup>
