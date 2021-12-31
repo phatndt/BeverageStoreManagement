@@ -2664,27 +2664,7 @@
                                             <Grid Grid.Row="1">
                                                 <ScrollViewer>
                                                     <StackPanel x:Name="stkAccount">
-                                                        <uc:AccountControl2 Height="85"
-                                                                            Width="800"
-                                                                            Padding="0 0 15 12" />
-                                                        <uc:AccountControl2 Height="85"
-                                                                            Width="800"
-                                                                            Padding="0 0 15 12" />
-                                                        <uc:AccountControl2 Height="85"
-                                                                            Width="800"
-                                                                            Padding="0 0 15 12" />
-                                                        <uc:AccountControl2 Height="85"
-                                                                            Width="800"
-                                                                            Padding="0 0 15 12" />
-                                                        <uc:AccountControl2 Height="85"
-                                                                            Width="800"
-                                                                            Padding="0 0 15 12" />
-                                                        <uc:AccountControl2 Height="85"
-                                                                            Width="800"
-                                                                            Padding="0 0 15 12" />
-                                                        <uc:AccountControl2 Height="85"
-                                                                            Width="800"
-                                                                            Padding="0 0 15 12" />
+
                                                     </StackPanel>
                                                 </ScrollViewer>
                                             </Grid>

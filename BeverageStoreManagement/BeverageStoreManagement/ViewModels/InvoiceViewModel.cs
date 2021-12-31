@@ -99,7 +99,7 @@ namespace BeverageStoreManagement.ViewModels
 
                     id++;
                 }
-                invoicePrint.Show();
+                invoicePrint.ShowDialog();
             } else
             {
                 CustomMessageBox.Show("Can't open window. Try again!");

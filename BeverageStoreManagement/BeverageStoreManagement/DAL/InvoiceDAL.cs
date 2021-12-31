@@ -29,7 +29,6 @@ namespace BeverageStoreManagement.DAL
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
-                CustomMessageBox.Show(dataTable.Rows[0].ItemArray[0].ToString());
                 return int.Parse(dataTable.Rows[0].ItemArray[0].ToString());
             }
             catch
