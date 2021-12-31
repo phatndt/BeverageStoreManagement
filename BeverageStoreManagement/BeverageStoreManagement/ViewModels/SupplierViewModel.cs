@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace BeverageStoreManagement.ViewModels
 {
-    public class SupplierViewModel:BaseViewModel
+    public class SupplierViewModel : BaseViewModel
     {
         private MainWindow mainWindow;
 
@@ -317,11 +317,5 @@ namespace BeverageStoreManagement.ViewModels
             }
         }
         #endregion
-
-        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
     }
 }

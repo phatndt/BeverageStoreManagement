@@ -7,6 +7,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Width="1260"
+             Name="PaymentVoucherUc"
+             DataContext="{StaticResource PaymentVoucherVM}"
              Height="40">
     <Grid x:Name="grdMain"
           Background="{DynamicResource Blue9}">
@@ -142,8 +144,8 @@
                    VerticalAlignment="Center" />-->
         <Button Grid.Column="6"
                 x:Name="btnDeletePaymentVoucher"
-                Command="{Binding DeleteBillDetailCommand}"
-                CommandParameter="{Binding ElementName=SaleBillUC}"
+                Command="{Binding DeletePaymentVoucherCommand}"
+                CommandParameter="{Binding ElementName=PaymentVoucherUc}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 ToolTip="Delete PaymentVoucher"
                 Height="24"

@@ -43,7 +43,7 @@ namespace BeverageStoreManagement.DAL
             }
             catch (Exception e)
             {
-                //CustomMessageBox.Show(e.ToString());
+                CustomMessageBox.Show(e.ToString() + "Man");
                 return new Account();
             }
             finally

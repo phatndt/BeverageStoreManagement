@@ -248,5 +248,59 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
+
+        public List<string> GetNameType()
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "SELECT nameProductType FROM ProductType";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                SqlDataReader dataReader = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dataReader);
+
+                List<string> names = new List<string>();
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    names.Add(dt.Rows[i].ItemArray[0].ToString());
+                }
+
+                return names;
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return new List<string>();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public string GetNameProductById(int idProduct)
+        {
+            try
+            {
+                OpenConnection();
+                string query = "SELECT nameProduct FROM Product Where idProduct = @idProduct";
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@idProduct", idProduct);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                return dataTable.Rows[0].ItemArray[0].ToString();
+            }
+            catch
+            {
+                return "No Product";
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
     }
 }

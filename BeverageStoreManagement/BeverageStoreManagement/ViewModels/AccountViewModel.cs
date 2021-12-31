@@ -29,7 +29,6 @@ namespace BeverageStoreManagement.ViewModels
             if (account.IdAccount >= 1)
             {
                 Employee employee = EmployeeDAL.Instance.GetEmployeeById(account.IdEmployee);
-                MainWindow mainWindow = new MainWindow();
                 CurrentAccount.IdAccount = account.IdAccount;
                 CurrentAccount.IdEmployee = account.IdEmployee;
                 CurrentAccount.Username = account.Username;
@@ -46,9 +45,12 @@ namespace BeverageStoreManagement.ViewModels
                     CurrentEmployee.DateOfBirth = employee.DateOfBirth;
                     CurrentEmployee.Address = employee.Address;
                     CurrentEmployee.Gender = employee.Gender;
+                    MainWindow mainWindow = new MainWindow();
                     if (employee.IdPosition == 1)
                     {
-                        mainWindow.ShowDialog();
+                        parameter.Hide();
+                        mainWindow.Show();
+                        parameter.Close();
                         parameter.txtUsername.Clear();
                         parameter.txtPassword.Clear();
                     }

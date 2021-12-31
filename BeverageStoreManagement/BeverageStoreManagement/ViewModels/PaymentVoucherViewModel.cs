@@ -36,6 +36,9 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand SavePaymentVoucherWindowCommand { get; set; }
         public ICommand ExitAddPaymentVoucherCommand { get; set; }
 
+        //PaymentVoucherControl
+        public ICommand DeletePaymentVoucherCommand { get; set; }
+
         private ObservableCollection<string> itemSourceEmployee = new ObservableCollection<string>();
         public ObservableCollection<string> ItemSourceEmployee { get => itemSourceEmployee; set { itemSourceEmployee = value; OnPropertyChanged(); } }
 
@@ -53,9 +56,11 @@ namespace BeverageStoreManagement.ViewModels
             ExitAddPaymentVoucherCommand = new RelayCommand<AddPaymentVoucherWindow>(parameter => true, parameter => parameter.Close());
 
             SeparateThousandsCommand = new RelayCommand<TextBox>((parameter) => true, (parameter) => SeparateThousands(parameter));
-        }
-        #region grdPaymentVoucher
 
+            DeletePaymentVoucherCommand = new RelayCommand<PaymentVoucherControl>((parameter) => true, (parameter) => DeletePaymentVoucher(parameter));
+        }
+
+        #region grdPaymentVoucher
         private void LoadPaymentVoucher(MainWindow parameter)
         {
             this.mainWindow = parameter;
@@ -176,6 +181,19 @@ namespace BeverageStoreManagement.ViewModels
             }
         }
         #endregion
+
+        public void DeletePaymentVoucher(PaymentVoucherControl parameter)
+        {
+            MessageBoxResult messageBoxResult = CustomMessageBox.ShowYesNo("Confirm delelte payment voucher!", "Information", "Yes", "No", MessageBoxImage.Warning);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+
+                int idPaymentVoucher = int.Parse(parameter.id.Text);
+                PaymentVoucherDAL.Instance.DeletePaymentVoucherById(idPaymentVoucher);
+                Notification.Instance.Success("Delete payment voucher success");
+                LoadPaymentVoucher(mainWindow);
+            }
+        }
 
         public void SeparateThousands(TextBox txt)
         {

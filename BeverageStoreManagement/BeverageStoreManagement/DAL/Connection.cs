@@ -19,9 +19,9 @@ namespace BeverageStoreManagement.DAL
             {
                 strConn = ConfigurationManager.ConnectionStrings["BSM"].ConnectionString;
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("Mất kết nối đến cơ sở dữ liệu!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Mất kết nối đến cơ sở dữ liệu!" + e, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             conn = new SqlConnection(strConn);
@@ -38,7 +38,7 @@ namespace BeverageStoreManagement.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Mất kết nối đến cơ sở dữ liệu!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Mất kết nối đến cơ sở dữ liệu!!" + ex, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw ex;
             }
         }

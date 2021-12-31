@@ -42,7 +42,7 @@
                        Foreground="Black"
                        FontWeight="Medium"
                        Visibility="Hidden" />
-            <TextBlock x:Name="Name"
+            <TextBlock x:Name="name"
                        Grid.Row="1"
                        Text="Trà sữa truyền thống"
                        FontSize="16"

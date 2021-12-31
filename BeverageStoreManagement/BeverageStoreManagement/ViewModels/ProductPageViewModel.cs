@@ -102,9 +102,9 @@ namespace BeverageStoreManagement.ViewModels
 
                 ProductViewControl productViewControl = new ProductViewControl();
                 productViewControl.idProduct.Text = product.IdProduct.ToString();
-                productViewControl.Name.Text = product.NameProduct.ToString();
-                productViewControl.Price.Text = product.Price.ToString();
-                productViewControl.Status.Text = status;
+                productViewControl.name.Text = product.NameProduct.ToString();
+                productViewControl.Price.Text = product.Price.ToString("N0");
+                productViewControl.Status.Text = ConvertBooleanToStatus(product.Status);
                 productViewControl.imgProduct.Source = Converter.Instance.ConvertByteToBitmapImage(product.Image);
 
                 
