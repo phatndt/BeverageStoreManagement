@@ -42,7 +42,7 @@ namespace BeverageStoreManagement.ViewModels
                 tmp += a;
             }
 
-            return long.Parse(tmp);
+          return long.Parse(tmp);
         }
 
         public BitmapImage ConvertByteToBitmapImage(Byte[] image)
