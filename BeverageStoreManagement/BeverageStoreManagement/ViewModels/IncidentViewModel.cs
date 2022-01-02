@@ -113,7 +113,7 @@ namespace BeverageStoreManagement.ViewModels
         #endregion
 
         #region addSupplierWindow
-        private bool CheckEmptyAddSupplier(AddIncidentWindow parameter)
+        private bool CheckEmptyAddIncident(AddIncidentWindow parameter)
         {
             if (parameter.txtDateIncident.Text == "")
             {
@@ -133,7 +133,7 @@ namespace BeverageStoreManagement.ViewModels
                 parameter.rdoNotPay.Focus();
                 return false;
             }
-            if (parameter.txtDescriptionIncident.Text == "")
+            if (parameter.txtDescriptionIncident.Text == "")//14
             {
                 CustomMessageBox.Show("Please  enter description!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtDescriptionIncident.Focus();
@@ -150,7 +150,7 @@ namespace BeverageStoreManagement.ViewModels
 
         public void SaveAddIncident(AddIncidentWindow parameter)
         {
-            if (CheckEmptyAddSupplier(parameter))
+            if (CheckEmptyAddIncident(parameter))
             {
                 int idSupplier = int.Parse(parameter.txtIdIncident.Text);
                 int idEmployee = int.Parse(parameter.txtIdEmployee.Text);

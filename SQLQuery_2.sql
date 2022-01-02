@@ -166,10 +166,10 @@ CREATE TABLE Incident (
 
 CREATE TABLE Material (
     idMaterial INT,
-    nameMaterail INT,
+    nameMaterial NVARCHAR(100),
     type NVARCHAR(100),
     countUnit NVARCHAR(100),
-    quantity INT,
+    quantity REAL,
     purchasePrice REAL,
     image NVARCHAR(MAX),
     status BIT,
@@ -301,3 +301,5 @@ INSERT INTO Account VALUES ('1','1','thanhphat219','c4ca4238a0b923820dcc509a6f75
 SELECT * FROM Account WHERE username='thanhphat219' AND password='c4ca4238a0b923820dcc509a6f75849b' AND isDelete=0 AND idAccount != 0
 
 SELECT * FROM Incident 
+
+SELECT * FROM ImportBill

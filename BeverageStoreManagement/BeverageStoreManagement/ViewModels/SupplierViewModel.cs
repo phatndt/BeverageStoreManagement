@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace BeverageStoreManagement.ViewModels
 {
-    class SupplierViewModel:BaseViewModel
+    public class SupplierViewModel:BaseViewModel
     {
         private MainWindow mainWindow;
 
