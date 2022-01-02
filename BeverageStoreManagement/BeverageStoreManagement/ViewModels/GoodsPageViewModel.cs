@@ -21,6 +21,7 @@ namespace BeverageStoreManagement.ViewModels
     {
         private string imageFileName;
         private MainWindow mainWindow;
+        private UpdateGoodsWindow updateGoodsWindow;
         public ICommand LoadMaterialCommand { get; set; }
         public ICommand OpenAddMaterialCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
@@ -51,6 +52,7 @@ namespace BeverageStoreManagement.ViewModels
             {
                 GoodsViewControl goodsViewControl = new GoodsViewControl();
                 goodsViewControl.idMaterial.Text = material.IdMaterial.ToString();
+                goodsViewControl.txtNo.Content = material.IdMaterial.ToString();
                 goodsViewControl.txtMaterial.Content = material.NameMaterial.ToString();
                 goodsViewControl.txtType.Content = material.Type.ToString();
                 goodsViewControl.txtQuantity.Content = material.Quantity.ToString();
@@ -202,13 +204,21 @@ namespace BeverageStoreManagement.ViewModels
                 bool isSuccessed = MaterialDAL.Instance.DeleteMaterial(idMaterial);
                 if (isSuccessed)
                 {
-                    mainWindow.stkProduct.Children.Remove(parameter);
+                    mainWindow.stkMaterial.Children.Remove(parameter);
+                    Notification.Instance.Success("Delete Material Success!");
                 }
                 else
                 {
                     CustomMessageBox.Show("Action failed, please try again!", "Notification", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+    
+        public void LoadUpdateMaterialWindow(UpdateGoodsWindow parameter)
+        {
+            int i = 1;
+            updateGoodsWindow = parameter;
+            
         }
     }
 }

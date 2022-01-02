@@ -1395,7 +1395,12 @@
                                               Background="White"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
-                                              Margin="0 5 387 0.5" />
+                                              Margin="0 5 387 0.5">
+                                        <ComboBoxItem Content="Drinks" />
+                                        <ComboBoxItem Content="Fastfood" />
+                                        <ComboBoxItem Content="Ingredient" />
+                                        <ComboBoxItem Content="Item" />
+                                    </ComboBox>
                                     <Rectangle Height="40"
                                                Width="160"
                                                StrokeThickness="1"
@@ -1417,7 +1422,10 @@
                                               Background="White"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
-                                              Margin="0 5 207 0.5" />
+                                              Margin="0 5 207 0.5">
+                                        <ComboBoxItem Content="Low to High" />
+                                        <ComboBoxItem Content="High to Low" />
+                                    </ComboBox>
                                     <Rectangle Height="40"
                                                Width="160"
                                                StrokeThickness="1"
@@ -1439,7 +1447,10 @@
                                               Background="White"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
-                                              Margin="0 5 27 0.5" />
+                                              Margin="0 5 27 0.5">
+                                        <ComboBoxItem Content="Available" />
+                                        <ComboBoxItem Content="Unavailable" />
+                                    </ComboBox>
                                     <TextBlock Text="Material  list"
                                                FontSize="28"
                                                FontWeight="Bold"
@@ -1473,14 +1484,14 @@
                                             <ColumnDefinition Width="2*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1.5*" />
-                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="0.6*" />
                                             <ColumnDefinition Width="1.3*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="0.4*" />
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <Label Content="No."
+                                            <Label Content="Id"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
                                                    FontWeight="SemiBold"

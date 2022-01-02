@@ -78,8 +78,7 @@
                     <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}"
                                      Color="CornflowerBlue" />
                 </ComboBox.Resources>
-                <ComboBoxItem IsSelected="True"
-                              Content="Drinks" />
+                <ComboBoxItem Content="Drinks" />
                 <ComboBoxItem Content="Fastfood" />
                 <ComboBoxItem Content="Ingredient" />
                 <ComboBoxItem Content="Item" />
@@ -119,8 +118,11 @@
                               Content="Gram" />
                 <ComboBoxItem Content="Kilogram" />
                 <ComboBoxItem Content="Bottle" />
+                <ComboBoxItem Content="Glass" />
                 <ComboBoxItem Content="Dish" />
                 <ComboBoxItem Content="Bag" />
+                <ComboBoxItem Content="Box" />
+                <ComboBoxItem Content="Can" />
                 <ComboBoxItem Content="Pc" />
             </ComboBox>
             <Rectangle HorizontalAlignment="Right"
