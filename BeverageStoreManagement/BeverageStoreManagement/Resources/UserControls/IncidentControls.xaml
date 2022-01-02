@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:BeverageStoreManagement.Resources.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             Height="50">
+             Height="50"
+             x:Name="IncidentUC">
     <Grid Background="{DynamicResource Blue9}"
           x:Name="grdMain">
         <Grid.ColumnDefinitions>
@@ -27,12 +28,6 @@
                        VerticalAlignment="Center"
                        Foreground="{DynamicResource TextColor}"
                        x:Name="id" />
-            <!--<Rectangle Grid.Column="1"
-                       HorizontalAlignment="Right"
-                       Height="30"
-                       Width="1"
-                       Fill="{DynamicResource Blue10}"
-                       VerticalAlignment="Center" />-->
         </Grid>
         <Grid Grid.Column="1">
             <TextBlock Text="Incident name"
@@ -43,12 +38,6 @@
                        VerticalAlignment="Center"
                        Foreground="{DynamicResource TextColor}"
                        x:Name="name" />
-            <!--<Rectangle Grid.Column="1"
-                       HorizontalAlignment="Right"
-                       Margin="0"
-                       Width="1"
-                       Fill="{DynamicResource Blue10}"
-                       VerticalAlignment="Center" />-->
         </Grid>
         <Grid Grid.Column="2">
             <TextBlock Text="Date"
@@ -59,13 +48,6 @@
                        VerticalAlignment="Center"
                        Foreground="{DynamicResource TextColor}"
                        x:Name="date" />
-            <!--<Rectangle Grid.Column="1"
-                       HorizontalAlignment="Right"
-                       Height="30"
-                       Margin="0"
-                       Width="1"
-                       Fill="{DynamicResource Blue10}"
-                       VerticalAlignment="Center" />-->
         </Grid>
         <Grid Grid.Column="3">
             <TextBlock Text="Employee"
@@ -76,18 +58,13 @@
                        VerticalAlignment="Center"
                        Foreground="{DynamicResource TextColor}"
                        x:Name="employee" />
-            <!--<Rectangle Grid.Column="1"
-                       HorizontalAlignment="Right"
-                       Height="30"
-                       Margin="0"
-                       Width="1"
-                       Fill="{DynamicResource Blue10}"
-                       VerticalAlignment="Center" />-->
         </Grid>
         <Grid Grid.Column="4">
             <CheckBox HorizontalAlignment="Center"
-                      x:Name="status"
-                      materialDesign:CheckBoxAssist.CheckBoxSize="25">
+                      x:Name="checkBoxStatus"
+                      materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                      Command="{Binding UpdateIncidentCommand}"
+                      CommandParameter="{Binding ElementName=IncidentUC}">
                 <CheckBox.Resources>
                     <!--Unchecked state-->
                     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
@@ -97,18 +74,13 @@
                                      Color="#FF000066" />
                 </CheckBox.Resources>
             </CheckBox>
-            <!--<Rectangle Grid.Column="1"
-                       HorizontalAlignment="Right"
-                       Height="30"
-                       Margin="0"
-                       Width="1"
-                       Fill="{DynamicResource Blue10}"
-                       VerticalAlignment="Center" />-->
         </Grid>
         <Grid Grid.Column="5">
             <CheckBox HorizontalAlignment="Center"
-                      x:Name="pay"
-                      materialDesign:CheckBoxAssist.CheckBoxSize="25">
+                      x:Name="checkBoxPay"
+                      materialDesign:CheckBoxAssist.CheckBoxSize="25"
+                      Command="{Binding UpdateIncidentCommand}"
+                      CommandParameter="{Binding ElementName=IncidentUC}">
                 <CheckBox.Resources>
                     <!--Unchecked state-->
                     <SolidColorBrush x:Key="MaterialDesignCheckBoxOff"
@@ -118,13 +90,6 @@
                                      Color="#FF000066" />
                 </CheckBox.Resources>
             </CheckBox>
-            <!--<Rectangle Grid.Column="1"
-                       HorizontalAlignment="Right"
-                       Height="30"
-                       Margin="0"
-                       Width="1"
-                       Fill="{DynamicResource TextColor}"
-                       VerticalAlignment="Center" />-->
         </Grid>
         <Grid Grid.Column="6">
             <TextBlock Text="Money"

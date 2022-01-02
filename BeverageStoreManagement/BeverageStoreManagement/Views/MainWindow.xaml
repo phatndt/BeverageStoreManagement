@@ -2142,7 +2142,7 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdIncident"
-                            Visibility="Collapsed"
+                            Visibility="Visible"
                             DataContext="{StaticResource IncidentVM}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
@@ -2318,43 +2318,59 @@
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold" />
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdbUnder20"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             under 20.000
                                         </RadioButton>
 
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdb20to50"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             20.000 - 50.000
                                         </RadioButton>
 
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdb50to100"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             50.000 - 100.000
                                         </RadioButton>
 
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdbOver100"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             over 100.000
                                         </RadioButton>
 
@@ -2364,25 +2380,31 @@
                                                FontWeight="Bold"
                                                Margin="0 10 0 0" />
 
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbNo"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Pay?"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             No
                                         </RadioButton>
 
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbYes"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Pay?"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             Yes
                                         </RadioButton>
 
@@ -2391,24 +2413,30 @@
                                                FontSize="22"
                                                FontWeight="Bold"
                                                Margin="0 10 0 0" />
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbDone"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="State"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             Done
                                         </RadioButton>
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbUndone"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="State"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             Undone
                                         </RadioButton>
 
@@ -2417,36 +2445,46 @@
                                                FontSize="22"
                                                FontWeight="Bold"
                                                Margin="0 10 0 0" />
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbMonth"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Time"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
-                                            This week
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
+                                            This month
                                         </RadioButton>
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbYear"
+                                                     FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Time"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
-                                            This monnth
-                                        </RadioButton>
-                                        <RadioButton FontSize="18"
-                                                     FontFamily="poppins"
-                                                     FontWeight="Medium"
-                                                     Foreground="Gray"
-                                                     GroupName="Time"
-                                                     Margin="5"
-                                                     Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             This year
                                         </RadioButton>
+                                        <Button VerticalAlignment="Center"
+                                                HorizontalAlignment="Right"
+                                                Width="100"
+                                                Height="40"
+                                                Margin="20"
+                                                Background="{DynamicResource Blue2}"
+                                                Command="{Binding ResetIncidentWindowCommand}"
+                                                CommandParameter="{Binding ElementName=wdMain}">
+                                            <Label Content="Reset"
+                                                   Foreground="White"
+                                                   FontSize="18"
+                                                   FontFamily="poppins"
+                                                   FontWeight="DemiBold"/>
+                                        </Button>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -2592,7 +2630,7 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource White}"
                             x:Name="grdAccount"
-                            Visibility="Visible"
+                            Visibility="Hidden"
                             DataContext="{StaticResource AccountVM}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -2625,7 +2663,8 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
 
-                                    <Border Background="Transparent"
+                                    <Border x:Name="borderAccount"
+                                        Background="Transparent"
                                             Margin="20 0 0 0"
                                             Visibility="Visible">
                                         <Grid>
@@ -2664,13 +2703,13 @@
                                             <Grid Grid.Row="1">
                                                 <ScrollViewer>
                                                     <StackPanel x:Name="stkAccount">
-
                                                     </StackPanel>
                                                 </ScrollViewer>
                                             </Grid>
                                         </Grid>
                                     </Border>
-                                </Grid>
+                                    
+                                    </Grid>
 
                                 <Grid Grid.Column="1">
                                     <Border Margin="0 0 20 20"
