@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BeverageStoreManagement.ViewModels;
 
 namespace BeverageStoreManagement.DAL
 {
@@ -55,7 +53,7 @@ namespace BeverageStoreManagement.DAL
             catch (Exception e)
             {
                 CustomMessageBox.Show(e.ToString());
-                return new List<Material>();
+                return new List<Employee>();
             }
             finally
             {
@@ -111,6 +109,34 @@ namespace BeverageStoreManagement.DAL
             catch
             {
                 return new Material();
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+        public bool UpdateMaterial(Material material)
+        {
+            try
+            {
+                OpenConnection();
+                string queryString = "update Material set nameMaterial=@nameMaterial, type=@type, countUnit=@countUnit, quantity=@quantity, purchasePrice=@purchasePrice, image=@image, status=@status where idMaterial=@idMaterial";
+                SqlCommand command = new SqlCommand(queryString, conn);
+                command.Parameters.AddWithValue("@idMaterial", material.IdMaterial.ToString());
+                command.Parameters.AddWithValue("@nameMaterial", material.NameMaterial);
+                command.Parameters.AddWithValue("@type", material.Type);
+                command.Parameters.AddWithValue("@countUnit", material.CountUnit);
+                command.Parameters.AddWithValue("@quantity", material.Quantity.ToString());
+                command.Parameters.AddWithValue("@purchasePrice", material.PurchasePrice.ToString());
+                command.Parameters.AddWithValue("@status", material.Status.ToString());
+                command.Parameters.AddWithValue("@image", Convert.ToBase64String(material.Image));
+                int rs = command.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return false;
             }
             finally
             {

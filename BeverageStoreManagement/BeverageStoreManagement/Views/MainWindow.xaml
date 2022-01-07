@@ -1383,35 +1383,8 @@
                                                RadiusX="7"
                                                Fill="White"
                                                HorizontalAlignment="Right"
-                                               Margin="0 0 380 0" />
-                                    <ComboBox materialDesign:HintAssist.Hint="Type: All"
-                                              Height="35"
-                                              Width="145"
-                                              FontSize="18"
-                                              FontFamily="poppins"
-                                              Padding="5"
-                                              Opacity="0.8"
-                                              BorderBrush="Gray"
-                                              Background="White"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Right"
-                                              Margin="0 5 387 0.5">
-                                        <ComboBoxItem Content="Drinks" />
-                                        <ComboBoxItem Content="Fastfood" />
-                                        <ComboBoxItem Content="Ingredient" />
-                                        <ComboBoxItem Content="Item" />
-                                    </ComboBox>
-                                    <Rectangle Height="40"
-                                               Width="160"
-                                               StrokeThickness="1"
-                                               Stroke="Gray"
-                                               Fill="White"
-                                               Opacity="1"
-                                               RadiusY="7"
-                                               RadiusX="7"
-                                               HorizontalAlignment="Right"
                                                Margin="0 0 200 0" />
-                                    <ComboBox materialDesign:HintAssist.Hint="Quantity: All"
+                                    <ComboBox x:Name="cboType"
                                               Height="35"
                                               Width="145"
                                               FontSize="18"
@@ -1423,8 +1396,18 @@
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
                                               Margin="0 5 207 0.5">
-                                        <ComboBoxItem Content="Low to High" />
-                                        <ComboBoxItem Content="High to Low" />
+                                        <ComboBoxItem Content="All"
+                                                      IsSelected="True" />
+                                        <ComboBoxItem Content="Drinks" />
+                                        <ComboBoxItem Content="Fastfood" />
+                                        <ComboBoxItem Content="Ingredient" />
+                                        <ComboBoxItem Content="Item" />
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding FilterMaterialCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ComboBox>
                                     <Rectangle Height="40"
                                                Width="160"
@@ -1436,7 +1419,7 @@
                                                RadiusX="7"
                                                HorizontalAlignment="Right"
                                                Margin="0 0 20 0" />
-                                    <ComboBox materialDesign:HintAssist.Hint="Status: All"
+                                    <ComboBox x:Name="cboStatus"
                                               Height="35"
                                               Width="145"
                                               FontSize="18"
@@ -1448,11 +1431,21 @@
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
                                               Margin="0 5 27 0.5">
+                                        <ComboBoxItem Content="All"
+                                                      IsSelected="True" />
                                         <ComboBoxItem Content="Available" />
                                         <ComboBoxItem Content="Unavailable" />
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding FilterMaterialCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                     </ComboBox>
                                     <TextBlock Text="Material  list"
                                                FontSize="28"
+                                               Width="200"
+                                               HorizontalAlignment="Left"
                                                FontWeight="Bold"
                                                FontFamily="poppins"
                                                Foreground="{DynamicResource Blue1}"
@@ -1630,7 +1623,7 @@
                                                     Width="1160"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Left">
-                                            
+
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2592,7 +2585,7 @@
                                         </Grid>
                                         <Grid Grid.Column="5">
                                             <Label Content="Gender"
-                                                   Style="{StaticResource SupplierTitle}"/>
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
