@@ -316,3 +316,43 @@ DELETE FROM Account WHere idAccount = 7
 Select username from [dbo].[Account]
 
 SELECT * FROM Invoice WHERE idInvoice != 0 AND isDelete = 0
+SELECT * FROM InvoiceInfo
+DELETE FROM Invoice WHERE idInvoice = 3
+
+SELECT COUNT(*) FROM Invoice WHERE MONTH(date)='12' AND YEAR(date)='2021'
+
+SELECT SUM(totalMoney) FROM PaymentVoucher WHERE MONTH(date)='12' AND YEAR(date)='2021' AND DAY(date) = '30'
+
+select day(date) as day from Invoice where month(date) = '' and year(date) = '' group by day(date) 
+union select day(date) as day from PaymentVoucher where month(date) = ''
+and year(date) = '' group by day(date) 
+union select day(date) as day from ReceiptVoucher where month(date) = '' and year(date) = '' group by day(date)
+
+
+select datepart(quarter, date) as quarter from Invoice where year(date) = '' group by datepart(quarter, date)
+union 
+select datepart(quarter, date) as quarter from PaymentVoucher where year(date) = '' group by datepart(quarter, date)
+union 
+select datepart(quarter, date) as quarter from ReceiptVoucher where year(date) = '' group by datepart(quarter, date)
+
+select month(date) as month from Invoice where year(date) = '' group by month(date)
+union 
+select month(date) as month from PaymentVoucher where year(date) = '' group by month(date)
+union 
+select month(date) as month from ReceiptVoucher where year(date) = '' group by month(date)
+
+select day(date), sum(totalMoney) from Invoice where month(date) = '' and year(date) = '' group by day(date)
+
+select datepart(quarter, date), sum(totalMoney) from Invoice where year(date) = '' group by datepart(quarter, date)
+
+select month(date), sum(totalMoney) from Invoice where year(date) = '' group by month(date)
+
+SELECT * FROM InvoiceInfo
+SELECT * FROM PaymentVoucher
+SELECT * FROM ReceiptVoucher
+
+SELECT SUM(totalMoney) FROM Invoice WHERE MONTH(date)=1 AND YEAR(date)=2021
+
+SELECT * FROM Position
+
+SELECT * FROM Account

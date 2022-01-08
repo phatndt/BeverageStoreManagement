@@ -8,6 +8,7 @@
              mc:Ignorable="d"
              Height="40"
              x:Name="SupplierUc"
+             Width="900"
              DataContext="{StaticResource SupplierVM}">
     <Grid x:Name="grdMain"
           Background="{DynamicResource Blue9}">

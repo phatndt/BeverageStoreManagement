@@ -8,6 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:uc="clr-namespace:BeverageStoreManagement.Resources.UserControls"
+        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         x:Name="wdMain"
         Height="800"
@@ -38,337 +39,341 @@
                           Height="40">
                         <Image Source="/BeverageStoreManagement;component/Resources/Images/logo.png" />
                     </Grid>
-                    <StackPanel Grid.Row="1">
-                        <!--0 Home-->
-                        <Expander x:Name="expanderHome">
-                            <Expander.Header>
-                                <StackPanel Orientation="Horizontal"
-                                            Height="30">
-                                    <TextBlock Text="Home"
-                                               TextAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="18"
-                                               FontWeight="SemiBold"
-                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                    <ScrollViewer Grid.Row="1"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel >
+                            <!--0 Home-->
+                            <Expander x:Name="expanderHome"
+                                      Style="{StaticResource exx}">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal"
+                                                Height="30">
+                                        <TextBlock Text="Home"
+                                                   TextAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryGrayColor}" />
+                                    </StackPanel>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Button x:Name="rdHome"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="HomeMinusOutline"
+                                            Content="Home"
+                                            Uid="0"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdHome}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Home"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                    <Button x:Name="rdSale"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="HomeModern"
+                                            Content="Sale"
+                                            Uid="1"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdSale}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Sale"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
                                 </StackPanel>
-                            </Expander.Header>
-                            <StackPanel>
-                                <Button x:Name="rdHome"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="HomeMinusOutline"
-                                        Content="Home"
-                                        Uid="0"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdHome}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Home"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                                <Button x:Name="rdSale"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="HomeModern"
-                                        Content="Sale"
-                                        Uid="1"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdSale}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Sale"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
-                        </Expander>
-                        <!--1 -->
-                        <Expander x:Name="expanderStore">
-                            <Expander.Header>
-                                <StackPanel Orientation="Horizontal">
+                            </Expander>
+                            <!--1 -->
+                            <Expander x:Name="expanderStore">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
 
-                                    <TextBlock Text="Store"
-                                               TextAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="18"
-                                               FontWeight="SemiBold"
-                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                        <TextBlock Text="Store"
+                                                   TextAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryGrayColor}" />
+                                    </StackPanel>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Button x:Name="rdInvoice"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="Account"
+                                            Content="Invoice"
+                                            Uid="2"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdInvoice}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Invoice"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
                                 </StackPanel>
-                            </Expander.Header>
-                            <StackPanel>
-                                <Button x:Name="rdInvoice"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="Account"
-                                        Content="Invoice"
-                                        Uid="2"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdInvoice}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Invoice"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
-                        </Expander>
+                            </Expander>
 
-                        <!--3-->
-                        <Expander x:Name="expanderWarehouse">
-                            <Expander.Header>
-                                <StackPanel Orientation="Horizontal">
+                            <!--3-->
+                            <Expander x:Name="expanderWarehouse">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
 
-                                    <TextBlock Text="Warehouse"
-                                               TextAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="18"
-                                               FontWeight="SemiBold"
-                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                        <TextBlock Text="Warehouse"
+                                                   TextAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryGrayColor}" />
+                                    </StackPanel>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Button x:Name="rdProduct"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="GoogleMyBusiness"
+                                            Content="Product"
+                                            Uid="3"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdProduct}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Product"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                    <!--4-->
+                                    <Button x:Name="rdMaterial"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="HomePlus"
+                                            Content="Material"
+                                            Uid="4"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdMaterial}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Material"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                    <!--5-->
+                                    <Button x:Name="rdImportBill"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="GlassTulip"
+                                            Content="Import Bill"
+                                            Uid="5"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdImportBill}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Import Bill"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
                                 </StackPanel>
-                            </Expander.Header>
-                            <StackPanel>
-                                <Button x:Name="rdProduct"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="GoogleMyBusiness"
-                                        Content="Product"
-                                        Uid="3"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdProduct}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Product"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
+                            </Expander>
 
-                                <!--4-->
-                                <Button x:Name="rdMaterial"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="HomePlus"
-                                        Content="Material"
-                                        Uid="4"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdMaterial}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Material"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                                <!--5-->
-                                <Button x:Name="rdImportBill"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="GlassTulip"
-                                        Content="Import Bill"
-                                        Uid="5"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdImportBill}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Import Bill"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
-                        </Expander>
+                            <Expander x:Name="expanderPartner">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
 
-                        <Expander x:Name="expanderPartner">
-                            <Expander.Header>
-                                <StackPanel Orientation="Horizontal">
-
-                                    <TextBlock Text="Partner"
-                                               TextAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="18"
-                                               FontWeight="SemiBold"
-                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                        <TextBlock Text="Partner"
+                                                   TextAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryGrayColor}" />
+                                    </StackPanel>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Button x:Name="rdSupplier"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="TruckOutline"
+                                            Content="Supplier"
+                                            Uid="12"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdSupplier}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Dolly"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
                                 </StackPanel>
-                            </Expander.Header>
-                            <StackPanel>
-                                <Button x:Name="rdSupplier"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="TruckOutline"
-                                        Content="Supplier"
-                                        Uid="12"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdSupplier}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Dolly"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
-                        </Expander>
+                            </Expander>
 
-                        <!--6-->
-                        <Expander  x:Name="expanderVoucher">
-                            <Expander.Header>
-                                <StackPanel Orientation="Horizontal">
+                            <!--6-->
+                            <Expander  x:Name="expanderVoucher">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
 
-                                    <TextBlock Text="Voucher"
-                                               TextAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="18"
-                                               FontWeight="SemiBold"
-                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                        <TextBlock Text="Voucher"
+                                                   TextAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryGrayColor}" />
+                                    </StackPanel>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <Button x:Name="rdPaymentVoucher"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="Receipt"
+                                            Content="Payment"
+                                            Uid="6"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdPaymentVoucher}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Payment Voucher"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+
+                                    <!--7-->
+                                    <Button x:Name="rdReceiptVoucher"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="Receipt"
+                                            Content="Receipt"
+                                            Uid="7"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdReceiptVoucher}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Receipt Voucher"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
                                 </StackPanel>
-                            </Expander.Header>
-                            <StackPanel>
-                                <Button x:Name="rdPaymentVoucher"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="Receipt"
-                                        Content="Payment"
-                                        Uid="6"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdPaymentVoucher}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Payment Voucher"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
+                            </Expander>
 
-                                <!--7-->
-                                <Button x:Name="rdReceiptVoucher"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="Receipt"
-                                        Content="Receipt"
-                                        Uid="7"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdReceiptVoucher}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Receipt Voucher"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
-                        </Expander>
+                            <Expander  x:Name="expanderManage">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Manage"
+                                                   TextAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource PrimaryGrayColor}" />
+                                    </StackPanel>
+                                </Expander.Header>
+                                <StackPanel>
+                                    <!--8-->
+                                    <Button x:Name="rdIncident"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="PaperRollOutline"
+                                            Content="Incident"
+                                            Uid="8"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdIncident}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Incident"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
 
-                        <Expander  x:Name="expanderManage">
-                            <Expander.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Manage"
-                                               TextAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               FontSize="18"
-                                               FontWeight="SemiBold"
-                                               Foreground="{StaticResource PrimaryGrayColor}" />
+                                    <!--9-->
+                                    <Button x:Name="rdEmployee"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="BadgeAccountHorizontalOutline"
+                                            Content="Employee"
+                                            Uid="9"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdEmployee}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Employee"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                    <!--10-->
+                                    <Button x:Name="rdAcount"
+                                            Style="{DynamicResource MenuRadioButtonStyle}"
+                                            Tag="Account"
+                                            Content="Account"
+                                            Uid="10"
+                                            Command="{Binding SwitchTabCommand}"
+                                            CommandParameter="{Binding ElementName=wdMain}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseMove">
+                                                <i:InvokeCommandAction Command="{Binding GetUidCommand}"
+                                                                       CommandParameter="{Binding ElementName=rdAcount}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Account Management"
+                                                     Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
                                 </StackPanel>
-                            </Expander.Header>
-                            <StackPanel>
-                                <!--8-->
-                                <Button x:Name="rdIncident"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="PaperRollOutline"
-                                        Content="Incident"
-                                        Uid="8"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdIncident}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Incident"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-
-                                <!--9-->
-                                <Button x:Name="rdEmployee"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="BadgeAccountHorizontalOutline"
-                                        Content="Employee"
-                                        Uid="9"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdEmployee}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Employee"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                                <!--10-->
-                                <Button x:Name="rdAcount"
-                                        Style="{DynamicResource MenuRadioButtonStyle}"
-                                        Tag="Account"
-                                        Content="Account"
-                                        Uid="10"
-                                        Command="{Binding SwitchTabCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding GetUidCommand}"
-                                                                   CommandParameter="{Binding ElementName=rdAcount}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <Button.ToolTip>
-                                        <ToolTip Content="Account Management"
-                                                 Style="{DynamicResource ToolTipStyleMainMenuButton}"></ToolTip>
-                                    </Button.ToolTip>
-                                </Button>
-                            </StackPanel>
-                        </Expander>
-
-                    </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </ScrollViewer>
                     <Grid Grid.Row="3"
                           VerticalAlignment="Bottom"
                           Margin="0 0 0 20">
@@ -438,10 +443,385 @@
                       Grid.Row="1">
                     <!--0-->
                     <Border CornerRadius="8"
-                            Background="{DynamicResource PrimaryBackgroundColor}"
+                            Background="{DynamicResource White}"
                             x:Name="grdHome"
-                            Visibility="Collapsed">
-                        <Grid Background="Aqua"></Grid>
+                            Visibility="Visible">
+                        <Grid x:Name="grdBody_Home"
+                              Grid.Row="1"
+                              DataContext="{StaticResource ReportVM}"
+                              Visibility="Visible">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding LoadCommand}"
+                                                           CommandParameter="{Binding ElementName=wdHomeWindow}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Border Padding="4"
+                                        Margin="20 20 20 20"
+                                        Grid.Column="0"
+                                        CornerRadius="4">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1"
+                                                             StartPoint="0.5,0">
+                                            <GradientStop Color="#FF22EBD2"
+                                                          Offset="1" />
+                                            <GradientStop Color="#FFD0D118" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <materialDesign:Card Background="Transparent">
+                                        <Grid>
+                                            <Label x:Name="label"
+                                                   Content="Total money in month"
+                                                   Style="{StaticResource ReportTitle}" />
+                                            <Label x:Name="label_total_money_business"
+                                                   Content="{Binding ThisMonthMoney}"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="10 70 0 0"
+                                                   VerticalAlignment="Top"
+                                                   FontSize="24"
+                                                   Foreground="#DDF9F9F9"
+                                                   FontWeight="Bold" />
+                                            <Label Content="{Binding ThisMonth}"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="10 100 0 0"
+                                                   VerticalAlignment="Bottom"
+                                                   FontSize="18"
+                                                   Foreground="#DDF9F9F9"
+                                                   FontWeight="Bold" />
+                                            <Label x:Name="label_image_business"
+                                                   Content=""
+                                                   HorizontalAlignment="Right"
+                                                   Height="60"
+                                                   Margin="10 10"
+                                                   VerticalAlignment="Top"
+                                                   Width="60">
+                                                <Label.Background>
+                                                    <ImageBrush ImageSource="/BeverageStoreManagement;component/Resources/Images/money.png"
+                                                                Stretch="Uniform" />
+                                                </Label.Background>
+                                            </Label>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Border>
+                                <Border Padding="4"
+                                        Margin="20 20 20 20"
+                                        Grid.Column="1"
+                                        CornerRadius="4">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1"
+                                                             StartPoint="0.5,0">
+                                            <GradientStop Color="#FF016CFD" />
+                                            <GradientStop Color="#FF00E4FF"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <materialDesign:Card  Background="Transparent">
+
+                                        <Grid>
+                                            <Label x:Name="label_service"
+                                                   Content="Compared to last month"
+                                                   Style="{StaticResource ReportTitle}" />
+                                            <Label x:Name="label_total_money_service"
+                                                   Content="{Binding IncreasingPercent}"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="10 70 0 0"
+                                                   VerticalAlignment="Top"
+                                                   FontSize="24"
+                                                   Foreground="#DDF9F9F9"
+                                                   FontWeight="Bold" />
+                                            <Label Content="{Binding ThisMonth}"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="10 100 0 0"
+                                                   VerticalAlignment="Bottom"
+                                                   FontSize="18"
+                                                   Foreground="#DDF9F9F9"
+                                                   FontWeight="Bold" />
+                                            <Label x:Name="label_image_service"
+                                                   Content=""
+                                                   HorizontalAlignment="Right"
+                                                   Height="60"
+                                                   Margin="10 10"
+                                                   VerticalAlignment="Top"
+                                                   Width="60">
+                                                <Label.Background>
+                                                    <ImageBrush ImageSource="/BeverageStoreManagement;component/Resources/Images/IncreaseIcon.png"
+                                                                Stretch="Uniform" />
+                                                </Label.Background>
+                                            </Label>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Border>
+                                <Border Padding="4"
+                                        Margin="20 20 20 20"
+                                        Grid.Column="2"
+                                        CornerRadius="4">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1"
+                                                             StartPoint="0.5,0">
+                                            <GradientStop Color="#FFF04662" />
+                                            <GradientStop Color="#FFDFAB7E"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <materialDesign:Card  Background="Transparent">
+                                        <Grid>
+                                            <Label x:Name="label_three"
+                                                   Content="Order"
+                                                   Style="{StaticResource ReportTitle}" />
+                                            <Label x:Name="label_total_money_three"
+                                                   Content="{Binding NumOfBuy}"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="10 70 0 0"
+                                                   VerticalAlignment="Top"
+                                                   FontSize="24"
+                                                   Foreground="#DDF9F9F9"
+                                                   FontWeight="Bold" />
+                                            <Label Content="{Binding ThisMonth}"
+                                                   HorizontalAlignment="Left"
+                                                   Margin="10 100 0 0"
+                                                   VerticalAlignment="Bottom"
+                                                   FontSize="18"
+                                                   Foreground="#DDF9F9F9"
+                                                   FontWeight="Bold" />
+                                            <Label x:Name="label_image_three"
+                                                   Content=""
+                                                   HorizontalAlignment="Right"
+                                                   Height="60"
+                                                   Margin="10 10"
+                                                   VerticalAlignment="Top"
+                                                   Width="60">
+                                                <Label.Background>
+                                                    <ImageBrush ImageSource="/BeverageStoreManagement;component/Resources/Images/IncreaseIcon.png"
+                                                                Stretch="Uniform" />
+                                                </Label.Background>
+                                            </Label>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </Border>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="380" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:Card Padding="8"
+                                                     Margin="20 20 20 20"
+                                                     Grid.Column="0">
+                                    <Wpf:PieChart x:Name="lvcPieChart"
+                                                  DataContext="{StaticResource ReportVM}"
+                                                  LegendLocation="None"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Top"
+                                                  Width="300"
+                                                  Height="320"
+                                                  Margin="0 50 0 0"
+                                                  Hoverable="True"
+                                                  HoverPushOut="10"
+                                                  FontSize="16"
+                                                  Series="{Binding PieSeriesCollection}">
+                                    </Wpf:PieChart>
+                                </materialDesign:Card>
+                                <ComboBox x:Name="cboSelectTimePie"
+                                          Grid.Column="0"
+                                          materialDesign:ComboBoxAssist.ClassicMode="true"
+                                          FontSize="16"
+                                          FontWeight="Medium"
+                                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                          materialDesign:HintAssist.Hint="Select time"
+                                          materialDesign:HintAssist.Foreground="{DynamicResource Blue2}"
+                                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Blue2}"
+                                          Width="140"
+                                          Height="45"
+                                          HorizontalAlignment="Left"
+                                          HorizontalContentAlignment="Left"
+                                          VerticalContentAlignment="Center"
+                                          Padding="3,0,0,0"
+                                          Margin="30,25,0,0"
+                                          VerticalAlignment="Top">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding InitPieChartCommand}"
+                                                                   CommandParameter="{Binding ElementName=wdMain}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <ComboBoxItem Content="Today" />
+                                    <ComboBoxItem Content="This month" />
+                                </ComboBox>
+                                <WrapPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            Height="100"
+                                           Width="280"
+                                            Margin="0,400,0,0"
+                                            VerticalAlignment="Top"
+                                            Grid.Column="0">
+                                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                                                  ToolTip="Invoice"
+                                                  Width="45"
+                                                  Height="45"
+                                                  HorizontalAlignment="Left"
+                                                  VerticalAlignment="Top"
+                                                  Margin="0"
+                                                  Background="{DynamicResource PaletteColor3}">
+                                        <materialDesign:ToggleButtonAssist.OnContent>
+                                            <materialDesign:PackIcon Kind="ReceiptRoll"
+                                                                     Width="30"
+                                                                     Height="30"
+                                                                     Foreground="{DynamicResource White}" />
+                                        </materialDesign:ToggleButtonAssist.OnContent>
+                                        <materialDesign:PackIcon Kind="ReceiptRoll"
+                                                                 Width="30"
+                                                                 Height="30"
+                                                                 Foreground="{DynamicResource White}" />
+                                    </ToggleButton>
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="Invoice"
+                                               Margin="8,0,16,0"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center" />
+                                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                                                  ToolTip="Payment VC"
+                                                  Width="45"
+                                                  Height="45"
+                                                  HorizontalAlignment="Right"
+                                                  VerticalAlignment="Top"
+                                                  Margin="0"
+                                                  Background="{DynamicResource Color1}">
+                                        <materialDesign:ToggleButtonAssist.OnContent>
+                                            <materialDesign:PackIcon Kind="Payment"
+                                                                     Width="30"
+                                                                     Height="30"
+                                                                     Foreground="{DynamicResource White}" />
+                                        </materialDesign:ToggleButtonAssist.OnContent>
+                                        <materialDesign:PackIcon Kind="Payment"
+                                                                 Width="30"
+                                                                 Height="30"
+                                                                 Foreground="{DynamicResource White}" />
+                                    </ToggleButton>
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="Payment VC"
+                                               Margin="8,0"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center" />
+                                    <ToggleButton Style="{StaticResource MaterialDesignActionToggleButton}"
+                                                  ToolTip="Receipt VC"
+                                                  Width="45"
+                                                  Height="45"
+                                                  HorizontalAlignment="Right"
+                                                  VerticalAlignment="Top"
+                                                  Margin="0 10 0 0"
+                                                  Background="{DynamicResource Color2}">
+                                        <materialDesign:ToggleButtonAssist.OnContent>
+                                            <materialDesign:PackIcon Kind="Receipt"
+                                                                     Width="30"
+                                                                     Height="30"
+                                                                     Foreground="{DynamicResource White}" />
+                                        </materialDesign:ToggleButtonAssist.OnContent>
+                                        <materialDesign:PackIcon Kind="Receipt"
+                                                                 Width="30"
+                                                                 Height="30"
+                                                                 Foreground="{DynamicResource White}" />
+                                    </ToggleButton>
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="Receipt VC"
+                                               Margin="8 10 0 0"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center" />
+                                </WrapPanel>
+                                <Grid Grid.Column="1">
+                                    <materialDesign:Card Padding="8"
+                                                         Margin="20 20 20 20"
+                                                         Grid.Column="0">
+                                        <Wpf:CartesianChart x:Name="lvcColumnChart"
+                                                            DataContext="{StaticResource ReportVM}"
+                                                            Series="{Binding SeriesCollection}"
+                                                            LegendLocation="Bottom"
+                                                            Margin="0 50 0 0">
+                                            <Wpf:CartesianChart.AxisX>
+                                                <Wpf:Axis Title="{Binding AxisXTitle, Mode=TwoWay}"
+                                                          Labels="{Binding Labels, Mode=TwoWay}"
+                                                          Foreground="{DynamicResource Color1}"
+                                                          FontSize="14">
+                                                    <Wpf:Axis.Separator>
+                                                        <Wpf:Separator Step="1" />
+                                                    </Wpf:Axis.Separator>
+                                                </Wpf:Axis>
+                                            </Wpf:CartesianChart.AxisX>
+                                            <Wpf:CartesianChart.AxisY>
+                                                <Wpf:Axis Title="{Binding AxisYTitle, Mode=TwoWay}"
+                                                          LabelFormatter="{Binding Formatter}"
+                                                          Foreground="{DynamicResource Color1}"
+                                                          FontSize="14" />
+                                            </Wpf:CartesianChart.AxisY>
+                                        </Wpf:CartesianChart>
+                                    </materialDesign:Card>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,25,0,0"
+                                            Grid.Column="1">
+                                    <ComboBox DataContext="{StaticResource ReportVM}"
+                                              x:Name="cboSelectPeriod"
+                                              materialDesign:ComboBoxAssist.ClassicMode="true"
+                                              FontSize="16"
+                                              FontWeight="Medium"
+                                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                              materialDesign:HintAssist.Hint="Cycle"
+                                              Width="160"
+                                              Height="40"
+                                              HorizontalAlignment="Left"
+                                              HorizontalContentAlignment="Left"
+                                              VerticalContentAlignment="Center"
+                                              Padding="3,0,0,0"
+                                              Margin="0">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <ComboBoxItem Content="Month" />
+                                        <ComboBoxItem Content="Quarter" />
+                                        <ComboBoxItem Content="Year" />
+                                    </ComboBox>
+                                    <ComboBox x:Name="cboSelectTime"
+                                              DataContext="{StaticResource ReportVM}"
+                                              ItemsSource="{Binding ItemSourceTime, Mode=TwoWay}"
+                                              materialDesign:ComboBoxAssist.ClassicMode="true"
+                                              FontSize="16"
+                                              FontWeight="Medium"
+                                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                              materialDesign:HintAssist.Hint="Chọn"
+                                              Width="160"
+                                              Height="40"
+                                              HorizontalAlignment="Left"
+                                              HorizontalContentAlignment="Left"
+                                              VerticalContentAlignment="Center"
+                                              Padding="3,0,0,0"
+                                              Margin="60,0,0,0">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding InitColumnChartCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
                     </Border>
                     <!--1-->
                     <Border CornerRadius="8"
@@ -642,12 +1022,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0"
                                                Content="No."
-                                               FontSize="16"
-                                               FontFamily="Poppins"
-                                               Foreground="White"
-                                               FontWeight="SemiBold"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
+                                               Style="{StaticResource SupplierTitle}" />
                                         <Rectangle Grid.Column="0"
                                                    HorizontalAlignment="Right"
                                                    Height="30"
@@ -657,10 +1032,7 @@
                                                    VerticalAlignment="Center" />
                                         <Label Grid.Column="1"
                                                Content="Product"
-                                               FontSize="16"
-                                               FontFamily="Poppins"
-                                               Foreground="White"
-                                               FontWeight="SemiBold"
+                                               Style="{StaticResource SupplierTitle}"
                                                Margin="10 0 0 0"
                                                HorizontalAlignment="Left"
                                                VerticalAlignment="Center" />
@@ -673,12 +1045,7 @@
                                                    VerticalAlignment="Center" />
                                         <Label Grid.Column="2"
                                                Content="Unit Price"
-                                               FontSize="16"
-                                               FontFamily="Poppins"
-                                               Foreground="White"
-                                               FontWeight="SemiBold"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
+                                               Style="{StaticResource SupplierTitle}" />
                                         <Rectangle Grid.Column="2"
                                                    HorizontalAlignment="Right"
                                                    Height="30"
@@ -689,11 +1056,7 @@
                                         <Label Grid.Column="3"
                                                Content="Quantity"
                                                FontSize="16"
-                                               FontFamily="Poppins"
-                                               Foreground="White"
-                                               FontWeight="SemiBold"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
+                                               Style="{StaticResource SupplierTitle}" />
                                         <Rectangle Grid.Column="3"
                                                    HorizontalAlignment="Right"
                                                    Height="30"
@@ -703,12 +1066,7 @@
                                                    VerticalAlignment="Center" />
                                         <Label Grid.Column="4"
                                                Content="Total"
-                                               FontSize="16"
-                                               FontFamily="Poppins"
-                                               Foreground="White"
-                                               FontWeight="SemiBold"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
+                                               Style="{StaticResource SupplierTitle}" />
                                         <Rectangle Grid.Column="4"
                                                    HorizontalAlignment="Right"
                                                    Height="30"
@@ -748,7 +1106,7 @@
                                                     RadiusY="6"
                                                     RadiusX="6"
                                                     Margin="70,0,20,0"
-                                                    Stroke="{StaticResource Pallet4}"
+                                                    Stroke="{StaticResource Black1}"
                                                     HorizontalAlignment="Right"
                                                     VerticalAlignment="Center"
                                                     StrokeThickness="2" />
@@ -762,7 +1120,7 @@
                                                  BorderThickness="0"
                                                  MaxLines="1"
                                                  Padding="0"
-                                                 Foreground="{DynamicResource Pallet4}"
+                                                 Foreground="{DynamicResource Black1}"
                                                  Margin="80 0 30 0"
                                                  Height="40"
                                                  IsReadOnly="True"
@@ -854,7 +1212,7 @@
                                                     RadiusY="6"
                                                     RadiusX="6"
                                                     Margin="0,12,20.2,12"
-                                                    Stroke="{StaticResource Pallet4}"
+                                                    Stroke="{StaticResource Black1}"
                                                     HorizontalAlignment="Right"
                                                     VerticalAlignment="Center"
                                                     StrokeThickness="2"
@@ -870,7 +1228,7 @@
                                                  BorderThickness="0"
                                                  MaxLines="1"
                                                  Padding="0"
-                                                 Foreground="{DynamicResource Pallet4}"
+                                                 Foreground="{DynamicResource Black1}"
                                                  Margin="0,12,30.2,12"
                                                  Height="40"
                                                  HorizontalContentAlignment="Left"
@@ -1019,7 +1377,7 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdInvoice"
-                            Visibility="Visible"
+                            Visibility="Collapsed"
                             DataContext="{StaticResource InvoiceVM}">
                         <Grid>
                             <i:Interaction.Triggers>
@@ -1045,8 +1403,8 @@
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         Margin="0 0 20 0"
-                                        Command="{Binding OpenAddInvoiceWindowCommand}"
-                                        CommandParameter="{Binding ElementName=pageInvoice}" />
+                                        Command="{Binding ExportCommand}"
+                                        CommandParameter="{Binding ElementName=wdMain}" />
                                 <Label x:Name="lbDate"
                                        Content="{Binding Datez}"
                                        FontFamily="Poppins"
@@ -1072,18 +1430,13 @@
                                             <ColumnDefinition Width="1.5*" />
                                             <ColumnDefinition Width="2*" />
                                             <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="1.5*" />
-                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1.25*" />
+                                            <ColumnDefinition Width="1.25*" />
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
                                             <Label Content="Id Bill"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -1093,13 +1446,9 @@
                                         </Grid>
                                         <Grid Grid.Column="1">
                                             <Label Content="Employee"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   Margin="20 0 0 0"
+                                                   Style="{StaticResource SupplierTitle}"
                                                    HorizontalAlignment="Left"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Margin="20 0 0 0" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -1109,12 +1458,7 @@
                                         </Grid>
                                         <Grid Grid.Column="2">
                                             <Label Content="Time"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -1124,12 +1468,7 @@
                                         </Grid>
                                         <Grid Grid.Column="3">
                                             <Label Content="Money"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -1139,12 +1478,7 @@
                                         </Grid>
                                         <Grid Grid.Column="4">
                                             <Label Content="Money's Customer"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -1154,12 +1488,7 @@
                                         </Grid>
                                         <Grid Grid.Column="5">
                                             <Label Content="Status"
-                                                   FontFamily="Poppins"
-                                                   FontSize="20"
-                                                   FontWeight="SemiBold"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="White" />
+                                                   Style="{StaticResource SupplierTitle}" />
                                             <Rectangle HorizontalAlignment="Right"
                                                        Height="30"
                                                        Margin="0"
@@ -2022,6 +2351,21 @@
                                         <StackPanel x:Name="stkPaymentVoucher"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Center">
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
+                                            <uc:PaymentVoucherControl />
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2592,7 +2936,7 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource White}"
                             x:Name="grdAccount"
-                            Visibility="Visible"
+                            Visibility="Collapsed"
                             DataContext="{StaticResource AccountVM}">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -2630,7 +2974,7 @@
                                             Visibility="Visible">
                                         <Grid>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*" />
                                                 <RowDefinition Height="9*" />
                                             </Grid.RowDefinitions>
 
@@ -3143,14 +3487,16 @@
                                                        Style="{StaticResource RectangleTitle}" />
                                         </Grid>
                                     </Border>
-                                    <Border Grid.Row="2"
-                                            CornerRadius="0,0,4,4"
-                                            BorderThickness="0,0,0,0"
-                                            Margin="20,0,20,20">
-                                        <StackPanel x:Name="stkSupplier">
-
-                                        </StackPanel>
-                                    </Border>
+                                    <Grid Grid.Row="2"
+                                          Margin="20,0,20,20"
+                                          Width="900">
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                      HorizontalScrollBarVisibility="Disabled">
+                                            <StackPanel x:Name="stkSupplier"
+                                                        ScrollViewer.HorizontalScrollBarVisibility="Visible">
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>

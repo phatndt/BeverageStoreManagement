@@ -41,7 +41,7 @@ namespace BeverageStoreManagement.ViewModels
             AddMaterialCommand = new RelayCommand<AddMaterialWindow>(parameter => true, parameter => AddMaterial(parameter));
             DeleteMaterialCommand = new RelayCommand<GoodsViewControl>(parameter => true, parameter => DeleteMaterial(parameter));
         }
-        private void LoadMaterial(MainWindow parameter)
+        public void LoadMaterial(MainWindow parameter)
         {
             int i = 1;
             this.mainWindow = parameter;

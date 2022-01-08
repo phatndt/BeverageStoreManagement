@@ -50,7 +50,7 @@ namespace BeverageStoreManagement.ViewModels
             SeparateThousandsCommand = new RelayCommand<TextBox>((parameter) => true, (parameter) => SeparateThousands(parameter));
         }
         #region gridSupplier
-        private void LoadIncident(MainWindow parameter)
+        public void LoadIncident(MainWindow parameter)
         {
             mainWindow = parameter;
             parameter.incidentItem.Children.Clear();

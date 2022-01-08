@@ -31,4 +31,6 @@
     <models:Account x:Key="Account" />
     <models:Incident x:Key="Incident" />
     <models:Employee x:Key="Employee" />
+
+    <viewmodels:ReportViewModel x:Key="ReportVM" />
 </ResourceDictionary>

@@ -25,11 +25,15 @@ namespace BeverageStoreManagement.ViewModels
         private ObservableCollection<string> itemSource = new ObservableCollection<string>();
         public ObservableCollection<string> IteamSource { get => itemSource; set { itemSource = value; OnPropertyChanged(); } }
 
+        private List<Supplier> suppliers = new List<Supplier>();
+        private List<int> moneys = new List<int>();
+
         //gridSupplier
         public ICommand OpenAddSupplierWindowCommand { get; set; }
         public ICommand SelectSortTypeCommand { get; set; }
         public ICommand SortCommand { get; set; }
         public ICommand LoadSupplierCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
 
         //supplierControl
         public ICommand OpenEditSupplierCommand { get; set; }
@@ -44,9 +48,10 @@ namespace BeverageStoreManagement.ViewModels
         public SupplierViewModel()
         {
             OpenAddSupplierWindowCommand = new RelayCommand<MainWindow>(parameter => true, parameter => OpenAddSupplierWindow(parameter));
-            SelectSortTypeCommand = new RelayCommand<MainWindow>(parameter => true, parameter => SelectSortType(parameter)); 
+            SelectSortTypeCommand = new RelayCommand<MainWindow>(parameter => true, parameter => SelectSortType(parameter));
             SortCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Sort(parameter));
             LoadSupplierCommand = new RelayCommand<MainWindow>(parameter => true, parameter => LoadSupplier(parameter));
+            SearchCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Search(parameter));
 
             OpenEditSupplierCommand = new RelayCommand<SupplierControl>(parameter => true, parameter => OpenEditSupplier(parameter));
 
@@ -58,13 +63,17 @@ namespace BeverageStoreManagement.ViewModels
         }
 
         #region gridSupplier
-        private void LoadSupplier(MainWindow parameter)
+        public void LoadSupplier(MainWindow parameter)
         {
             mainWindow = parameter;
+            ListSupplierToView.Clear();
             parameter.stkSupplier.Children.Clear();
-            List<Supplier> suppliers = SupplierDAL.Instance.GetList();
+            suppliers = SupplierDAL.Instance.GetList();
+            moneys.Clear();
 
             int id = 1;
+            int totalMoney = 0;
+
             foreach (Supplier supplier in suppliers)
             {
                 SupplierControl supplierControl = new SupplierControl();
@@ -75,29 +84,27 @@ namespace BeverageStoreManagement.ViewModels
                 supplierControl.txb_supplier_address.Text = supplier.AddressSupplier;
                 supplierControl.txb_supplier_phone.Text = supplier.PhoneSupplier;
                 supplierControl.txb_supplier_bill.Text = ImportBillDAL.Instance.GetBillQuantityBySupplier(supplier.IdSupplier).ToString();
-                supplierControl.txb_total_money.Text = ImportBillDAL.Instance.GetTotalMoneyBySupplier(supplier.IdSupplier).ToString(); ;
-                parameter.stkSupplier.Children.Add(supplierControl);
+
+                int money = ImportBillDAL.Instance.GetTotalMoneyBySupplier(supplier.IdSupplier);
+                supplierControl.txb_total_money.Text = money.ToString();
+
+                ListSupplierToView.Add(supplierControl);
 
                 id++;
+                totalMoney += money;
+                moneys.Add(money);
             }
+            LoadToView(parameter);
+            parameter.txbSupplierQuantity.Text = suppliers.Count.ToString();
+            parameter.txbTotalSpentToSupplier.Text = totalMoney.ToString();
+        }
 
-            int supplierQuantity = SupplierDAL.Instance.GetTotalSupplier();
-            if (supplierQuantity != 0)
+        private void LoadToView(MainWindow parameter)
+        {
+            parameter.stkSupplier.Children.Clear();
+            for (int i = 0; i < ListSupplierToView.Count; i++)
             {
-                parameter.txbSupplierQuantity.Text = supplierQuantity.ToString();
-            } else
-            {
-                parameter.txbSupplierQuantity.Text = "ERROR";
-            }
-
-            int totalMoney = ImportBillDAL.Instance.GetTotalMoney();
-            if (totalMoney != 0)
-            {
-                parameter.txbTotalSpentToSupplier.Text = totalMoney.ToString();
-            }
-            else
-            {
-                parameter.txbTotalSpentToSupplier.Text = "ERROR";
+                parameter.stkSupplier.Children.Add(ListSupplierToView[i]);
             }
         }
 
@@ -162,8 +169,9 @@ namespace BeverageStoreManagement.ViewModels
                 }
             }
 
-            //LoadSupplierToView(main);
+            LoadToView(parameter);
         }
+
         void SelectSortType(MainWindow parameter)
         {
             itemSource.Clear();
@@ -184,7 +192,35 @@ namespace BeverageStoreManagement.ViewModels
                     break;
             }
         }
+        private void Search(MainWindow parameter)
+        {
+            string search = parameter.txtSearchSupplier.Text;
+            ListSupplierToView.Clear();
 
+            int id = 1;
+            for (int i = 0; i < suppliers.Count; i++)
+            {
+                if (suppliers[i].NameSupplier.ToLower().Contains(search.ToLower()))
+                {
+                    SupplierControl supplierControl = new SupplierControl();
+
+                    supplierControl.id.Text = suppliers[i].IdSupplier.ToString();
+                    supplierControl.no.Text = id.ToString();
+                    supplierControl.txb_supplier_name.Text = suppliers[i].NameSupplier;
+                    supplierControl.txb_supplier_address.Text = suppliers[i].AddressSupplier;
+                    supplierControl.txb_supplier_phone.Text = suppliers[i].PhoneSupplier;
+                    supplierControl.txb_supplier_bill.Text = ImportBillDAL.Instance.GetBillQuantityBySupplier(suppliers[i].IdSupplier).ToString();
+
+                    int money = moneys[i];
+                    supplierControl.txb_total_money.Text = money.ToString();
+
+                    ListSupplierToView.Add(supplierControl);
+
+                    id++;
+                }
+                Sort(parameter);
+            }
+        }
         #endregion
 
         #region supplierControl
@@ -204,7 +240,7 @@ namespace BeverageStoreManagement.ViewModels
         }
         #endregion
 
-        #region addSupplierWindow
+        #region addSupplierWinvdow
         private bool CheckEmptyAddSupplier(AddSupplierWindow parameter)
         {
             if (parameter.txtNameSupplier.Text == "")
@@ -233,7 +269,7 @@ namespace BeverageStoreManagement.ViewModels
             }
             return true;
         }
-        
+
         public void SaveAddSupplier(AddSupplierWindow parameter)
         {
             if (CheckEmptyAddSupplier(parameter))

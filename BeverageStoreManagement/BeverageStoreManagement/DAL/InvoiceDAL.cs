@@ -114,6 +114,29 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
+
+        public void DeleteInvoiceById(int idInvoice)
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "UPDATE Invoice SET isDelete = '1' WHERE idInvoice = @idInvoice";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                command.Parameters.AddWithValue("@idInvoice", idInvoice);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                //return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
     }
 
 }

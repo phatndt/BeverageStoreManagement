@@ -18,8 +18,8 @@
             <ColumnDefinition Width="1.5*" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1.25*" />
+            <ColumnDefinition Width="1.25*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0"
@@ -159,10 +159,32 @@
                                          Height="24"
                                          Width="24" />
             </Button>
-            <Grid Width="20" />
+            <Grid Width="15" />
+            <Button x:Name="btnPrintInvoice"
+                    Command="{Binding PrintInvoiceControlCommand}"
+                    CommandParameter="{Binding ElementName=InvoiceUc}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="Edit Invoice"
+                    Height="24"
+                    materialDesign:ButtonAssist.CornerRadius="6"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="{DynamicResource TextColor}"
+                    FontSize="16"
+                    VerticalAlignment="Center"
+                    FocusVisualStyle="{x:Null}"
+                    Width="26"
+                    HorizontalAlignment="Center"
+                    FontWeight="SemiBold"
+                    Padding="0">
+                <materialDesign:PackIcon Kind="Printer"
+                                         Height="24"
+                                         Width="24" />
+            </Button>
+            <Grid Width="15" />
             <Button x:Name="btnDeleteInvoice"
-                    Command="{Binding DeleteBillDetailCommand}"
-                    CommandParameter="{Binding ElementName=SaleBillUC}"
+                    Command="{Binding DeleteInvoiceCommand}"
+                    CommandParameter="{Binding ElementName=InvoiceUc}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="Delete Invoice"
                     Height="24"
