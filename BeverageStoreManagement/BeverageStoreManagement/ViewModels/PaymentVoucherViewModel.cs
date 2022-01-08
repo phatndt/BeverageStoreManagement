@@ -61,7 +61,7 @@ namespace BeverageStoreManagement.ViewModels
         }
 
         #region grdPaymentVoucher
-        private void LoadPaymentVoucher(MainWindow parameter)
+        public void LoadPaymentVoucher(MainWindow parameter)
         {
             this.mainWindow = parameter;
             parameter.stkPaymentVoucher.Children.Clear();

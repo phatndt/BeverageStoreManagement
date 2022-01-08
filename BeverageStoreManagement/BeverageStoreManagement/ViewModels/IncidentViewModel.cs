@@ -60,7 +60,7 @@ namespace BeverageStoreManagement.ViewModels
             UpdateIncidentCommand = new RelayCommand<IncidentControls>((parameter) => true, (parameter) => saveUpdateInfo(parameter));
         }
         #region gridSupplier
-        private void LoadIncident(MainWindow parameter)
+        public void LoadIncident(MainWindow parameter)
         {
             mainWindow = parameter;
             parameter.incidentItem.Children.Clear();

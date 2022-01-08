@@ -4,13 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeverageStoreManagement.Resources.Print"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         x:Name="wdBillTemplate"
         Title="Invoice"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         Height="700"
-        Width="592">
+        Width="592"
+        DataContext="{StaticResource InvoiceVM}">
     <Grid x:Name="grdPrint">
         <Grid.RowDefinitions>
             <RowDefinition Height="140" />
@@ -364,6 +366,28 @@
                                Foreground="{DynamicResource Black2}"
                                Margin="0,5,0,0" />
                 </StackPanel>
+                <Button x:Name="btnPrintInvoice"
+                        Command="{Binding PrintInvoiceCommand}"
+                        CommandParameter="{Binding ElementName=wdBillTemplate}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        ToolTip="Edit Invoice"
+                        Height="24"
+                        materialDesign:ButtonAssist.CornerRadius="6"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Foreground="{DynamicResource TextColor}"
+                        FontSize="16"
+                        VerticalAlignment="Center"
+                        FocusVisualStyle="{x:Null}"
+                        Width="26"
+                        HorizontalAlignment="Left"
+                        FontWeight="SemiBold"
+                        Padding="0">
+                    <materialDesign:PackIcon Kind="Printer"
+                                             Height="24"
+                                             Width="24" />
+                </Button>
+                <Grid Width="10" />
             </StackPanel>
         </Grid>
     </Grid>

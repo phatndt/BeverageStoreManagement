@@ -89,7 +89,7 @@ namespace BeverageStoreManagement.ViewModels
             addProductWindow.ShowDialog();
         }
 
-        private void LoadProduct(MainWindow parameter)
+        public void LoadProduct(MainWindow parameter)
         {
             int i = 1;
             this.mainWindow = parameter;

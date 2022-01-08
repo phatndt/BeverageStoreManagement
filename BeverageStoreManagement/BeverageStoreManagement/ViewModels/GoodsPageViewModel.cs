@@ -72,8 +72,8 @@ namespace BeverageStoreManagement.ViewModels
             LoadUpdateMaterialCommand = new RelayCommand<UpdateGoodsWindow>(parameter => true, parameter => LoadUpdateMaterialWindow(parameter));
             SearchCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Search(parameter));
         }
-
-        private void LoadMaterial(MainWindow parameter)
+        
+        public void LoadMaterial(MainWindow parameter)
         {
             this.mainWindow = parameter;
             parameter.txtTimeUpdate.Text = MaterialDAL.Instance.GetMaterial("0").NameMaterial;

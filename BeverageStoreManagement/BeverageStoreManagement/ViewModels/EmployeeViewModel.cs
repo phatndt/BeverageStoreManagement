@@ -88,7 +88,7 @@ namespace BeverageStoreManagement.ViewModels
         #endregion
 
         #region grdEmployee
-        private void LoadEmployee(MainWindow parameter)
+        public void LoadEmployee(MainWindow parameter)
         {
             this.mainWindow = parameter;
             parameter.stkEmployee.Children.Clear();

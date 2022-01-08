@@ -58,7 +58,7 @@ namespace BeverageStoreManagement.ViewModels
         }
 
         #region grdReceiptVoucher
-        private void LoadReceiptVoucher(MainWindow parameter)
+        public void LoadReceiptVoucher(MainWindow parameter)
         {
             mainWindow = parameter;
             parameter.stkReceiptVoucher.Children.Clear();

@@ -84,7 +84,7 @@ namespace BeverageStoreManagement.ViewModels
         }
 
         #region grdSale
-        private void LoadProduct(MainWindow parameter)
+        public void LoadProduct(MainWindow parameter)
         {
             mainWindow = parameter;
             parameter.wrpGoods.Children.Clear();
@@ -332,36 +332,44 @@ namespace BeverageStoreManagement.ViewModels
 
         public void SaveInvoice(MainWindow parameter)
         {
-            bool status;
-            if (parameter.rdoOnSpot.IsChecked == true)
+            if (invoiceInfos.Count != 0) 
             {
-                status = true;
-            } else
-            {
-                status = false;
-            }
-            Invoice invoice = new Invoice(
-                int.Parse(IdInvoice), 
-                CurrentAccount.IdEmployee, 
-                DateTime.Now, 
-                ConvertToNumber(Total), 
-                ConvertToNumber(parameter.txtMoneyCustomer.Text),
-                int.Parse(parameter.txtIdTable.Text),
-                status,
-                false);
-            if (InvoiceDAL.Instance.AddNewInvoice(invoice) == 1)
-            {
-                foreach (InvoiceInfo invoiceInfo in invoiceInfos)
+                bool status;
+                if (parameter.rdoOnSpot.IsChecked == true)
                 {
-                    int id = InvoiceInfoDAL.Instance.GetMaxIdInvoiceInfo() + 1;
-                    invoiceInfo.IdInvoiceInfo = id;
-                    InvoiceInfoDAL.Instance.AddNewInvoiceInvoiceInfo(invoiceInfo);
+                    status = true;
                 }
-                CustomMessageBox.ShowOK("Add invoice success", "Information", "Oke");
+                else
+                {
+                    status = false;
+                }
+                Invoice invoice = new Invoice(
+                    int.Parse(IdInvoice),
+                    CurrentAccount.IdEmployee,
+                    DateTime.Now,
+                    ConvertToNumber(Total),
+                    ConvertToNumber(parameter.txtMoneyCustomer.Text),
+                    int.Parse(parameter.txtIdTable.Text),
+                    status,
+                    false);
+                if (InvoiceDAL.Instance.AddNewInvoice(invoice) == 1)
+                {
+                    foreach (InvoiceInfo invoiceInfo in invoiceInfos)
+                    {
+                        int id = InvoiceInfoDAL.Instance.GetMaxIdInvoiceInfo() + 1;
+                        invoiceInfo.IdInvoiceInfo = id;
+                        InvoiceInfoDAL.Instance.AddNewInvoiceInvoiceInfo(invoiceInfo);
+                    }
+                    CustomMessageBox.ShowOK("Add invoice success", "Information", "Oke");
 
+                }
+                else
+                {
+                    Notification.Instance.Success("Error!");
+                }
             } else
             {
-                Notification.Instance.Success("Error!");
+                CustomMessageBox.ShowOK("No products in invoice", "Information", "Oke");
             }
         }
 

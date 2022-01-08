@@ -19,6 +19,10 @@ namespace BeverageStoreManagement.ViewModels
     {
         private MainWindow mainWindow;
 
+        private bool isLogin;
+        public bool IsLogin { get => isLogin; set => isLogin = value; }
+
+
         public ICommand LoadAccountCommand { get; set; }
 
         public ICommand saveAccountCommand { get; set; }
@@ -66,7 +70,7 @@ namespace BeverageStoreManagement.ViewModels
         #endregion
 
         #region grdAccount
-        private void loadAccount(MainWindow parameter)
+        public void loadAccount(MainWindow parameter)
         {
             this.mainWindow = parameter;
             parameter.stkAccount.Children.Clear();
@@ -271,40 +275,109 @@ namespace BeverageStoreManagement.ViewModels
         
         private void onClickLogin(LoginWindow parameter)
         {
+            IsLogin = false;
+            if (parameter == null)
+            {
+                return;
+            }
+            if (string.IsNullOrEmpty(parameter.txtUsername.Text))
+            {
+                CustomMessageBox.Show("Please enter username!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtUsername.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(parameter.txtPassword.Password))
+            {
+                CustomMessageBox.Show("Please enter password!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtPassword.Focus();
+                return;
+            }
             string username = parameter.txtUsername.Text;
             string password = Converter.Instance.MD5Hash(parameter.txtPassword.Password.Trim());
+            Account acc = new Account();
+            List<Account> accounts = (List<Account>) AccountDAL.Instance.GetList();
 
-            Account account = AccountDAL.Instance.GetAccount(username, password);
-
-            if (account.IdAccount >= 1)
+            foreach (var _account in accounts)
             {
-                Employee employee = EmployeeDAL.Instance.GetEmployeeById(account.IdEmployee);
-                CurrentAccount.IdAccount = account.IdAccount;
-                CurrentAccount.IdEmployee = account.IdEmployee;
-                CurrentAccount.Username = account.Username;
-                CurrentAccount.Password = account.Password;
-                CurrentAccount.IsDelete = account.IsDelete;
+                if (_account.Username == username && _account.Password == password)
+                {
+                    isLogin = true;
+                    acc.IdAccount = _account.IdAccount;
+                    acc.IdAccount = _account.IdAccount;
+                    acc.Username = _account.Username;
+                    acc.Password = _account.Password;
+                    acc.IsDelete = _account.IsDelete;
+                    break;
+                }
+            }
+
+            if (isLogin)
+            {
+                MainWindow main = new MainWindow();
+
+                Employee employee = EmployeeDAL.Instance.GetEmployeeById(acc.IdEmployee);
+                CurrentAccount.IdAccount = acc.IdAccount;
+                CurrentAccount.IdEmployee = acc.IdEmployee;
+                CurrentAccount.Username = acc.Username;
+                CurrentAccount.Password = acc.Password;
+                CurrentAccount.IsDelete = acc.IsDelete;
+
                 if (employee.IdEmployee >= 1)
                 {
-                    CurrentEmployee.IdEmployee = employee.IdEmployee;
-                    CurrentEmployee.IdPosition = employee.IdPosition;
-                    CurrentEmployee.DateStartWorking = employee.DateStartWorking;
-                    CurrentEmployee.PhoneNumber = employee.PhoneNumber;
-                    CurrentEmployee.IsDelete = employee.IsDelete;
-                    CurrentEmployee.Name = employee.Name;
-                    CurrentEmployee.DateOfBirth = employee.DateOfBirth;
-                    CurrentEmployee.Address = employee.Address;
-                    CurrentEmployee.Gender = employee.Gender;
-                    MainWindow mainWindow = new MainWindow();
-                    if (employee.IdPosition == 1)
+                    if (employee.IdPosition != 0)
                     {
-                        parameter.Hide();
-                        mainWindow.Show();
-                        parameter.Close();
-                        parameter.txtUsername.Clear();
-                        parameter.txtPassword.Clear();
+                        SetRole(main, employee.IdPosition);
                     }
                 }
+                parameter.txtPassword.Password = null;
+                parameter.Hide();
+                main.ShowDialog();
+                parameter.Show();
+            }
+            else
+            {
+                CustomMessageBox.Show("Incorrect information!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        void SetRole(MainWindow window, int idPosition)
+        {
+            HomeViewModel homeVM = (HomeViewModel)window.DataContext;
+            homeVM.Uid = "0";
+            homeVM.SwitchTab(window);
+            if (idPosition == 1)
+            {
+                window.expanderHome.IsEnabled = true;
+                window.expanderStore.IsEnabled = true;
+                window.expanderWarehouse.IsEnabled = true;
+                window.expanderPartner.IsEnabled = true;
+                window.expanderVoucher.IsEnabled = true;
+                window.expanderManage.IsEnabled = true;
+            }
+            if (idPosition == 2)
+            {
+                window.expanderHome.IsEnabled = true;
+
+                window.rdHome.IsEnabled = false;
+                window.expanderStore.IsEnabled = true;
+
+                window.expanderWarehouse.IsEnabled = true;
+                window.rdProduct.IsEnabled = false;
+                window.rdMaterial.IsEnabled = false;
+
+                window.expanderPartner.IsEnabled = false;
+
+                window.expanderVoucher.IsEnabled = true;
+
+                window.expanderManage.IsEnabled = false;
+            }
+            if (idPosition == 3)
+            {
+                window.expanderHome.IsEnabled = false;
+                window.expanderStore.IsEnabled = false;
+                window.expanderWarehouse.IsEnabled = true;
+                window.expanderPartner.IsEnabled = false;
+                window.expanderVoucher.IsEnabled = false;
+                window.expanderManage.IsEnabled = false;
             }
         }
     }
