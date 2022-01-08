@@ -1536,7 +1536,7 @@
                     <Grid Background="White"
                           x:Name="grdProduct"
                           DataContext="{StaticResource ProductPageVM}"
-                          Visibility="Collapsed">
+                          Visibility="Visible">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <i:InvokeCommandAction Command="{Binding LoadProductCommand}"
@@ -1545,6 +1545,7 @@
                         </i:Interaction.Triggers>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="79*" />
+                            <!--<RowDefinition Height="50" />-->
                             <RowDefinition Height="342*" />
                             <RowDefinition Height="309*" />
                         </Grid.RowDefinitions>
@@ -1558,7 +1559,45 @@
                                        VerticalAlignment="Bottom"
                                        Foreground="{DynamicResource Blue1}" />
                         </Grid>
-                        <ScrollViewer Margin="0,79,0,0.4"
+                        <Grid Margin="0 10 0 0">
+                            <Rectangle Height="40"
+                                       Width="300"
+                                       StrokeThickness="1"
+                                       Stroke="Gray"
+                                       Fill="White"
+                                       Opacity="1"
+                                       RadiusY="7"
+                                       RadiusX="7"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,74,20,-44.8" />
+                            <TextBox materialDesign:HintAssist.Hint="Search"
+                                     Text="{Binding Tbx, UpdateSourceTrigger=PropertyChanged}"
+                                     x:Name="txtSearchProduct"
+                                     Height="35"
+                                     Width="251"
+                                     FontSize="18"
+                                     FontFamily="poppins"
+                                     IsReadOnly="False"
+                                     Padding="5"
+                                     Opacity="0.8"
+                                     Background="White"
+                                     Foreground="Black"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Right"
+                                     Margin="0,79,60,-44.8">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding SearchCommand}"
+                                                               CommandParameter="{Binding ElementName=wdMain}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                            <materialDesign:PackIcon Kind="DatabaseSearch"
+                                                     Margin="1240,74,0,-44.8"
+                                                     Height="40"
+                                                     Width="38" />
+                        </Grid>
+                        <ScrollViewer Margin="0,129,0,0.4"
                                       Grid.RowSpan="3"
                                       VerticalAlignment="Top">
                             <WrapPanel x:Name="stkProduct">
@@ -1658,7 +1697,12 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0"
                                       Margin="0 10 0 0">
-                                    <Rectangle Height="40"
+                                    <TextBlock Text="Status:"
+                                               Height="25"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               Margin="1040 0 0 50" />
+                                    <Rectangle Height="35"
                                                Width="160"
                                                StrokeThickness="1"
                                                Stroke="Gray"
@@ -1667,9 +1711,9 @@
                                                RadiusX="7"
                                                Fill="White"
                                                HorizontalAlignment="Right"
-                                               Margin="0 0 380 0" />
-                                    <ComboBox materialDesign:HintAssist.Hint="Type: All"
-                                              Height="35"
+                                               Margin="0 10 200 0" />
+                                    <ComboBox x:Name="cboType"
+                                              Height="30"
                                               Width="145"
                                               FontSize="18"
                                               FontFamily="poppins"
@@ -1679,8 +1723,26 @@
                                               Background="White"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
-                                              Margin="0 5 387 0.5" />
-                                    <Rectangle Height="40"
+                                              Margin="0 14.5 207 0.5">
+                                        <ComboBoxItem Content="All"
+                                                      IsSelected="True" />
+                                        <ComboBoxItem Content="Drinks" />
+                                        <ComboBoxItem Content="Fastfood" />
+                                        <ComboBoxItem Content="Ingredient" />
+                                        <ComboBoxItem Content="Item" />
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding FilterMaterialCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                    <TextBlock Text="Type:"
+                                               Height="25"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               Margin="860 0 0 50" />
+                                    <Rectangle Height="35"
                                                Width="160"
                                                StrokeThickness="1"
                                                Stroke="Gray"
@@ -1689,9 +1751,9 @@
                                                RadiusY="7"
                                                RadiusX="7"
                                                HorizontalAlignment="Right"
-                                               Margin="0 0 200 0" />
-                                    <ComboBox materialDesign:HintAssist.Hint="Quantity: All"
-                                              Height="35"
+                                               Margin="0 10 20 0" />
+                                    <ComboBox x:Name="cboStatus"
+                                              Height="30"
                                               Width="145"
                                               FontSize="18"
                                               FontFamily="poppins"
@@ -1701,9 +1763,20 @@
                                               Background="White"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
-                                              Margin="0 5 207 0.5" />
-                                    <Rectangle Height="40"
-                                               Width="160"
+                                              Margin="0 14.5 27 0.5">
+                                        <ComboBoxItem Content="All"
+                                                      IsSelected="True" />
+                                        <ComboBoxItem Content="Available" />
+                                        <ComboBoxItem Content="Unavailable" />
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding FilterMaterialCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+                                    <Rectangle Height="35"
+                                               Width="300"
                                                StrokeThickness="1"
                                                Stroke="Gray"
                                                Fill="White"
@@ -1711,21 +1784,37 @@
                                                RadiusY="7"
                                                RadiusX="7"
                                                HorizontalAlignment="Right"
-                                               Margin="0 0 20 0" />
-                                    <ComboBox materialDesign:HintAssist.Hint="Status: All"
-                                              Height="35"
-                                              Width="145"
-                                              FontSize="18"
-                                              FontFamily="poppins"
-                                              Padding="5"
-                                              Opacity="0.8"
-                                              BorderBrush="Gray"
-                                              Background="White"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Right"
-                                              Margin="0 5 27 0.5" />
+                                               Margin="0 10 400 0" />
+                                    <TextBox materialDesign:HintAssist.Hint="Search"
+                                             Text="{Binding Tbx, UpdateSourceTrigger=PropertyChanged}"
+                                             x:Name="searchtxt"
+                                             Height="30"
+                                             Width="260"
+                                             FontSize="18"
+                                             FontFamily="poppins"
+                                             IsReadOnly="False"
+                                             Padding="5"
+                                             Opacity="0.8"
+                                             Background="White"
+                                             Foreground="Black"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Margin="0 14.5 435 2">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction Command="{Binding SearchCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
+                                    <materialDesign:PackIcon Kind="DatabaseSearch"
+                                                             Margin="780,24,0,0"
+                                                             Height="32"
+                                                             Width="38" />
                                     <TextBlock Text="Material  list"
                                                FontSize="28"
+                                               Width="200"
+                                               HorizontalAlignment="Left"
                                                FontWeight="Bold"
                                                FontFamily="poppins"
                                                Foreground="{DynamicResource Blue1}"
@@ -1735,7 +1824,8 @@
                                                              Height="28"
                                                              Width="28"
                                                              Margin="30 35 0 0" />
-                                    <TextBlock Text="23:10, October 23, 2021"
+                                    <TextBlock x:Name="txtTimeUpdate"
+                                               Text="23:10, October 23, 2021"
                                                FontSize="18"
                                                FontWeight="Bold"
                                                FontFamily="poppins"
@@ -1757,14 +1847,14 @@
                                             <ColumnDefinition Width="2*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="1.5*" />
-                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="0.6*" />
                                             <ColumnDefinition Width="1.3*" />
                                             <ColumnDefinition Width="1*" />
                                             <ColumnDefinition Width="0.4*" />
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <Label Content="No."
+                                            <Label Content="Id"
                                                    FontFamily="Poppins"
                                                    FontSize="20"
                                                    FontWeight="SemiBold"
@@ -1903,20 +1993,6 @@
                                                     Width="1160"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Left">
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
-                                            <uc:GoodsViewControl></uc:GoodsViewControl>
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
@@ -2486,7 +2562,7 @@
                     <Border CornerRadius="8"
                             Background="White"
                             x:Name="grdIncident"
-                            Visibility="Collapsed"
+                            Visibility="Visible"
                             DataContext="{StaticResource IncidentVM}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
@@ -2662,43 +2738,59 @@
                                                FontFamily="poppins"
                                                FontSize="22"
                                                FontWeight="Bold" />
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdbUnder20"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             under 20.000
                                         </RadioButton>
 
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdb20to50"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             20.000 - 50.000
                                         </RadioButton>
 
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdb50to100"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             50.000 - 100.000
                                         </RadioButton>
 
-                                        <RadioButton HorizontalAlignment="Left"
+                                        <RadioButton x:Name="rdbOver100"
+                                            HorizontalAlignment="Left"
                                                      VerticalAlignment="Top"
                                                      FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
-                                                     Margin="5">
+                                                     Margin="5"
+                                                     GroupName="PayRange"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             over 100.000
                                         </RadioButton>
 
@@ -2708,25 +2800,31 @@
                                                FontWeight="Bold"
                                                Margin="0 10 0 0" />
 
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbNo"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Pay?"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             No
                                         </RadioButton>
 
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbYes"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Pay?"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             Yes
                                         </RadioButton>
 
@@ -2735,24 +2833,30 @@
                                                FontSize="22"
                                                FontWeight="Bold"
                                                Margin="0 10 0 0" />
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbDone"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="State"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             Done
                                         </RadioButton>
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbUndone"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="State"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             Undone
                                         </RadioButton>
 
@@ -2761,36 +2865,46 @@
                                                FontSize="22"
                                                FontWeight="Bold"
                                                Margin="0 10 0 0" />
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbMonth"
+                                            FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Time"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
-                                            This week
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
+                                            This month
                                         </RadioButton>
-                                        <RadioButton FontSize="18"
+                                        <RadioButton x:Name="rdbYear"
+                                                     FontSize="18"
                                                      FontFamily="poppins"
                                                      FontWeight="Medium"
                                                      Foreground="Gray"
                                                      GroupName="Time"
                                                      Margin="5"
                                                      Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
-                                            This monnth
-                                        </RadioButton>
-                                        <RadioButton FontSize="18"
-                                                     FontFamily="poppins"
-                                                     FontWeight="Medium"
-                                                     Foreground="Gray"
-                                                     GroupName="Time"
-                                                     Margin="5"
-                                                     Background="{DynamicResource Blue2}"
-                                                     BorderBrush="{DynamicResource Blue2}">
+                                                     BorderBrush="{DynamicResource Blue2}"
+                                                     Command="{Binding ReloadIncidentCommand}"
+                                                     CommandParameter="{Binding ElementName=wdMain}">
                                             This year
                                         </RadioButton>
+                                        <Button VerticalAlignment="Center"
+                                                HorizontalAlignment="Right"
+                                                Width="100"
+                                                Height="40"
+                                                Margin="20"
+                                                Background="{DynamicResource Blue2}"
+                                                Command="{Binding ResetIncidentWindowCommand}"
+                                                CommandParameter="{Binding ElementName=wdMain}">
+                                            <Label Content="Reset"
+                                                   Foreground="White"
+                                                   FontSize="18"
+                                                   FontFamily="poppins"
+                                                   FontWeight="DemiBold"/>
+                                        </Button>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -2969,7 +3083,8 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
 
-                                    <Border Background="Transparent"
+                                    <Border x:Name="borderAccount"
+                                        Background="Transparent"
                                             Margin="20 0 0 0"
                                             Visibility="Visible">
                                         <Grid>
@@ -3008,13 +3123,13 @@
                                             <Grid Grid.Row="1">
                                                 <ScrollViewer>
                                                     <StackPanel x:Name="stkAccount">
-
                                                     </StackPanel>
                                                 </ScrollViewer>
                                             </Grid>
                                         </Grid>
                                     </Border>
-                                </Grid>
+                                    
+                                    </Grid>
 
                                 <Grid Grid.Column="1">
                                     <Border Margin="0 0 20 20"
