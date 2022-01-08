@@ -22,6 +22,9 @@ namespace BeverageStoreManagement.ViewModels
     {
         private string imageFileName;
         private MainWindow mainWindow;
+        List<Product> products = new List<Product>();
+        string tbx = "";
+        public string Tbx { get => tbx; set { tbx = value; OnPropertyChanged(); } }
         public ICommand OpenAddProductCommand { get; set; }
         public ICommand ExitCommand { get; set; }
         public ICommand ExitChangeCommand { get; set; }
@@ -31,6 +34,7 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand DeleteProductCommand { get; set; }
         public ICommand OpenEditProductCommand { get; set; }
         public ICommand SaveEditProductCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         public ProductPageViewModel()
         {
             OpenAddProductCommand = new RelayCommand<MainWindow>(parameter => true, parameter => OpenAddProductWindow(parameter));
@@ -42,6 +46,7 @@ namespace BeverageStoreManagement.ViewModels
             DeleteProductCommand = new RelayCommand<ProductViewControl>(parameter => true, parameter => DeleteProduct(parameter));
             OpenEditProductCommand = new RelayCommand<ProductViewControl>(parameter => true, parameter => OpenEditProductWindow(parameter));
             SaveEditProductCommand = new RelayCommand<ChangeProductWindow>(parameter => true, parameter => SaveEditProduct(parameter));
+            SearchCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Search(parameter));
         }
 
         private void ChooseImage(Grid parameter)
@@ -93,7 +98,7 @@ namespace BeverageStoreManagement.ViewModels
                 mainWindow.stkProduct.Children.RemoveAt(mainWindow.stkProduct.Children.Count - 1);
 
             }
-            List<Product> products = (List<Product>)ProductDAL.Instance.GetList();
+            products = (List<Product>)ProductDAL.Instance.GetList();
             foreach (Product product in products)
             {
                 ProductViewControl productViewControl = new ProductViewControl();
@@ -143,6 +148,7 @@ namespace BeverageStoreManagement.ViewModels
             }
             return true;
         }
+       
         private bool CheckEmptyEditProduct(ChangeProductWindow parameter)
         {
             if (string.IsNullOrWhiteSpace(parameter.txtName.Text))
@@ -307,6 +313,36 @@ namespace BeverageStoreManagement.ViewModels
                         parameter.Close();
                     }
                 } 
+            }
+        }
+
+        private void Search(MainWindow parameter)
+        {
+            if (tbx != "")
+            {
+                while (mainWindow.stkProduct.Children.Count > 2)
+                {
+                    mainWindow.stkProduct.Children.RemoveAt(mainWindow.stkProduct.Children.Count - 1);
+
+                }
+                for (int i = 0; i < products.Count; i++)
+                {
+                    if (products[i].NameProduct.ToLower().Contains(tbx))
+                    {
+                        ProductViewControl productViewControl = new ProductViewControl();
+                        productViewControl.idProduct.Text = products[i].IdProduct.ToString();
+                        productViewControl.Name.Text = products[i].NameProduct.ToString();
+                        productViewControl.Price.Text = products[i].Price.ToString("N0");
+                        productViewControl.Status.Text = ConvertBooleanToStatus(products[i].Status);
+                        productViewControl.imgProduct.Source = Converter.Instance.ConvertByteToBitmapImage(products[i].Image);
+
+                        mainWindow.stkProduct.Children.Add(productViewControl);
+                    }
+                }
+            }
+            else
+            {
+                LoadProduct(parameter);
             }
         }
     }

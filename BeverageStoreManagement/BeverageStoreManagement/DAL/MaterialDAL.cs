@@ -189,5 +189,27 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
+    
+        public bool TimeUpdate(string time)
+        {
+            try
+            {
+                OpenConnection();
+                string queryString = "update Material set nameMaterial=@nameMaterial where idMaterial=0";
+                SqlCommand command = new SqlCommand(queryString, conn);
+                command.Parameters.AddWithValue("@nameMaterial", time);
+                int rs = command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
     }
 }

@@ -37,9 +37,12 @@ namespace BeverageStoreManagement.ViewModels
 
         private string imageFileName;
         private MainWindow mainWindow;
+        private UpdateGoodsWindow updateGoodsWindow;
         List<Material> materials = new List<Material>();
         List<Material> updateMaterials = new List<Material>();
         List<UpdateMaterialControl> updateMaterialControls = new List<UpdateMaterialControl>();
+        string tbx = "";
+        public string Tbx { get => tbx; set { tbx = value; OnPropertyChanged(); } }
         public ICommand LoadMaterialCommand { get; set; }
         public ICommand OpenAddMaterialCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
@@ -50,6 +53,9 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand DeleteMaterialCommand { get; set; }
         public ICommand FilterMaterialCommand { get; set; }
         public ICommand UpdateMaterialCommand { get; set; }
+        public ICommand LoadUpdateMaterialCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
+
 
         public GoodsPageViewModel()
         {
@@ -58,16 +64,19 @@ namespace BeverageStoreManagement.ViewModels
             SelectImageCommand = new RelayCommand<Grid>((parameter) => true, (parameter) => ChooseImage(parameter));
             ExitCommand = new RelayCommand<AddMaterialWindow>((parameter) => true, (parameter) => parameter.Close());
             ExitUpdateCommand = new RelayCommand<UpdateGoodsWindow>((parameter) => true, (parameter) => parameter.Close());
-            OpenUpdateProductCommand = new RelayCommand<MainWindow>(parameter => true, parameter => OpenUpdateProductWindow(parameter));
+            OpenUpdateProductCommand = new RelayCommand<MainWindow>(parameter => true, parameter => OpenUpdateMaterialWindow(parameter));
             AddMaterialCommand = new RelayCommand<AddMaterialWindow>(parameter => true, parameter => AddMaterial(parameter));
             DeleteMaterialCommand = new RelayCommand<GoodsViewControl>(parameter => true, parameter => DeleteMaterial(parameter));
             FilterMaterialCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Filter(parameter));
             UpdateMaterialCommand = new RelayCommand<UpdateGoodsWindow>(parameter => true, parameter => UpdateMaterial(parameter));
+            LoadUpdateMaterialCommand = new RelayCommand<UpdateGoodsWindow>(parameter => true, parameter => LoadUpdateMaterialWindow(parameter));
+            SearchCommand = new RelayCommand<MainWindow>(parameter => true, parameter => Search(parameter));
         }
 
         private void LoadMaterial(MainWindow parameter)
         {
             this.mainWindow = parameter;
+            parameter.txtTimeUpdate.Text = MaterialDAL.Instance.GetMaterial("0").NameMaterial;
             mainWindow.stkMaterial.Children.Clear();
 
             materials = (List<Material>)MaterialDAL.Instance.GetList();
@@ -88,11 +97,12 @@ namespace BeverageStoreManagement.ViewModels
                 mainWindow.stkMaterial.Children.Add(goodsViewControl);
             }
         }
-        private void OpenUpdateProductWindow(MainWindow parameter)
+        private void OpenUpdateMaterialWindow(MainWindow parameter)
         {
             UpdateGoodsWindow updateGoodsWindow = new UpdateGoodsWindow();
             updateGoodsWindow.stkMaterialList.Children.Clear();
             updateMaterials = (List<Material>)MaterialDAL.Instance.GetList();
+            updateMaterialControls = new List<UpdateMaterialControl>();
             foreach (Material material in materials)
             {
                 UpdateMaterialControl updateMaterialControl = new UpdateMaterialControl();
@@ -110,6 +120,12 @@ namespace BeverageStoreManagement.ViewModels
             }
 
             updateGoodsWindow.ShowDialog();
+        }
+
+        private void LoadUpdateMaterialWindow(UpdateGoodsWindow parameter)
+        {
+            this.updateGoodsWindow = parameter;
+
         }
 
         private void OpenAddMaterialWindow(MainWindow parameter)
@@ -283,6 +299,9 @@ namespace BeverageStoreManagement.ViewModels
                 bool isSuccessed = MaterialDAL.Instance.DeleteMaterial(idMaterial);
                 if (isSuccessed)
                 {
+                    //MessageBox.Show(mainWindow.stkMaterial.Children.IndexOf(parameter).ToString());
+                    //updateGoodsWindow.stkMaterialList.Children.RemoveAt(0);
+                    updateMaterialControls.RemoveAt(0);
                     mainWindow.stkMaterial.Children.Remove(parameter);
                     Notification.Instance.Success("Delete Material Success!");
                 }
@@ -385,7 +404,39 @@ namespace BeverageStoreManagement.ViewModels
             {
                 CustomMessageBox.Show("Update Material Success!");
                 parameter.Close();
+                mainWindow.txtTimeUpdate.Text = DateTime.Now.ToString("hh:mm, MMMM dd yyyy");
+                MaterialDAL.Instance.TimeUpdate(DateTime.Now.ToString("hh:mm, MMMM dd yyyy"));
                 LoadMaterial(mainWindow);
+            }
+        }
+    
+        private void Search(MainWindow parameter)
+        {
+            if(tbx != "")
+            {
+                parameter.stkMaterial.Children.Clear();
+                for (int i = 0; i < materials.Count; i ++)
+                {
+                    if(materials[i].NameMaterial.ToLower().Contains(tbx))
+                    {
+                        GoodsViewControl goodsViewControl = new GoodsViewControl();
+                        goodsViewControl.idMaterial.Text = materials[i].IdMaterial.ToString();
+                        goodsViewControl.txtNo.Content = materials[i].IdMaterial.ToString();
+                        goodsViewControl.txtMaterial.Content = materials[i].NameMaterial.ToString();
+                        goodsViewControl.txtType.Content = materials[i].Type.ToString();
+                        goodsViewControl.txtQuantity.Content = materials[i].Quantity.ToString();
+                        goodsViewControl.txtUnit.Content = materials[i].CountUnit.ToString();
+                        goodsViewControl.txtPrice.Content = materials[i].PurchasePrice.ToString("N0");
+                        goodsViewControl.txtStatus.Content = ConvertBooleanToStatus(materials[i].Status); ;
+                        goodsViewControl.txtImg.Source = Converter.Instance.ConvertByteToBitmapImage(materials[i].Image);
+
+                        parameter.stkMaterial.Children.Add(goodsViewControl);
+                    }    
+                }    
+            }
+            else
+            {
+                LoadMaterial(parameter);
             }
         }
     }

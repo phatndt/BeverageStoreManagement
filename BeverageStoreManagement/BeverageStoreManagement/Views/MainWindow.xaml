@@ -1252,7 +1252,7 @@
                     <Grid Background="White"
                           x:Name="grdProduct"
                           DataContext="{StaticResource ProductPageVM}"
-                          Visibility="Collapsed">
+                          Visibility="Visible">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <i:InvokeCommandAction Command="{Binding LoadProductCommand}"
@@ -1261,6 +1261,7 @@
                         </i:Interaction.Triggers>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="79*" />
+                            <!--<RowDefinition Height="50" />-->
                             <RowDefinition Height="342*" />
                             <RowDefinition Height="309*" />
                         </Grid.RowDefinitions>
@@ -1274,7 +1275,45 @@
                                        VerticalAlignment="Bottom"
                                        Foreground="{DynamicResource Blue1}" />
                         </Grid>
-                        <ScrollViewer Margin="0,79,0,0.4"
+                        <Grid Margin="0 10 0 0">
+                            <Rectangle Height="40"
+                                       Width="300"
+                                       StrokeThickness="1"
+                                       Stroke="Gray"
+                                       Fill="White"
+                                       Opacity="1"
+                                       RadiusY="7"
+                                       RadiusX="7"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,74,20,-44.8" />
+                            <TextBox materialDesign:HintAssist.Hint="Search"
+                                     Text="{Binding Tbx, UpdateSourceTrigger=PropertyChanged}"
+                                     x:Name="txtSearchProduct"
+                                     Height="35"
+                                     Width="251"
+                                     FontSize="18"
+                                     FontFamily="poppins"
+                                     IsReadOnly="False"
+                                     Padding="5"
+                                     Opacity="0.8"
+                                     Background="White"
+                                     Foreground="Black"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Right"
+                                     Margin="0,79,60,-44.8">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding SearchCommand}"
+                                                               CommandParameter="{Binding ElementName=wdMain}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                            <materialDesign:PackIcon Kind="DatabaseSearch"
+                                                     Margin="1240,74,0,-44.8"
+                                                     Height="40"
+                                                     Width="38" />
+                        </Grid>
+                        <ScrollViewer Margin="0,129,0,0.4"
                                       Grid.RowSpan="3"
                                       VerticalAlignment="Top">
                             <WrapPanel x:Name="stkProduct">
@@ -1316,7 +1355,7 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdMaterial"
                           DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Visible">
+                          Visibility="Collapsed">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <i:InvokeCommandAction Command="{Binding LoadMaterialCommand}"
@@ -1374,7 +1413,12 @@
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0"
                                       Margin="0 10 0 0">
-                                    <Rectangle Height="40"
+                                    <TextBlock Text="Status:"
+                                               Height="25"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               Margin="1040 0 0 50" />
+                                    <Rectangle Height="35"
                                                Width="160"
                                                StrokeThickness="1"
                                                Stroke="Gray"
@@ -1383,9 +1427,9 @@
                                                RadiusX="7"
                                                Fill="White"
                                                HorizontalAlignment="Right"
-                                               Margin="0 0 200 0" />
+                                               Margin="0 10 200 0" />
                                     <ComboBox x:Name="cboType"
-                                              Height="35"
+                                              Height="30"
                                               Width="145"
                                               FontSize="18"
                                               FontFamily="poppins"
@@ -1395,7 +1439,7 @@
                                               Background="White"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
-                                              Margin="0 5 207 0.5">
+                                              Margin="0 14.5 207 0.5">
                                         <ComboBoxItem Content="All"
                                                       IsSelected="True" />
                                         <ComboBoxItem Content="Drinks" />
@@ -1409,7 +1453,12 @@
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </ComboBox>
-                                    <Rectangle Height="40"
+                                    <TextBlock Text="Type:"
+                                               Height="25"
+                                               FontSize="16"
+                                               FontWeight="SemiBold"
+                                               Margin="860 0 0 50" />
+                                    <Rectangle Height="35"
                                                Width="160"
                                                StrokeThickness="1"
                                                Stroke="Gray"
@@ -1418,9 +1467,9 @@
                                                RadiusY="7"
                                                RadiusX="7"
                                                HorizontalAlignment="Right"
-                                               Margin="0 0 20 0" />
+                                               Margin="0 10 20 0" />
                                     <ComboBox x:Name="cboStatus"
-                                              Height="35"
+                                              Height="30"
                                               Width="145"
                                               FontSize="18"
                                               FontFamily="poppins"
@@ -1430,7 +1479,7 @@
                                               Background="White"
                                               VerticalAlignment="Center"
                                               HorizontalAlignment="Right"
-                                              Margin="0 5 27 0.5">
+                                              Margin="0 14.5 27 0.5">
                                         <ComboBoxItem Content="All"
                                                       IsSelected="True" />
                                         <ComboBoxItem Content="Available" />
@@ -1442,6 +1491,42 @@
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </ComboBox>
+                                    <Rectangle Height="35"
+                                               Width="300"
+                                               StrokeThickness="1"
+                                               Stroke="Gray"
+                                               Fill="White"
+                                               Opacity="1"
+                                               RadiusY="7"
+                                               RadiusX="7"
+                                               HorizontalAlignment="Right"
+                                               Margin="0 10 400 0" />
+                                    <TextBox materialDesign:HintAssist.Hint="Search"
+                                             Text="{Binding Tbx, UpdateSourceTrigger=PropertyChanged}"
+                                             x:Name="searchtxt"
+                                             Height="30"
+                                             Width="260"
+                                             FontSize="18"
+                                             FontFamily="poppins"
+                                             IsReadOnly="False"
+                                             Padding="5"
+                                             Opacity="0.8"
+                                             Background="White"
+                                             Foreground="Black"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Margin="0 14.5 435 2">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction Command="{Binding SearchCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
+                                    <materialDesign:PackIcon Kind="DatabaseSearch"
+                                                             Margin="780,24,0,0"
+                                                             Height="32"
+                                                             Width="38" />
                                     <TextBlock Text="Material  list"
                                                FontSize="28"
                                                Width="200"
@@ -1455,7 +1540,8 @@
                                                              Height="28"
                                                              Width="28"
                                                              Margin="30 35 0 0" />
-                                    <TextBlock Text="23:10, October 23, 2021"
+                                    <TextBlock x:Name="txtTimeUpdate"
+                                               Text="23:10, October 23, 2021"
                                                FontSize="18"
                                                FontWeight="Bold"
                                                FontFamily="poppins"
