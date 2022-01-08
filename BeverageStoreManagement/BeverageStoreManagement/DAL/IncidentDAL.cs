@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 
 namespace BeverageStoreManagement.DAL
 {
@@ -168,6 +168,33 @@ namespace BeverageStoreManagement.DAL
             }
             catch
             {
+                return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public int UpdateIncident(int idIncident, bool status, bool pay)
+        {
+            try
+            {
+                OpenConnection();
+
+                string queryStr = "UPDATE Incident SET status=@status, pay=@pay WHERE idIncident=@idIncident";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                command.Parameters.AddWithValue("@idIncident", idIncident);
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@pay", pay);
+
+                int result = command.ExecuteNonQuery();
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
                 return 0;
             }
             finally

@@ -159,4 +159,25 @@
         <Setter Property="Margin"
                 Value="40 0 0 0" />
     </Style>
+
+
+    <Style x:Key="Text"
+           TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground"
+                Value="{DynamicResource Black2}" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="FontWeight"
+                Value="SemiBold" />
+        <Setter Property="TextAlignment"
+                Value="Center" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Height"
+                Value="25" />
+    </Style>
 </ResourceDictionary>

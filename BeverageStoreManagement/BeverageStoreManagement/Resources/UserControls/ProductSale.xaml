@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="BeverageStoreManagement.Resources.UserControls.ProductSale"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:BeverageStoreManagement.Resources.UserControls"
+             mc:Ignorable="d"
+             Height="150"
+             Width="365"
+             x:Name="ProductSaleUc"
+             DataContext="{StaticResource SaleVM}">
+    <Border Background="{StaticResource Blue10}"
+            CornerRadius="8"
+            Margin="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0"
+                      Margin="5">
+                    <Image x:Name="imgProduct"
+                           Grid.Row="0" />
+                    <TextBlock x:Name="idProduct"
+                               Visibility="Collapsed"></TextBlock>
+                </Grid>
+                <Grid Grid.Column="1"
+                      Margin="5">
+                    <StackPanel>
+                        <Label x:Name="nameProduct"
+                               Content="Tra sua truyen thong"
+                               Grid.Column="1"
+                               Height="40"
+                               Foreground="Black"
+                               Style="{StaticResource SupplierTitle}"
+                               HorizontalAlignment="Left" />
+                        <Label x:Name="priceProduct"
+                               Content="25000 VNĐ"
+                               Grid.Column="1"
+                               Height="40"
+                               Foreground="Black"
+                               Style="{StaticResource SupplierTitle}"
+                               HorizontalAlignment="Left" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Button Style="{StaticResource MainButton}"
+                        Margin="0"
+                        Height="45"
+                        Content="Add to bill"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Foreground="Black"
+                        Background="{StaticResource Pallet3}"
+                        Command="{Binding AddProductToInvoiceCommand}"
+                        CommandParameter="{Binding ElementName=ProductSaleUc}"/>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

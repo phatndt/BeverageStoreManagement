@@ -45,27 +45,13 @@
                     <Border Background="{DynamicResource SecundaryGrayColor}"
                             Margin="30 0 0 0">
                         <WrapPanel>
-                            <uc:AccountControl Height="170"
-                                               Width="170"
+                            <uc:AccountControl Height="250"
+                                               Width="250"
                                                Padding="0 0 20 15" />
-                            <uc:AccountControl Height="170"
-                                               Width="170"
+                            <uc:AccountControl Height="250"
+                                               Width="250"
                                                Padding="0 0 20 15" />
-                            <uc:AccountControl Height="170"
-                                               Width="170"
-                                               Padding="0 0 20 15" />
-                            <uc:AccountControl Height="170"
-                                               Width="170"
-                                               Padding="0 0 20 15" />
-                            <uc:AccountControl Height="170"
-                                               Width="170"
-                                               Padding="0 0 20 15" />
-                            <uc:AccountControl Height="170"
-                                               Width="170"
-                                               Padding="0 0 20 15" />
-                            <uc:AccountControl Height="170"
-                                               Width="170"
-                                               Padding="0 0 20 15" />
+                            
                         </WrapPanel>
                     </Border>
                 </Grid>

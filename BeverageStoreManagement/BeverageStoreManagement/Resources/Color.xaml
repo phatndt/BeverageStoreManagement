@@ -54,4 +54,18 @@
 
     <SolidColorBrush x:Key="Gray"
                      Color="#FF9098B1" />
+
+
+    <SolidColorBrush x:Key="Black1"
+                     Color="#FF263238" />
+    <SolidColorBrush x:Key="Black2"
+                     Color="#FF4F4F4F" />
+    <SolidColorBrush x:Key="Gray11"
+                     Color="#FF828282" />
+    <SolidColorBrush x:Key="Gray22"
+                     Color="#FFBDBDBD" />
+    <SolidColorBrush x:Key="Gray33"
+                     Color="#FFE0E0E0" />
+
+
 </ResourceDictionary>
