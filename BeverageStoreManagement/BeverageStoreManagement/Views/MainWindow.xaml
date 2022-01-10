@@ -1639,7 +1639,7 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdMaterial"
                           DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Visible">
+                          Visibility="Collapsed">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <i:InvokeCommandAction Command="{Binding LoadMaterialCommand}"
@@ -2002,7 +2002,7 @@
                     <!--5-->
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdImportBill"
-                          DataContext="{StaticResource GoodsPageVM}"
+                          DataContext="{StaticResource ImportBillVM}"
                           Visibility="Visible">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="80" />
