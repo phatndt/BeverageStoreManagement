@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="Resources\UserControls\AddMaterialImportBillControl.xaml.cs">
       <DependentUpon>AddMaterialImportBillControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Print\InvoicePrint.xaml.cs">
       <DependentUpon>InvoicePrint.xaml</DependentUpon>
     </Compile>
@@ -333,7 +334,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\UserControls\AddMaterialImportBillControl.xaml">
+    <Page Include="Resources\UserControls\AddMaterialImportBillControl.xaml"/>
     <Page Include="Resources\UserControls\AccountControl2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
