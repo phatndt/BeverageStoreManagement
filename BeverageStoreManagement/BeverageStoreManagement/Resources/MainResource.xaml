@@ -23,6 +23,8 @@
     <viewmodels:AccountViewModel x:Key="AccountVM"></viewmodels:AccountViewModel>
     <viewmodels:HomeViewModel x:Key="HomeVM" />
     <viewmodels:SupplierViewModel x:Key="SupplierVM" />
+    <viewmodels:ImportBillViewModel x:Key="ImportBillVM" />
+
     <viewmodels:SaleViewModel x:Key="SaleVM" />
     <viewmodels:InvoiceViewModel x:Key="InvoiceVM" />
     <models:Supplier x:Key="Supplier" />

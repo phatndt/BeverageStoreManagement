@@ -18,6 +18,28 @@ namespace BeverageStoreManagement.DAL
             private set { ImportBillDAL.instance = value; }
         }
 
+        public int GetMaxIdImportBill()
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "SELECT MAX(idImportBill) FROM ImportBill";
+                SqlCommand command = new SqlCommand(queryStr, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                return int.Parse(dataTable.Rows[0].ItemArray[0].ToString());
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
         public int GetBillQuantityBySupplier(int idSupplier)
         {
             try
