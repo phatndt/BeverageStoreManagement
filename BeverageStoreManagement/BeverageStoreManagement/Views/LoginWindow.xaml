@@ -17,8 +17,6 @@
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="NoResize"
-        WindowState="Normal"
         DataContext="{StaticResource AccountVM}">
     <Border CornerRadius="8"
             Background="{DynamicResource PrimaryBackgroundColor}">

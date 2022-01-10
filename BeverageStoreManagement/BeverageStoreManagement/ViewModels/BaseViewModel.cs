@@ -8,10 +8,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using System.Windows.Controls;
 using System.Windows.Input;
-
+using System.Windows.Media.Imaging;
 
 namespace BeverageStoreManagement.ViewModels
 {
@@ -44,8 +42,9 @@ namespace BeverageStoreManagement.ViewModels
                 tmp += a;
             }
 
-            return long.Parse(tmp);
+          return long.Parse(tmp);
         }
+
         public BitmapImage ConvertByteToBitmapImage(Byte[] image)
         {
             BitmapImage bi = new BitmapImage();
@@ -129,13 +128,13 @@ namespace BeverageStoreManagement.ViewModels
 
             e.Handled = e.Key == Key.Space;
         }
-        
+
         public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-        
+
         public string ConvertIntToType(int? a)
         {
             if (a == 1)

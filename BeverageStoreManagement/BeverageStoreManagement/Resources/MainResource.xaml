@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodels="clr-namespace:BeverageStoreManagement.ViewModels"
                     xmlns:models="clr-namespace:BeverageStoreManagement.Models">
-    <viewmodels:SaleViewModel x:Key="SaleVM"></viewmodels:SaleViewModel>
     <viewmodels:PaymentVoucherViewModel x:Key="PaymentVoucherVM"></viewmodels:PaymentVoucherViewModel>
     <viewmodels:ReceiptVoucherViewModel x:Key="ReceiptVoucherVM"></viewmodels:ReceiptVoucherViewModel>
     <viewmodels:EmployeeViewModel x:Key="EmployeeVM"></viewmodels:EmployeeViewModel>
@@ -26,6 +25,8 @@
     <viewmodels:SupplierViewModel x:Key="SupplierVM" />
     <viewmodels:ImportBillViewModel x:Key="ImportBillVM" />
 
+    <viewmodels:SaleViewModel x:Key="SaleVM" />
+    <viewmodels:InvoiceViewModel x:Key="InvoiceVM" />
     <models:Supplier x:Key="Supplier" />
     <models:PaymentVoucher x:Key="PaymentVoucher" />
     <models:ReceiptVoucher x:Key="ReceiptVoucher" />
