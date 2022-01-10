@@ -24,6 +24,7 @@
     <viewmodels:AccountViewModel x:Key="AccountVM"></viewmodels:AccountViewModel>
     <viewmodels:HomeViewModel x:Key="HomeVM" />
     <viewmodels:SupplierViewModel x:Key="SupplierVM" />
+    <viewmodels:ImportBillViewModel x:Key="ImportBillVM" />
 
     <models:Supplier x:Key="Supplier" />
     <models:PaymentVoucher x:Key="PaymentVoucher" />

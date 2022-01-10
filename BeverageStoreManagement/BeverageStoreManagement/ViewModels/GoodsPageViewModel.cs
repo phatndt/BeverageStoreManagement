@@ -39,6 +39,7 @@ namespace BeverageStoreManagement.ViewModels
         private MainWindow mainWindow;
         private UpdateGoodsWindow updateGoodsWindow;
         List<Material> materials = new List<Material>();
+        List<Material> materials1 = new List<Material>();
         List<Material> updateMaterials = new List<Material>();
         List<UpdateMaterialControl> updateMaterialControls = new List<UpdateMaterialControl>();
         string tbx = "";
@@ -318,7 +319,7 @@ namespace BeverageStoreManagement.ViewModels
             string value = typeItem.Content.ToString();
             ComboBoxItem typeItem1 = (ComboBoxItem)parameter.cboStatus.SelectedItem;
             string value1 = typeItem1.Content.ToString();
-            List<Material> materials1 = new List<Material>();
+             materials1 = new List<Material>();
             if (parameter.cboType.SelectedIndex == (int) Type.All && parameter.cboStatus.SelectedIndex == (int)Status.All)
             {
                 materials1 = materials;
