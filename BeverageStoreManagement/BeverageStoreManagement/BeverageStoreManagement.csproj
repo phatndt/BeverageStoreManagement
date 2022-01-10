@@ -143,6 +143,8 @@
     <Compile Include="Resources\Expander.xaml.cs">
       <DependentUpon>Expander.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\AddMaterialImportBillControl.xaml.cs">
+      <DependentUpon>AddMaterialImportBillControl.xaml</DependentUpon>
     <Compile Include="Resources\Print\InvoicePrint.xaml.cs">
       <DependentUpon>InvoicePrint.xaml</DependentUpon>
     </Compile>
@@ -157,6 +159,9 @@
     </Compile>
     <Compile Include="Resources\UserControls\AccountControl.xaml.cs">
       <DependentUpon>AccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\ImportBillControl.xaml.cs">
+      <DependentUpon>ImportBillControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\UserControls\ImportedMaterialControl.xaml.cs">
       <DependentUpon>ImportedMaterialControl.xaml</DependentUpon>
@@ -195,11 +200,15 @@
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\ImportBillViewModel.cs" />
     <Compile Include="ViewModels\InvoiceViewModel.cs" />
     <Compile Include="ViewModels\PaymentVoucherViewModel.cs" />
     <Compile Include="ViewModels\ReceiptVoucherViewModel.cs" />
     <Compile Include="ViewModels\ReportViewModel.cs" />
     <Compile Include="ViewModels\SupplierViewModel.cs" />
+    <Compile Include="Views\AddImportBill.xaml.cs">
+      <DependentUpon>AddImportBill.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddInvoiceWindow.xaml.cs">
       <DependentUpon>AddInvoiceWindow.xaml</DependentUpon>
     </Compile>
@@ -324,6 +333,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\UserControls\AddMaterialImportBillControl.xaml">
     <Page Include="Resources\UserControls\AccountControl2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -333,6 +343,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\AccountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\ImportBillControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -381,6 +395,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\UserControls\SupplierControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddImportBill.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

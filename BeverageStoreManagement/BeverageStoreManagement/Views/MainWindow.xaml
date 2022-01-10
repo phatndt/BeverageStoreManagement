@@ -1639,7 +1639,7 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdMaterial"
                           DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Collapsed">
+                          Visibility="Visible">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <i:InvokeCommandAction Command="{Binding LoadMaterialCommand}"
@@ -2249,6 +2249,21 @@
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
+                            </Grid>
+                            <Grid Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <Button Height="50"
+                                        Width="200"
+                                        BorderThickness="0 "
+                                        Content="Add a import request"
+                                        FontSize="16"
+                                        FontFamily="poppins"
+                                        Background="{DynamicResource Blue2}"
+                                        materialDesign:ButtonAssist.CornerRadius="7"
+                                        FlowDirection="LeftToRight"
+                                        HorizontalAlignment="Right"
+                                        Command="{Binding OpenAddImportBillCommand}" />
                             </Grid>
                         </Grid>
                     </Grid>
