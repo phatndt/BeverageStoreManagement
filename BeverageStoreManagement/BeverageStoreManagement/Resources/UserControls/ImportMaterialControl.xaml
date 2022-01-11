@@ -149,8 +149,8 @@
             </Button>
             <Grid Width="10"></Grid>
             <Button x:Name="btnDeleteInvoice"
-                    Command="{Binding DeleteBillDetailCommand}"
-                    CommandParameter="{Binding ElementName=SaleBillUC}"
+                    Command="{Binding DeletePendingCommand}"
+                    CommandParameter="{Binding ElementName=importMaterialUC}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Height="24"
                     materialDesign:ButtonAssist.CornerRadius="6"

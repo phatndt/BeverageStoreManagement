@@ -6,6 +6,7 @@ using BeverageStoreManagement.Views.Pages;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BeverageStoreManagement.ViewModels
@@ -47,6 +48,7 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand CalculateTotalPendingCommand { get; set; }
         public ICommand LoadImportedUCWindowCommand { get; set; }
         public ICommand UpdateStatusCommand { get; set; }
+        public ICommand DeletePendingCommand { get; set; }
 
 
         public ImportBillViewModel()
@@ -67,6 +69,7 @@ namespace BeverageStoreManagement.ViewModels
             CalculateTotalPendingCommand = new RelayCommand<ImportBillControl>(parameter => true, parameter => CalculateTotalPending(parameter));
             LoadImportedUCWindowCommand = new RelayCommand<ImportedMaterialControl>(parameter => true, parameter => LoadImportedBill(parameter));
             UpdateStatusCommand = new RelayCommand<CheckPendingBillWindow>(parameter => true, parameter => UpdateStatus(parameter));
+            DeletePendingCommand = new RelayCommand<ImportMaterialControl>(parameter => true, parameter => DeletePending(parameter));
         }
 
         public Employee GetEmployee(int i)
@@ -251,7 +254,7 @@ namespace BeverageStoreManagement.ViewModels
 
         private void Search(AddImportBill parameter)
         {
-            if (tbx != "")
+            if (Tbx != "")
             {
                 parameter.wrpMaterial.Children.Clear();
                 for (int i = 0; i < addMaterials.Count; i++)
@@ -272,6 +275,7 @@ namespace BeverageStoreManagement.ViewModels
             }
             else
             {
+                addMaterials = new List<AddMaterialImportBillControl>();
                 LoadMaterial(parameter);
             }
         }
@@ -301,7 +305,7 @@ namespace BeverageStoreManagement.ViewModels
                     ImportBillInfo billInfo = new ImportBillInfo();
 
                     billInfo.IdImportBill = int.Parse(parameter.txtIdImportBill.Text);
-                    billInfo.IdImportBillInfo = i + 1;
+                    billInfo.IdImportBillInfo = ImportBillDAL.Instance.GetMaxIdBillInfo() + 1;
                     billInfo.IdMaterial = int.Parse(importBillControls[i].idMaterial.Text);
                     billInfo.Quantity = int.Parse(importBillControls[i].quantity.Text);
                     billInfo.Price = double.Parse(importBillControls[i].price.Text);
@@ -312,6 +316,7 @@ namespace BeverageStoreManagement.ViewModels
                 }
 
                 CustomMessageBox.Show("Send request successfully");
+                LoadPendingRequest(mainWindow);
                 parameter.Close();
             }
         }
@@ -421,6 +426,17 @@ namespace BeverageStoreManagement.ViewModels
             checkPendingBillWindow.btnPay.Visibility = System.Windows.Visibility.Hidden;
 
             checkPendingBillWindow.ShowDialog();
+        }
+    
+        private void DeletePending(ImportMaterialControl parameter)
+        {
+            MessageBoxResult result = CustomMessageBox.ShowYesNo("Confirm delelte payment voucher!", "Information", "Yes", "No", MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                mainWindow.stkImportMaterial.Children.Remove(parameter);
+                ImportBillDAL.Instance.DeletePendingBill(parameter.idBill.Content.ToString());
+                LoadPendingRequest(mainWindow);
+            }
         }
     }
 }
