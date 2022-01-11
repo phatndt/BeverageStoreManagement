@@ -155,6 +155,9 @@
     <Compile Include="Resources\UserControls\AccountControl2.xaml.cs">
       <DependentUpon>AccountControl2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\CompletedImportBillControl.xaml.cs">
+      <DependentUpon>CompletedImportBillControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\EmployeeControl.xaml.cs">
       <DependentUpon>EmployeeControl.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,9 @@
     </Compile>
     <Compile Include="Views\ChangeProductWindow.xaml.cs">
       <DependentUpon>ChangeProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckPendingBillWindow.xaml.cs">
+      <DependentUpon>CheckPendingBillWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomMessageBoxWindow.xaml.cs">
       <DependentUpon>CustomMessageBoxWindow.xaml</DependentUpon>
@@ -334,8 +340,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\UserControls\AddMaterialImportBillControl.xaml"/>
+    <Page Include="Resources\UserControls\AddMaterialImportBillControl.xaml" />
     <Page Include="Resources\UserControls\AccountControl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\UserControls\CompletedImportBillControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -420,6 +430,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ChangeProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CheckPendingBillWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

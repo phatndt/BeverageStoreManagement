@@ -8,6 +8,8 @@
              d:DesignHeight="50"
              d:DesignWidth="500"
              Width="1260"
+             x:Name="importedMaterialUC"
+             DataContext="{StaticResource ImportBillVM}"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid Height="45"
           Background="{DynamicResource Blue6}">
@@ -23,6 +25,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Label Content="1"
+                   x:Name="idBill"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -39,6 +42,7 @@
         </Grid>
         <Grid Grid.Column="1">
             <Label Content="Trung"
+                   x:Name="nameEmployee"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -54,6 +58,7 @@
         </Grid>
         <Grid Grid.Column="2">
             <Label Content="Thảo"
+                   x:Name="nameSupplier"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -70,6 +75,7 @@
         </Grid>
         <Grid Grid.Column="3">
             <Label Content="23/10/2021"
+                   x:Name="date"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -87,6 +93,7 @@
         <Grid Grid.Column="4">
             <Label Content="770.000 VND"
                    FontFamily="Poppins"
+                   x:Name="money"
                    FontSize="20"
                    FontWeight="SemiBold"
                    HorizontalAlignment="Center"
@@ -101,7 +108,7 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="5">
-            <Label Content="Pending"
+            <Label Content="Completed"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -121,8 +128,8 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <Button  x:Name="btnSeeInvoice"
-                     Command="{Binding DeleteBillDetailCommand}"
-                     CommandParameter="{Binding ElementName=SaleBillUC}"
+                     Command="{Binding LoadImportedUCWindowCommand}"
+                     CommandParameter="{Binding ElementName=importedMaterialUC}"
                      Style="{StaticResource MaterialDesignRaisedButton}"
                      ToolTip="See Invoice"
                      Height="24"
