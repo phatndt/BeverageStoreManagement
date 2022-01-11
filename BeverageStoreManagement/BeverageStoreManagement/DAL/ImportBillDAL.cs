@@ -24,7 +24,7 @@ namespace BeverageStoreManagement.DAL
             try
             {
                 OpenConnection();
-                string queryStr = "SELECT * FROM ImportBill WHERE idImportBill != 0 AND status = 'true'";
+                string queryStr = "SELECT * FROM ImportBill WHERE idImportBill != 0 AND status = 'true' and isDelete='false'";
                 SqlCommand cmd = new SqlCommand(queryStr, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
@@ -63,12 +63,36 @@ namespace BeverageStoreManagement.DAL
             }
         }
 
+        public int GetMaxIdBillInfo()
+        {
+            int res = 0;
+            try
+            {
+                OpenConnection();
+                string queryString = "select max(idImportBillInfo) as id from ImportBillInfo";
+                SqlCommand command = new SqlCommand(queryString, conn);
+
+                SqlDataReader rdr = command.ExecuteReader();
+                rdr.Read();
+                res = int.Parse(rdr["id"].ToString());
+                return res;
+            }
+            catch
+            {
+                return res;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
         public object GetListImported()
         {
             try
             {
                 OpenConnection();
-                string queryStr = "SELECT * FROM ImportBill WHERE idImportBill != 0 AND status = 'false'";
+                string queryStr = "SELECT * FROM ImportBill WHERE idImportBill != 0 AND status = 'false' and isDelete='false'";
                 SqlCommand cmd = new SqlCommand(queryStr, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
@@ -350,6 +374,26 @@ namespace BeverageStoreManagement.DAL
             catch (Exception e)
             {
                 CustomMessageBox.Show(e.ToString());
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public bool DeletePendingBill(string idBill)
+        {
+            try
+            {
+                OpenConnection();
+                string queryString = "Update ImportBill Set isDelete = 'true' Where idImportBill = " + idBill;
+                SqlCommand command = new SqlCommand(queryString, conn);
+                int rs = command.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
                 return false;
             }
             finally

@@ -224,7 +224,7 @@ namespace BeverageStoreManagement.ViewModels
 
         public void DeleteProduct(ProductViewControl productViewControl)
         {
-            MessageBoxResult result = CustomMessageBox.Show("Confirm Delete", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = CustomMessageBox.ShowYesNo("Confirm delelte payment voucher!", "Information", "Yes", "No", MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.Yes)
             {
@@ -331,7 +331,7 @@ namespace BeverageStoreManagement.ViewModels
                     {
                         ProductViewControl productViewControl = new ProductViewControl();
                         productViewControl.idProduct.Text = products[i].IdProduct.ToString();
-                        productViewControl.Name = products[i].NameProduct.ToString();
+                        productViewControl.name.Text = products[i].NameProduct.ToString();
                         productViewControl.Price.Text = products[i].Price.ToString("N0");
                         productViewControl.Status.Text = ConvertBooleanToStatus(products[i].Status);
                         productViewControl.imgProduct.Source = Converter.Instance.ConvertByteToBitmapImage(products[i].Image);
