@@ -190,7 +190,6 @@ namespace BeverageStoreManagement.DAL
                 command.Parameters.AddWithValue("@name", employee.Name);
                 command.Parameters.AddWithValue("@date", employee.DateOfBirth);
                 command.Parameters.AddWithValue("@dateStartWork", employee.DateStartWorking);
-                command.Parameters.AddWithValue("@dateStartWork", employee.DateStartWorking);
                 command.Parameters.AddWithValue("@address", employee.Address);
                 command.Parameters.AddWithValue("@phoneNumber", employee.PhoneNumber);
                 command.Parameters.AddWithValue("@gender", gender);

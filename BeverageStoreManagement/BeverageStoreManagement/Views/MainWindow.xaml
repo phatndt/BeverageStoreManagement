@@ -44,8 +44,7 @@
                                   HorizontalScrollBarVisibility="Disabled">
                         <StackPanel>
                             <!--0 Home-->
-                            <Expander x:Name="expanderHome"
-                                      Style="{StaticResource exx}">
+                            <Expander x:Name="expanderHome">
                                 <Expander.Header>
                                     <StackPanel Orientation="Horizontal"
                                                 Height="30">
@@ -445,7 +444,7 @@
                     <Border CornerRadius="8"
                             Background="{DynamicResource White}"
                             x:Name="grdHome"
-                            Visibility="Visible">
+                            Visibility="Collapsed">
                         <Grid x:Name="grdBody_Home"
                               Grid.Row="1"
                               DataContext="{StaticResource ReportVM}"
