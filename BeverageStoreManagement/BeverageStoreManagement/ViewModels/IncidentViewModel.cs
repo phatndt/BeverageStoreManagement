@@ -350,6 +350,7 @@ namespace BeverageStoreManagement.ViewModels
                 if (IncidentDAL.Instance.AddNewIncident(incident) == 1)
                 {
                     Notification.Instance.Success("Add Incident Success!");
+                    LoadIncident(mainWindow);
                     parameter.Close();
                 }
                 else

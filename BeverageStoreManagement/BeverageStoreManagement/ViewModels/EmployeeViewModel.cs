@@ -76,8 +76,8 @@ namespace BeverageStoreManagement.ViewModels
 
             changeEmployeeWindow.txtIdEmployee.Text = employee.IdEmployee.ToString();
             changeEmployeeWindow.txtNameEmployee.Text = employee.Name;
-            changeEmployeeWindow.txtDateEmployee.Text = employee.DateOfBirth.ToString("dd/MM/yyyy");
-            changeEmployeeWindow.txtDateStartWorkEmployee.Text = employee.DateStartWorking.ToString("dd/MM/yyyy");
+            changeEmployeeWindow.txtDateEmployee.Text = employee.DateOfBirth.ToString("MM/dd/yyyy");
+            changeEmployeeWindow.txtDateStartWorkEmployee.Text = employee.DateStartWorking.ToString("MM/dd/yyyy");
             changeEmployeeWindow.txtAddressEmployee.Text = employee.Address;
             changeEmployeeWindow.txtphoneNumberEmployee.Text = employee.PhoneNumber;
             changeEmployeeWindow.txtGenderEmployee.Text = employee.Gender ? "Male" : "Female";
@@ -108,7 +108,7 @@ namespace BeverageStoreManagement.ViewModels
                 employeeControl.id.Text = employee.IdEmployee.ToString();
                 employeeControl.no.Text = id.ToString();
                 employeeControl.txb_employee_name.Text = employee.Name;
-                employeeControl.txb_position.Text = PositionDAL.Instance.GetNamePositionById(employee.IdEmployee);
+                employeeControl.txb_position.Text = PositionDAL.Instance.GetNamePositionById(employee.IdPosition);
                 employeeControl.txb_date.Text = employee.DateOfBirth.ToString("dd/MM/yyyy");
                 employeeControl.txb_date_start_work.Text = employee.DateStartWorking.ToString("dd/MM/yyyy");
                 employeeControl.txb_gender.Text = employee.Gender ? "Male" : "Female";

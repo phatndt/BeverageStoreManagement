@@ -64,7 +64,7 @@ namespace BeverageStoreManagement.DAL
             try
             {
                 OpenConnection();
-                string queryStr = "SELECT idAccount FROM Account where idAccount != 0";
+                string queryStr = "SELECT idEmployee FROM Account where idAccount != 0";
                 SqlCommand cmd = new SqlCommand(queryStr, conn);
                 SqlDataReader dataReader = cmd.ExecuteReader();
                 DataTable dt = new DataTable();

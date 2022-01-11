@@ -115,7 +115,7 @@ namespace BeverageStoreManagement.ViewModels
                     break;
                 case 7:
                     parameter.grdReceiptVoucher.Visibility = Visibility.Visible;
-                    ReceiptVoucherViewModel receiptVoucherViewModel = parameter.grdPaymentVoucher.DataContext as ReceiptVoucherViewModel;
+                    ReceiptVoucherViewModel receiptVoucherViewModel = parameter.grdReceiptVoucher.DataContext as ReceiptVoucherViewModel;
                     receiptVoucherViewModel.LoadReceiptVoucher(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdReceiptVoucher.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
@@ -143,7 +143,7 @@ namespace BeverageStoreManagement.ViewModels
                     break;
                 case 12:
                     parameter.grdSupplier.Visibility = Visibility.Visible;
-                    SupplierViewModel supplierViewModel = parameter.grdAccount.DataContext as SupplierViewModel;
+                    SupplierViewModel supplierViewModel = parameter.grdSupplier.DataContext as SupplierViewModel;
                     supplierViewModel.LoadSupplier(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdSupplier.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);

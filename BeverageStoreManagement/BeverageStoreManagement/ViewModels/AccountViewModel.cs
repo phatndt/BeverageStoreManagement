@@ -303,7 +303,7 @@ namespace BeverageStoreManagement.ViewModels
                 {
                     isLogin = true;
                     acc.IdAccount = _account.IdAccount;
-                    acc.IdAccount = _account.IdAccount;
+                    acc.IdEmployee = _account.IdEmployee;
                     acc.Username = _account.Username;
                     acc.Password = _account.Password;
                     acc.IsDelete = _account.IsDelete;
@@ -321,6 +321,15 @@ namespace BeverageStoreManagement.ViewModels
                 CurrentAccount.Username = acc.Username;
                 CurrentAccount.Password = acc.Password;
                 CurrentAccount.IsDelete = acc.IsDelete;
+
+                CurrentEmployee.IdEmployee = employee.IdEmployee;
+                CurrentEmployee.IdPosition = employee.IdPosition;
+                CurrentEmployee.Name = employee.Name;
+                CurrentEmployee.DateOfBirth = employee.DateOfBirth;
+                CurrentEmployee.DateStartWorking = employee.DateStartWorking;
+                CurrentEmployee.Gender = employee.Gender;
+                CurrentEmployee.PhoneNumber = employee.PhoneNumber;
+                CurrentEmployee.Address = employee.Address;
 
                 if (employee.IdEmployee >= 1)
                 {
@@ -342,7 +351,7 @@ namespace BeverageStoreManagement.ViewModels
         void SetRole(MainWindow window, int idPosition)
         {
             HomeViewModel homeVM = (HomeViewModel)window.DataContext;
-            homeVM.Uid = "0";
+            homeVM.Uid = "-1";
             homeVM.SwitchTab(window);
             if (idPosition == 1)
             {
@@ -358,6 +367,7 @@ namespace BeverageStoreManagement.ViewModels
                 window.expanderHome.IsEnabled = true;
 
                 window.rdHome.IsEnabled = false;
+
                 window.expanderStore.IsEnabled = true;
 
                 window.expanderWarehouse.IsEnabled = true;
@@ -372,6 +382,7 @@ namespace BeverageStoreManagement.ViewModels
             }
             if (idPosition == 3)
             {
+                CustomMessageBox.Show("3");
                 window.expanderHome.IsEnabled = false;
                 window.expanderStore.IsEnabled = false;
                 window.expanderWarehouse.IsEnabled = true;
