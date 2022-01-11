@@ -1,4 +1,4 @@
-﻿<Window x:Class="BeverageStoreManagement.Views.AddImportBill"
+﻿<Window x:Class="BeverageStoreManagement.Views.CheckPendingBillWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,53 +7,21 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        x:Name="wdAddImportBill"
+        x:Name="wdCheckPendingBill"
         WindowStartupLocation="CenterScreen"
         Height="810"
         Width="1440"
         DataContext="{StaticResource ImportBillVM}"
-        Title="AddImportBillWindow">
+        Title="CheckPendingBillWindow">
     <Grid>
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadCheckPendingWindowCommand}"
+                                       CommandParameter="{Binding ElementName=wdCheckPendingBill}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         <Grid Width="1030"
               HorizontalAlignment="Left">
-            <Grid x:Name="grdFindGoods"
-                  Margin="0,420,32,0"
-                  Height="46"
-                  Width="400"
-                  HorizontalAlignment="Right"
-                  VerticalAlignment="Top">
-                <Rectangle x:Name="recSearch"
-                           HorizontalAlignment="Left"
-                           Width="400"
-                           RadiusY="4"
-                           RadiusX="4"
-                           Stroke="{DynamicResource Primary}"
-                           Height="40"
-                           StrokeThickness="2" />
-                <TextBox x:Name="txtSearch"
-                         Text="{Binding Tbx, UpdateSourceTrigger=PropertyChanged}"
-                         materialDesign:HintAssist.Hint="Find Material "
-                         HorizontalAlignment="Left"
-                         FontSize="16"
-                         BorderThickness="0"
-                         MaxLines="1"
-                         Margin="12,0,0,0"
-                         FontWeight="Medium"
-                         Height="40"
-                         VerticalAlignment="Center"
-                         HorizontalContentAlignment="Left"
-                         VerticalContentAlignment="Center"
-                         SelectionBrush="{DynamicResource Primary}"
-                         Padding="2,0,0,0"
-                         Width="380">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="TextChanged">
-                            <i:InvokeCommandAction Command="{Binding SearchCommand}"
-                                                   CommandParameter="{Binding ElementName=wdAddImportBill}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </TextBox>
-            </Grid>
             <Border HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     CornerRadius="6"
@@ -180,7 +148,7 @@
             </Border>
             <Grid x:Name="grdPickedGoods"
                   HorizontalAlignment="Left"
-                  Height="316"
+                  Height="616"
                   Width="938"
                   Margin="60,90,0,0"
                   VerticalAlignment="Top">
@@ -197,45 +165,11 @@
             <Border BorderBrush="{DynamicResource Primary}"
                     BorderThickness="2"
                     HorizontalAlignment="Left"
-                    Height="356"
-                    Margin="60,50,0,0"
+                    Height="656"
+                    Margin="60,90,0,0"
                     VerticalAlignment="Top"
                     Width="938"
                     CornerRadius="4" />
-            <Label Content="Material List"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Margin="60,420,0,0"
-                   FontSize="26"
-                   FontWeight="Bold"
-                   Foreground="{DynamicResource Primary}" />
-            <Grid HorizontalAlignment="Left"
-                  Height="280"
-                  Width="938"
-                  Margin="60,480,10,0"
-                  VerticalAlignment="Top">
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <WrapPanel x:Name="wrpMaterial"
-                               Margin="0,0,0,6">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Loaded">
-                                <i:InvokeCommandAction Command="{Binding LoadMaterialCommand}"
-                                                       CommandParameter="{Binding ElementName=wdAddImportBill}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </WrapPanel>
-                </ScrollViewer>
-            </Grid>
-            <Border CornerRadius="4"
-                    HorizontalAlignment="Left"
-                    Height="280"
-                    Width="938"
-                    Margin="60,480,10,0"
-                    VerticalAlignment="Top"
-                    BorderBrush="{DynamicResource Primary}"
-                    BorderThickness="2">
-            </Border>
         </Grid>
         <Grid Margin="0"
               Width="400"
@@ -303,20 +237,13 @@
                                VerticalAlignment="Top"
                                FontSize="18"
                                FontWeight="SemiBold" />
-                    <ComboBox x:Name="cbSupplier"
-                              HorizontalAlignment="Right"
-                              Margin="0"
-                              VerticalAlignment="Top"
-                              FontSize="18"
-                              FontWeight="SemiBold"
-                              ItemsSource="{Binding ItemSourceSupplier}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding GetSupplierCommand}"
-                                                       CommandParameter="{Binding ElementName=wdAddServiceBill}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
+                    <TextBlock x:Name="cbSupplier"
+                               HorizontalAlignment="Right"
+                               Margin="0"
+                               VerticalAlignment="Top"
+                               FontSize="18"
+                               FontWeight="SemiBold">
+                    </TextBlock>
                 </Grid>
                 <Grid Margin="0,15,0,0">
                     <TextBlock HorizontalAlignment="Left"
@@ -396,7 +323,7 @@
                                VerticalAlignment="Top"
                                FontSize="18"
                                FontWeight="SemiBold" />
-                    <TextBox x:Name="txtNote"
+                    <TextBlock x:Name="txtNote"
                              Margin="0 54 0 0"
                              Width="340"
                              Height="100"
@@ -419,13 +346,13 @@
                 <Button x:Name="btnPay"
                         Height="40"
                         Background="{StaticResource Blue2}"
-                        Command="{Binding AddBillCommand}"
-                        CommandParameter="{Binding ElementName=wdAddImportBill}"
+                        Command="{Binding UpdateStatusCommand}"
+                        CommandParameter="{Binding ElementName=wdCheckPendingBill}"
                         materialDesign:ButtonAssist.CornerRadius="4"
                         BorderThickness="2"
                         Margin="0,0,0,30"
                         FontSize="18"
-                        Content="Send Request"
+                        Content="Pay Money"
                         VerticalAlignment="Bottom"
                         Width="320"
                         FontWeight="Bold"
@@ -437,7 +364,7 @@
                       VerticalAlignment="Top"
                       Width="340">
                     <TextBlock x:Name="txbTotal"
-                               Text="{Binding Total, StringFormat=N1 , UpdateSourceTrigger=PropertyChanged}"
+                               Text="{Binding TotalPending, StringFormat=N1 , UpdateSourceTrigger=PropertyChanged}"
                                HorizontalAlignment="Right"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center"

@@ -1638,7 +1638,7 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdMaterial"
                           DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Visible">
+                          Visibility="Collapsed">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Loaded">
                                 <i:InvokeCommandAction Command="{Binding LoadMaterialCommand}"
@@ -2001,8 +2001,8 @@
                     <!--5-->
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdImportBill"
-                          DataContext="{StaticResource GoodsPageVM}"
-                          Visibility="Collapsed">
+                          DataContext="{StaticResource ImportBillVM}"
+                          Visibility="Visible">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="80" />
                             <RowDefinition Height="320" />
@@ -2011,7 +2011,7 @@
                         <Grid Grid.Row="0">
                             <Button Content="Add import bill"
                                     Style="{StaticResource MainButton}"
-                                    Command="{Binding ExportCommand}"
+                                    Command="{Binding OpenAddImportBillCommand}"
                                     CommandParameter="{Binding ElementName=wdMain}" />
                         </Grid>
                         <Grid Grid.Row="1">
@@ -2112,9 +2112,15 @@
                                               HorizontalScrollBarVisibility="Disabled"
                                               Width="1260"
                                               Height="270">
-                                    <StackPanel x:Name="stkImportMaterial"
+                                    <StackPanel x:Name="stkImportedMaterial"
                                                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                 HorizontalAlignment="Center">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Loaded">
+                                                <i:InvokeCommandAction Command="{Binding LoadImportedCommand}"
+                                                                       CommandParameter="{Binding ElementName=wdMain}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
                                         <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
                                         <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
                                         <uc:ImportedMaterialControl></uc:ImportedMaterialControl>
@@ -2131,10 +2137,6 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
-                                <Button Content="Add import bill"
-                                        Style="{StaticResource MainButton}"
-                                        Command="{Binding ExportCommand}"
-                                        CommandParameter="{Binding ElementName=wdMain}" />
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Grid.RowDefinitions>
@@ -2234,10 +2236,16 @@
                                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                                   HorizontalScrollBarVisibility="Disabled"
                                                   Height="225">
-                                        <StackPanel x:Name="stkImportedMaterial"
+                                        <StackPanel x:Name="stkImportMaterial"
                                                     Width="1260"
                                                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                                     HorizontalAlignment="Left">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Loaded">
+                                                    <i:InvokeCommandAction Command="{Binding LoadPendingCommand}"
+                                                                           CommandParameter="{Binding ElementName=wdMain}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
                                             <uc:ImportMaterialControl></uc:ImportMaterialControl>
                                             <uc:ImportMaterialControl></uc:ImportMaterialControl>
                                             <uc:ImportMaterialControl></uc:ImportMaterialControl>
@@ -2252,17 +2260,14 @@
                             <Grid Grid.Column="1"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Center">
-                                <Button Height="50"
-                                        Width="200"
-                                        BorderThickness="0 "
-                                        Content="Add a import request"
-                                        FontSize="16"
-                                        FontFamily="poppins"
-                                        Background="{DynamicResource Blue2}"
-                                        materialDesign:ButtonAssist.CornerRadius="7"
-                                        FlowDirection="LeftToRight"
-                                        HorizontalAlignment="Right"
-                                        Command="{Binding OpenAddImportBillCommand}" />
+                                <TextBlock 
+                                           Text="Pending Bill"
+                                           FontSize="32"
+                                           FontFamily="Poppins"
+                                           FontWeight="Bold"
+                                           Foreground="{StaticResource Blue1}"
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"/>
                             </Grid>
                         </Grid>
                     </Grid>
