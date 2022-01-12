@@ -103,6 +103,9 @@ namespace BeverageStoreManagement.ViewModels
                     break;
                 case 5:
                     parameter.grdImportBill.Visibility = Visibility.Visible;
+                    ImportBillViewModel importBillViewModel = parameter.grdImportBill.DataContext as ImportBillViewModel;
+                    importBillViewModel.LoadImportedRequest(parameter);
+                    importBillViewModel.LoadPendingRequest(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdImportBill.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
