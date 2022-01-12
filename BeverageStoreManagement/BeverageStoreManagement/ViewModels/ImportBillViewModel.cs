@@ -125,7 +125,7 @@ namespace BeverageStoreManagement.ViewModels
             }
         }
 
-        private void LoadPendingRequest(MainWindow parameter)
+        public void LoadPendingRequest(MainWindow parameter)
         {
             this.mainWindow = parameter;
             parameter.stkImportMaterial.Children.Clear();
@@ -144,7 +144,7 @@ namespace BeverageStoreManagement.ViewModels
             }    
         }
 
-        private void LoadImportedRequest(MainWindow parameter)
+        public void LoadImportedRequest(MainWindow parameter)
         {
             parameter.stkImportedMaterial.Children.Clear();
 
