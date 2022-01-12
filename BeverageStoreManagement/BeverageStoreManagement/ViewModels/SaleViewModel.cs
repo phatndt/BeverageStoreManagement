@@ -361,7 +361,7 @@ namespace BeverageStoreManagement.ViewModels
                         InvoiceInfoDAL.Instance.AddNewInvoiceInvoiceInfo(invoiceInfo);
                     }
                     CustomMessageBox.ShowOK("Add invoice success", "Information", "Oke");
-
+                    ResetData(parameter);
                 }
                 else
                 {
