@@ -25,7 +25,7 @@ namespace BeverageStoreManagement.ViewModels
             LogoutCommand = new RelayCommand<MainWindow>((parameter) => true, (parameter) => logout(parameter));
         }
 
-        private void SwitchTab(MainWindow parameter)
+        public void SwitchTab(MainWindow parameter)
         {
             int index = int.Parse(Uid);
 
@@ -68,61 +68,86 @@ namespace BeverageStoreManagement.ViewModels
             {
                 case 0:
                     parameter.grdHome.Visibility = Visibility.Visible;
+                    ReportViewModel reportViewModel = new ReportViewModel();
+                    reportViewModel.LoadDefaultChart(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdHome.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 1:
                     parameter.grdSale.Visibility = Visibility.Visible;
+                    SaleViewModel saleViewModel = parameter.grdSale.DataContext as SaleViewModel;
+                    saleViewModel.LoadProduct(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdSale.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 2:
                     parameter.grdInvoice.Visibility = Visibility.Visible;
+                    InvoiceViewModel invoiceViewModel = parameter.grdInvoice.DataContext as InvoiceViewModel;
+                    invoiceViewModel.LoadInvoice(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdInvoice.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 3:
                     parameter.grdProduct.Visibility = Visibility.Visible;
+                    ProductPageViewModel productPageViewModel = parameter.grdProduct.DataContext as ProductPageViewModel;
+                    productPageViewModel.LoadProduct(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdProduct.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 4:
                     parameter.grdMaterial.Visibility = Visibility.Visible;
+                    GoodsPageViewModel goodsPageViewModel = parameter.grdMaterial.DataContext as GoodsPageViewModel;
+                    goodsPageViewModel.LoadMaterial(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdMaterial.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 5:
                     parameter.grdImportBill.Visibility = Visibility.Visible;
+                    ImportBillViewModel importBillViewModel = parameter.grdImportBill.DataContext as ImportBillViewModel;
+                    importBillViewModel.LoadImportedRequest(parameter);
+                    importBillViewModel.LoadPendingRequest(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdImportBill.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 6:
                     parameter.grdPaymentVoucher.Visibility = Visibility.Visible;
+                    PaymentVoucherViewModel paymentVoucherViewModel = parameter.grdPaymentVoucher.DataContext as PaymentVoucherViewModel;
+                    paymentVoucherViewModel.LoadPaymentVoucher(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdPaymentVoucher.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 7:
                     parameter.grdReceiptVoucher.Visibility = Visibility.Visible;
+                    ReceiptVoucherViewModel receiptVoucherViewModel = parameter.grdReceiptVoucher.DataContext as ReceiptVoucherViewModel;
+                    receiptVoucherViewModel.LoadReceiptVoucher(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdReceiptVoucher.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 8:
                     parameter.grdIncident.Visibility = Visibility.Visible;
+                    IncidentViewModel incidentViewModel = parameter.grdIncident.DataContext as IncidentViewModel;
+                    incidentViewModel.LoadIncident(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdIncident.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 9:
                     parameter.grdEmployee.Visibility = Visibility.Visible;
+                    EmployeeViewModel employeeViewModel = parameter.grdEmployee.DataContext as EmployeeViewModel;
+                    employeeViewModel.LoadEmployee(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdEmployee.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 10:
                     parameter.grdAccount.Visibility = Visibility.Visible;
+                    AccountViewModel accountViewModel = parameter.grdAccount.DataContext as AccountViewModel;
+                    accountViewModel.loadAccount(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdAcount.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;
                 case 12:
                     parameter.grdSupplier.Visibility = Visibility.Visible;
+                    SupplierViewModel supplierViewModel = parameter.grdSupplier.DataContext as SupplierViewModel;
+                    supplierViewModel.LoadSupplier(parameter);
                     CloseExpander(parameter, index);
                     parameter.rdSupplier.Foreground = (Brush)new BrushConverter().ConvertFrom(focusColor);
                     break;

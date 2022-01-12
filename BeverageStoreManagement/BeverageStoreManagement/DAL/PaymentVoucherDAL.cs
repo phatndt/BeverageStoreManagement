@@ -110,14 +110,14 @@ namespace BeverageStoreManagement.DAL
                 CloseConnection();
             }
         }
-        public void DeleteReceiptVoucherById(int idReceiptVoucher)
+        public void DeletePaymentVoucherById(int idPaymentVoucher)
         {
             try
             {
                 OpenConnection();
-                string queryStr = "UPDATE ReceiptVoucher SET isDelete = '1' WHERE idReceiptVoucher = @idReceiptVoucher";
+                string queryStr = "UPDATE PaymentVoucher SET isDelete = '1' WHERE idPaymentVoucher = @idPaymentVoucher";
                 SqlCommand command = new SqlCommand(queryStr, conn);
-                command.Parameters.AddWithValue("@idReceiptVoucher", idReceiptVoucher);
+                command.Parameters.AddWithValue("@idPaymentVoucher", idPaymentVoucher);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);

@@ -5,10 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BeverageStoreManagement.Resources.UserControls"
              mc:Ignorable="d"
-             d:DesignHeight="50"
-             d:DesignWidth="500"
+             d:DesignHeight="45"
+             d:DesignWidth="1260"
+             DataContext="{StaticResource ImportBillVM}"
+             x:Name="importMaterialUC"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Grid Height="50"
+    <Grid Height="45"
           Background="{DynamicResource Blue6}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.75*" />
@@ -18,9 +20,11 @@
             <ColumnDefinition Width="1.2*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <Label Content="1"
+            <Label x:Name="idBill"
+                   Content="1"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -36,7 +40,8 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="1">
-            <Label Content="Trung"
+            <Label x:Name="nameEmployee"
+                   Content="Trung"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -51,7 +56,8 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="2">
-            <Label Content="Thảo"
+            <Label x:Name="nameSupplier"
+                   Content="Thảo"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -67,7 +73,8 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="3">
-            <Label Content="23/10/2021"
+            <Label x:Name="date"
+                   Content="23/10/2021"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -83,7 +90,8 @@
                        VerticalAlignment="Center" />
         </Grid>
         <Grid Grid.Column="4">
-            <Label Content="770.000 VND"
+            <Label x:Name="money"
+                   Content="770.000 VND"
                    FontFamily="Poppins"
                    FontSize="20"
                    FontWeight="SemiBold"
@@ -119,8 +127,8 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <Button  x:Name="btnSeeInvoice"
-                     Command="{Binding DeleteBillDetailCommand}"
-                     CommandParameter="{Binding ElementName=SaleBillUC}"
+                     Command="{Binding OpenCheckPendingBillCommand}"
+                     CommandParameter="{Binding ElementName=importMaterialUC}"
                      Style="{StaticResource MaterialDesignRaisedButton}"
                      ToolTip="See Invoice"
                      Height="24"
@@ -141,8 +149,8 @@
             </Button>
             <Grid Width="10"></Grid>
             <Button x:Name="btnDeleteInvoice"
-                    Command="{Binding DeleteBillDetailCommand}"
-                    CommandParameter="{Binding ElementName=SaleBillUC}"
+                    Command="{Binding DeletePendingCommand}"
+                    CommandParameter="{Binding ElementName=importMaterialUC}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Height="24"
                     materialDesign:ButtonAssist.CornerRadius="6"

@@ -26,7 +26,7 @@ namespace BeverageStoreManagement.ViewModels
         public ICommand ExitAddEmployeeCommand { get; set; }
         public string Name { get => name; set => name = value; }
 
-        //ChangeInformationEmployee
+        //ChangeInformationEmployee 
         public ICommand SaveChangeInformationEmployeeCommand { get; set; }
         public ICommand ExitUpdateEmployeeCommand { get; set; }
 
@@ -60,8 +60,7 @@ namespace BeverageStoreManagement.ViewModels
         {
             MessageBoxResult messageBoxResult = CustomMessageBox.ShowYesNo("Confirm delelte employee!", "Information", "Yes", "No", MessageBoxImage.Warning);
             if (messageBoxResult == MessageBoxResult.Yes)
-            {
-
+            { 
                 int idEmployee = int.Parse(parameter.id.Text);
                 EmployeeDAL.Instance.DeleteEmployeeById(idEmployee); Notification.Instance.Success("Delete Employee Success");
                 LoadEmployee(mainWindow);
@@ -77,8 +76,8 @@ namespace BeverageStoreManagement.ViewModels
 
             changeEmployeeWindow.txtIdEmployee.Text = employee.IdEmployee.ToString();
             changeEmployeeWindow.txtNameEmployee.Text = employee.Name;
-            changeEmployeeWindow.txtDateEmployee.Text = employee.DateOfBirth.ToString("dd/MM/yyyy");
-            changeEmployeeWindow.txtDateStartWorkEmployee.Text = employee.DateStartWorking.ToString("dd/MM/yyyy");
+            changeEmployeeWindow.txtDateEmployee.Text = employee.DateOfBirth.ToString("MM/dd/yyyy");
+            changeEmployeeWindow.txtDateStartWorkEmployee.Text = employee.DateStartWorking.ToString("MM/dd/yyyy");
             changeEmployeeWindow.txtAddressEmployee.Text = employee.Address;
             changeEmployeeWindow.txtphoneNumberEmployee.Text = employee.PhoneNumber;
             changeEmployeeWindow.txtGenderEmployee.Text = employee.Gender ? "Male" : "Female";
@@ -89,7 +88,7 @@ namespace BeverageStoreManagement.ViewModels
         #endregion
 
         #region grdEmployee
-        private void LoadEmployee(MainWindow parameter)
+        public void LoadEmployee(MainWindow parameter)
         {
             this.mainWindow = parameter;
             parameter.stkEmployee.Children.Clear();
@@ -109,7 +108,7 @@ namespace BeverageStoreManagement.ViewModels
                 employeeControl.id.Text = employee.IdEmployee.ToString();
                 employeeControl.no.Text = id.ToString();
                 employeeControl.txb_employee_name.Text = employee.Name;
-                employeeControl.txb_position.Text = PositionDAL.Instance.GetNamePositionById(employee.IdEmployee);
+                employeeControl.txb_position.Text = PositionDAL.Instance.GetNamePositionById(employee.IdPosition);
                 employeeControl.txb_date.Text = employee.DateOfBirth.ToString("dd/MM/yyyy");
                 employeeControl.txb_date_start_work.Text = employee.DateStartWorking.ToString("dd/MM/yyyy");
                 employeeControl.txb_gender.Text = employee.Gender ? "Male" : "Female";
@@ -161,6 +160,18 @@ namespace BeverageStoreManagement.ViewModels
             {
                 CustomMessageBox.Show("Please enter gender!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
                 parameter.txtGenderEmployee.Focus();
+                return false;
+            }
+            if (parameter.txtAddressEmployee.Text == "")
+            {
+                CustomMessageBox.Show("Please enter address!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtAddressEmployee.Focus();
+                return false;
+            }
+            if (parameter.txtphoneNumberEmployee.Text == "")
+            {
+                CustomMessageBox.Show("Please enter phone number!", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                parameter.txtphoneNumberEmployee.Focus();
                 return false;
             }
             if (parameter.txtPositionEmployee.Text == "")
@@ -300,12 +311,5 @@ namespace BeverageStoreManagement.ViewModels
             }
         }
         #endregion
-
-
-        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
     }
 }

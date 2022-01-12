@@ -92,7 +92,6 @@ namespace BeverageStoreManagement.DAL
             }
             catch
             {
-                //CustomMessageBox.Show(e.ToString());
                 return new Employee();
             }
             finally
@@ -112,7 +111,6 @@ namespace BeverageStoreManagement.DAL
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
-                //return int.Parse(dataTable.Rows[0].ItemArray[0].ToString());
             }
             catch(Exception e)
             {
@@ -205,6 +203,37 @@ namespace BeverageStoreManagement.DAL
             {
                 CustomMessageBox.Show(e.ToString());
                 return 0;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public List<int> getIDEmployeeList()
+        {
+            try
+            {
+                OpenConnection();
+                string queryStr = "SELECT idEmployee FROM Employee WHERE idEmployee != 0 AND isDelete = 0";
+                SqlCommand cmd = new SqlCommand(queryStr, conn);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dataReader);
+
+                List<int> ids = new List<int>();
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {   
+                    int id = int.Parse(dt.Rows[i].ItemArray[0].ToString());
+                    ids.Add(id);
+                }
+                return ids;
+            }
+            catch (Exception e)
+            {
+                CustomMessageBox.Show(e.ToString());
+                return new List<int>();
             }
             finally
             {

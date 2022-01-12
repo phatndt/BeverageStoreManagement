@@ -166,10 +166,10 @@ CREATE TABLE Incident (
 
 CREATE TABLE Material (
     idMaterial INT,
-    nameMaterail INT,
+    nameMaterial NVARCHAR(100),
     type NVARCHAR(100),
     countUnit NVARCHAR(100),
-    quantity INT,
+    quantity REAL,
     purchasePrice REAL,
     image NVARCHAR(MAX),
     status BIT,
@@ -214,7 +214,7 @@ CREATE TABLE Material (
 -- ALTER TABLE Invoice DROP CONSTRAINT FK_Invoice_Employee; 
 -- ALTER TABLE Incident DROP CONSTRAINT FK_Incident_Employee; 
 
-ALTER TABLE Account ADD CONSTRAINT FK_Account_Employee FOREIGN KEY(idAccount) REFERENCES Employee(idEmployee)
+ALTER TABLE Account ADD CONSTRAINT FK_Account_Employee FOREIGN KEY(idEmployee) REFERENCES Employee(idEmployee)
 
 ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Position FOREIGN KEY(idPosition) REFERENCES Position(idPosition)
 
@@ -237,10 +237,6 @@ ALTER TABLE InvoiceInfo ADD CONSTRAINT FK_InvoiceInfo_Invoice FOREIGN KEY(idInvo
 ALTER TABLE InvoiceInfo ADD CONSTRAINT FK_InvoiceInfo_Product FOREIGN KEY(idProduct) REFERENCES Product(idProduct)
 
 ALTER TABLE Incident ADD CONSTRAINT FK_Incident_Employee FOREIGN KEY(idEmployee) REFERENCES Employee(idEmployee)
-
-ALTER TABLE Employee ADD CONSTRAINT FK_Employee_Position FOREIGN KEY(idPosition) REFERENCES Position(idPosition)
-
-ALTER TABLE Product ADD CONSTRAINT FK_Product_ProductType FOREIGN KEY(idProductType) REFERENCES ProductType(idProductType)
 
 ALTER TABLE Employee DROP CONSTRAINT FK_Employee_Position; 
 
@@ -301,3 +297,62 @@ INSERT INTO Account VALUES ('1','1','thanhphat219','c4ca4238a0b923820dcc509a6f75
 SELECT * FROM Account WHERE username='thanhphat219' AND password='c4ca4238a0b923820dcc509a6f75849b' AND isDelete=0 AND idAccount != 0
 
 SELECT * FROM Incident 
+
+SELECT * FROM ImportBill
+
+SELECT nameProductType FROM ProductType
+
+SELECT MAX(idInvoice) FROM Invoice
+
+SELECT * FROM Invoice
+
+SELECT * FROM InvoiceInfo
+
+SELECT MAX(idInvoiceInfo) FROM InvoiceInfo
+
+INSERT INTO Account VALUES ('7','2','Thinh','123','0')
+DELETE FROM Account WHere idAccount = 7
+
+Select username from [dbo].[Account]
+
+SELECT * FROM Invoice WHERE idInvoice != 0 AND isDelete = 0
+SELECT * FROM InvoiceInfo
+DELETE FROM Invoice WHERE idInvoice = 3
+
+SELECT COUNT(*) FROM Invoice WHERE MONTH(date)='12' AND YEAR(date)='2021'
+
+SELECT SUM(totalMoney) FROM PaymentVoucher WHERE MONTH(date)='12' AND YEAR(date)='2021' AND DAY(date) = '30'
+
+select day(date) as day from Invoice where month(date) = '' and year(date) = '' group by day(date) 
+union select day(date) as day from PaymentVoucher where month(date) = ''
+and year(date) = '' group by day(date) 
+union select day(date) as day from ReceiptVoucher where month(date) = '' and year(date) = '' group by day(date)
+
+
+select datepart(quarter, date) as quarter from Invoice where year(date) = '' group by datepart(quarter, date)
+union 
+select datepart(quarter, date) as quarter from PaymentVoucher where year(date) = '' group by datepart(quarter, date)
+union 
+select datepart(quarter, date) as quarter from ReceiptVoucher where year(date) = '' group by datepart(quarter, date)
+
+select month(date) as month from Invoice where year(date) = '' group by month(date)
+union 
+select month(date) as month from PaymentVoucher where year(date) = '' group by month(date)
+union 
+select month(date) as month from ReceiptVoucher where year(date) = '' group by month(date)
+
+select day(date), sum(totalMoney) from Invoice where month(date) = '' and year(date) = '' group by day(date)
+
+select datepart(quarter, date), sum(totalMoney) from Invoice where year(date) = '' group by datepart(quarter, date)
+
+select month(date), sum(totalMoney) from Invoice where year(date) = '' group by month(date)
+
+SELECT * FROM InvoiceInfo
+SELECT * FROM PaymentVoucher
+SELECT * FROM ReceiptVoucher
+
+SELECT SUM(totalMoney) FROM Invoice WHERE MONTH(date)=1 AND YEAR(date)=2021
+
+SELECT * FROM Position
+
+SELECT * FROM Account

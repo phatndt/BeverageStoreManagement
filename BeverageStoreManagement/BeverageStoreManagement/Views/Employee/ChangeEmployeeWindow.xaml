@@ -137,8 +137,9 @@
             <ComboBox x:Name="txtPositionEmployee"
                       materialDesign:HintAssist.Hint="Position"
                       Style="{StaticResource ComboBoxStyle1}">
-                <ComboBoxItem Content="Accoutant" />
                 <ComboBoxItem Content="Manager" />
+                <ComboBoxItem Content="Accountant" />
+                <ComboBoxItem Content="Bartender" />
             </ComboBox>
         </Grid>
         <Grid Grid.Row="9">

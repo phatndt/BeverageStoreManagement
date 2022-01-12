@@ -17,8 +17,6 @@
         Background="Transparent"
         WindowStyle="None"
         AllowsTransparency="True"
-        ResizeMode="NoResize"
-        WindowState="Normal"
         DataContext="{StaticResource AccountVM}">
     <Border CornerRadius="8"
             Background="{DynamicResource PrimaryBackgroundColor}">
@@ -130,14 +128,14 @@
                                          Margin="70,355,80,200"
                                          HorizontalAlignment="Left"
                                          Grid.Row="1" />
-                <Label x:Name="lblForgetPassword"
+                <!--<Label x:Name="lblForgetPassword"
                        Content="Forget password?"
                        Margin="0,400,65,170"
                        HorizontalAlignment="Right"
                        FontSize="14"
                        FontFamily="Poppins"
                        Foreground="{DynamicResource Blue2}"
-                       Grid.Row="1" />
+                       Grid.Row="1" />-->
                 <Button x:Name="btnLogin"
                         Width="230"
                         Height="45"

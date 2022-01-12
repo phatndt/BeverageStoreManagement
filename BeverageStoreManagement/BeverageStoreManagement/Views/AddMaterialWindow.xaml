@@ -17,7 +17,7 @@
               Margin="50,50,0,0"
               VerticalAlignment="Top"
               Width="170"
-              Height="170"
+              Height="200"
               HorizontalAlignment="Left">
             <Rectangle x:Name="recImage"
                        StrokeDashArray="4 2"
@@ -26,7 +26,7 @@
                        RadiusX="4"
                        RadiusY="4"
                        Width="170"
-                       Height="170"
+                       Height="200"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" />
             <Button x:Name="btnSelectImage"
@@ -37,7 +37,7 @@
                     FontWeight="SemiBold"
                     ToolTip="Choose picture"
                     Background="{DynamicResource Blue2}"
-                    Margin="0,0,0,22"
+                    Margin="0,0,0,-55"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     FocusVisualStyle="{x:Null}"
@@ -78,7 +78,7 @@
                            Margin="0"
                            HorizontalAlignment="Right"
                            Stroke="Gray" />
-                <TextBox x:Name="txtIdGoods"
+                <TextBox x:Name="txtIdMaterial"
                          IsReadOnly="True"
                          IsTabStop="False"
                          Cursor="Arrow"
@@ -200,6 +200,8 @@
                     <ComboBoxItem Content="Glass" />
                     <ComboBoxItem Content="Dish" />
                     <ComboBoxItem Content="Bag" />
+                    <ComboBoxItem Content="Box" />
+                    <ComboBoxItem Content="Can" />
                     <ComboBoxItem Content="Pc" />
                 </ComboBox>
             </Grid>
@@ -255,7 +257,7 @@
                            RadiusX="6"
                            Margin="0"
                            Stroke="Gray" />
-                <TextBox x:Name="txtUnitPrice"
+                <TextBox x:Name="txtPrice"
                          Cursor="IBeam"
                          materialDesign:HintAssist.Hint="VNĐ"
                          HorizontalAlignment="Right"
@@ -279,8 +281,8 @@
               Width="220"
               HorizontalAlignment="Right">
             <Button x:Name="btnSave"
-                    Command="{Binding SaveCommand}"
-                    CommandParameter="{Binding ElementName=wdAddGoods}"
+                    Command="{Binding AddMaterialCommand}"
+                    CommandParameter="{Binding ElementName=wdAddMaterial}"
                     BorderThickness="0"
                     IsDefault="True"
                     Height="40"
