@@ -43,7 +43,7 @@
                         <ColumnDefinition Width="70" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
-                               Text="No."
+                               Text="Id"
                                HorizontalAlignment="Center"
                                Margin="0"
                                TextWrapping="Wrap"

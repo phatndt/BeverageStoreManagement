@@ -302,7 +302,6 @@ namespace BeverageStoreManagement.ViewModels
                 {
                     //MessageBox.Show(mainWindow.stkMaterial.Children.IndexOf(parameter).ToString());
                     //updateGoodsWindow.stkMaterialList.Children.RemoveAt(0);
-                    updateMaterialControls.RemoveAt(0);
                     mainWindow.stkMaterial.Children.Remove(parameter);
                     Notification.Instance.Success("Delete Material Success!");
                 }

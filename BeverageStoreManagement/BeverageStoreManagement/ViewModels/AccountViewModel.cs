@@ -382,7 +382,6 @@ namespace BeverageStoreManagement.ViewModels
             }
             if (idPosition == 3)
             {
-                CustomMessageBox.Show("3");
                 window.expanderHome.IsEnabled = false;
                 window.expanderStore.IsEnabled = false;
                 window.expanderWarehouse.IsEnabled = true;

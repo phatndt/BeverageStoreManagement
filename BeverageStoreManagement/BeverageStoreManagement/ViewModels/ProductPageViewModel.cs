@@ -199,7 +199,7 @@ namespace BeverageStoreManagement.ViewModels
                     imgByteArr = ProductDAL.Instance.GetProduct(parameter.txtIdProduct.Text).Image;
                 }
                 Product product = new Product(int.Parse(parameter.txtIdProduct.Text),
-                    int.Parse(parameter.txtType.Text),
+                    ConvertTypeToInt(parameter.txtType.Text),
                     parameter.txtName.Text,
                     "",
                     int.Parse(parameter.txtPrice.Text),

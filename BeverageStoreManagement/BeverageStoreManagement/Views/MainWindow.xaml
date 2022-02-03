@@ -2002,7 +2002,7 @@
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"
                           x:Name="grdImportBill"
                           DataContext="{StaticResource ImportBillVM}"
-                          Visibility="Visible">
+                          Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="80" />
                             <RowDefinition Height="320" />
@@ -2039,7 +2039,7 @@
                                         <ColumnDefinition Width="20" />
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <Label Content="No."
+                                        <Label Content="Id"
                                                Style="{StaticResource SupplierTitle}" />
                                         <Rectangle Grid.Column="1"
                                                    HorizontalAlignment="Right"
@@ -2163,7 +2163,7 @@
                                             <ColumnDefinition Width="20" />
                                         </Grid.ColumnDefinitions>
                                         <Grid Grid.Column="0">
-                                            <Label Content="No."
+                                            <Label Content="Id"
                                                    Style="{StaticResource SupplierTitle}" />
                                             <Rectangle Grid.Column="1"
                                                        HorizontalAlignment="Right"

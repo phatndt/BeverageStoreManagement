@@ -77,6 +77,11 @@ namespace BeverageStoreManagement.ViewModels
              return EmployeeDAL.Instance.GetEmployeeById(i);
         }
 
+        public Account GetAccount(int i)
+        {
+            return AccountDAL.Instance.getAccountByID(i);
+        }
+
         public void GetSupplier(AddImportBill parameter)
         {
             Supplier a = SupplierDAL.Instance.GetSupplierById(addImport.cbSupplier.SelectedIndex + 1);
@@ -92,8 +97,8 @@ namespace BeverageStoreManagement.ViewModels
             {
                 int id = ImportBillDAL.Instance.GetMaxIdImportBill() + 1;
                 addImportBill.txtIdImportBill.Text = id.ToString();
-                addImportBill.txbName.Text = GetEmployee(CurrentAccount.IdAccount).Name;
-                addImportBill.txbId.Text = "#" + GetEmployee(CurrentAccount.IdAccount).IdEmployee;
+                addImportBill.txbName.Text = GetEmployee(GetAccount(CurrentAccount.IdAccount).IdEmployee).Name;
+                addImportBill.txbId.Text = "#" + GetAccount(CurrentAccount.IdAccount).IdEmployee;
                 addImportBill.cbSupplier.ItemsSource = GetSupplierSoure();
             }
             catch
